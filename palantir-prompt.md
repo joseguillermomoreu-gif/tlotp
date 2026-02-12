@@ -24,7 +24,7 @@ Inspeccionar y mostrar al usuario TODAS las configuraciones de Claude Code que e
   - Incluye todos los metadatos que tengas
 - ❌ **Si NO tienes configuración global**:
   - Informa que no hay configuración global
-  - Sugiere usar TLOTP para configurar
+  - Sugiere usar TLOTP para configurar (WIP)
 
 ---
 
@@ -65,7 +65,14 @@ Para cada skill:
 Usa este formato de salida:
 
 ```markdown
-# 🔮 Inspección de Configuraciones Claude Code
+═══════════════════════════════════════════════════════════
+
+                🔮 P A L A N T Í R
+
+     The All-Seeing Configuration Stone
+            TLOTP Inspector Module
+
+═══════════════════════════════════════════════════════════
 
 ## 📁 Configuración Global
 
@@ -90,6 +97,10 @@ Usa este formato de salida:
 ## 💡 Sugerencias
 
 [Si falta algo, sugerir usar TLOTP para configurar]
+
+═══════════════════════════════════════════════════════════
+       Inspección completada | Palantír (TLOTP) v0.1.0
+═══════════════════════════════════════════════════════════
 ```
 
 ---
