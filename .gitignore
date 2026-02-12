@@ -2,6 +2,9 @@
 CLAUDE.md
 MEMORY.md
 
+# Test results with personal information
+tests/
+
 # IDEs
 .idea/
 .vscode/
