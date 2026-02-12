@@ -1,0 +1,19 @@
+# Personal project files (no compartir)
+CLAUDE.md
+MEMORY.md
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
