@@ -58,6 +58,37 @@ Preferencias que sobrescriben las globales para un proyecto concreto.
   - `ask`: Preguntar cada vez antes de commitear
 - **Consideración**: Puede ser solo global, difícil justificar por proyecto
 
+### **Code Review antes de Commit** (Global / Por Proyecto)
+- **Pregunta**: "¿Quién hace la review antes del commit?"
+- **Opciones**:
+  - `user`: Usuario revisa todos los cambios antes de commit
+  - `claude`: Claude hace auto-review y commitea
+  - `both`: Claude muestra cambios, usuario aprueba/rechaza
+  - `large-changes-only`: Usuario solo revisa cambios grandes (>X archivos)
+- **Por Proyecto**: Proyecto crítico puede requerir user review, experimentos pueden ser auto
+- **Seguridad**: Importante para evitar commits no deseados
+
+### **Rama Principal** (Por Proyecto)
+- **Pregunta**: "¿Cuál es la rama principal del proyecto?"
+- **Opciones**:
+  - `main`: Rama main (moderno, GitHub default)
+  - `master`: Rama master (clásico)
+  - `production`: Rama production
+  - `custom`: Nombre personalizado
+- **Por Proyecto**: Cada repo puede tener diferente
+- **Auto-detección**: Puede detectarse con `git branch -r`
+
+### **Rama de Desarrollo** (Por Proyecto)
+- **Pregunta**: "¿Cuál es la rama de desarrollo?"
+- **Opciones**:
+  - `develop`: Rama develop (Gitflow)
+  - `dev`: Rama dev
+  - `staging`: Rama staging
+  - `none`: No hay rama de desarrollo separada
+  - `custom`: Nombre personalizado
+- **Por Proyecto**: Solo aplica si usa Gitflow o similar
+- **Dependencia**: Relacionado con "Estrategia de Branching"
+
 ### **Merge Strategy** (Global / Por Proyecto)
 - **Pregunta**: "¿Qué estrategia de merge usas?"
 - **Opciones**:
