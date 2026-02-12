@@ -145,7 +145,75 @@ El objetivo final de TLOTP - autonomía total en un proyecto real.
 
 ---
 
+### **5. 👑 Aragorn - Agent Orchestrator & Unified Command**
+
+**GitHub Issue**: [#5](https://github.com/joseguillermomoreu-gif/tlotp/issues/5)
+**Prioridad**: Futura (TLOTP v2.0)
+**ROI**: Revolucionario - Multi-Agent System
+
+**Símbolo**: El Rey que retorna y unifica todos los ejércitos
+
+**Descripción**:
+Sistema de orquestación multi-agente donde TLOTP configura, instala y coordina múltiples agentes Claude Code trabajando en paralelo e interactuando entre sí.
+
+**Objetivo**:
+TLOTP 2.0 - Llevar Claude Code a la N-ésima potencia mediante coordinación de múltiples agentes autónomos.
+
+**Entregables**:
+- [ ] Sistema de configuración de agentes (.md files)
+- [ ] Instalación automática de agentes en el sistema
+- [ ] Ventana interactiva (Aragorn's Command Center)
+- [ ] Protocolo de comunicación inter-agente
+- [ ] Sistema de dependencias entre agentes
+- [ ] Orquestación inteligente de tareas
+- [ ] Distribución automática de trabajo
+- [ ] Recuperación de fallos y retry logic
+- [ ] Dashboard de visualización de todos los agentes activos
+
+**Características Clave**:
+- **Multi-Session Management**: Múltiples sesiones de Claude Code activas
+- **Inter-Agent Communication**: Agentes que se comunican y colaboran
+- **Strategic Distribution**: TLOTP decide qué agentes lanzar para cada tarea
+- **Unified Command**: Ventana que muestra estado de todos los agentes
+- **Autonomous Collaboration**: Agentes trabajan juntos sin intervención
+
+**Concepto Visual - Aragorn's Command Center**:
+```
+┌────────────────────────────────────────────────────┐
+│          ⚔️  ARAGORN COMMAND CENTER  ⚔️           │
+│         The King's View of All Armies             │
+├────────────────────────────────────────────────────┤
+│ 🟢 Backend-Guard     │ Testing API endpoints     │
+│ 🟢 Frontend-Knight   │ Building UI components    │
+│ 🟡 Database-Sentinel │ Waiting for migration     │
+│ 🔴 Deploy-Rider      │ Error: blocked by tests   │
+│                                                    │
+│ Total: 4 agents | 2 active | 1 waiting | 1 error │
+└────────────────────────────────────────────────────┘
+```
+
+**Estado**: ⏳ Futuro (TLOTP v2.0)
+**Dependencias**: Todas las épicas v1.x completadas
+**Target**: Por definir (después de Gandalf)
+
+---
+
 ## 📊 Progreso General
+
+### TLOTP v1.x - The Fellowship
+
+```
+🔮 Palantír (Inspector)        [███-------]  30%
+💍 Gollum (Playwright MVP)     [----------]   0%
+🏛️ Elrond (Global Config)      [----------]   0%
+⚡ Gandalf (Autonomous)        [----------]   0%
+```
+
+### TLOTP v2.x - The Return of the King
+
+```
+👑 Aragorn (Multi-Agent)      [----------]   0%
+```
 
 ```
 🔮 Palantír (Inspector)        [----------]  0%
@@ -196,17 +264,30 @@ is:issue linked:joseguillermomoreu-gif/tlotp#1
 
 ## 🗺️ Roadmap
 
+### TLOTP v1.x - The Fellowship
+
 ```
 Palantír → Gollum → Elrond → Gandalf
-  (Dev)   (Quick)  (Scale)  (Ultimate)
-   ⚡       🎯       📈        🚀
+  (Dev)   (Quick)  (Scale)  (Auto)
+   ⚡       🎯       📈       🚀
 ```
 
-**Orden por ROI**:
+**Orden por ROI v1.x**:
 1. Herramienta de soporte (necesaria para desarrollo)
 2. MVP específico (valida el concepto)
 3. Generalización (escala la solución)
-4. Autonomía total (objetivo final)
+4. Autonomía de proyecto (objetivo v1.0)
+
+### TLOTP v2.x - The Return of the King
+
+```
+Aragorn
+(Multi-Agent Orchestration)
+👑 ⚔️ 🏰
+```
+
+**Objetivo v2.0**:
+Sistema revolucionario de múltiples agentes Claude Code coordinados, comunicándose y colaborando para completar tareas complejas de forma distribuida y autónoma.
 
 ---
 

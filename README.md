@@ -37,10 +37,14 @@ Un **único prompt** que:
 
 Estamos construyendo el sistema por épicas (fases):
 
+### TLOTP v1.x - The Fellowship (Configuración Básica)
 1. 🔮 **Palantír** - Configuration Inspector & Reset ← **En desarrollo**
 2. 💍 **Gollum** - Playwright E2E MVP
 3. 🏛️ **Elrond** - Global & Generic Configuration
-4. ⚡ **Gandalf** - Autonomous PHP Project (objetivo final)
+4. ⚡ **Gandalf** - Autonomous PHP Project
+
+### TLOTP v2.x - The Return of the King (Multi-Agent System)
+5. 👑 **Aragorn** - Agent Orchestrator & Unified Command (futuro)
 
 **Ver progreso**: [MILESTONES.md](MILESTONES.md) | [Issues en GitHub](https://github.com/joseguillermomoreu-gif/tlotp/issues)
 
