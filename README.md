@@ -2,6 +2,8 @@
 
 > **"Un prompt para configurarlos a todos"**
 
+🚧 **En desarrollo activo** | [Issues](https://github.com/joseguillermomoreu-gif/tlotp/issues) | [Roadmap](MILESTONES.md)
+
 Un único super-prompt para auto-configurar Claude Code de forma asistida, inteligente y evolutiva.
 
 ---
@@ -29,30 +31,34 @@ Un **único prompt** que:
 
 ---
 
-## ⚡ Quick Start
+## ⚡ Estado Actual
 
-### Instalación
+🚧 **TLOTP está en desarrollo activo**
 
-**NO hay instalación.** Solo copia y pega.
+Estamos construyendo el sistema por épicas (fases):
 
-```bash
-# 1. Descargar el prompt
-curl -O https://raw.githubusercontent.com/joseguillermomoreu-gif/tlotp/main/TLOTP-prompt.md
+### TLOTP v1.x - The Fellowship (Configuración Básica)
+1. 🔮 **Palantír** - Configuration Inspector & Reset ← **En desarrollo**
+2. 💍 **Gollum** - Playwright E2E MVP
+3. 🏛️ **Elrond** - Global & Generic Configuration
+4. ⚡ **Gandalf** - Autonomous PHP Project
 
-# 2. Abrir Claude Code en tu proyecto
+### TLOTP v2.x - The Return of the King (Multi-Agent System)
+5. 👑 **Aragorn** - Agent Orchestrator & Unified Command (futuro)
 
-# 3. Copiar y pegar el contenido de TLOTP-prompt.md
+**Ver progreso**: [MILESTONES.md](MILESTONES.md) | [Issues en GitHub](https://github.com/joseguillermomoreu-gif/tlotp/issues)
 
-# 4. Responder las preguntas interactivas
+### 🎯 Próximos hitos
 
-# 5. ¡Listo! Claude Code está configurado
-```
+- [ ] Completar Palantír (herramienta de inspección de configs)
+- [ ] Implementar primer prompt funcional (Gollum - Playwright MVP)
+- [ ] Sistema de configuración global (Elrond)
 
 ---
 
-## 🎨 Qué Configura
+## 🎨 Objetivos - Qué Configurará TLOTP
 
-TLOTP configura **TODO** lo que necesitas:
+Cuando esté completo, TLOTP configurará **TODO** lo que necesitas:
 
 ### 1. **Workflow y Git**
 - Estrategia de branching (gitflow, github-flow, trunk-based)
@@ -118,7 +124,7 @@ TLOTP configura **TODO** lo que necesitas:
 
 - **[TLOTP.md](TLOTP.md)** - Especificación completa del proyecto
 - **[PREFERENCIAS.md](PREFERENCIAS.md)** - Catálogo de todas las preferencias configurables
-- **[CLAUDE.md](CLAUDE.md)** - Guía para Claude Code sobre este proyecto
+- **[MILESTONES.md](MILESTONES.md)** - Épicas y roadmap del proyecto (temática LOTR)
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - Cómo contribuir
 
 ---
@@ -138,24 +144,58 @@ TLOTP es la **evolución** de claude-code-auto-skills.
 
 ---
 
-## 🛣️ Roadmap
+## 🗺️ Roadmap
 
-### v1.0.0 - MVP (En desarrollo)
-- [x] Especificación completa
-- [x] Catálogo de preferencias
-- [ ] TLOTP-prompt.md funcional
-- [ ] Sistema de templates
-- [ ] Ejemplos de configuraciones
+Ver **[MILESTONES.md](MILESTONES.md)** para el roadmap completo con todas las épicas y tareas.
 
-### v1.1.0 - Mejoras
-- [ ] Más preguntas detalladas
-- [ ] Perfiles pre-configurados
-- [ ] Detección mejorada
+### Épicas Definidas (orden por ROI)
 
-### v2.0.0 - IA Completa
-- [ ] Zero-config (detección total automática)
-- [ ] Aprendizaje de preferencias
-- [ ] Sugerencias proactivas
+#### 1. 🔮 Palantír - Configuration Inspector & Reset (**83% completado** 🚀)
+**Issue épico**: [#1](https://github.com/joseguillermomoreu-gif/tlotp/issues/1) | **Tareas**: #5-#28 | **PR**: [#30](https://github.com/joseguillermomoreu-gif/tlotp/pull/30)
+
+Herramienta para inspeccionar y gestionar configuraciones de Claude Code (jerarquía oficial + custom). Fundamental para desarrollar las siguientes épicas.
+
+**Sprint P2 COMPLETADO** ✅ (Sistema Inspector):
+- ✅ #7 - Inspector config global (resumen) - 50 XP
+- ✅ #8 - Inspector config global (completo) - 80 XP
+- ✅ #9 - Inspector config proyecto (resumen) - 50 XP
+- ✅ #10 - Inspector config proyecto (completo) - 80 XP
+- ✅ #11 - Inspector de skills - 60 XP
+- ✅ #18 - Palantír prompt v1.2 - 150 XP
+
+**Sprint P3 PRÓXIMO** (Mejoras + Sistema Reset):
+- ⏳ #31 - Mejorar condicionales imports/topics - 60 XP
+- ⏳ #32 - Validar opción resumen - 50 XP
+- ⏳ #33 - Mejorar mensaje CLAUDE.md superior - 50 XP
+- ⏳ #13-#17 - Sistema de reset completo
+
+---
+
+#### 2. 💍 Gollum - Playwright E2E MVP
+**Issue épico**: [#2](https://github.com/joseguillermomoreu-gif/tlotp/issues/2)
+
+Primer proyecto real configurado con TLOTP. MVP enfocado en testing E2E con Playwright.
+
+---
+
+#### 3. 🏛️ Elrond - Global & Generic Configuration
+**Issue épico**: [#3](https://github.com/joseguillermomoreu-gif/tlotp/issues/3)
+
+Sistema de configuración global reutilizable para cualquier tipo de proyecto.
+
+---
+
+#### 4. ⚡ Gandalf - Autonomous PHP Project
+**Issue épico**: [#4](https://github.com/joseguillermomoreu-gif/tlotp/issues/4)
+
+Objetivo final: autonomía total. Claude ejecuta ciclo completo (tarea → código → QA → deploy).
+
+---
+
+**Estado actual**: ✅ Palantír v1.2 COMPLETO Y FUNCIONAL - Próximo: Sprint P3
+**Progreso general**: [Ver en GitHub Projects](https://github.com/joseguillermomoreu-gif/tlotp/issues)
+**Testing**: ✅ Probado exitosamente 2026-02-13 14:42
+**XP ganado Sprint P2**: +470 XP (235 XP por fundador)
 
 ---
 

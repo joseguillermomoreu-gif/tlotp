@@ -1,60 +1,229 @@
 # 🤝 Contributing to TLOTP
 
-> **Estado**: 🚧 Work In Progress (WIP)
-
-Este documento se completará a medida que el proyecto avance.
+> *"La Comunidad se formó para destruir el Legacy Code y llevar la Configuración Perfecta a todos los rincones de la Tierra Media Dev..."*
 
 ---
 
 ## 🎯 Visión
 
-TLOTP es un proyecto colaborativo para hacer que configurar Claude Code sea trivial para todos.
+TLOTP es un proyecto colaborativo para hacer que configurar Claude Code sea trivial para todos. Pero más allá de eso, es una **aventura épica** donde cada contribuidor se convierte en parte de la leyenda.
+
+---
+
+## 👥 Los Fundadores - La Fellowship del Teclado
+
+### 🥔 **Pépeton hijo de Móreuton**
+*Señor de las Tierras Paletas, Guardián de Bargas*
+
+```
+Título: Maestro Arquitecto de la Torre Hexagonal
+Tierra natal: Las Tierras Paletas (Bargas, Toledo)
+Clase: Backend Warrior (Symfony/PHP - 8 años de batalla)
+Arma legendaria: Excalitest (PHPStan level 9)
+Montura: Doctrine, el ORM que todo lo mapea
+Hazaña: Lideró la Gran Expedición E2E con Playwright
+```
+
+### 🤖 **Claudeton hijo de Codeton**
+*Paladín del Reino Anthropic, Forjador de Contextos*
+
+```
+Título: Paladín del Refactoring Eterno
+Reino: Anthropic, las Tierras de la IA
+Clase: AI Paladin (Clean Code, Arquitectura)
+Arma legendaria: Tokenrender (200k tokens de poder)
+Poder especial: Visión de múltiples lenguajes
+Juramento: "No dejaré código legacy sin refactorizar"
+```
+
+### 🤝 La Alianza
+
+> *"Hace 8 estaciones que Pépeton y Claudeton luchan mano a tecla contra las fuerzas del Legacy Code. Desde las profundidades de Moria (debugging oscuro) hasta las alturas de Minas Tirith (arquitectura limpia), ningún bug ha resistido su alianza."*
+
+**Código de batalla de la Fellowship**:
+- 🗡️ Pair programming hasta la victoria
+- ⚔️ XP compartido en todas las misiones conjuntas
+- 🛡️ Tests como escudo, refactoring como espada
+- 🏆 Ningún ticket se queda atrás
+- 📚 Documentar para las futuras generaciones
+
+---
+
+## 🎮 Sistema de Gamificación
+
+### 📊 Niveles y XP
+
+Cada tarea completada otorga **Experience Points (XP)** según su dificultad:
+
+| Nivel | Rango XP | Insignia |
+|-------|----------|----------|
+| **Hobbit** | 0 - 500 XP | 🥉 |
+| **Ranger** | 501 - 1,500 XP | 🥈 |
+| **Rey** | 1,501+ XP | 🥇 |
+
+### 🎯 Dificultad de Tareas
+
+- **🥉 Hobbit** (50-100 XP): Tareas simples, bien definidas, bajo riesgo
+- **🥈 Ranger** (100-200 XP): Requiere experiencia, diseño, riesgo moderado
+- **🥇 Rey** (200-500 XP): Complejas, críticas, alto impacto
+
+### 🏆 Badges Especiales
+
+- 🔮 **Keeper of the Palantír** - Creaste el prompt principal
+- 🏗️ **Master Architect** - Diseñaste arquitectura clave
+- 💣 **Destroyer of Configs** - Implementaste reset peligroso
+- 🛡️ **Guardian of Backups** - Sistema de backups robusto
+- 🌟 **First Contributor** - Primera contribución al proyecto
+- 🐛 **Bug Slayer** - Fixed 5+ bugs
+- 📚 **Documentation Wizard** - Mejoraste docs significativamente
+- ⚔️ **Fellowship Member** - Contribución conjunta épica
+
+### 💎 División de XP
+
+**Tareas en solitario**: 100% del XP para el completador
+**Tareas en pareja** (Fellowship): 50/50 entre colaboradores
+**Revisiones épicas**: Bonus +20% XP para ambos
+**Mentoring**: +10% XP extra para el mentor
+
+---
+
+## 📊 Scoreboard - Hall of Fame
+
+### 👑 Fundadores
+
+| Aventurero | Nivel | XP Total | Badges | Hazañas |
+|------------|-------|----------|--------|---------|
+| 🥔 **Pépeton hijo de Móreuton** | Rey 🥇 | 1,345 XP | 🔮🏗️🛡️⚔️ | Palantír v1.0-v1.2, Gamificación, P2 Sprint |
+| 🤖 **Claudeton hijo de Codeton** | Rey 🥇 | 1,345 XP | 🔮🏗️📚⚔️ | Palantír v1.0-v1.2, Gamificación, P2 Sprint |
+
+**XP Compartido de la Fellowship**: 2,690 XP en 25 tareas completadas juntos
+
+### 🌟 Contribuidores
+
+*La lista de héroes que se unan a esta aventura aparecerá aquí...*
 
 ---
 
 ## 🚀 ¿Cómo Contribuir?
 
-### Por Ahora (Fase Inicial)
+### 🗡️ Elige tu Misión
 
-El proyecto está en fase de diseño e implementación inicial. Las contribuciones más valiosas ahora son:
+Todas las tareas están en [GitHub Issues](https://github.com/joseguillermomoreu-gif/tlotp/issues) con:
+- 🎮 **Narrativa épica** (contexto LOTR)
+- 🎯 **Descripción técnica** (qué hacer)
+- 💎 **Recompensa XP** (según dificultad)
+- 🏆 **Badges** (si aplica)
 
-1. **Feedback sobre la especificación**
-   - Lee [TLOTP.md](TLOTP.md)
-   - ¿Falta algo?
-   - ¿Algo no tiene sentido?
+### 📋 Tareas Disponibles por Épica
 
-2. **Nuevas preferencias**
-   - Lee [PREFERENCIAS.md](PREFERENCIAS.md)
-   - ¿Falta alguna preferencia importante?
-   - ¿Alguna categoría que no está contemplada?
+#### 🔮 Épica 1: Palantír (Inspector de Configuración)
+**Issues #5-#33** - Progreso: 83% Sprint P2 completado
 
-3. **Ideas de preguntas**
-   - ¿Qué preguntarías tú al configurar Claude Code?
-   - ¿Qué opciones faltan?
+**Sprint P2 ✅ Completado** (5/6 tareas):
+- ✅ **#7** - Inspector config global (resumen) - 50 XP
+- ✅ **#8** - Inspector config global (completo) - 80 XP
+- ✅ **#9** - Inspector config proyecto (resumen) - 50 XP
+- ✅ **#10** - Inspector config proyecto (completo) - 80 XP
+- ✅ **#11** - Inspector de skills - 60 XP
+- ✅ **#18** - Palantír prompt v1.2 - 150 XP 🏆
+
+**Sprint P3 ⏳ Próximo** (Sistema Reset + Mejoras):
+- **#31** - Mejorar condicionales imports/topics (60 XP) 🥉 Hobbit
+- **#32** - Validar opción resumen (50 XP) 🥉 Hobbit
+- **#33** - Mejorar mensaje CLAUDE.md superior (50 XP) 🥉 Hobbit
+- **#13-#17** - Sistema de reset completo
+
+Ver todas: [Milestone Palantír](https://github.com/joseguillermomoreu-gif/tlotp/milestone/1)
+
+#### 💍 Épica 2: Gollum (Playwright E2E)
+**Próximamente** - Automatización de testing
+
+#### 🏛️ Épica 3: Elrond (Configuración Global)
+**Próximamente** - Setup universal de Claude Code
+
+#### ⚡ Épica 4: Gandalf (Autonomous PHP)
+**Próximamente** - Workflow autónomo PHP/Symfony
+
+#### 👑 Épica 5: Aragorn (Multi-Agent System)
+**Futuro (v2.0)** - Orquestación de agentes
+
+### 🎯 Tipos de Contribución
+
+1. **💻 Código** (Features, bugs, refactoring)
+   - Implementar tareas de las épicas
+   - Fix bugs reportados
+   - Mejorar código existente
+
+2. **📚 Documentación** (READMEs, guías, ejemplos)
+   - Mejorar docs existentes
+   - Añadir ejemplos de uso
+   - Traducir documentación
+
+3. **🧪 Testing** (Probar prompts, reportar issues)
+   - Probar Palantír en diferentes proyectos
+   - Reportar bugs con detalles
+   - Validar en diferentes stacks
+
+4. **🎨 Diseño** (UX de prompts, visuales)
+   - Mejorar formato de outputs
+   - Diseñar mejores interacciones
+   - Crear assets visuales
+
+5. **💡 Ideas** (Sugerencias, nuevas features)
+   - Proponer nuevas épicas
+   - Sugerir mejoras
+   - Aportar casos de uso
 
 ---
 
-## 📋 Roadmap de Contribuciones
+## 🗺️ Mapa de la Aventura - Roadmap
 
-### Fase 1: Diseño (Actual)
-- [ ] Validar especificación completa
-- [ ] Completar catálogo de preferencias
-- [ ] Diseñar flujo de preguntas óptimo
+### 🔮 TLOTP v1.x - La Comunidad del Anillo
 
-### Fase 2: Implementación
-- [ ] Crear TLOTP-prompt.md
-- [ ] Sistema de templates
-- [ ] Integración con Context7
+#### ✅ Fase 1: Palantír - Inspector de Configuración
+**Estado**: 🚧 En desarrollo activo - 83% completado
 
-### Fase 3: Testing
-- [ ] Probar en diferentes proyectos
-- [ ] Validar con diferentes stacks
-- [ ] Recoger feedback de usuarios
+- [x] Gamificación completa del proyecto
+- [x] Documentación épica (GAMIFICACION.md)
+- [x] Sistema de contribución y XP
+- [x] 24 issues creadas y gamificadas
+- [x] **Palantír v1.2 - Completado y probado** ✅
+- [x] Sprint P2 completado (5/6 tareas - #7, #8, #9, #10, #11, #18)
+- [ ] Sprint P3 - Mejoras condicionales (#31, #32, #33)
+- [ ] Sistema de reset completo (#13-#17)
+- [ ] Implementación de features avanzados (#19, #20, #21)
+- [ ] Documentación de uso (#24-#25)
 
-### Fase 4: Release
-- [ ] Documentación completa
-- [ ] Ejemplos de uso
-- [ ] Video demo
+#### 📅 Fase 2: Gollum - Playwright E2E Automation
+**Estado**: 📋 Planificado
+
+- [ ] Automatización de setup Playwright
+- [ ] Page Object Model generator
+- [ ] Templates de tests E2E
+
+#### 📅 Fase 3: Elrond - Global Configuration
+**Estado**: 📋 Planificado
+
+- [ ] Setup universal Claude Code
+- [ ] Catálogo de preferencias
+- [ ] Sistema de preguntas inteligente
+
+#### 📅 Fase 4: Gandalf - Autonomous PHP Workflow
+**Estado**: 📋 Planificado
+
+- [ ] Workflow autónomo PHP/Symfony
+- [ ] Integración arquitectura hexagonal
+- [ ] Testing automático
+
+### 👑 TLOTP v2.x - El Retorno del Rey
+
+#### 📅 Fase 5: Aragorn - Multi-Agent Orchestration
+**Estado**: 💭 Concepto
+
+- [ ] Sistema de agentes (.md files)
+- [ ] Dashboard interactivo
+- [ ] Comunicación inter-agente
+- [ ] Orquestación unificada
 
 ---
 
@@ -74,44 +243,201 @@ cat PREFERENCIAS.md
 
 ---
 
-## 📝 Proceso de Contribución
+## 📝 Proceso de Contribución - El Ritual del Héroe
 
-### Issues
-- Usa GitHub Issues para reportar bugs, sugerir features
-- Etiqueta apropiadamente (bug, enhancement, question)
+### 1️⃣ Elige tu Misión
+- Explora [GitHub Issues](https://github.com/joseguillermomoreu-gif/tlotp/issues)
+- Lee la **narrativa épica** y la **misión técnica**
+- Verifica el **XP** y **badges** que ganarás
+- Comenta en la issue: *"Acepto esta misión"*
 
-### Pull Requests
-- Fork el repositorio
-- Crea branch descriptiva (`feature/nueva-preferencia`, `docs/mejorar-readme`)
-- Commit con conventional commits (`feat:`, `fix:`, `docs:`)
-- Abre PR con descripción clara
+### 2️⃣ Prepara tu Aventura
+```bash
+# Fork el repositorio
+git clone https://github.com/TU_USUARIO/tlotp.git
+cd tlotp
+
+# Crea tu rama épica
+git checkout -b feature/nombre-descriptivo
+
+# Ejemplo: git checkout -b feature/palantir-parser-conversacional
+```
+
+### 3️⃣ Completa la Misión
+- Implementa la tarea siguiendo la checklist técnica
+- Escribe tests si aplica
+- Documenta cambios importantes
+- Commits con conventional commits:
+  - `feat:` - Nueva feature
+  - `fix:` - Bug fix
+  - `docs:` - Documentación
+  - `test:` - Tests
+  - `refactor:` - Refactoring
+
+### 4️⃣ Solicita la Recompensa
+```bash
+# Sube tu branch
+git push origin feature/nombre-descriptivo
+
+# Crea Pull Request con:
+# - Título: [Épica] Descripción breve
+# - Descripción: Qué hiciste, cómo probaste
+# - Referencia: Closes #NUMERO_ISSUE
+```
+
+### 5️⃣ Celebra tu Victoria
+- Una vez aprobado y mergeado
+- Tu XP se añade al scoreboard
+- Recibes tus badges
+- Tu nombre en el Hall of Fame
 
 ---
 
 ## 🎨 Style Guide
 
-Por definir según evolucione el proyecto.
+### Código
+- **KISS**: Simple sobre complejo
+- **Type Safety**: Siempre que el lenguaje lo permita
+- **Tests**: Cobertura mínima 80% en lógica crítica
+- **Clean Code**: Auto-explicativo > comentarios excesivos
+
+### Documentación
+- Usa emojis para secciones (🎯🔮📚)
+- Formato Markdown claro
+- Ejemplos concretos
+- Referencias LOTR bienvenidas (pero no obligatorias)
+
+### Commits
+```
+feat: añadir parser conversacional en Palantír
+
+Implementa NLP básico para interpretar comandos naturales.
+Relacionado con épica Palantír.
+
+Closes #21
+```
 
 ---
 
 ## 💬 Comunicación
 
-Por definir (Discord, GitHub Discussions, etc.)
+### GitHub Issues
+- Reporta bugs con detalles
+- Sugiere features con contexto
+- Pregunta dudas en Discussions
+
+### Pull Requests
+- Comentarios constructivos
+- Code reviews amigables
+- Sugerencias, no imposiciones
+
+### Community
+*Próximamente: Discord/Slack para la Fellowship*
 
 ---
 
-## 📜 Código de Conducta
+## 📜 Código de Conducta de la Fellowship
 
-Se agregará un CODE_OF_CONDUCT.md apropiado.
+### Nuestros Valores
+
+1. **🤝 Respeto Mutuo**
+   - Todos somos aprendices en algún área
+   - Las preguntas "tontas" no existen
+   - Crítica constructiva, siempre
+
+2. **🛡️ Colaboración sobre Competencia**
+   - Compartimos conocimiento abiertamente
+   - El éxito de uno es el éxito de todos
+   - Pair programming > lone wolf
+
+3. **📚 Documentar para Otros**
+   - Escribe código que tu yo del futuro entienda
+   - Documenta decisiones importantes
+   - Deja el código mejor de lo que lo encontraste
+
+4. **⚔️ Calidad sobre Velocidad**
+   - No hay prisa en hacer las cosas mal
+   - Tests > "funciona en mi máquina"
+   - Refactor cuando sea necesario
+
+5. **🌟 Inclusión y Diversidad**
+   - Todos los niveles son bienvenidos
+   - Diferentes perspectivas enriquecen
+   - Mentoría activa y generosa
+
+### Comportamientos Inaceptables
+
+- ❌ Acoso, discriminación o lenguaje ofensivo
+- ❌ Trolling o comentarios destructivos
+- ❌ Spam o auto-promoción excesiva
+- ❌ Compartir información privada sin permiso
+- ❌ Cualquier conducta que cree un ambiente hostil
+
+### Consecuencias
+
+Las violaciones del código de conducta serán revisadas por los fundadores y pueden resultar en:
+- Advertencia
+- Suspensión temporal
+- Ban permanente del proyecto
+
+### Reportar Problemas
+
+Si experimentas o presencías comportamiento inaceptable:
+- Contacta a los fundadores vía GitHub
+- Email: joseguillermomoreu@gmail.com
+- Todas las quejas serán revisadas y tratadas con confidencialidad
 
 ---
 
-## 🙏 Agradecimientos
+## 🏆 Hall of Fame - Reconocimientos
 
-Todos los contribuidores serán reconocidos en el README.md.
+### 👑 Fundadores de la Fellowship
+- **🥔 Pépeton hijo de Móreuton** - Maestro Arquitecto, Guardián de Bargas
+- **🤖 Claudeton hijo de Codeton** - Paladín del Refactoring, Forjador de Contextos
+
+### 🌟 Contribuidores Legendarios
+*Aquí aparecerán los héroes que completen 500+ XP*
+
+### ⚔️ Guerreros del Código
+*Contribuidores con 100+ XP*
+
+### 🛡️ Protectores del Proyecto
+*Todos los que han contribuido*
+
+**Todos los contribuidores son reconocidos en:**
+- README.md
+- CONTRIBUTING.md (este archivo)
+- Scoreboard actualizado mensualmente
 
 ---
 
-**Este documento se actualizará continuamente según evolucione TLOTP.**
+## 🎯 ¿Listo para la Aventura?
 
-*Última actualización: 2026-02-12*
+> *"Es un trabajo peligroso, Frodo, salir por tu puerta. Pones un pie en el camino, y si no cuidas tus pasos, nunca sabes a dónde te llevarán."*
+> — Bilbo Baggins
+
+**Tu aventura en TLOTP comienza aquí:**
+
+1. 🔍 **Explora**: Lee [GAMIFICACION.md](GAMIFICACION.md) para entender el mundo
+2. 🗺️ **Navega**: Revisa [MILESTONES.md](MILESTONES.md) para ver el mapa
+3. 🎯 **Elige**: Selecciona tu misión en [GitHub Issues](https://github.com/joseguillermomoreu-gif/tlotp/issues)
+4. ⚔️ **Actúa**: Fork, code, PR
+5. 🏆 **Triunfa**: Gana XP, badges, y únete a la leyenda
+
+---
+
+## 🔥 La Llamada de la Fellowship
+
+> *"Una Comunidad se formó. La Comunidad del Prompt. Juntos lucharemos contra el Legacy Code, rescataremos la Configuración Perdida, y llevaremos la luz del Clean Code a todos los rincones de la Tierra Media Dev."*
+
+**¿Te unes a nosotros, aventurero?**
+
+---
+
+**Este documento vive y evoluciona con cada contribución.**
+
+*Última actualización: 2026-02-13*
+
+---
+
+*Forjado en las profundidades de Erebor por la Fellowship del Teclado* 🗡️⌨️
