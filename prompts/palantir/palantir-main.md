@@ -33,6 +33,7 @@
 @prompts/palantir/sections/05-formato-output.md
 @prompts/palantir/sections/06-reglas-ejecucion.md
 @prompts/palantir/sections/07-reset-system.md
+@prompts/palantir/sections/08-recovery-system.md
 
 ---
 
@@ -46,6 +47,7 @@
 6. **05-formato-output.md** - Templates y formato de respuesta
 7. **06-reglas-ejecucion.md** - Flujo de ejecución y reglas (modo Inspector)
 8. **07-reset-system.md** - Sistema de reset de configuraciones
+9. **08-recovery-system.md** - Sistema de recovery desde backup
 
 ---
 
@@ -65,6 +67,6 @@ Procede según las instrucciones de `00-menu-principal.md`:
 2. Según la elección, ejecutar el flujo correspondiente:
    - **Si elige Inspeccionar**: Ejecutar flujo de `06-reglas-ejecucion.md`
    - **Si elige Reset**: Ejecutar flujo de `07-reset-system.md`
-   - **Si elige Recovery**: Ejecutar flujo de `08-recovery-system.md` (pendiente)
+   - **Si elige Recovery**: Ejecutar flujo de `08-recovery-system.md`
 
 ¡Adelante, Palantír! 🔮👁️
