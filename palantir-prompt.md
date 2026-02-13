@@ -3,14 +3,15 @@
 > **Nota**: Este archivo es ahora un alias/redirect al nuevo sistema modular v1.3
 >
 > **Arquitectura modular**: `prompts/palantir/palantir-main.md`
+> **Documentación de arquitectura**: Ver `ARCHITECTURE.md` en la raíz del proyecto
 
 ---
 
 ## ✨ v1.3.0 - Arquitectura Modular
 
-Este prompt ha sido modularizado para facilitar el mantenimiento y escalabilidad.
+Este prompt ha sido modularizado para facilitar el mantenimiento y escalabilidad usando el patrón estándar de TLOTP con `@imports`.
 
-**Ver**: `prompts/palantir/MIGRATION.md` para detalles de la migración.
+**Ver**: `ARCHITECTURE.md` para el patrón completo de modularización.
 
 ---
 

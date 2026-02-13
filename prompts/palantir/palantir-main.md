@@ -9,7 +9,6 @@
 
 ## 📚 Carga de Módulos
 
-@prompts/palantir/VERSION.md
 @prompts/palantir/sections/01-metadata.md
 @prompts/palantir/sections/02-backup-system.md
 @prompts/palantir/sections/03-jerarquia-oficial.md
@@ -21,13 +20,12 @@
 
 ## 🎯 Módulos Cargados
 
-1. **VERSION.md** - Sistema de versionado y changelog
-2. **01-metadata.md** - Banner, misión, jerarquía oficial
-3. **02-backup-system.md** - Sistema de backup (4 opciones de path)
-4. **03-jerarquia-oficial.md** - Inspección de 7 niveles oficiales
-5. **04-exploracion-custom.md** - Detección genérica (Sección 8)
-6. **05-formato-output.md** - Templates y formato de respuesta
-7. **06-reglas-ejecucion.md** - Flujo de ejecución y reglas
+1. **01-metadata.md** - Banner, misión, jerarquía oficial
+2. **02-backup-system.md** - Sistema de backup (4 opciones de path)
+3. **03-jerarquia-oficial.md** - Inspección de 7 niveles oficiales
+4. **04-exploracion-custom.md** - Detección genérica (Sección 8)
+5. **05-formato-output.md** - Templates y formato de respuesta
+6. **06-reglas-ejecucion.md** - Flujo de ejecución y reglas
 
 ---
 
