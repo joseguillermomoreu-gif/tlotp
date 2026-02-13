@@ -11,7 +11,15 @@
 
 @prompts/VERSION.md
 
-**Versión cargada**: Usar la versión de Palantír definida arriba (actualmente 1.3.0)
+**Versión cargada**: Usar la versión de Palantír definida arriba (actualmente 1.4.0)
+
+---
+
+## 📖 Carga de Información de Claude Code
+
+@prompts/info_claude.md
+
+**Info cargada**: Documentación oficial del sistema de memoria de Claude Code
 
 ---
 
