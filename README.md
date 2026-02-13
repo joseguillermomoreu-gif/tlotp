@@ -150,15 +150,24 @@ Ver **[MILESTONES.md](MILESTONES.md)** para el roadmap completo con todas las é
 
 ### Épicas Definidas (orden por ROI)
 
-#### 1. 🔮 Palantír - Configuration Inspector & Reset (**← En desarrollo**)
-**Issue épico**: [#1](https://github.com/joseguillermomoreu-gif/tlotp/issues/1) | **Tareas**: #5-#28
+#### 1. 🔮 Palantír - Configuration Inspector & Reset (**83% completado** 🚀)
+**Issue épico**: [#1](https://github.com/joseguillermomoreu-gif/tlotp/issues/1) | **Tareas**: #5-#28 | **PR**: [#30](https://github.com/joseguillermomoreu-gif/tlotp/pull/30)
 
-Herramienta para inspeccionar y gestionar configuraciones de TLOTP. Fundamental para desarrollar las siguientes épicas.
+Herramienta para inspeccionar y gestionar configuraciones de Claude Code (jerarquía oficial + custom). Fundamental para desarrollar las siguientes épicas.
 
-**Entregables**:
-- Inspector de configs (global/proyecto/skills)
-- Sistema de reset (total/selectivo/interactivo)
-- Prompt dedicado y modo conversacional
+**Sprint P2 COMPLETADO** ✅ (Sistema Inspector):
+- ✅ #7 - Inspector config global (resumen) - 50 XP
+- ✅ #8 - Inspector config global (completo) - 80 XP
+- ✅ #9 - Inspector config proyecto (resumen) - 50 XP
+- ✅ #10 - Inspector config proyecto (completo) - 80 XP
+- ✅ #11 - Inspector de skills - 60 XP
+- ✅ #18 - Palantír prompt v1.2 - 150 XP
+
+**Sprint P3 PRÓXIMO** (Mejoras + Sistema Reset):
+- ⏳ #31 - Mejorar condicionales imports/topics - 60 XP
+- ⏳ #32 - Validar opción resumen - 50 XP
+- ⏳ #33 - Mejorar mensaje CLAUDE.md superior - 50 XP
+- ⏳ #13-#17 - Sistema de reset completo
 
 ---
 
@@ -183,8 +192,10 @@ Objetivo final: autonomía total. Claude ejecuta ciclo completo (tarea → códi
 
 ---
 
-**Estado actual**: Trabajando en Palantír (épica #1)
+**Estado actual**: ✅ Palantír v1.2 COMPLETO Y FUNCIONAL - Próximo: Sprint P3
 **Progreso general**: [Ver en GitHub Projects](https://github.com/joseguillermomoreu-gif/tlotp/issues)
+**Testing**: ✅ Probado exitosamente 2026-02-13 14:42
+**XP ganado Sprint P2**: +470 XP (235 XP por fundador)
 
 ---
 

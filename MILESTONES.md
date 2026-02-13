@@ -32,19 +32,44 @@ Ejemplo:
 **Símbolo**: La piedra vidente que permite VER todo
 
 **Descripción**:
-Sistema para visualizar y gestionar configuraciones de TLOTP, tanto globales como por proyecto. Permite inspeccionar qué está configurado y resetear/vaciar cuando sea necesario.
+Sistema para visualizar y gestionar configuraciones de Claude Code, siguiendo la jerarquía oficial. Permite inspeccionar toda la configuración (oficial + custom) y gestionarla (backup, reset).
 
 **Objetivo**:
 Herramienta fundamental para desarrollar y testear las siguientes épicas.
 
-**Entregables**:
-- [ ] Comando/prompt para inspeccionar config global
-- [ ] Comando/prompt para inspeccionar config de proyecto
-- [ ] Sistema de reset con confirmación
-- [ ] Documentación de uso
+**Progreso**: 🎉 **Sprint P2 COMPLETADO (83%)** - Palantír v1.2 funcional
 
-**Estado**: ⏳ Pendiente
-**Target**: Por definir
+**Entregables**:
+- [x] **#18** Palantír-prompt.md v1.2 ✅ CERRADO 2026-02-13 (150 XP)
+- [x] **#7** Inspector config global (resumen) ✅ CERRADO 2026-02-13 (50 XP)
+- [x] **#8** Inspector config global (completo) ✅ CERRADO 2026-02-13 (80 XP)
+- [x] **#9** Inspector config proyecto (resumen) ✅ CERRADO 2026-02-13 (50 XP)
+- [x] **#10** Inspector config proyecto (completo) ✅ CERRADO 2026-02-13 (80 XP)
+- [x] **#11** Inspector de skills ✅ CERRADO 2026-02-13 (60 XP)
+- [ ] **#12** Opción nivel de detalle (P2 - pendiente - movido a backlog)
+
+**Sprint P3** (Sistema Reset + Mejoras incrementales):
+- [ ] **#31** Mejorar instrucciones condicionales (imports/topic files) - 60 XP
+- [ ] **#32** Validar opción "Sí, mostrar resumen" - 50 XP
+- [ ] **#33** Mejorar mensaje "otros CLAUDE.md en jerarquía superior" - 50 XP
+- [ ] **#13-#17** Sistema de reset con confirmación
+
+**Funcionalidades implementadas** (v1.2):
+- ✅ Jerarquía oficial Claude Code (7 niveles)
+- ✅ Exploración genérica de configuración adicional
+- ✅ Sistema de backup con 4 opciones de path
+- ✅ Detección de imports, symlinks, YAML frontmatter
+- ✅ Filtrado inteligente (excluye docs de proyecto, .credentials.json)
+- ✅ AskUserQuestion para interacción elegante
+- ✅ Resumen opcional al finalizar
+- ✅ Banner footer al final
+- ✅ Symlinks formato mejorado
+- ✅ Skills sin contaminar contexto
+
+**Estado**: ✅ **Palantír v1.2 COMPLETO Y FUNCIONAL**
+**Próximo**: Sprint P3 (Mejoras incrementales + Sistema Reset)
+**Testing**: ✅ Probado exitosamente 2026-02-13 14:42
+**XP Sprint P2**: +470 XP total (235 XP cada fundador)
 
 ---
 
@@ -203,7 +228,7 @@ TLOTP 2.0 - Llevar Claude Code a la N-ésima potencia mediante coordinación de 
 ### TLOTP v1.x - The Fellowship
 
 ```
-🔮 Palantír (Inspector)        [███-------]  30%
+🔮 Palantír (Inspector)        [████████--]  83% ✅ P2 completado
 💍 Gollum (Playwright MVP)     [----------]   0%
 🏛️ Elrond (Global Config)      [----------]   0%
 ⚡ Gandalf (Autonomous)        [----------]   0%
@@ -215,12 +240,6 @@ TLOTP 2.0 - Llevar Claude Code a la N-ésima potencia mediante coordinación de 
 👑 Aragorn (Multi-Agent)      [----------]   0%
 ```
 
-```
-🔮 Palantír (Inspector)        [----------]  0%
-💍 Gollum (Playwright MVP)     [----------]  0%
-🏛️ Elrond (Global Config)      [----------]  0%
-⚡ Gandalf (Autonomous)        [----------]  0%
-```
 
 ---
 

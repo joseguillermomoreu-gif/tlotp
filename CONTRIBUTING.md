@@ -93,10 +93,10 @@ Cada tarea completada otorga **Experience Points (XP)** según su dificultad:
 
 | Aventurero | Nivel | XP Total | Badges | Hazañas |
 |------------|-------|----------|--------|---------|
-| 🥔 **Pépeton hijo de Móreuton** | Rey 🥇 | 1,270 XP | 🔮🏗️🛡️⚔️ | Palantír v1.0-v1.2, Gamificación |
-| 🤖 **Claudeton hijo de Codeton** | Rey 🥇 | 1,270 XP | 🔮🏗️📚⚔️ | Palantír v1.0-v1.2, Gamificación |
+| 🥔 **Pépeton hijo de Móreuton** | Rey 🥇 | 1,345 XP | 🔮🏗️🛡️⚔️ | Palantír v1.0-v1.2, Gamificación, P2 Sprint |
+| 🤖 **Claudeton hijo de Codeton** | Rey 🥇 | 1,345 XP | 🔮🏗️📚⚔️ | Palantír v1.0-v1.2, Gamificación, P2 Sprint |
 
-**XP Compartido de la Fellowship**: 2,540 XP en 24 tareas completadas juntos
+**XP Compartido de la Fellowship**: 2,690 XP en 25 tareas completadas juntos
 
 ### 🌟 Contribuidores
 
@@ -117,12 +117,21 @@ Todas las tareas están en [GitHub Issues](https://github.com/joseguillermomoreu
 ### 📋 Tareas Disponibles por Épica
 
 #### 🔮 Épica 1: Palantír (Inspector de Configuración)
-**Issues #5-#28** - Total: 2,540 XP disponible
+**Issues #5-#33** - Progreso: 83% Sprint P2 completado
 
-Tareas destacadas:
-- **#19** - Lógica de parsing (160 XP) 🥈 Ranger
-- **#20** - Testing del prompt (120 XP) 🥈 Ranger
-- **#21** - Parser conversacional (220 XP) 🥇 Rey
+**Sprint P2 ✅ Completado** (5/6 tareas):
+- ✅ **#7** - Inspector config global (resumen) - 50 XP
+- ✅ **#8** - Inspector config global (completo) - 80 XP
+- ✅ **#9** - Inspector config proyecto (resumen) - 50 XP
+- ✅ **#10** - Inspector config proyecto (completo) - 80 XP
+- ✅ **#11** - Inspector de skills - 60 XP
+- ✅ **#18** - Palantír prompt v1.2 - 150 XP 🏆
+
+**Sprint P3 ⏳ Próximo** (Sistema Reset + Mejoras):
+- **#31** - Mejorar condicionales imports/topics (60 XP) 🥉 Hobbit
+- **#32** - Validar opción resumen (50 XP) 🥉 Hobbit
+- **#33** - Mejorar mensaje CLAUDE.md superior (50 XP) 🥉 Hobbit
+- **#13-#17** - Sistema de reset completo
 
 Ver todas: [Milestone Palantír](https://github.com/joseguillermomoreu-gif/tlotp/milestone/1)
 
@@ -172,16 +181,18 @@ Ver todas: [Milestone Palantír](https://github.com/joseguillermomoreu-gif/tlotp
 ### 🔮 TLOTP v1.x - La Comunidad del Anillo
 
 #### ✅ Fase 1: Palantír - Inspector de Configuración
-**Estado**: 🚧 En desarrollo (24 tareas, 2,540 XP)
+**Estado**: 🚧 En desarrollo activo - 83% completado
 
 - [x] Gamificación completa del proyecto
 - [x] Documentación épica (GAMIFICACION.md)
 - [x] Sistema de contribución y XP
 - [x] 24 issues creadas y gamificadas
-- [ ] Palantír v1.2 - Testing y aprobación
-- [ ] Implementación de features core (#19, #20)
-- [ ] Sistema de reset completo
-- [ ] Documentación de uso
+- [x] **Palantír v1.2 - Completado y probado** ✅
+- [x] Sprint P2 completado (5/6 tareas - #7, #8, #9, #10, #11, #18)
+- [ ] Sprint P3 - Mejoras condicionales (#31, #32, #33)
+- [ ] Sistema de reset completo (#13-#17)
+- [ ] Implementación de features avanzados (#19, #20, #21)
+- [ ] Documentación de uso (#24-#25)
 
 #### 📅 Fase 2: Gollum - Playwright E2E Automation
 **Estado**: 📋 Planificado

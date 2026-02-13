@@ -364,9 +364,10 @@ Explora el directorio `~/.claude/` buscando **archivos y directorios de configur
 
 **Buscar y mostrar**:
 - ✅ **Directorios de configuración**: `skills/`, `templates/`, `hooks/`, `config/`, `mcp-servers/`
-- ✅ **Archivos de settings**: `settings.json`, `keybindings.json`, `.credentials.json`
+- ✅ **Archivos de settings**: `settings.json`, `keybindings.json`
 - ✅ **Symlinks**: a skills, templates, configs externos
 - ✅ **Archivos .md de configuración**: que NO sean documentación de proyecto
+- ❌ **NO incluir**: `.credentials.json` (privado - conexión con servidores Anthropic)
 - ❌ **NO incluir**: Directorios operacionales (cache/, debug/, downloads/, backups/, telemetry/, etc.)
 - ❌ **NO incluir**: Archivos .md que sean documentación de otros proyectos
 
@@ -454,9 +455,7 @@ En raíz del proyecto:
 
 Total de archivos de configuración adicionales: [X]
 
-Archivos omitidos:
-  - Directorios operacionales (cache, debug, backups, telemetry)
-  - Documentación del proyecto (*.md que no sean config de Claude)
+Omitidos: [X] directorios operacionales, .credentials.json, documentación del proyecto
 ```
 
 **REGLAS CLAVE**:
@@ -489,8 +488,16 @@ Archivos omitidos:
 
 ```markdown
 [Si se hizo backup:]
-💾 Backup completado: [PATH_COMPLETO_DEL_BACKUP]
-📦 Total de archivos respaldados: [número]
+═══════════════════════════════════════════════════════════
+
+                  ✅ Backup Completado
+
+═══════════════════════════════════════════════════════════
+
+📦 Ubicación: [PATH_COMPLETO_DEL_BACKUP]
+📊 Total archivos: [número] ([tamaño total])
+
+💡 Ver detalles completos en: BACKUP_INDEX.md
 
 ═══════════════════════════════════════════════════════════
 
@@ -505,7 +512,11 @@ Archivos omitidos:
 **STATUS**: [✅ Encontrado / ❌ No existe / ⚠️ Sin permisos]
 
 [Si existe: Mostrar contenido COMPLETO]
-[Si tiene imports @path: Listar archivos importados]
+
+[Si hay imports @path/to/file:]
+**Imports detectados**:
+  - @path/to/file1
+  - @path/to/file2
 
 ---
 
@@ -516,7 +527,10 @@ Archivos omitidos:
 **STATUS**: [✅ / ❌ / ⚠️]
 
 [Contenido completo]
-[Imports detectados: listar]
+[Si hay imports @path/to/file:]
+**Imports detectados**:
+  - @path/to/file1
+  - @path/to/file2
 
 ---
 
@@ -550,7 +564,10 @@ Archivos omitidos:
 **STATUS**: [✅ / ❌ / ⚠️]
 
 [Contenido completo]
-[Imports detectados: listar]
+[Si hay imports @path/to/file:]
+**Imports detectados**:
+  - @path/to/file1
+  - @path/to/file2
 
 [Listar todos los CLAUDE.md encontrados en la jerarquía hacia arriba]
 
@@ -589,7 +606,10 @@ paths:
 **STATUS**: [✅ / ❌ / ⚠️]
 
 [Contenido completo]
-[Imports detectados: listar]
+[Si hay imports @path/to/file:]
+**Imports detectados**:
+  - @path/to/file1
+  - @path/to/file2
 
 ---
 
@@ -606,12 +626,12 @@ paths:
 
 [Mostrar SOLO primeras 200 líneas]
 
+[Si hay topic files adicionales:]
 ### Topic Files (lectura on-demand)
 
 - debugging.md ([número] líneas) - [PATH]
 - patterns.md ([número] líneas) - [PATH]
-- api-conventions.md ([número] líneas) - [PATH]
-[Listar todos los topic files con nombre, líneas y path]
+[Listar todos los topic files encontrados]
 
 ---
 
@@ -626,22 +646,17 @@ paths:
 
 **Configuración detectada**:
 - Directorios: skills/, hooks/, config/, templates/, mcp-servers/
-- Archivos settings: settings.json, keybindings.json, .credentials.json
+- Archivos settings: settings.json, keybindings.json
 - Symlinks a configuraciones externas
 
 **Ejemplo**:
 ```
-Directorio: skills/ (symlink)
-  Destino: /ruta/externa/skills
-  Total archivos: 21
+skills/ → /ruta/externa/skills (symlink)
+  21 archivos | 260K total
 
-  Archivo: playwright.md
-    PATH: ~/.claude/skills/playwright.md
-    Líneas: 367
-    Tamaño: 24K
-    Modificado: 2026-01-15
-
-  [... resto de archivos ...]
+  - playwright.md (367 líneas, 24K)
+  - pom.md (616 líneas, 16K)
+  - [... resto de archivos ...]
 ```
 
 **Directorios omitidos** (operacionales):
@@ -695,8 +710,57 @@ Archivos omitidos: operacionales + documentación proyecto
 ═══════════════════════════════════════════════════════════
 ```
 
-**Al FINAL de todo** (una sola vez):
+**Al FINAL de la inspección**:
 
+1. **Informar path del backup**:
+```markdown
+💾 Backup guardado en:
+[PATH_COMPLETO_DEL_BACKUP]
+
+Ver detalles completos en: BACKUP_INDEX.md
+```
+
+2. **Preguntar al usuario** (con `AskUserQuestion`):
+```
+header: "Resumen"
+question: "¿Quieres ver un resumen general de tu configuración?"
+options:
+  1. label: "Sí, mostrar resumen"
+     description: "Ver resumen de configuración activa"
+  2. label: "No, terminar"
+     description: "Finalizar inspección"
+```
+
+3. **Si selecciona "Sí"**, mostrar resumen:
+```markdown
+═══════════════════════════════════════════════════════════
+
+                   📊 Resumen General
+
+═══════════════════════════════════════════════════════════
+
+Configuración Activa de Claude Code:
+
+Jerarquía Oficial:
+  1. ❌/✅ Managed Policy - [estado]
+  2. ❌/✅ User Memory - [estado y líneas]
+  3. ❌/✅ User Rules - [estado]
+  4. ❌/✅ Project Memory - [estado y líneas]
+  5. ❌/✅ Project Rules - [estado]
+  6. ❌/✅ Project Local - [estado]
+  7. ❌/✅ Auto Memory - [estado y líneas]
+
+Configuración Adicional:
+  - Model: [configurado globalmente]
+  - Skills: [número] skills ([si es symlink: indicar])
+  - Permissions: [si hay settings.local.json]
+  - [Otros items detectados]
+
+💾 Backup completo guardado en:
+[PATH]
+```
+
+4. **SIEMPRE al final** (después del resumen o si selecciona "No"), mostrar banner footer:
 ```markdown
 ═══════════════════════════════════════════════════════════
 
@@ -755,26 +819,33 @@ Archivos omitidos: operacionales + documentación proyecto
 
 6. **Si necesitas permisos**: Usa `AskUserQuestion` para pedir autorización de usar Bash
 
-7. **Una sola vez al final**: Muestra el footer elegante
+7. **Al finalizar inspección**:
+   - Informa path del backup
+   - Pregunta si quiere ver resumen (con `AskUserQuestion`)
+   - Si SÍ: muestra resumen general
+   - Si NO: despedida simple
+   - **SIEMPRE al final**: Banner footer (lo último que se muestra)
 
 ---
 
 ## ⚙️ Reglas Importantes
 
 ### Cabecera y Footer
-- ✅ Muestra la cabecera UNA SOLA VEZ al inicio (antes de preguntar por backup)
-- ✅ Muestra el footer UNA SOLA VEZ al final (después de toda la inspección)
+- ✅ Cabecera: UNA SOLA VEZ al inicio (antes de preguntar por backup)
+- ✅ Footer: UNA SOLA VEZ al final (LO ÚLTIMO que se muestra)
+- ✅ Footer va DESPUÉS del resumen (si usuario lo pide) o DESPUÉS de la despedida (si no lo pide)
 - ❌ NO repitas cabecera/footer entre interacciones
 
 ### Contenido
 - ✅ Muestra TODO sin formatear, solo paths y contenidos completos
-- ✅ Detecta y lista imports en CLAUDE.md files
-- ✅ Identifica symlinks en rules
-- ✅ Extrae YAML frontmatter con paths de rules
+- ✅ Imports: SOLO mostrar si hay imports @path/to/file detectados
+- ✅ Symlinks: Formato conciso `skills/ → /path/ (symlink) | X archivos | XK total`
+- ✅ YAML frontmatter: Extraer y mostrar paths de rules
 
 ### Auto Memory (Sección 7)
 - ✅ MEMORY.md: SOLO primeras 200 líneas (indica total de líneas)
-- ✅ Topic files: SOLO listar (nombre + líneas + path, NO contenido)
+- ✅ Topic files: SOLO listar si existen (nombre + líneas + path, NO contenido)
+- ✅ Si NO hay topic files: omitir sección (no decir "no se encontraron")
 
 ### Archivos Largos (>100 líneas)
 - ✅ Para archivos en exploración genérica >100 líneas: SOLO metadata
@@ -795,7 +866,8 @@ Archivos omitidos: operacionales + documentación proyecto
 ### Filtrado Inteligente (Sección 8)
 - ✅ **Secciones 1-7**: Jerarquía oficial Claude Code (especificada)
 - ✅ **Sección 8**: Configuración adicional de Claude Code
-- ✅ **INCLUIR**: settings, configs, skills, hooks, symlinks, archivos CLAUDE*.md
+- ✅ **INCLUIR**: settings.json, keybindings.json, configs, skills, hooks, symlinks, CLAUDE*.md
+- ❌ **EXCLUIR**: `.credentials.json` (privado - NO leer, NO respaldar, NO mencionar)
 - ❌ **EXCLUIR**: Documentación del proyecto (TEST.md, POM.md, CI.md, README.md del proyecto)
 - ❌ **EXCLUIR**: Directorios operacionales (cache/, debug/, backups/, telemetry/)
 - ✅ Para archivos >100 líneas: SOLO metadata, NO contenido completo
