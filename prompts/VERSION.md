@@ -7,8 +7,8 @@
 ## 📊 Versiones Actuales
 
 ### Palantír
-- **Versión**: 1.3.0
-- **Versión corta**: v1.3
+- **Versión**: 1.4.0
+- **Versión corta**: v1.4
 - **Fecha release**: 2026-02-13
 - **Descripción**: Inspector de Configuraciones TLOTP
 

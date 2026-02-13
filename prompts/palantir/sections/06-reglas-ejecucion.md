@@ -114,5 +114,5 @@
 
 ---
 
-*Palantír v1.3 - "La piedra que todo lo ve"* 👁️
+*Palantír v1.4 - "La piedra que todo lo ve"* 👁️
 *Arquitectura modular con @imports*

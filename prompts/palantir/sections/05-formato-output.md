@@ -329,7 +329,7 @@ Configuración Adicional:
 
                  ✅ Inspección Completada
 
-    Palantír (TLOTP) v1.3 - "La piedra que todo lo ve"
+    Palantír (TLOTP) v1.4 - "La piedra que todo lo ve"
 
 ═══════════════════════════════════════════════════════════
 ```
