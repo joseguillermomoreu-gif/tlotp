@@ -209,18 +209,18 @@ Secciones detectadas:
 Usar `AskUserQuestion`:
 
 ```
-header: "Acción para {NOMBRE_FICHERO}"
+header: "Fichero: {NOMBRE_FICHERO}"
 question: "¿Qué deseas hacer con este fichero?"
 multiSelect: false
 options:
   1. label: "Reemplazar con backup"
-     description: "Sobrescribir completamente con el del backup (pierdes contenido actual)"
+     description: "Sobrescribir completamente (pierdes contenido actual)"
 
   2. label: "Combinar ambos"
      description: "Merge inteligente manteniendo contenido de ambos"
 
-  3. label: "Saltar (mantener actual)"
-     description: "No hacer cambios, mantener el fichero actual"
+  3. label: "Mantener actual"
+     description: "No hacer cambios, conservar el fichero actual"
 ```
 
 #### Paso E: Ejecutar acción

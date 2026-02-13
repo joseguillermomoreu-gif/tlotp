@@ -111,11 +111,23 @@ Ejemplo:
   [... otras secciones relevantes ...]
 
 ═══════════════════════════════════════════════════════════
-
-⚠️ ¿Deseas BORRAR este fichero? (s/n):
 ```
 
-3. **Si el usuario responde "s" (borrar)**:
+Usar `AskUserQuestion`:
+
+```
+header: "Fichero: {NOMBRE_FICHERO}"
+question: "¿Deseas borrar este fichero?"
+multiSelect: false
+options:
+  1. label: "Sí, borrar"
+     description: "Vaciar o eliminar el fichero (según tipo)"
+
+  2. label: "No, mantener"
+     description: "Conservar el fichero sin cambios"
+```
+
+3. **Si el usuario elige "Sí, borrar"**:
 
    a) Determinar la acción según `info_claude.md`:
 
@@ -143,7 +155,7 @@ Ejemplo:
    ✅ {PATH_DEL_FICHERO}: {VACIADO/BORRADO}
    ```
 
-4. **Si el usuario responde "n" (mantener)**:
+4. **Si el usuario elige "No, mantener"**:
 
    ```markdown
    ⏭️  {PATH_DEL_FICHERO}: Mantenido (sin cambios)
@@ -207,34 +219,96 @@ Vamos a revisar el contenido regla por regla...
 
 4. **Por cada regla/preferencia/sección encontrada**:
 
-```markdown
-───────────────────────────────────────────────────────────
+   **Importante**: Llevar contador del total de reglas: `REGLA_ACTUAL` de `TOTAL_REGLAS`
 
-📌 Regla/Preferencia encontrada:
+   **Paso A: Analizar tamaño de la regla**
 
-{MOSTRAR_EL_CONTENIDO_COMPLETO_DE_ESTA_REGLA}
+   Contar líneas de la regla:
+   - Si **< 30 líneas**: Mostrar completa directamente (ir a Paso C)
+   - Si **>= 30 líneas**: Preguntar cómo revisarla (ir a Paso B)
 
-Ejemplo:
-```markdown
-## Stack Tecnológico
+   **Paso B: Regla larga - Preguntar cómo revisar** (solo si >= 30 líneas)
 
-### Backend (Expertise Principal)
-- **Senior Backend Developer**: PHP/Symfony (8+ años)
-- **Arquitectura**: Hexagonal (Ports & Adapters)
-- **ORM**: Doctrine
-...
-```
+   Mostrar resumen:
 
-───────────────────────────────────────────────────────────
+   ```markdown
+   ───────────────────────────────────────────────────────────
 
-¿Deseas MANTENER esta regla/preferencia? (s/n):
-```
+   📌 Regla #{NUMERO} de {TOTAL}
 
-   a) **Si responde "s" (mantener)**: Añadir a lista de "contenido a mantener"
+   {TITULO_O_PRIMERA_LINEA_DE_LA_REGLA}
 
-   b) **Si responde "n" (borrar)**: NO añadir a la lista
+   📊 Tamaño: {N} líneas
+   📑 Subsecciones detectadas: {N} (si tiene ###)
 
-   c) **Siguiente regla/preferencia**
+   Primeras 10 líneas:
+   {PRIMERAS_10_LINEAS}
+
+   ...
+
+   Últimas 5 líneas:
+   {ULTIMAS_5_LINEAS}
+
+   ───────────────────────────────────────────────────────────
+   ```
+
+   Usar `AskUserQuestion`:
+
+   ```
+   header: "Regla #{NUMERO} de {TOTAL}"
+   question: "Esta regla es larga ({N} líneas). ¿Cómo deseas revisarla?"
+   multiSelect: false
+   options:
+     1. label: "Ver completa y decidir"
+        description: "Mostrar todo el contenido y decidir mantener/borrar"
+
+     2. label: "Dividir en subsecciones"
+        description: "Revisar parte por parte (si tiene subsecciones)"
+
+     3. label: "Mantener completa"
+        description: "Conservar toda la regla sin revisar"
+
+     4. label: "Borrar completa"
+        description: "Eliminar toda la regla sin revisar"
+   ```
+
+   Según respuesta:
+   - **Opción 1**: Mostrar completa (ir a Paso C)
+   - **Opción 2**: Dividir y revisar cada subsección (recursivo)
+   - **Opción 3**: Añadir a "contenido a mantener" y siguiente regla
+   - **Opción 4**: NO añadir a la lista y siguiente regla
+
+   **Paso C: Mostrar regla y preguntar** (reglas cortas o si eligió "Ver completa")
+
+   ```markdown
+   ───────────────────────────────────────────────────────────
+
+   📌 Regla #{NUMERO} de {TOTAL}
+
+   {MOSTRAR_CONTENIDO_COMPLETO_DE_LA_REGLA}
+
+   ───────────────────────────────────────────────────────────
+   ```
+
+   Usar `AskUserQuestion`:
+
+   ```
+   header: "Regla #{NUMERO} de {TOTAL}"
+   question: "¿Qué deseas hacer con esta regla?"
+   multiSelect: false
+   options:
+     1. label: "Mantener"
+        description: "Conservar esta regla en el fichero"
+
+     2. label: "Borrar"
+        description: "Eliminar esta regla del fichero"
+   ```
+
+   Según respuesta:
+   - **Mantener**: Añadir a lista de "contenido a mantener"
+   - **Borrar**: NO añadir a la lista
+
+   **Paso D: Siguiente regla/preferencia**
 
 5. **Cuando termine de revisar TODO el fichero**:
 

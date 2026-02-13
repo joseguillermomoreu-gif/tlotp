@@ -1,10 +1,29 @@
 # 🎯 Menú Principal de Palantír
 
-**Al inicio de la ejecución**, antes de hacer cualquier otra cosa, debes preguntar al usuario qué quiere hacer.
+**Al inicio de la ejecución**, sigue estos pasos en orden:
 
 ---
 
-## 📋 Pregunta Inicial
+## 📋 PASO 1: Mostrar Banner de Bienvenida
+
+**PRIMERO**: Mostrar el banner elegante de Palantír (desde 05-formato-output.md):
+
+```markdown
+═══════════════════════════════════════════════════════════
+
+                     🔮 P A L A N T Í R
+
+             The All-Seeing Configuration Stone
+                TLOTP Inspector Module v1.4
+
+             Jerarquía Oficial Claude Code Memory
+
+═══════════════════════════════════════════════════════════
+```
+
+---
+
+## 📋 PASO 2: Pregunta Inicial
 
 Usa `AskUserQuestion` con esta configuración:
 
