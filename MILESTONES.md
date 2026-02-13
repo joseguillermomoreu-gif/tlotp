@@ -37,9 +37,9 @@ Sistema para visualizar y gestionar configuraciones de Claude Code, siguiendo la
 **Objetivo**:
 Herramienta fundamental para desarrollar y testear las siguientes épicas.
 
-**Progreso**: 🎉 **Sprint P2 COMPLETADO (83%)** - Palantír v1.2 funcional
+**Progreso**: 🎉 **Sprint P3 AVANZADO (90%)** - Palantír v1.5 con Reset y Recovery
 
-**Entregables**:
+**Entregables Sprint P2** ✅ COMPLETADO:
 - [x] **#18** Palantír-prompt.md v1.2 ✅ CERRADO 2026-02-13 (150 XP)
 - [x] **#7** Inspector config global (resumen) ✅ CERRADO 2026-02-13 (50 XP)
 - [x] **#8** Inspector config global (completo) ✅ CERRADO 2026-02-13 (80 XP)
@@ -48,13 +48,19 @@ Herramienta fundamental para desarrollar y testear las siguientes épicas.
 - [x] **#11** Inspector de skills ✅ CERRADO 2026-02-13 (60 XP)
 - [ ] **#12** Opción nivel de detalle (P2 - pendiente - movido a backlog)
 
-**Sprint P3** (Sistema Reset + Mejoras incrementales):
+**Entregables Sprint P3** (Sistema Reset + Recovery):
+- [x] **#38** Sistema de Reset y Recovery ✅ CERRADO 2026-02-13 (350 XP) 🏆
+  - Reset Completo (fichero por fichero)
+  - Reset Selectivo (regla por regla)
+  - Recovery desde backups con merge inteligente
+  - Menú principal con 3 modos
+  - Documentación oficial Claude Code Memory
+  - 2 tests completos de validación (2062 líneas)
 - [ ] **#31** Mejorar instrucciones condicionales (imports/topic files) - 60 XP
 - [ ] **#32** Validar opción "Sí, mostrar resumen" - 50 XP
 - [ ] **#33** Mejorar mensaje "otros CLAUDE.md en jerarquía superior" - 50 XP
-- [ ] **#13-#17** Sistema de reset con confirmación
 
-**Funcionalidades implementadas** (v1.2):
+**Funcionalidades implementadas** (v1.5):
 - ✅ Jerarquía oficial Claude Code (7 niveles)
 - ✅ Exploración genérica de configuración adicional
 - ✅ Sistema de backup con 4 opciones de path
@@ -65,11 +71,18 @@ Herramienta fundamental para desarrollar y testear las siguientes épicas.
 - ✅ Banner footer al final
 - ✅ Symlinks formato mejorado
 - ✅ Skills sin contaminar contexto
+- ✅ **Sistema de Reset Completo e Interactivo**
+- ✅ **Sistema de Reset Selectivo (regla por regla)**
+- ✅ **Sistema de Recovery desde backups**
+- ✅ **Menú principal con 3 modos (Inspector/Reset/Recovery)**
+- ✅ **Merge inteligente sin pérdida de datos**
+- ✅ **Documentación oficial Claude Code Memory integrada**
 
-**Estado**: ✅ **Palantír v1.2 COMPLETO Y FUNCIONAL**
-**Próximo**: Sprint P3 (Mejoras incrementales + Sistema Reset)
-**Testing**: ✅ Probado exitosamente 2026-02-13 14:42
+**Estado**: ✅ **Palantír v1.5 COMPLETO Y VALIDADO**
+**Próximo**: Sprint P4 (Mejoras incrementales pendientes)
+**Testing**: ✅ 2 tests completos (validacion_reset_recovery.md + test2026132257.md)
 **XP Sprint P2**: +470 XP total (235 XP cada fundador)
+**XP Sprint P3**: +350 XP total (175 XP cada fundador)
 
 ---
 
@@ -228,10 +241,10 @@ TLOTP 2.0 - Llevar Claude Code a la N-ésima potencia mediante coordinación de 
 ### TLOTP v1.x - The Fellowship
 
 ```
-🔮 Palantír (Inspector)        [████████--]  83% ✅ P2 completado
-💍 Gollum (Playwright MVP)     [----------]   0%
-🏛️ Elrond (Global Config)      [----------]   0%
-⚡ Gandalf (Autonomous)        [----------]   0%
+🔮 Palantír (Inspector/Reset/Recovery) [█████████-]  90% ✅ P3 avanzado
+💍 Gollum (Playwright MVP)             [----------]   0%
+🏛️ Elrond (Global Config)              [----------]   0%
+⚡ Gandalf (Autonomous)                [----------]   0%
 ```
 
 ### TLOTP v2.x - The Return of the King
@@ -312,4 +325,4 @@ Sistema revolucionario de múltiples agentes Claude Code coordinados, comunicán
 
 *"One Prompt to Rule Them All"* 💍
 
-*Última actualización: 2026-02-12*
+*Última actualización: 2026-02-13*

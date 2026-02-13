@@ -93,10 +93,11 @@ Cada tarea completada otorga **Experience Points (XP)** según su dificultad:
 
 | Aventurero | Nivel | XP Total | Badges | Hazañas |
 |------------|-------|----------|--------|---------|
-| 🥔 **Pépeton hijo de Móreuton** | Rey 🥇 | 1,345 XP | 🔮🏗️🛡️⚔️ | Palantír v1.0-v1.2, Gamificación, P2 Sprint |
-| 🤖 **Claudeton hijo de Codeton** | Rey 🥇 | 1,345 XP | 🔮🏗️📚⚔️ | Palantír v1.0-v1.2, Gamificación, P2 Sprint |
+| 🥔 **Pépeton hijo de Móreuton** | Rey 🥇 | 1,520 XP | 🔮🏗️🛡️💣⚔️ | Palantír v1.0-v1.5, Reset/Recovery System, P2+P3 Sprints |
+| 🤖 **Claudeton hijo de Codeton** | Rey 🥇 | 1,520 XP | 🔮🏗️📚💣⚔️ | Palantír v1.0-v1.5, Reset/Recovery System, P2+P3 Sprints |
 
-**XP Compartido de la Fellowship**: 2,690 XP en 25 tareas completadas juntos
+**XP Compartido de la Fellowship**: 3,040 XP en 26 tareas completadas juntos
+**Último logro**: Sistema de Reset y Recovery (#38) - 350 XP 🏆
 
 ### 🌟 Contribuidores
 
@@ -116,10 +117,10 @@ Todas las tareas están en [GitHub Issues](https://github.com/joseguillermomoreu
 
 ### 📋 Tareas Disponibles por Épica
 
-#### 🔮 Épica 1: Palantír (Inspector de Configuración)
-**Issues #5-#33** - Progreso: 83% Sprint P2 completado
+#### 🔮 Épica 1: Palantír (Inspector, Reset & Recovery)
+**Issues #5-#38** - Progreso: 90% Sprint P3 avanzado
 
-**Sprint P2 ✅ Completado** (5/6 tareas):
+**Sprint P2 ✅ Completado** (6 tareas - 470 XP):
 - ✅ **#7** - Inspector config global (resumen) - 50 XP
 - ✅ **#8** - Inspector config global (completo) - 80 XP
 - ✅ **#9** - Inspector config proyecto (resumen) - 50 XP
@@ -127,11 +128,18 @@ Todas las tareas están en [GitHub Issues](https://github.com/joseguillermomoreu
 - ✅ **#11** - Inspector de skills - 60 XP
 - ✅ **#18** - Palantír prompt v1.2 - 150 XP 🏆
 
-**Sprint P3 ⏳ Próximo** (Sistema Reset + Mejoras):
+**Sprint P3 ✅ Sistema Reset/Recovery Completado** (1 tarea - 350 XP):
+- ✅ **#38** - Sistema de Reset y Recovery - 350 XP 🏆🥇
+  - Reset Completo (fichero por fichero)
+  - Reset Selectivo (regla por regla)
+  - Recovery desde backups
+  - Merge inteligente sin pérdida
+  - 2 tests completos de validación
+
+**Sprint P4 ⏳ Mejoras Pendientes**:
 - **#31** - Mejorar condicionales imports/topics (60 XP) 🥉 Hobbit
 - **#32** - Validar opción resumen (50 XP) 🥉 Hobbit
 - **#33** - Mejorar mensaje CLAUDE.md superior (50 XP) 🥉 Hobbit
-- **#13-#17** - Sistema de reset completo
 
 Ver todas: [Milestone Palantír](https://github.com/joseguillermomoreu-gif/tlotp/milestone/1)
 
@@ -180,17 +188,18 @@ Ver todas: [Milestone Palantír](https://github.com/joseguillermomoreu-gif/tlotp
 
 ### 🔮 TLOTP v1.x - La Comunidad del Anillo
 
-#### ✅ Fase 1: Palantír - Inspector de Configuración
-**Estado**: 🚧 En desarrollo activo - 83% completado
+#### ✅ Fase 1: Palantír - Inspector, Reset & Recovery
+**Estado**: 🚧 En desarrollo activo - 90% completado
 
 - [x] Gamificación completa del proyecto
 - [x] Documentación épica (GAMIFICACION.md)
 - [x] Sistema de contribución y XP
 - [x] 24 issues creadas y gamificadas
-- [x] **Palantír v1.2 - Completado y probado** ✅
-- [x] Sprint P2 completado (5/6 tareas - #7, #8, #9, #10, #11, #18)
-- [ ] Sprint P3 - Mejoras condicionales (#31, #32, #33)
-- [ ] Sistema de reset completo (#13-#17)
+- [x] **Palantír v1.2 - Inspector completado** ✅
+- [x] Sprint P2 completado (6 tareas - #7, #8, #9, #10, #11, #18)
+- [x] **Palantír v1.5 - Reset & Recovery completado** ✅
+- [x] Sprint P3 - Sistema Reset/Recovery (#38)
+- [ ] Sprint P4 - Mejoras condicionales (#31, #32, #33)
 - [ ] Implementación de features avanzados (#19, #20, #21)
 - [ ] Documentación de uso (#24-#25)
 
