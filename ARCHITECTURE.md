@@ -198,6 +198,78 @@ Procesamiento...
 
 ---
 
+## 🏷️ Sistema de Versionado
+
+### Fuente Única de Verdad
+
+Todas las versiones de prompts se centralizan en **`prompts/VERSION.md`**:
+
+```markdown
+# 🏷️ TLOTP - Versiones de Prompts
+
+## 📊 Versiones Actuales
+
+### Palantír
+- **Versión**: 1.3.0
+- **Versión corta**: v1.3
+- **Fecha release**: 2026-02-13
+
+### Gollum
+- **Versión**: (pendiente)
+...
+```
+
+### Carga en Prompts
+
+Cada `*-main.md` importa VERSION.md:
+
+```markdown
+## 📋 Carga de Versiones
+
+@prompts/VERSION.md
+
+**Versión cargada**: Usar la versión de [Prompt] definida arriba
+```
+
+### Actualización de Versiones
+
+**Automática** con script:
+
+```bash
+./scripts/update-version.sh palantir 1.4.0
+```
+
+El script:
+1. Actualiza `prompts/VERSION.md`
+2. Busca y reemplaza en todos los archivos del prompt
+3. Muestra comandos para commit y tag
+
+**Manual**:
+1. Editar `prompts/VERSION.md`
+2. Buscar y reemplazar en archivos del prompt
+3. Commit y tag: `git tag vX.Y.Z`
+
+### Formato de Versiones
+
+**Semantic Versioning** (MAJOR.MINOR.PATCH):
+- **MAJOR**: Breaking changes
+- **MINOR**: Nuevas features (compatible)
+- **PATCH**: Bug fixes
+
+**En banners**:
+- Versión completa: `v1.3.0` (tags, VERSION.md)
+- Versión corta: `v1.3` (banners, displays)
+
+### Ubicaciones con Versión
+
+En cada prompt, la versión aparece típicamente en:
+- Banner header (versión corta)
+- Banner footer (versión corta)
+- Metadata de backups/outputs (versión completa)
+- Título del `*-main.md` (versión corta)
+
+---
+
 ## 📏 Convenciones de Naming
 
 ### Archivos
@@ -352,6 +424,7 @@ Cada nueva épica debe:
 
 - **#5**: Definir estructura de datos (arquitectura) - ✅ Completado
 - **#6**: Utilidades de lectura - ✅ Completado (implícito en módulos)
+- **#35**: Modularizar sistema de versionado - ✅ Completado
 
 ---
 
@@ -390,5 +463,5 @@ Cuando modularices un prompt, verifica:
 ---
 
 *Arquitectura definida por la Fellowship del Teclado* 🥔🤖
-*Sprint P1 - Base para todas las futuras épicas* 🏗️
+*Base para todas las futuras épicas* 🏗️
 *Última actualización: 2026-02-13*
