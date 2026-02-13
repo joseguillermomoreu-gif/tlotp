@@ -1,9 +1,17 @@
-# 🔮 Palantír v1.3 - Main Entry Point
+# 🔮 Palantír - Main Entry Point
 
 > **Arquitectura Modular con @imports**
 >
 > Este es el entry point principal que orquesta todos los módulos de Palantír.
 > Cada sección está separada por concerns para facilitar el mantenimiento.
+
+---
+
+## 📋 Carga de Versiones
+
+@prompts/VERSION.md
+
+**Versión cargada**: Usar la versión de Palantír definida arriba (actualmente 1.3.0)
 
 ---
 
