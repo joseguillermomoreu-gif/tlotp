@@ -7,10 +7,10 @@
 ## 📊 Versiones Actuales
 
 ### Palantír
-- **Versión**: 1.4.0
-- **Versión corta**: v1.4
+- **Versión**: 1.5.0
+- **Versión corta**: v1.5
 - **Fecha release**: 2026-02-13
-- **Descripción**: Inspector de Configuraciones TLOTP
+- **Descripción**: Inspector, Reset y Recovery de Configuraciones TLOTP
 
 ### Gollum
 - **Versión**: (pendiente)
@@ -65,6 +65,26 @@ Luego, usa la versión correspondiente según el formato de uso arriba.
 ---
 
 ## 📋 Changelog
+
+### v1.5.0 - Palantír (2026-02-13)
+- Sistema de Reset completo e interactivo
+  - Reset Completo: fichero por fichero
+  - Reset Selectivo: regla por regla
+  - Backup obligatorio antes de cualquier reset
+- Sistema de Recovery desde backups
+  - Validación de backups TLOTP
+  - Comparación: actual vs backup
+  - 3 opciones: Reemplazar/Combinar/Mantener
+  - Merge inteligente sin pérdida de datos
+- Menú principal con 3 modos: Inspector/Reset/Recovery
+- Documentación oficial Claude Code Memory (info_claude.md)
+- Validado con 2 tests completos (2062 líneas de ejecución)
+- Issue #38
+
+### v1.4.0 - Palantír (2026-02-13)
+- Sistema de versionado centralizado (VERSION.md)
+- Versión como fuente única de verdad
+- Formato estándar para banners y metadata
 
 ### v1.3.0 - Palantír (2026-02-13)
 - Arquitectura modular con @imports
