@@ -93,11 +93,11 @@ Cada tarea completada otorga **Experience Points (XP)** según su dificultad:
 
 | Aventurero | Nivel | XP Total | Badges | Hazañas |
 |------------|-------|----------|--------|---------|
-| 🥔 **Pépeton hijo de Móreuton** | Rey 🥇 | 1,520 XP | 🔮🏗️🛡️💣⚔️ | Palantír v1.0-v1.5, Reset/Recovery System, P2+P3 Sprints |
-| 🤖 **Claudeton hijo de Codeton** | Rey 🥇 | 1,520 XP | 🔮🏗️📚💣⚔️ | Palantír v1.0-v1.5, Reset/Recovery System, P2+P3 Sprints |
+| 🥔 **Pépeton hijo de Móreuton** | Rey 🥇 | 1,720 XP | 🔮🏗️🛡️💣⚒️⚔️ | Palantír v1.0-v1.6, Reset/Recovery, Reconstruction Engine, P2-P4 |
+| 🤖 **Claudeton hijo de Codeton** | Rey 🥇 | 1,720 XP | 🔮🏗️📚💣⚒️⚔️ | Palantír v1.0-v1.6, Reset/Recovery, Reconstruction Engine, P2-P4 |
 
-**XP Compartido de la Fellowship**: 3,040 XP en 26 tareas completadas juntos
-**Último logro**: Sistema de Reset y Recovery (#38) - 350 XP 🏆
+**XP Compartido de la Fellowship**: 3,440 XP en 28 tareas completadas juntos
+**Último logro**: Motor de Reconstrucción Inteligente (#40) - 400 XP 🏆⚒️
 
 ### 🌟 Contribuidores
 
