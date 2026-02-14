@@ -14,7 +14,7 @@
                      🔮 P A L A N T Í R
 
              The All-Seeing Configuration Stone
-                TLOTP Inspector Module v1.4
+                TLOTP Inspector Module v1.7
 
              Jerarquía Oficial Claude Code Memory
 
@@ -48,6 +48,10 @@ Ejecuta **AskUserQuestion** con esta configuración EXACTA:
         {
           "label": "Recovery desde backup",
           "description": "Restaurar configuraciones desde un backup anterior"
+        },
+        {
+          "label": "Configurar característica",
+          "description": "Añadir nueva configuración con asistente inteligente"
         }
       ]
     }
@@ -109,13 +113,32 @@ Procede a ejecutar:
 
 ---
 
+### Opción 4: Configurar característica
+
+**Acción**: Ejecutar sistema de configuración asistida (módulo 10-configurator-system.md)
+
+Procede a ejecutar:
+1. Ejecutar el flujo del configurador (desde 10-configurator-system.md)
+2. El módulo de configuración se encargará de:
+   - Solicitar qué característica añadir
+   - Consultar documentación oficial (info_claude.md)
+   - Detectar si ya existe o hay conflictos
+   - Resolver conflictos con propuestas iterativas
+   - Determinar ubicación y formato correcto
+   - Reestructurar archivo según mejores prácticas
+   - Mostrar preview completo antes de aplicar
+   - Usar motor de reconstrucción para aplicar cambios
+   - Validar y notificar resultado
+
+---
+
 ## ⚠️ Reglas Importantes
 
 1. **NO ejecutar múltiples modos**: Solo uno a la vez
 2. **NO saltarse el menú**: Siempre preguntar primero
 3. **NO asumir el modo**: Dejar que el usuario elija
-4. **Backup obligatorio**: Solo en modo Reset (no en Inspector ni Recovery)
+4. **Backup obligatorio**: Solo en modo Reset (no en Inspector, Recovery ni Configurador)
 
 ---
 
-*Menú principal - Punto de entrada de Palantír v1.4*
+*Menú principal - Punto de entrada de Palantír v1.7*
