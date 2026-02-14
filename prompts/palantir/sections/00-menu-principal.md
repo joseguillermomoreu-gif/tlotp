@@ -25,22 +25,37 @@
 
 ## 📋 PASO 2: Pregunta Inicial
 
-Usa `AskUserQuestion` con esta configuración:
+**IMPORTANTE**: **DEBES usar la herramienta `AskUserQuestion`** (NO texto plano).
 
+Ejecuta **AskUserQuestion** con esta configuración EXACTA:
+
+```json
+{
+  "questions": [
+    {
+      "header": "Modo de ejecución",
+      "question": "¿Qué deseas hacer con Palantír?",
+      "multiSelect": false,
+      "options": [
+        {
+          "label": "Inspeccionar configuraciones",
+          "description": "Ver todas las configuraciones de Claude Code (modo inspector)"
+        },
+        {
+          "label": "Reset de configuraciones",
+          "description": "Borrar configuraciones (con backup obligatorio)"
+        },
+        {
+          "label": "Recovery desde backup",
+          "description": "Restaurar configuraciones desde un backup anterior"
+        }
+      ]
+    }
+  ]
+}
 ```
-header: "Modo de ejecución"
-question: "¿Qué deseas hacer con Palantír?"
-multiSelect: false
-options:
-  1. label: "Inspeccionar configuraciones"
-     description: "Ver todas las configuraciones de Claude Code (modo inspector)"
 
-  2. label: "Reset de configuraciones"
-     description: "Borrar configuraciones (con backup obligatorio)"
-
-  3. label: "Recovery desde backup"
-     description: "Restaurar configuraciones desde un backup anterior"
-```
+**NO mostrar menú de texto plano**. Usa la herramienta AskUserQuestion del CLI de Claude.
 
 ---
 

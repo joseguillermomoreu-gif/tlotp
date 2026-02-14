@@ -227,25 +227,57 @@ options:
 
 **OPCIÓN 1: Reemplazar con backup**
 
-1. Copiar fichero del backup a ubicación real:
-   ```bash
-   cp "$BACKUP_FILE" "$REAL_FILE"
+**⚒️ USAR MOTOR DE RECONSTRUCCIÓN (09-reconstruction-engine.md)**
+
+1. **Leer contenido del backup** completo
+
+2. **Analizar y acumular**:
+
+   a) Identificar secciones/preferencias en el backup
+
+   b) Acumular cada una en plan de reconstrucción:
+   ```python
+   reconstructionPlan[filePath].preferences.append({
+       "id": preferenceId,
+       "content": preferenceContent,
+       "type": detectType(preferenceContent),
+       "metadata": {
+           "origin": "backup",
+           "sectionName": extractSectionName(preferenceContent)
+       }
+   })
    ```
 
-2. Notificar:
-   ```markdown
-   ✅ {UBICACION_REAL}: Reemplazado con backup
+3. **Ejecutar reconstrucción**:
 
-   El fichero actual ha sido sobrescrito con el del backup.
+   **Según instrucciones de `09-reconstruction-engine.md`**:
+
+   a) **Purificación**: Vaciar/borrar fichero actual según `info_claude.md`
+
+   b) **Reconstrucción**: Escribir contenido del backup con estructura validada
+
+   c) **Validación**: Asegurar que el archivo resultante es correcto
+
+4. **Notificar**:
+   ```markdown
+   ✅ {UBICACION_REAL}: Reemplazado con backup (reconstruido)
+
+   El fichero ha sido reconstruido desde el backup con validación
+   de estructura para asegurar que no hay corrupción.
+
+   - Preferencias restauradas: {N}
+   - Validación: ✅ Estructura correcta
    ```
 
 ---
 
 **OPCIÓN 2: Combinar ambos**
 
-**Proceso de combinación inteligente**:
+**⚒️ USAR MOTOR DE RECONSTRUCCIÓN (09-reconstruction-engine.md)**
 
-1. **Leer ambos contenidos** completos
+**Proceso de combinación inteligente con reconstrucción**:
+
+1. **Leer ambos contenidos** completos (actual + backup)
 
 2. **Analizar según tipo de fichero**:
 
@@ -265,88 +297,90 @@ options:
    - ## Meta-instrucciones (nueva)
    ```
 
-   b) Estrategia de combinación:
-   - Secciones solo en actual: Mantener
-   - Secciones solo en backup: Añadir
-   - Secciones en ambos con contenido idéntico: Mantener una vez
-   - Secciones en ambos con contenido diferente: Mantener ambas con nota
+   b) Estrategia de acumulación:
+   - Secciones solo en actual: Acumular para reconstrucción
+   - Secciones solo en backup: Acumular para reconstrucción
+   - Secciones en ambos idénticas: Acumular una vez
+   - Secciones en ambos diferentes: Acumular ambas con prefijo
 
-   c) Construir fichero combinado:
-   ```markdown
-   # {TITULO_DEL_FICHERO}
+   c) **Acumular en plan de reconstrucción**:
 
-   {SECCIONES_COMUNES_O_DEL_ACTUAL}
-
-   ---
-
-   ## 📦 Secciones recuperadas del backup
-
-   > Las siguientes secciones estaban en el backup pero no en tu
-   > versión actual. Revisa y ajusta según necesites.
-
-   {SECCIONES_SOLO_DEL_BACKUP}
-
-   ---
-
-   ## ⚠️ Conflictos detectados
-
-   > Las siguientes secciones existen en ambas versiones con
-   > contenido diferente. Ambas se mantienen para que decidas.
-
-   ### {SECCION_CONFLICTIVA} (Versión actual)
-   {CONTENIDO_ACTUAL}
-
-   ### {SECCION_CONFLICTIVA} (Versión del backup)
-   {CONTENIDO_BACKUP}
-
-   ---
-
-   💡 Fichero combinado el {FECHA}
+   ```python
+   # Por cada sección a mantener
+   reconstructionPlan[filePath].preferences.append({
+       "id": sectionId,
+       "content": sectionContent,
+       "type": "section",
+       "metadata": {
+           "sectionName": sectionName,
+           "origin": "current|backup|conflict",
+           "conflictInfo": {...}  # si aplica
+       }
+   })
    ```
 
    **Para rules/*.md (User/Project Rules)**:
 
-   a) Si tiene frontmatter YAML con `paths:`:
-   - Combinar paths únicos
-   - Mantener reglas de ambos
+   a) Si tiene frontmatter YAML:
+   - Acumular paths únicos combinados
+   - Acumular reglas de ambos
 
-   b) Si no tiene frontmatter:
-   - Concatenar contenidos
-   - Eliminar duplicados exactos
-   - Marcar secciones del backup
+   b) Sin frontmatter:
+   - Acumular contenidos sin duplicados
+   - Marcar origen (actual/backup)
 
    **Para Auto Memory (MEMORY.md)**:
 
-   a) Índice (primeras 200 líneas):
+   a) Acumular notas únicas de ambos
+   - Respetar límite 200 líneas para índice
    - Combinar referencias a topic files
-   - Mantener notas únicas de ambos
-   - Respetar límite de 200 líneas
 
    b) Topic files:
-   - Si existe en ambos: Combinar notas
-   - Si solo en backup: Restaurar
+   - Acumular notas de ambos sin duplicados
 
    **Para otros archivos** (settings.json, etc.):
-   - Si es JSON: Merge de objetos JSON
-   - Si es texto: Concatenar con separador
+   - JSON: Acumular merge de objetos
+   - Texto: Acumular contenidos con separador
 
-3. **Escribir fichero combinado**:
-   ```bash
-   cat > "$REAL_FILE" <<EOF
-   $COMBINED_CONTENT
-   EOF
+3. **NO escribir aún**. Solo acumular en memoria.
+
+   Notificar:
+   ```markdown
+   📦 {UBICACION_REAL}: Análisis completado
+
+   Contenido acumulado:
+   - Del actual: {X} secciones/preferencias
+   - Del backup: {Y} secciones/preferencias
+   - Conflictos: {Z} (se mantendrán ambas versiones)
+
+   ⚒️ Se reconstruirá usando motor de reconstrucción...
+
+   ───────────────────────────────────────────────────────────
    ```
 
-4. **Notificar**:
+4. **Ejecutar reconstrucción**:
+
+   **Según instrucciones de `09-reconstruction-engine.md`**:
+
+   a) **Purificación**: Vaciar fichero actual
+
+   b) **Reconstrucción**: Por cada preferencia acumulada:
+      - Mostrar confirmación (origen, contenido, ubicación)
+      - Validar estructura
+      - Escribir correctamente
+      - Notificar resultado
+
+   c) **Notificar resultado final**:
    ```markdown
-   ✅ {UBICACION_REAL}: Combinado
+   ✅ {UBICACION_REAL}: Combinado y reconstruido
 
-   Se ha creado un merge inteligente de ambos contenidos:
-   - Secciones del actual: {X}
-   - Secciones del backup añadidas: {Y}
-   - Conflictos detectados: {Z} (revisa y resuelve)
+   Reconstrucción completada:
+   - Preferencias del actual: {X}
+   - Preferencias del backup: {Y}
+   - Conflictos resueltos: {Z} (ambas versiones incluidas)
+   - Validación: ✅ Estructura correcta
 
-   💡 Revisa el fichero para ajustar según tus preferencias.
+   💡 Revisa el fichero reconstruido para ajustes finales.
    ```
 
 ---

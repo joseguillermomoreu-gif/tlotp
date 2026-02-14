@@ -184,6 +184,57 @@ Saltando este archivo...
 
 ---
 
+### Manejo Especial: Symlinks
+
+Si encuentras un **symlink** (como `~/.claude/skills/`):
+
+**Detectar symlink**:
+```bash
+if [ -L "$path" ]; then
+    # Es symlink
+    target=$(readlink -f "$path")
+fi
+```
+
+**Mostrar contexto**:
+```markdown
+═══════════════════════════════════════════════════════════
+
+📄 Fichero: {PATH}
+
+🔗 SYMLINK DETECTADO
+
+Target: {TARGET_PATH}
+
+Este es un enlace simbólico a otro directorio/archivo.
+
+Al borrar, se eliminará SOLO el symlink, NO el contenido
+del target.
+
+═══════════════════════════════════════════════════════════
+```
+
+**Si usuario elige borrar**:
+```bash
+# Eliminar SOLO el symlink (no el target)
+rm "$path"  # SIN -r, solo el symlink
+
+# o más explícito:
+unlink "$path"
+```
+
+**Notificar**:
+```markdown
+✅ {PATH}: Symlink eliminado
+   🔗 Target: {TARGET_PATH} (NO modificado)
+```
+
+**Importante**:
+- NO usar `rm -r` que borraría el contenido del target
+- Usar `rm` simple o `unlink` para eliminar solo el symlink
+
+---
+
 ## 🎯 OPCIÓN B: Reset Selectivo (Granular)
 
 **Flujo**: Ir fichero por fichero, dentro de cada fichero ir regla/preferencia por regla/preferencia.
@@ -312,31 +363,88 @@ Vamos a revisar el contenido regla por regla...
 
 5. **Cuando termine de revisar TODO el fichero**:
 
-   a) Construir nuevo contenido con solo lo que el usuario decidió mantener
+   **⚒️ USAR MOTOR DE RECONSTRUCCIÓN (09-reconstruction-engine.md)**
 
-   b) Decidir acción según tipo de fichero (igual que Reset Completo):
-      - Si el nuevo contenido está vacío → Aplicar regla de "vaciar vs borrar"
-      - Si el nuevo contenido tiene algo → Editar el fichero real
+   a) **Acumular en plan de reconstrucción**:
 
-   c) Editar el fichero real:
-
-   ```bash
-   # Escribir nuevo contenido
-   cat > /path/to/file <<EOF
-   {NUEVO_CONTENIDO}
-   EOF
+   Por cada regla marcada como "Mantener":
+   ```python
+   reconstructionPlan[filePath].preferences.append({
+       "id": preferenceId,
+       "content": preferenceContent,
+       "type": detectType(preferenceContent),  # "section", "rule", etc.
+       "metadata": {
+           "sectionName": extractSectionName(preferenceContent),
+           "lines": countLines(preferenceContent)
+       }
+   })
    ```
 
-   d) Notificar resultado:
+   b) **NO editar archivo aún**. Solo acumular en memoria.
 
+   Notificar:
    ```markdown
-   ✅ {PATH_DEL_FICHERO}: Actualizado
+   📦 Fichero {PATH}: Revisión completada
 
-   Mantenidas: X de Y reglas/preferencias
-   Borradas: Y reglas/preferencias
+   Preferencias a mantener: X de Y (acumuladas)
+
+   ---
    ```
 
-6. **Siguiente fichero del backup**
+6. **Siguiente fichero del backup** (seguir acumulando)
+
+---
+
+### IMPORTANTE: Al Finalizar TODOS los Ficheros
+
+**Una vez revisados TODOS los ficheros del backup:**
+
+1. **Mostrar resumen de lo acumulado**:
+
+```markdown
+═══════════════════════════════════════════════════════════
+
+            📦 RESUMEN DE PREFERENCIAS A MANTENER
+
+═══════════════════════════════════════════════════════════
+
+Total ficheros con preferencias: {N}
+
+~/.claude/CLAUDE.md
+  - {X} preferencias (stack, herramientas, etc.)
+
+./CLAUDE.md
+  - {Y} preferencias (comportamiento, branches, testing)
+
+MEMORY.md
+  - {Z} preferencias (notas del proyecto)
+
+───────────────────────────────────────────────────────────
+
+💡 Siguiente paso: Reconstrucción inteligente
+
+Se borrarán/vaciarán los archivos y se reconstruirán
+correctamente usando la documentación oficial de Claude Code.
+
+Cada reconstrucción será validada y confirmada antes de
+aplicarse.
+
+═══════════════════════════════════════════════════════════
+```
+
+2. **Ejecutar Motor de Reconstrucción**:
+
+   **Según instrucciones de `09-reconstruction-engine.md`**:
+
+   a) **Fase de Purificación**: Borrar/vaciar archivos según `info_claude.md`
+
+   b) **Fase de Reconstrucción**: Por cada preferencia acumulada:
+      - Mostrar confirmación (QUÉ, DÓNDE, CÓMO)
+      - Validar estructura
+      - Escribir con formato correcto
+      - Notificar resultado
+
+   c) **Resumen Final**: Estadísticas de reconstrucción
 
 ### Identificación de Reglas/Preferencias
 
