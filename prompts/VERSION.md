@@ -7,10 +7,10 @@
 ## 📊 Versiones Actuales
 
 ### Palantír
-- **Versión**: 1.6.0
-- **Versión corta**: v1.6
-- **Fecha release**: 2026-02-13
-- **Descripción**: Inspector, Reset y Recovery con Reconstrucción Inteligente
+- **Versión**: 1.7.0
+- **Versión corta**: v1.7
+- **Fecha release**: 2026-02-14
+- **Descripción**: CRUD Completo - Inspector, Reset, Recovery, Reconstrucción y Configurador
 
 ### Gollum
 - **Versión**: (pendiente)
@@ -65,6 +65,45 @@ Luego, usa la versión correspondiente según el formato de uso arriba.
 ---
 
 ## 📋 Changelog
+
+### v1.7.0 - Palantír (2026-02-14)
+- **Sistema de Configuración Asistida** (10-configurator-system.md)
+  - Nueva opción en menú principal: "Configurar característica"
+  - Solicitar qué característica añadir (con ejemplos)
+  - Consultar `info_claude.md` para determinar ubicación correcta
+  - Detectar si ya existe característica similar
+- **Detección de Conflictos y Contradicciones**
+  - Buscar características que se sobreescriban
+  - Identificar preferencias contradictorias
+  - Detectar inconsistencias lógicas (frameworks, configs, comportamientos)
+  - Listar todos los conflictos encontrados
+- **Sistema de Propuestas Iterativo**
+  - Generar propuesta de combinación automática
+  - Estrategias: Unificar/Priorizar nuevo/Mantener ambas
+  - Si rechazo → generar propuesta alternativa
+  - Permitir "Modificar manualmente" con input usuario
+  - Continuar iterando mientras NO acepte Y NO cancele
+  - Si cancela → abortar TODO el proceso
+- **Reestructuración con Documentación Oficial**
+  - Consultar `info_claude.md` para orden ideal de secciones
+  - Extraer secciones actuales del archivo
+  - Añadir nueva característica en orden correcto
+  - Reordenar según mejores prácticas
+  - Mostrar preview del archivo resultante completo (30+ líneas)
+- **Confirmación Crítica Antes de Aplicar**
+  - Preview completo de edición
+  - AskUserQuestion: "¿Aplicar esta edición?"
+  - Si rechazo → cancelar TODO (no aplicar NADA)
+- **Uso del Motor de Reconstrucción**
+  - Usar `09-reconstruction-engine.md` para aplicar cambios
+  - Validación de estructura por tipo de archivo
+  - Verificación post-aplicación
+- **CRUD Completo**:
+  - CREATE: Configurador (nuevo) ✅
+  - READ: Inspector ✅
+  - UPDATE: Recovery con merge ✅
+  - DELETE: Reset ✅
+- **Arquitectura**: 11 módulos (3,611 líneas de prompts)
 
 ### v1.6.0 - Palantír (2026-02-13)
 - **Motor de Reconstrucción Inteligente** (09-reconstruction-engine.md)
