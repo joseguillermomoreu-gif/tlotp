@@ -11,7 +11,7 @@
 
 @prompts/VERSION.md
 
-**Versión cargada**: Usar la versión de Palantír definida arriba (actualmente 1.4.0)
+**Versión cargada**: Usar la versión de Palantír definida arriba (actualmente 1.7.0)
 
 ---
 
@@ -35,12 +35,13 @@
 @prompts/palantir/sections/07-reset-system.md
 @prompts/palantir/sections/08-recovery-system.md
 @prompts/palantir/sections/09-reconstruction-engine.md
+@prompts/palantir/sections/10-configurator-system.md
 
 ---
 
 ## 🎯 Módulos Cargados
 
-1. **00-menu-principal.md** - Menú de selección de modo (Inspector/Reset/Recovery)
+1. **00-menu-principal.md** - Menú de selección de modo (Inspector/Reset/Recovery/Configurador)
 2. **01-metadata.md** - Banner, misión, jerarquía oficial
 3. **02-backup-system.md** - Sistema de backup (4 opciones de path)
 4. **03-jerarquia-oficial.md** - Inspección de 7 niveles oficiales
@@ -50,6 +51,7 @@
 8. **07-reset-system.md** - Sistema de reset de configuraciones
 9. **08-recovery-system.md** - Sistema de recovery desde backup
 10. **09-reconstruction-engine.md** - Motor de reconstrucción inteligente
+11. **10-configurator-system.md** - Sistema de configuración asistida (CREATE)
 
 ---
 
@@ -96,10 +98,12 @@ Procede según las instrucciones de `00-menu-principal.md`:
    - Inspeccionar configuraciones
    - Reset de configuraciones
    - Recovery desde backup
+   - Configurar característica
 
 2. Según la elección, ejecutar el flujo correspondiente:
    - **Si elige Inspeccionar**: Ejecutar flujo de `06-reglas-ejecucion.md`
    - **Si elige Reset**: Ejecutar flujo de `07-reset-system.md`
    - **Si elige Recovery**: Ejecutar flujo de `08-recovery-system.md`
+   - **Si elige Configurar**: Ejecutar flujo de `10-configurator-system.md`
 
 ¡Adelante, Palantír! 🔮👁️
