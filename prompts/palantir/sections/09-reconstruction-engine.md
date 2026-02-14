@@ -577,5 +577,80 @@ Borra o vacía según documentación oficial.
 
 ---
 
+## 🔗 Manejo Especial de Symlinks
+
+### Problema con Symlinks
+
+Los symlinks (como `~/.claude/skills/`) pueden causar:
+- Bucles infinitos al copiar con `-r`
+- Backups enormes innecesarios
+- Dificultad para eliminar en reset
+
+### Estrategia de Manejo
+
+**En Backup**:
+- NO copiar contenido del symlink
+- Solo almacenar metadata en BACKUP_INDEX.md:
+  ```markdown
+  ### Skills (Symlink)
+  - 📎 Symlink detectado
+  - Target: /ruta/real/de/skills
+  - Archivos: 21 archivos (.md)
+  - Total líneas: 12,128
+  - **Nota**: Contenido NO incluido en backup (symlink)
+  ```
+
+**En Reset/Borrado**:
+- Si es symlink: Eliminar el symlink (con `rm` o `unlink`)
+- NO intentar borrar el contenido del target
+- Notificar:
+  ```markdown
+  🔗 ~/.claude/skills: Symlink eliminado
+     (Target: /ruta/real - NO modificado)
+  ```
+
+**En Recovery**:
+- Si backup contiene metadata de symlink: Informar al usuario
+- NO restaurar (el symlink debe recrearse manualmente si es necesario)
+- Advertencia:
+  ```markdown
+  ⚠️ Skills era un symlink en el backup
+     Target original: /ruta/real
+
+     No se puede restaurar automáticamente.
+     Recrea el symlink manualmente si es necesario:
+     ln -s /ruta/real ~/.claude/skills
+  ```
+
+### Detección de Symlinks
+
+```bash
+# Verificar si es symlink
+if [ -L "$path" ]; then
+    # Es symlink
+    target=$(readlink -f "$path")
+    echo "Symlink → $target"
+
+    # NO seguir el symlink
+    # Solo registrar metadata
+else
+    # Archivo/directorio normal
+    # Procesar normalmente
+fi
+```
+
+### Comandos para Eliminar Symlinks
+
+```bash
+# Eliminar symlink (NO el contenido)
+rm ~/.claude/skills        # Elimina el symlink, no el target
+# o
+unlink ~/.claude/skills    # Más explícito
+```
+
+**IMPORTANTE**: Usar `rm` sin `-r` para eliminar solo el symlink, no el contenido.
+
+---
+
 *Motor de Reconstrucción Inteligente - Palantír v1.6*
 *"Reforjado con maestría élfica"* ⚒️

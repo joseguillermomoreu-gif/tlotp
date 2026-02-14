@@ -184,6 +184,57 @@ Saltando este archivo...
 
 ---
 
+### Manejo Especial: Symlinks
+
+Si encuentras un **symlink** (como `~/.claude/skills/`):
+
+**Detectar symlink**:
+```bash
+if [ -L "$path" ]; then
+    # Es symlink
+    target=$(readlink -f "$path")
+fi
+```
+
+**Mostrar contexto**:
+```markdown
+═══════════════════════════════════════════════════════════
+
+📄 Fichero: {PATH}
+
+🔗 SYMLINK DETECTADO
+
+Target: {TARGET_PATH}
+
+Este es un enlace simbólico a otro directorio/archivo.
+
+Al borrar, se eliminará SOLO el symlink, NO el contenido
+del target.
+
+═══════════════════════════════════════════════════════════
+```
+
+**Si usuario elige borrar**:
+```bash
+# Eliminar SOLO el symlink (no el target)
+rm "$path"  # SIN -r, solo el symlink
+
+# o más explícito:
+unlink "$path"
+```
+
+**Notificar**:
+```markdown
+✅ {PATH}: Symlink eliminado
+   🔗 Target: {TARGET_PATH} (NO modificado)
+```
+
+**Importante**:
+- NO usar `rm -r` que borraría el contenido del target
+- Usar `rm` simple o `unlink` para eliminar solo el symlink
+
+---
+
 ## 🎯 OPCIÓN B: Reset Selectivo (Granular)
 
 **Flujo**: Ir fichero por fichero, dentro de cada fichero ir regla/preferencia por regla/preferencia.
