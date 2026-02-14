@@ -34,6 +34,7 @@
 @prompts/palantir/sections/06-reglas-ejecucion.md
 @prompts/palantir/sections/07-reset-system.md
 @prompts/palantir/sections/08-recovery-system.md
+@prompts/palantir/sections/09-reconstruction-engine.md
 
 ---
 
@@ -48,6 +49,38 @@
 7. **06-reglas-ejecucion.md** - Flujo de ejecución y reglas (modo Inspector)
 8. **07-reset-system.md** - Sistema de reset de configuraciones
 9. **08-recovery-system.md** - Sistema de recovery desde backup
+10. **09-reconstruction-engine.md** - Motor de reconstrucción inteligente
+
+---
+
+## ⚠️ REGLA CRÍTICA - Prevención de Contaminación de Auto Memory
+
+**IMPORTANTE**: Durante TODA la ejecución de Palantír:
+
+### 🚫 Prohibido Absolutamente
+
+- ❌ **NO actualices** MEMORY.md del proyecto actual
+- ❌ **NO crees** topic files en auto memory del proyecto
+- ❌ **NO escribas** notas sobre esta sesión en la memoria
+- ❌ **NO generes** ningún tipo de recordatorio o insight en MEMORY.md
+
+### ✅ Por Qué es Crítico
+
+Palantír es una herramienta de **inspección y mantenimiento** de configuraciones.
+Sus sesiones NO deben contaminar la memoria del proyecto del usuario.
+
+**Analogía**: Como un médico que examina al paciente sin dejar instrumentos dentro.
+
+**Consecuencia de violar esta regla**:
+- La memoria del proyecto se contamina con meta-información de Palantír
+- Las futuras sesiones de desarrollo pueden verse afectadas
+- Se pierde la distinción entre memoria de trabajo y memoria de mantenimiento
+
+### 📝 Resumen
+
+**Palantír debe ser transparente y no dejar rastro en la auto memory del proyecto.**
+
+Esta sesión es de inspección/mantenimiento, **NO** es una sesión de desarrollo.
 
 ---
 
