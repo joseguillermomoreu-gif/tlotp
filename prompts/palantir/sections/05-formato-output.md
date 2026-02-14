@@ -282,15 +282,17 @@ Ver detalles completos en: BACKUP_INDEX.md
 2. **Preguntar al usuario** (con `AskUserQuestion`):
 ```
 header: "Resumen"
-question: "¿Quieres ver un resumen general de tu configuración?"
+question: "¿Quieres ver un resumen o análisis de tu configuración?"
 options:
   1. label: "Sí, mostrar resumen"
      description: "Ver resumen de configuración activa"
-  2. label: "No, terminar"
+  2. label: "Sí, mostrar conclusiones y sugerencias"
+     description: "Análisis inteligente con recomendaciones de mejora"
+  3. label: "No, terminar"
      description: "Finalizar inspección"
 ```
 
-3. **Si selecciona "Sí"**, mostrar resumen:
+3. **Si selecciona "Sí, mostrar resumen"**, mostrar resumen básico:
 ```markdown
 ═══════════════════════════════════════════════════════════
 
@@ -321,9 +323,180 @@ Configuración Adicional:
 
 ---
 
+4. **Si selecciona "Sí, mostrar conclusiones y sugerencias"**, realizar análisis inteligente:
+
+```markdown
+═══════════════════════════════════════════════════════════
+
+           🎯 Conclusiones y Sugerencias
+
+═══════════════════════════════════════════════════════════
+
+## 📊 Estado Actual de tu Configuración
+
+Jerarquía Oficial Detectada:
+  1. [✅/❌] Managed Policy - [descripción breve]
+  2. [✅/❌] User Memory - [descripción breve]
+  3. [✅/❌] User Rules - [descripción breve]
+  4. [✅/❌] Project Memory - [descripción breve]
+  5. [✅/❌] Project Rules - [descripción breve]
+  6. [✅/❌] Project Local - [descripción breve]
+  7. [✅/❌] Auto Memory - [descripción breve]
+
+---
+
+## 🔍 Análisis Detallado
+
+### 1. Estructura y Organización
+
+**Análisis**:
+[Evaluar según documentación oficial de info_claude.md:]
+- ¿Están los archivos en los lugares correctos según jerarquía oficial?
+- ¿Hay configuraciones en lugares no estándar que deberían moverse?
+- ¿La estructura de subdirectorios en rules/ es coherente?
+- ¿Hay symlinks que podrían simplificarse o consolidarse?
+
+**Recomendaciones**:
+✅ Buenas prácticas detectadas:
+  - [listar aspectos positivos]
+
+⚠️ Mejoras sugeridas:
+  - [sugerencias específicas de reorganización]
+
+---
+
+### 2. Contenido y Claridad
+
+**Análisis**:
+[Evaluar calidad del contenido:]
+- ¿Las instrucciones son claras y no ambiguas?
+- ¿Hay secciones demasiado largas que podrían modularizarse?
+- ¿Se usan imports eficientemente o hay duplicación?
+- ¿Los frontmatter YAML con paths están bien especificados?
+
+**Recomendaciones**:
+✅ Buenas prácticas detectadas:
+  - [aspectos positivos]
+
+⚠️ Mejoras sugeridas:
+  - [sugerencias de simplificación o clarificación]
+
+---
+
+### 3. Conflictos y Contradicciones
+
+**Análisis**:
+[Detectar posibles conflictos entre niveles de jerarquía:]
+- ¿Hay instrucciones contradictorias entre User Memory y Project Memory?
+- ¿Alguna regla en User Rules contradice Project Rules?
+- ¿Instrucciones en CLAUDE.md vs CLAUDE.local.md que se sobreescriben?
+- ¿Auto Memory contiene información obsoleta o contradictoria?
+
+**Conflictos Detectados**:
+[Si NO hay conflictos:]
+✅ No se detectaron conflictos entre niveles de configuración
+
+[Si HAY conflictos:]
+⚠️ Conflictos encontrados:
+  1. **[Tipo de conflicto]**:
+     - Ubicación 1: [archivo:línea] → [extracto]
+     - Ubicación 2: [archivo:línea] → [extracto]
+     - Impacto: [explicar qué prevalece según jerarquía]
+     - Solución sugerida: [cómo resolver]
+
+---
+
+### 4. Optimizaciones y Eficiencia
+
+**Análisis**:
+[Buscar oportunidades de optimización:]
+- ¿Contenido duplicado que podría usar @imports?
+- ¿Reglas genéricas que deberían estar en User Memory en vez de Project Memory?
+- ¿Configuraciones específicas del proyecto mezcladas con personales?
+- ¿Auto Memory excede 200 líneas? (solo primeras 200 se cargan)
+- ¿Topic files que deberían crearse para organizar MEMORY.md?
+
+**Recomendaciones de Optimización**:
+[Listar sugerencias concretas:]
+- 💡 [Sugerencia 1 con beneficio esperado]
+- 💡 [Sugerencia 2 con beneficio esperado]
+- 💡 [Sugerencia 3 con beneficio esperado]
+
+---
+
+### 5. Mejores Prácticas de Claude Code
+
+**Análisis según documentación oficial** (info_claude.md):
+[Verificar adherencia a mejores prácticas:]
+- ¿Se aprovecha correctamente la jerarquía (general→específico)?
+- ¿Los paths en frontmatter YAML son precisos?
+- ¿Se usan symlinks adecuadamente para reutilizar config?
+- ¿MEMORY.md mantiene balance entre concisión y completitud?
+- ¿Los topic files están referenciados desde MEMORY.md?
+
+**Cumplimiento de Mejores Prácticas**:
+✅ Siguiendo correctamente:
+  - [listar prácticas bien implementadas]
+
+⚠️ Podrían mejorarse:
+  - [prácticas que podrían aplicarse mejor]
+
+---
+
+## 🚀 Plan de Acción Sugerido
+
+**Prioridad Alta** 🔴:
+1. [Acción crítica si hay conflictos o problemas importantes]
+
+**Prioridad Media** 🟡:
+1. [Mejora de organización o claridad]
+2. [Optimización de estructura]
+
+**Prioridad Baja** 🟢 (Opcional):
+1. [Refinamientos menores]
+2. [Optimizaciones de eficiencia]
+
+---
+
+## 💡 Recursos Útiles
+
+- **Documentación oficial**: Consultar `prompts/info_claude.md` para detalles
+- **Configurador**: Usa modo "Configurar característica" para añadir config nueva
+- **Recovery**: Usa modo "Recovery" para restaurar desde backups
+- **Reset Selectivo**: Usa modo "Reset" para limpiar reglas específicas
+
+---
+
+💾 Backup completo guardado en:
+[PATH]
+
+═══════════════════════════════════════════════════════════
+```
+
+**IMPORTANTE - Reglas para el Análisis**:
+
+1. **Basarse en documentación oficial**: Todas las recomendaciones deben fundamentarse en `info_claude.md`
+
+2. **Ser específico y accionable**: No sugerencias genéricas, sino acciones concretas con ubicación exacta
+
+3. **Priorizar por impacto**:
+   - 🔴 Alta: Conflictos, contradicciones, errores de estructura
+   - 🟡 Media: Optimizaciones de organización y claridad
+   - 🟢 Baja: Refinamientos menores
+
+4. **Detectar conflictos reales**: Analizar lógicamente si una instrucción en un nivel contradice otra en otro nivel, considerando la precedencia de la jerarquía
+
+5. **Sugerir uso de herramientas**: Recomendar usar otros modos de Palantír cuando sea apropiado (Configurador, Recovery, Reset)
+
+6. **Incluir ejemplos concretos**: Al sugerir un cambio, mostrar extracto del problema y propuesta de solución
+
+7. **Considerar el contexto del usuario**: Si detectas que es un proyecto específico (ej: Playwright), las sugerencias deben ser relevantes a ese contexto
+
+---
+
 ## Banner Footer
 
-4. **SIEMPRE al final** (después del resumen o si selecciona "No"), mostrar banner footer:
+5. **SIEMPRE al final** (después del resumen, conclusiones, o si selecciona "No"), mostrar banner footer:
 ```markdown
 ═══════════════════════════════════════════════════════════
 

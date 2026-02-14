@@ -808,6 +808,50 @@ else:
 ═══════════════════════════════════════════════════════════
 ```
 
+### Preguntar si Añadir Otra Configuración
+
+Después de mostrar la notificación de éxito, preguntar al usuario:
+
+Usar `AskUserQuestion`:
+```
+header: "Continuar configurando"
+question: "¿Deseas añadir otra característica?"
+multiSelect: false
+options:
+  1. label: "Sí, añadir otra"
+     description: "Configurar una característica adicional"
+
+  2. label: "No, finalizar"
+     description: "Terminar y salir del Configurador"
+```
+
+**Si elige "Sí, añadir otra"**:
+- **Volver al PASO 1** (Solicitar Característica)
+- Reiniciar el flujo completo del configurador
+- Mantener contexto de lo ya configurado
+
+**Si elige "No, finalizar"**:
+- Mostrar mensaje final y terminar:
+
+```markdown
+═══════════════════════════════════════════════════════════
+
+              👋 Configurador Finalizado
+
+Se configuraron correctamente las características solicitadas.
+
+Todas las configuraciones están activas y se aplicarán
+en la próxima sesión de Claude Code.
+
+Puedes ejecutar Palantír nuevamente cuando necesites:
+- Inspeccionar configuraciones
+- Resetear configuraciones
+- Recuperar desde backup
+- Añadir nuevas características
+
+═══════════════════════════════════════════════════════════
+```
+
 ---
 
 ## 🚫 Cancelación en Cualquier Momento
