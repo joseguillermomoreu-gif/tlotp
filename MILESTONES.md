@@ -111,7 +111,41 @@ Herramienta fundamental para desarrollar y testear las siguientes épicas.
 
 ---
 
-### **2. 💍 Gollum - Playwright E2E MVP**
+### **2. ⚒️ Celebrimbor - El Forjador de Skills**
+
+**GitHub Issue**: [#42](https://github.com/joseguillermomoreu-gif/tlotp/issues/42)
+**Prioridad**: Alta
+**ROI**: Alto - Base reutilizable para todas las épicas
+
+**Símbolo**: El herrero élfico que forjó los Anillos de Poder
+
+**Descripción**:
+Sistema completo de gestión de skills desde skills.sh. Busca, instala, actualiza y gestiona skills con configuración automática de `paths:`. Incluye modo automático que detecta el proyecto y configura todo sin intervención.
+
+**Objetivo**:
+Crear la base de gestión de skills reutilizable para todas las épicas futuras, aprovechando el ecosistema de skills.sh en lugar de crear skills manualmente.
+
+**Entregables**:
+- [ ] Módulo Buscar - Buscar skills en skills.sh
+- [ ] Módulo Instalar - Instalar con paths: automáticos
+- [ ] Módulo Actualizar - Actualizar skills existentes
+- [ ] Módulo Gestionar - Actualizar/borrar individual con menú CLI
+- [ ] Módulo Listar - Inventario de skills instaladas
+- [ ] Modo Automático 🤖 - Detectar proyecto y auto-configurar
+- [ ] Sistema de detección de proyecto (frameworks, lenguajes)
+- [ ] Mapping proyecto → skills recomendadas
+- [ ] Integración con Palantír Configurador
+- [ ] Testing exhaustivo (Playwright, TypeScript, PHP)
+- [ ] Documentación completa con ejemplos
+
+**Estado**: ⏳ Pendiente - 13 tareas
+**Dependencias**: Palantír (completado)
+**XP Total**: 1,590 XP (795 XP cada fundador)
+**Target**: Por definir
+
+---
+
+### **3. 💍 Gollum - Playwright E2E MVP**
 
 **GitHub Issue**: [#2](https://github.com/joseguillermomoreu-gif/tlotp/issues/2)
 **Prioridad**: Alta
@@ -135,12 +169,12 @@ MVP funcional que valide que TLOTP funciona end-to-end con un caso específico.
 - [ ] Ejemplo completo documentado
 
 **Estado**: ⏳ Pendiente
-**Dependencias**: Palantír
+**Dependencias**: Celebrimbor
 **Target**: Por definir
 
 ---
 
-### **3. 🏛️ Elrond - Global & Generic Configuration**
+### **4. 🏛️ Elrond - Global & Generic Configuration**
 
 **GitHub Issue**: [#3](https://github.com/joseguillermomoreu-gif/tlotp/issues/3)
 **Prioridad**: Media-Alta
@@ -163,12 +197,12 @@ Generalizar TLOTP para configurar aspectos fundamentales reutilizables.
 - [ ] Documentación de configuración global
 
 **Estado**: ⏳ Pendiente
-**Dependencias**: Palantír, Gollum
+**Dependencias**: Palantír, Celebrimbor, Gollum
 **Target**: Por definir
 
 ---
 
-### **4. ⚡ Gandalf - Autonomous PHP Project**
+### **5. ⚡ Gandalf - Autonomous PHP Project**
 
 **GitHub Issue**: [#4](https://github.com/joseguillermomoreu-gif/tlotp/issues/4)
 **Prioridad**: Media
@@ -203,12 +237,12 @@ El objetivo final de TLOTP - autonomía total en un proyecto real.
 - [ ] Documentación completa del sistema
 
 **Estado**: ⏳ Pendiente
-**Dependencias**: Palantír, Gollum, Elrond
+**Dependencias**: Palantír, Celebrimbor, Gollum, Elrond
 **Target**: Por definir
 
 ---
 
-### **5. 👑 Aragorn - Agent Orchestrator & Unified Command**
+### **6. 👑 Aragorn - Agent Orchestrator & Unified Command**
 
 **GitHub Issue**: [#5](https://github.com/joseguillermomoreu-gif/tlotp/issues/5)
 **Prioridad**: Futura (TLOTP v2.0)
@@ -266,7 +300,8 @@ TLOTP 2.0 - Llevar Claude Code a la N-ésima potencia mediante coordinación de 
 ### TLOTP v1.x - The Fellowship
 
 ```
-🔮 Palantír (CRUD Completo - Configurador)           [██████████] 100% 🎉 COMPLETO
+🔮 Palantír (CRUD Completo)                          [██████████] 100% 🎉 COMPLETO
+⚒️ Celebrimbor (Forjador de Skills)                  [----------]   0% ⏳ Siguiente
 💍 Gollum (Playwright MVP)                            [----------]   0%
 🏛️ Elrond (Global Config)                             [----------]   0%
 ⚡ Gandalf (Autonomous)                               [----------]   0%
