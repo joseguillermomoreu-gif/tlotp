@@ -33,26 +33,28 @@ Un **único prompt** que:
 
 ## ⚡ Estado Actual
 
-🚧 **TLOTP está en desarrollo activo**
+🎉 **Primera épica completada!** - Palantír v1.7 funcional y documentado
 
 Estamos construyendo el sistema por épicas (fases):
 
 ### TLOTP v1.x - The Fellowship (Configuración Básica)
-1. 🔮 **Palantír** - Configuration Inspector & Reset ← **En desarrollo**
-2. 💍 **Gollum** - Playwright E2E MVP
-3. 🏛️ **Elrond** - Global & Generic Configuration
-4. ⚡ **Gandalf** - Autonomous PHP Project
+1. 🔮 **Palantír** - CRUD de Configuraciones ← ✅ **COMPLETADO v1.7**
+2. ⚒️ **Celebrimbor** - Forjador de Skills ← ⏳ **Siguiente**
+3. 💍 **Gollum** - Playwright E2E MVP
+4. 🏛️ **Elrond** - Global & Generic Configuration
+5. ⚡ **Gandalf** - Autonomous PHP Project
 
 ### TLOTP v2.x - The Return of the King (Multi-Agent System)
-5. 👑 **Aragorn** - Agent Orchestrator & Unified Command (futuro)
+6. 👑 **Aragorn** - Agent Orchestrator & Unified Command (futuro)
 
 **Ver progreso**: [MILESTONES.md](MILESTONES.md) | [Issues en GitHub](https://github.com/joseguillermomoreu-gif/tlotp/issues)
 
 ### 🎯 Próximos hitos
 
-- [ ] Completar Palantír (herramienta de inspección de configs)
-- [ ] Implementar primer prompt funcional (Gollum - Playwright MVP)
-- [ ] Sistema de configuración global (Elrond)
+- [x] ✅ Palantír v1.7 - CRUD completo con 11 módulos
+- [ ] Celebrimbor - Sistema de gestión de skills desde skills.sh
+- [ ] Gollum - Primer proyecto E2E configurado con TLOTP
+- [ ] Elrond - Sistema de configuración global
 
 ---
 
@@ -122,10 +124,14 @@ Cuando esté completo, TLOTP configurará **TODO** lo que necesitas:
 
 ## 📖 Documentación
 
+### General
 - **[TLOTP.md](TLOTP.md)** - Especificación completa del proyecto
 - **[PREFERENCIAS.md](PREFERENCIAS.md)** - Catálogo de todas las preferencias configurables
 - **[MILESTONES.md](MILESTONES.md)** - Épicas y roadmap del proyecto (temática LOTR)
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - Cómo contribuir
+
+### Guías de Uso
+- **[Palantír v1.7](docs/PALANTIR.md)** 🔮 - Guía completa del sistema de gestión de configuraciones
 
 ---
 
@@ -150,52 +156,53 @@ Ver **[MILESTONES.md](MILESTONES.md)** para el roadmap completo con todas las é
 
 ### Épicas Definidas (orden por ROI)
 
-#### 1. 🔮 Palantír - Configuration Inspector & Reset (**83% completado** 🚀)
-**Issue épico**: [#1](https://github.com/joseguillermomoreu-gif/tlotp/issues/1) | **Tareas**: #5-#28 | **PR**: [#30](https://github.com/joseguillermomoreu-gif/tlotp/pull/30)
+#### 1. 🔮 Palantír - CRUD de Configuraciones (**✅ COMPLETADO v1.7**)
+**Issue épico**: [#1](https://github.com/joseguillermomoreu-gif/tlotp/issues/1) | **[📖 Guía de Uso](docs/PALANTIR.md)**
 
-Herramienta para inspeccionar y gestionar configuraciones de Claude Code (jerarquía oficial + custom). Fundamental para desarrollar las siguientes épicas.
+Sistema completo de gestión de configuraciones de Claude Code con CRUD total:
+- ✅ **Inspector** (READ) - 7 niveles + custom + conclusiones inteligentes
+- ✅ **Reset** (DELETE) - Completo o selectivo con backup obligatorio
+- ✅ **Recovery** (UPDATE) - Restaurar desde backups con merge
+- ✅ **Configurador** (CREATE) - Añadir preferencias con detección de conflictos
 
-**Sprint P2 COMPLETADO** ✅ (Sistema Inspector):
-- ✅ #7 - Inspector config global (resumen) - 50 XP
-- ✅ #8 - Inspector config global (completo) - 80 XP
-- ✅ #9 - Inspector config proyecto (resumen) - 50 XP
-- ✅ #10 - Inspector config proyecto (completo) - 80 XP
-- ✅ #11 - Inspector de skills - 60 XP
-- ✅ #18 - Palantír prompt v1.2 - 150 XP
-
-**Sprint P3 PRÓXIMO** (Mejoras + Sistema Reset):
-- ⏳ #31 - Mejorar condicionales imports/topics - 60 XP
-- ⏳ #32 - Validar opción resumen - 50 XP
-- ⏳ #33 - Mejorar mensaje CLAUDE.md superior - 50 XP
-- ⏳ #13-#17 - Sistema de reset completo
+**Arquitectura**: 11 módulos (~3,830 líneas) | **XP**: 1,670 XP ganados
 
 ---
 
-#### 2. 💍 Gollum - Playwright E2E MVP
+#### 2. ⚒️ Celebrimbor - El Forjador de Skills (**⏳ Siguiente**)
+**Issue épico**: [#42](https://github.com/joseguillermomoreu-gif/tlotp/issues/42)
+
+Sistema de gestión de skills desde skills.sh con configuración automática de `paths:`.
+Modo Automático detecta proyecto y auto-configura skills necesarias.
+
+**XP Disponible**: 1,590 XP (13 tareas)
+
+---
+
+#### 3. 💍 Gollum - Playwright E2E MVP
 **Issue épico**: [#2](https://github.com/joseguillermomoreu-gif/tlotp/issues/2)
 
-Primer proyecto real configurado con TLOTP. MVP enfocado en testing E2E con Playwright.
+Primer proyecto E2E configurado con TLOTP usando Celebrimbor para skills.
 
 ---
 
-#### 3. 🏛️ Elrond - Global & Generic Configuration
+#### 4. 🏛️ Elrond - Global & Generic Configuration
 **Issue épico**: [#3](https://github.com/joseguillermomoreu-gif/tlotp/issues/3)
 
 Sistema de configuración global reutilizable para cualquier tipo de proyecto.
 
 ---
 
-#### 4. ⚡ Gandalf - Autonomous PHP Project
+#### 5. ⚡ Gandalf - Autonomous PHP Project
 **Issue épico**: [#4](https://github.com/joseguillermomoreu-gif/tlotp/issues/4)
 
 Objetivo final: autonomía total. Claude ejecuta ciclo completo (tarea → código → QA → deploy).
 
 ---
 
-**Estado actual**: ✅ Palantír v1.2 COMPLETO Y FUNCIONAL - Próximo: Sprint P3
-**Progreso general**: [Ver en GitHub Projects](https://github.com/joseguillermomoreu-gif/tlotp/issues)
-**Testing**: ✅ Probado exitosamente 2026-02-13 14:42
-**XP ganado Sprint P2**: +470 XP (235 XP por fundador)
+**Estado actual**: ✅ Palantír v1.7 COMPLETADO - [Ver Guía de Uso](docs/PALANTIR.md)
+**Progreso general**: [MILESTONES.md](MILESTONES.md) | [GitHub Issues](https://github.com/joseguillermomoreu-gif/tlotp/issues)
+**XP total acumulado**: 1,945 XP cada fundador (3,890 XP compartidos)
 
 ---
 
