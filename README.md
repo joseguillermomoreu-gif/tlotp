@@ -31,30 +31,52 @@ Un **único prompt** que:
 
 ---
 
+## ⚡ Inicio Rápido
+
+### 💍 El Verdadero "One Prompt to Rule Them All"
+
+Ejecuta el menú principal de TLOTP para acceder a todas las épicas:
+
+```
+@prompts/tlotp-main.md
+```
+
+Desde ahí podrás elegir:
+- 🔮 **Palantír** - Gestor de configuraciones (✅ v1.7 Completo)
+- ⚒️ **Celebrimbor** - Forjador de skills (🚧 v1.0 MVP en desarrollo)
+- 💍 **Gollum**, 🏛️ **Elrond**, ⚡ **Gandalf** (⏳ Planificadas)
+
+---
+
 ## ⚡ Estado Actual
 
+**Versión**: TLOTP v2.1.0 (en desarrollo)
+
 🎉 **Primera épica completada!** - Palantír v1.7 funcional y documentado
+🚧 **Segunda épica en desarrollo** - Celebrimbor MVP (Tarea #1 completada)
 
 Estamos construyendo el sistema por épicas (fases):
 
-### TLOTP v1.x - The Fellowship (Configuración Básica)
-1. 🔮 **Palantír** - CRUD de Configuraciones ← ✅ **COMPLETADO v1.7**
-2. ⚒️ **Celebrimbor** - Forjador de Skills ← ⏳ **Siguiente**
-3. 💍 **Gollum** - Playwright E2E MVP
-4. 🏛️ **Elrond** - Global & Generic Configuration
-5. ⚡ **Gandalf** - Autonomous PHP Project
+### TLOTP v2.x - The Fellowship (Configuración Básica)
+1. 🔮 **Palantír** - CRUD de Configuraciones ← ✅ **COMPLETADO v1.7** (TLOTP v2.0)
+2. ⚒️ **Celebrimbor** - Forjador de Skills ← 🚧 **En desarrollo** (TLOTP v2.1)
+3. 💍 **Gollum** - Playwright E2E MVP ← ⏳ **Siguiente** (TLOTP v2.2)
+4. 🏛️ **Elrond** - Global & Generic Configuration (TLOTP v2.3)
+5. ⚡ **Gandalf** - Autonomous PHP Project (TLOTP v2.4)
 
-### TLOTP v2.x - The Return of the King (Multi-Agent System)
+### TLOTP v3.x - The Return of the King (Multi-Agent System)
 6. 👑 **Aragorn** - Agent Orchestrator & Unified Command (futuro)
 
 **Ver progreso**: [MILESTONES.md](MILESTONES.md) | [Issues en GitHub](https://github.com/joseguillermomoreu-gif/tlotp/issues)
 
 ### 🎯 Próximos hitos
 
-- [x] ✅ Palantír v1.7 - CRUD completo con 11 módulos
-- [ ] Celebrimbor - Sistema de gestión de skills desde skills.sh
-- [ ] Gollum - Primer proyecto E2E configurado con TLOTP
-- [ ] Elrond - Sistema de configuración global
+- [x] ✅ Palantír v1.7 - CRUD completo con 11 módulos (TLOTP v2.0)
+- [x] 🚧 Celebrimbor Tarea #1 - Detección de entorno y menú principal
+- [ ] Celebrimbor Tarea #2 - Arquitectura modular dual-backend
+- [ ] Celebrimbor v1.0 MVP - Sistema completo con Backend CLI (TLOTP v2.1)
+- [ ] Gollum - Primer proyecto E2E configurado con TLOTP (TLOTP v2.2)
+- [ ] Elrond - Sistema de configuración global (TLOTP v2.3)
 
 ---
 
@@ -131,7 +153,9 @@ Cuando esté completo, TLOTP configurará **TODO** lo que necesitas:
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** - Cómo contribuir
 
 ### Guías de Uso
+- **[Menú Principal](prompts/tlotp-main.md)** 💍 - Entry point único para todas las épicas
 - **[Palantír v1.7](docs/PALANTIR.md)** 🔮 - Guía completa del sistema de gestión de configuraciones
+- **[Celebrimbor](prompts/celebrimbor/README.md)** ⚒️ - El forjador de skills (en desarrollo)
 
 ---
 
@@ -200,9 +224,10 @@ Objetivo final: autonomía total. Claude ejecuta ciclo completo (tarea → códi
 
 ---
 
-**Estado actual**: ✅ Palantír v1.7 COMPLETADO - [Ver Guía de Uso](docs/PALANTIR.md)
+**Estado actual**: 🚧 Celebrimbor Tarea #1 completada - TLOTP v2.1.0 en desarrollo
+**Último completado**: ✅ Palantír v1.7 - [Ver Guía de Uso](docs/PALANTIR.md)
 **Progreso general**: [MILESTONES.md](MILESTONES.md) | [GitHub Issues](https://github.com/joseguillermomoreu-gif/tlotp/issues)
-**XP total acumulado**: 1,945 XP cada fundador (3,890 XP compartidos)
+**XP total acumulado**: 1,985 XP cada fundador (3,970 XP compartidos)
 
 ---
 
