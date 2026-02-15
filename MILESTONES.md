@@ -145,31 +145,54 @@ Crear la base de gestión de skills reutilizable para todas las épicas futuras,
 
 ---
 
-### **3. 💍 Gollum - Playwright E2E MVP**
+### **3. 💍 Gollum - Primer MVP Completo de TLOTP para E2E**
 
 **GitHub Issue**: [#2](https://github.com/joseguillermomoreu-gif/tlotp/issues/2)
 **Prioridad**: Alta
-**ROI**: Rápido - Primer caso de uso real
+**ROI**: Alto - Valida concepto completo de TLOTP
 
-**Símbolo**: "My precious" - Primer hobbit con el anillo, trabajo oscuro de testing
+**Símbolo**: "My precious" - El primer anillo funcional, obsesión por el testing perfecto
 
 **Descripción**:
-Primer proyecto configurado con TLOTP. MVP enfocado en testing E2E con Playwright, incluyendo todas las preferencias específicas de este tipo de proyectos.
+**Primer MVP completo de TLOTP** - Un prompt interactivo (`tlotp-e2e.md`) que configura automáticamente un proyecto Playwright E2E end-to-end. Gollum orquesta todo: detecta el proyecto, hace preguntas específicas, llama a Celebrimbor para instalar skills, genera configuraciones personalizadas, y valida que todo funciona.
+
+**Gollum = Orquestador, Celebrimbor = Ejecutor de skills**
 
 **Objetivo**:
-MVP funcional que valide que TLOTP funciona end-to-end con un caso específico.
+- Crear el **primer prompt TLOTP funcional** que un usuario puede ejecutar
+- Validar que TLOTP funciona end-to-end con un caso real
+- Servir como **plantilla** para épicas futuras (Elrond, Gandalf)
+- Demostrar el concepto: "One Prompt to Rule Them All"
+
+**Flujo de Usuario**:
+```
+Usuario: @tlotp-e2e.md
+
+Gollum:
+  1. Detecta proyecto Playwright
+  2. Hace preguntas específicas E2E (10-15 preguntas)
+  3. Llama a Celebrimbor → instala skills (playwright, pom, typescript)
+  4. Genera CLAUDE.md personalizado
+  5. Genera MEMORY.md con comandos útiles
+  6. Valida todo
+  7. "¡Listo! Tu proyecto E2E está configurado 🎉"
+```
 
 **Entregables**:
-- [ ] TLOTP-prompt funcional para proyectos Playwright
-- [ ] Detección automática de playwright.config.ts
-- [ ] Preguntas específicas para E2E testing
-- [ ] Generación de CLAUDE.md con config E2E
-- [ ] Generación de MEMORY.md con comandos útiles
-- [ ] Skills generadas (playwright.md, pom.md)
+- [ ] tlotp-e2e.md - Prompt interactivo completo
+- [ ] Sistema de detección de proyectos Playwright
+- [ ] Preguntas específicas E2E (convenciones, POM, CI/CD)
+- [ ] Integración con Celebrimbor (modo automático)
+- [ ] Generador de CLAUDE.md del proyecto
+- [ ] Generador de MEMORY.md del proyecto
+- [ ] Sistema de validación end-to-end
+- [ ] Testing en proyecto E2E real
+- [ ] Documentación de uso completa
 - [ ] Ejemplo completo documentado
 
 **Estado**: ⏳ Pendiente
-**Dependencias**: Celebrimbor
+**Dependencias**: Celebrimbor (debe estar completo)
+**XP Estimado**: ~800-1,000 XP (10 tareas aprox.)
 **Target**: Por definir
 
 ---
