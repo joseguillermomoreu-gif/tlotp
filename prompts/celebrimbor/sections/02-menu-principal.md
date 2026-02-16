@@ -8,7 +8,7 @@ Mostrar menú interactivo con opciones disponibles según el entorno detectado.
 
 ---
 
-## Banner de Bienvenida
+## Banner de Bienvenida (MOSTRAR SOLO UNA VEZ)
 
 ```
 ═══════════════════════════════════════════════════════════════
@@ -17,73 +17,30 @@ Mostrar menú interactivo con opciones disponibles según el entorno detectado.
 
     "Tres Anillos para los Reyes Elfos bajo el cielo..."
 
-    TLOTP {VERSION} | Celebrimbor | ✅ CRUD Completo
+    TLOTP {VERSION} | Backend CLI ⚡
+
 ═══════════════════════════════════════════════════════════════
 ```
+
+**Después del banner**: Detector de entorno (módulo 01). Si todo OK, continuar al menú.
 
 ---
 
 ## Opciones del Menú
 
-### Menú de Operaciones (Backend seleccionado)
+**IMPORTANTE**: NO repetir banner. Ir directo a opciones.
 
-**IMPORTANTE**: Este menú se muestra DESPUÉS de seleccionar el backend.
+Operaciones:
 
-```
-═══════════════════════════════════════════════════════════════
-    🔮 Celebrimbor - Gestión de Skills ⚒️
-═══════════════════════════════════════════════════════════════
-
-Backend activo: CLI ⚡ (Node.js v20.11.0)
-
-Operaciones disponibles:
-
-┌─────────────────────────────────────────────────────────────┐
-│ 1. 🔍 Buscar Skills                                         │
-│    Busca skills en el catálogo de skills.sh                │
-│    ✅ Disponible                                            │
-└─────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────┐
-│ 2. 📥 Instalar Skill                                        │
-│    Instala una skill en global o local                     │
-│    ✅ Disponible                                            │
-└─────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────┐
-│ 3. 📋 Listar Skills Instaladas                             │
-│    Ver skills instaladas (global y local)                  │
-│    ✅ Disponible                                            │
-└─────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────┐
-│ 4. 🔄 Actualizar Skills                                     │
-│    Actualiza skills a la última versión                    │
-│    ✅ Disponible                                            │
-└─────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────┐
-│ 5. 🗑️  Eliminar Skill                                       │
-│    Elimina una skill instalada                             │
-│    ✅ Disponible                                            │
-└─────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────┐
-│ 6. 🤖 Modo Automático                                       │
-│    Detecta proyecto e instala skills recomendadas          │
-│    🚧 Disponible en v2.2+ (Tarea #7)                        │
-└─────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────┐
-│ 7. ⚙️  Cambiar Backend                                      │
-│    Cambiar entre CLI y Git (v2.2.0)                        │
-│    🚧 Git disponible en v2.2.0                              │
-└─────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────┐
-│ 8. ℹ️  Ayuda y Documentación                                │
-│ 9. 🚪 Salir                                                  │
-└─────────────────────────────────────────────────────────────┘
+1. 🔍 Buscar Skills
+2. 📥 Instalar Skill
+3. 📋 Listar Skills Instaladas
+4. 🔄 Actualizar Skills
+5. 🗑️ Eliminar Skill
+6. 🤖 Modo Automático [🚧 WIP]
+7. ⚙️ Cambiar Backend [🚧 WIP]
+8. ℹ️ Ayuda
+9. 🚪 Salir
 
 Elige una opción [1-9]:
 ```
@@ -167,13 +124,62 @@ Elige una opción [2-5]:
 
 ### Opción 6: Modo Automático 🚧
 - **Estado**: WIP - Tarea #7
-- Mostrar: "🚧 Disponible en v2.2+"
+- **Si el usuario la selecciona**, mostrar:
+
+```
+🚧 Modo Automático - En Desarrollo
+
+¿Qué hará esta funcionalidad?
+Detectará automáticamente el tipo de proyecto (React, Symfony,
+Playwright, Python, etc.) y te sugerirá/instalará las skills más
+relevantes sin tener que buscarlas manualmente una por una.
+
+Por ejemplo:
+- Proyecto Playwright → Instala skills: playwright, pom, typescript
+- Proyecto Symfony → Instala skills: php, symfony, doctrine, phpunit
+- Proyecto React → Instala skills: react, typescript, vite, testing-library
+
+Estado: 🚧 En desarrollo
+Disponible en: TLOTP v2.2.0
+
+Beneficio: Ahorra tiempo al configurar nuevos proyectos. Especialmente
+útil para stacks comunes donde ya sabemos qué skills necesitas.
+
+Presiona Enter para volver al menú...
+```
+
 - Volver al menú
 
 ### Opción 7: Cambiar Backend 🚧
 - **Estado**: WIP - v2.2.0 (Backend Git)
-- Mostrar opciones disponibles
-- Guardar preferencia
+- **Si el usuario la selecciona**, mostrar:
+
+```
+🚧 Cambiar Backend - En Desarrollo
+
+¿Qué hará esta funcionalidad?
+Te permitirá cambiar entre dos backends para gestionar skills:
+
+⚡ Backend CLI (Actual)
+   • Requiere: Node.js >= 18
+   • Ventaja: Rápido, selectivo, actualiza skills individuales
+   • Comando: npx skills [comando]
+
+📦 Backend Git (Futuro)
+   • Requiere: Solo git (universal)
+   • Ventaja: No depende de Node.js, funciona en cualquier entorno
+   • Método: Clona repos directamente desde GitHub
+
+Estado: 🚧 En desarrollo
+Disponible en: TLOTP v2.2.0
+
+Beneficio: Si no tienes Node.js o prefieres no instalarlo,
+podrás usar el backend Git y seguir gestionando skills.
+
+Presiona Enter para volver al menú...
+```
+
+- Volver al menú
 
 ### Opción 8: Ayuda
 - Mostrar documentación de Celebrimbor

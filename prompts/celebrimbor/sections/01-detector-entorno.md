@@ -44,38 +44,47 @@ npx skills --version
 
 ## Reporte de Estado
 
-**Formato de salida**:
+### Caso 1: Node.js >= 18 ✅
+
+**NO mostrar nada** - Continuar directo al menú de operaciones.
+
+### Caso 2: Node.js < 18 ⚠️
 
 ```
-🔮 Celebrimbor - Detección de Entorno ⚒️
+⚠️ Node.js Desactualizado
 
-Node.js:  v20.11.0  ✅ (>= 18 requerido)
-npm:      v10.2.4   ✅
-npx:      ✅ Disponible
-skills:   v1.2.3    ✅ Funcional
+Node.js detectado: v12.22.9
+Requerido: >= v18.0.0
 
-Estado: ✅ Listo para Backend CLI
+💡 Solución Rápida: ¿Tienes nvm instalado?
+
+Ejecuta: nvm use 20 (o nvm use 18)
+
+Esto cargará una versión compatible de Node.js y Celebrimbor
+funcionará perfectamente.
+
+¿Quieres que intente ejecutar 'nvm use 20' ahora? [s/N]: _
 ```
 
-O si hay problemas:
+**Si usuario acepta**: Ejecutar `nvm use 20` y reintentar detección
+**Si usuario rechaza**: Mostrar opciones alternativas
+
+### Caso 3: Node.js NO disponible ❌
 
 ```
-🔮 Celebrimbor - Detección de Entorno ⚒️
+❌ Node.js No Detectado
 
-Node.js:  v12.22.9  ❌ (>= 18 requerido)
-npm:      v8.5.1    ✅
-npx:      ✅ Disponible
-skills:   ❌ Error (requiere Node.js >= 18)
-
-⚠️ ACCIÓN REQUERIDA:
-Node.js desactualizado. Actualiza a versión >= 18.
+Celebrimbor requiere Node.js >= 18 para el backend CLI.
 
 Opciones:
-1. Instalar Node.js >= 18 y usar Backend CLI (Recomendado)
-2. Esperar a Celebrimbor v2.0 con Backend Git (sin Node.js)
+1. Instalar Node.js >= 18 → Usar Celebrimbor ahora
+   https://nodejs.org/
 
-Instrucciones de actualización:
-https://nodejs.org/en/download/package-manager
+2. Esperar backend Git → Sin Node.js requerido (WIP)
+
+🚧 Backend Git estará disponible en versión futura
+
+No puedes continuar sin Node.js >= 18.
 ```
 
 ---

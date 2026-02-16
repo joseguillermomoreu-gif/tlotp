@@ -6,9 +6,9 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v2.1.0**
+**TLOTP v3.0.0**
 - **Fecha release**: 2026-02-16
-- **Nombre código**: "The Fellowship of the Code"
+- **Nombre código**: "The Two Towers" (Palantír + Celebrimbor)
 
 ---
 
@@ -47,22 +47,72 @@
 
 **En banners header**:
 ```
-═══ TLOTP v2.1.0 ═══
+═══ TLOTP v3.0.0 ═══
 ```
 
 **En títulos de archivos**:
 ```
-# 💍 TLOTP v2.1.0 - The Lord of the Prompt
+# 💍 TLOTP v3.0.0 - The Lord of the Prompt
 ```
 
 **En metadata**:
 ```
-Versión: TLOTP v2.1.0
+Versión: TLOTP v3.0.0
 ```
 
 ---
 
 ## 📋 Changelog
+
+### v3.0.0 (2026-02-16) - "The Two Towers"
+
+**🎉 MAJOR RELEASE - Primera versión production-ready**
+
+**Breaking Changes**:
+- Menú principal TLOTP completamente rediseñado (más conciso)
+- Documentación reorganizada y simplificada
+- Opciones WIP ahora muestran información detallada al seleccionarse
+
+**✨ Features Principales**:
+
+**TLOTP General**:
+- 💍 Nuevo concepto: "Un prompt para dominarlos a todos"
+- 📚 Documentación interactiva mejorada (Opción 3)
+- ℹ️ Sección "Sobre TLOTP" (Opción 4)
+- 🎯 Descripción de épicas más concisa
+- ✨ Usa documentación oficial Claude Code on-the-fly
+- 🔄 Combina con configuraciones existentes sin borrar
+
+**Palantír v1.7**:
+- ✅ CRUD completo operativo
+- 🔍 Analyzer de mejoras sugeridas
+- 🛡️ Sistema de backup obligatorio
+- 🔧 Configurador asistido con detección de conflictos
+- 11 módulos, ~3,830 líneas
+
+**Celebrimbor v1.0**:
+- ✅ MVP completado con todas las operaciones CRUD
+- 🔍 Search - Buscar en 59,000+ skills de skills.sh
+- 📥 Install - Instalación con auto-config de paths
+- 📋 List - Listar skills instaladas (global/local)
+- 🔄 Update - Actualizar todas las skills
+- 🗑️ Remove - Eliminar skills individuales
+- ⚙️ Backend CLI funcional (Node.js >=18)
+- 🚧 Opciones WIP documentadas (Modo Auto, Backend Git)
+- 11 módulos, ~4,500 líneas
+
+**📊 Estadísticas**:
+- 2 épicas completadas (Palantír + Celebrimbor)
+- 22 módulos totales
+- ~8,330 líneas de prompts
+- 2,540 XP acumulados (gamificación)
+- Sistema completamente funcional y testeado
+
+**🎯 Próximos pasos**:
+- v3.1.0: Celebrimbor - Backend Git + Modo Automático
+- v4.0.0: Gollum (Playwright E2E MVP)
+
+---
 
 ### v2.1.0 (2026-02-16) - "The Fellowship of the Code"
 
@@ -132,17 +182,21 @@ TLOTP sigue [Semantic Versioning 2.0.0](https://semver.org/):
 
 ## 🚀 Roadmap de Versiones
 
-### v2.2.0 (Próxima)
+### v3.1.0 (Próxima minor)
 - Celebrimbor: Backend Git implementado
 - Celebrimbor: Modo automático
 - Palantír: Export/Import de configs
 
-### v3.0.0 (Futuro)
+### v4.0.0 (Próxima major - Gollum)
 - Gollum: Playwright E2E MVP
+- Setup automático de proyectos Playwright
+- Integración con Celebrimbor para skills
+
+### v5.0.0 (Futuro - Elrond & Gandalf)
 - Elrond: Global Config System
 - Gandalf: Autonomous Workflow MVP
 
-### v4.0.0+ (Visión)
+### v6.0.0+ (Visión - Aragorn)
 - Aragorn: Multi-Agent Orchestration
 - Dashboard web interactivo
 - CLI universal

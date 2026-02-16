@@ -125,23 +125,34 @@ Sistema completo de gestión de skills desde skills.sh. Busca, instala, actualiz
 **Objetivo**:
 Crear la base de gestión de skills reutilizable para todas las épicas futuras, aprovechando el ecosistema de skills.sh en lugar de crear skills manualmente.
 
-**Entregables**:
-- [ ] Módulo Buscar - Buscar skills en skills.sh
-- [ ] Módulo Instalar - Instalar con paths: automáticos
-- [ ] Módulo Actualizar - Actualizar skills existentes
-- [ ] Módulo Gestionar - Actualizar/borrar individual con menú CLI
-- [ ] Módulo Listar - Inventario de skills instaladas
+**Entregables MVP** (v1.0):
+- [x] Módulo Buscar - Buscar skills en skills.sh ✅
+- [x] Módulo Instalar - Instalar con paths: automáticos ✅
+- [x] Módulo Listar - Inventario de skills instaladas ✅
+- [x] Módulo Actualizar - Actualizar skills existentes ✅
+- [x] Módulo Eliminar - Borrar skills individuales ✅
+- [x] Detector de entorno (Node.js >=18) ✅
+- [x] Menú principal con navegación ✅
+- [x] Opciones WIP documentadas (Modo Auto, Backend Git) ✅
+- [x] Backend CLI funcional (Node.js >=18) ✅
+- [x] Integración con skills.sh oficial ✅
+- [x] Testing validado ✅
+
+**Entregables Futuros** (v1.1+):
 - [ ] Modo Automático 🤖 - Detectar proyecto y auto-configurar
+- [ ] Backend Git - Alternativa sin Node.js
 - [ ] Sistema de detección de proyecto (frameworks, lenguajes)
 - [ ] Mapping proyecto → skills recomendadas
 - [ ] Integración con Palantír Configurador
-- [ ] Testing exhaustivo (Playwright, TypeScript, PHP)
-- [ ] Documentación completa con ejemplos
 
-**Estado**: ⏳ Pendiente - 13 tareas
-**Dependencias**: Palantír (completado)
-**XP Total**: 1,590 XP (795 XP cada fundador)
-**Target**: Por definir
+**Progreso**: 🎉 **Celebrimbor v1.0 COMPLETO - MVP Funcional** ✅
+**CRUD Completo**: CREATE (Install) | READ (Search, List) | UPDATE (Update) | DELETE (Remove)
+**Estado**: ✅ Completado
+**Arquitectura**: 11 módulos (~4,500 líneas de prompts)
+**Testing**: ✅ Validado
+**XP Sprint 1**: 870 XP total (435 XP cada fundador) 🎯
+**Dependencias**: Palantír ✅ (completado)
+**Target**: v3.0.0 ✅ RELEASED
 
 ---
 
