@@ -12,6 +12,12 @@
 - **Fecha release**: 2026-02-14
 - **Descripción**: CRUD Completo - Inspector, Reset, Recovery, Reconstrucción y Configurador
 
+### Celebrimbor
+- **Versión**: 2.1.0
+- **Versión corta**: v2.1
+- **Fecha release**: 2026-02-16
+- **Descripción**: Skills Manager MVP - CRUD Completo con Backend CLI
+
 ### Gollum
 - **Versión**: (pendiente)
 - **Descripción**: Playwright E2E Testing
@@ -65,6 +71,26 @@ Luego, usa la versión correspondiente según el formato de uso arriba.
 ---
 
 ## 📋 Changelog
+
+### v2.1.0 - Celebrimbor (2026-02-16)
+- **Sistema de Gestión de Skills Completo** (Backend CLI MVP)
+  - Detección automática de entorno (Node.js >=18, npm, Git)
+  - Arquitectura modular dual-backend (CLI + Git futuro)
+  - Abstraction layer para backends intercambiables
+- **CRUD Completo de Skills**:
+  - CREATE: Instalación global/local con npx skills add
+  - READ: Búsqueda en skills.sh + listado de instaladas
+  - UPDATE: Actualización automática con npx skills update
+  - DELETE: Eliminación segura con confirmación
+- **Features Destacados**:
+  - Verificación automática de updates al inicio
+  - Detección de duplicados antes de instalar
+  - Banner épico con estado de sistema
+  - Integración con 59,000+ skills de skills.sh
+  - Manejo robusto de errores
+- **Arquitectura**: 11 módulos (4,234 líneas de prompts)
+- **XP Generado**: 710 XP (6 tareas completadas)
+- **Pendiente v2.2.0**: Backend Git, Update selectivo, Modo Automático
 
 ### v1.7.0 - Palantír (2026-02-14)
 - **Sistema de Configuración Asistida** (10-configurator-system.md)
