@@ -27,16 +27,6 @@
                     ═══ TLOTP v2.1.0 ═══
                   The Fellowship of the Code
 
-         [████████████████████░░░░░] 80% Complete
-
-         ✅ Palantír     │ v1.7 CRUD Complete
-         🚧 Celebrimbor  │ v1.0 MVP (Task #1 ✓)
-         ⏳ Gollum       │ Blocked - Needs Celebrimbor
-         ⏳ Elrond       │ Planned - v2.3
-         ⏳ Gandalf      │ Planned - v2.4
-
-         XP: 1,985 each │ Total: 3,970 │ Rank: Ranger 🏹
-
 ═══════════════════════════════════════════════════════════════
 
 **DESPUÉS** del banner, continuar con el menú de selección.
