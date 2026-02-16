@@ -5,7 +5,7 @@
 **Versión**: TLOTP v2.1.0 (en desarrollo)
 **Épica**: #2 Celebrimbor
 **Backend**: CLI (Node.js) - MVP
-**Estado**: 🚧 En desarrollo - Tarea #4 (Instalación)
+**Estado**: 🚧 En desarrollo - Tarea #5 (Eliminar)
 
 ---
 
@@ -45,6 +45,7 @@ Este prompt principal carga todos los módulos de Celebrimbor:
 7. **07-module-search.md** - Búsqueda de skills ✅ Tarea #3
 8. **08-module-install.md** - Instalación de skills ✅ Tarea #4
 9. **09-module-list.md** - Listar skills instaladas ✅ Tarea #3/4
+10. **10-module-remove.md** - Eliminar skills ✅ Tarea #5
 
 ### Módulos Futuros (v2.2+)
 - **10-module-update.md** - Actualizar skills (Tarea #5)

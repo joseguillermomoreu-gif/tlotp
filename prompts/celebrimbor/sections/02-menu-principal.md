@@ -149,10 +149,14 @@ Elige una opción [2-5]:
 - Mostrar: "🚧 Disponible próximamente"
 - Volver al menú
 
-### Opción 5: Eliminar Skill 🚧
-- **Estado**: WIP - Tarea #5
-- Mostrar: "🚧 Disponible próximamente"
-- Volver al menú
+### Opción 5: Eliminar Skill ✅
+- **Cargar módulo**: `sections/10-module-remove.md`
+- Listar skills instaladas
+- Seleccionar skill a eliminar
+- Confirmación crítica (NO se puede deshacer)
+- Ejecutar con npx skills remove (o rm manual)
+- Verificar eliminación
+- Confirmar resultado
 
 ### Opción 6: Modo Automático 🚧
 - **Estado**: WIP - Tarea #7
