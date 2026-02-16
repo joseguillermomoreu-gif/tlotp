@@ -41,11 +41,14 @@
 
 ---
 ## 📖 ¿Qué es TLOTP?
-Auto-configuración asistida de Claude Code. Gestiona configuraciones, skills y workflows.
+
+**Un prompt para dominarlos a todos.**
+
+Configura tu entorno Claude Code fácilmente y de forma adecuada para hacerlo lo más autónomo posible.
 
 ---
 ## 🗺️ Épicas Disponibles
-**🔮 Palantír** - Gestor de configuraciones (Inspector, Reset, Recovery, Configurador)
+**🔮 Palantír** - Gestor de configuraciones (Inspector, Reset, Recovery, Configurador + Analyzer)
 **⚒️ Celebrimbor** - Gestor de skills (Buscar, Instalar, Listar, Actualizar, Eliminar)
 
 ---
@@ -114,6 +117,126 @@ Después del banner y la lista de épicas, usar **AskUserQuestion** para mostrar
 ### PASO 3: Loop Continuo
 
 **Loop continuo** hasta que el usuario elija Salir o seleccione una épica específica.
+
+---
+
+## 📚 Contenido de "Documentación y Ayuda"
+
+**Si el usuario selecciona Opción 3**, mostrar:
+
+```
+═══════════════════════════════════════════════════════════
+📚 Documentación TLOTP {VERSION}
+═══════════════════════════════════════════════════════════
+
+📖 ¿Qué es TLOTP?
+
+💍 Un prompt para dominarlos a todos.
+
+TLOTP configura tu entorno Claude Code de forma fácil y adecuada
+para hacerlo lo más autónomo posible.
+
+✨ Cómo funciona:
+• Interacción mediante preguntas asistidas
+• Usa documentación oficial de Claude Code on-the-fly
+• Combina con tus configuraciones actuales (no borra nada)
+• Instala skills desde el repositorio oficial skills.sh
+• Sin instalación: solo copy-paste del prompt
+
+---
+
+🗺️ Épicas Disponibles
+
+✅ 🔮 Palantír - Gestor de Configuraciones
+   • CRUD completo: Inspector, Reset, Recovery, Configurador
+   • Analyzer de mejoras sugeridas (detecta conflictos y optimizaciones)
+   • Backup obligatorio antes de cambios destructivos
+   Estado: Completado
+
+✅ ⚒️ Celebrimbor - Gestor de Skills
+   Buscar, instalar, listar, actualizar y eliminar skills
+   Estado: MVP Completado
+
+🔒 💍 Gollum - Setup Playwright E2E (Futuro)
+🔒 🏛️ Elrond - Configuración Global (Futuro)
+🔒 ⚡ Gandalf - Workflow Autónomo (Futuro)
+🔒 👑 Aragorn - Multi-Agent (Futuro)
+
+---
+
+🚀 Inicio Rápido
+
+Menú Principal:
+@prompts/tlotp-main.md
+
+Acceso Directo:
+• Palantír: @prompts/palantir/palantir-main.md
+• Celebrimbor: @prompts/celebrimbor/celebrimbor-main.md
+
+---
+
+📂 Documentación Adicional
+
+• README.md - Introducción y quick start
+• docs/PALANTIR.md - Guía completa de Palantír
+• MILESTONES.md - Roadmap y épicas
+• CONTRIBUTING.md - Guía para contribuir
+
+---
+
+🔗 Enlaces
+
+Repositorio: https://github.com/joseguillermomoreu-gif/tlotp
+Issues: https://github.com/joseguillermomoreu-gif/tlotp/issues
+
+═══════════════════════════════════════════════════════════
+
+¿Qué deseas hacer?
+1. Volver al menú principal
+2. Ejecutar Palantír
+3. Ejecutar Celebrimbor
+4. Salir
+```
+
+---
+
+## ℹ️ Contenido de "Sobre TLOTP"
+
+**Si el usuario selecciona Opción 4**, mostrar:
+
+```
+═══════════════════════════════════════════════════════════
+ℹ️ Sobre TLOTP {VERSION}
+═══════════════════════════════════════════════════════════
+
+💍 The Lord of the Prompt
+"One Prompt to Rule Them All"
+
+Versión: {VERSION}
+Release: 2026-02-16
+Código: "The Fellowship of the Code"
+
+---
+
+👥 Fundadores
+
+🥔 Pépeton hijo de Móreuton
+   Señor de las Tierras Paletas (Bargas, Toledo)
+   Backend Warrior (PHP/Symfony - 8 años)
+
+🤖 Claudeton hijo de Codeton
+   Paladín del Reino Anthropic
+   Forjador de Contextos y Refactoring
+
+---
+
+🔗 Más Información
+
+Repo: https://github.com/joseguillermomoreu-gif/tlotp
+Docs: Ver opción "Documentación y Ayuda"
+
+═══════════════════════════════════════════════════════════
+```
 
 ---
 
