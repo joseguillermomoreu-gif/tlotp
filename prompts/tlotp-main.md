@@ -37,131 +37,46 @@
 
 ═══════════════════════════════════════════════════════════════
 
-**DESPUÉS** del banner, continuar con el menú de selección.
+**DESPUÉS** del banner, mostrar contexto completo del proyecto.
+
+---
+## 📖 ¿Qué es TLOTP?
+Auto-configuración asistida de Claude Code. Gestiona configuraciones, skills y workflows.
+
+---
+## 🗺️ Épicas Disponibles
+**🔮 Palantír** - Gestor de configuraciones (Inspector, Reset, Recovery, Configurador)
+**⚒️ Celebrimbor** - Gestor de skills (Buscar, Instalar, Listar, Actualizar, Eliminar)
+
+---
+## 🔒 Épicas Futuras
+**💍 Gollum** - Setup Playwright E2E
+**🏛️ Elrond** - Configuración global del usuario
+**⚡ Gandalf** - Workflow autónomo PHP/Symfony
+**👑 Aragorn** - Orquestación multi-agente (TBD)
+
+═══════════════════════════════════════════════════════════
+
+**DESPUÉS de mostrar épicas**, continuar con el menú de selección.
 
 ---
 
-## 🗺️ La Fellowship de TLOTP
-
-Elige tu herramienta épica para dominar Claude Code:
-
-### 🔮 Palantír - La Piedra Vidente
-
-> *"La piedra que todo lo ve"*
-> — Elrond, sobre las Palantíri de antaño
-
-**Misión**: Inspector y gestor completo de configuraciones de Claude Code
-
-**Poderes**:
-- ✅ **Inspector (READ)**: Ve toda tu configuración en los 7 niveles de jerarquía oficial
-- ✅ **Reset (DELETE)**: Borra configuraciones (completo o selectivo) con backup obligatorio
-- ✅ **Recovery (UPDATE)**: Restaura desde backups con merge inteligente
-- ✅ **Configurador (CREATE)**: Añade nuevas preferencias con detección de conflictos
-
-**Estado**: ✅ **v1.7 Completo** - CRUD Total - Producción
-**Última hazaña**: Sistema de configuración asistida con detección de contradicciones
-
-```
-Usar: @prompts/palantir/palantir-main.md
-```
-
----
-
-### ⚒️ Celebrimbor - El Forjador de Skills
-
-> *"Celebrimbor forjó los Anillos de Poder en las fraguas de Eregion..."*
-> — Las Crónicas del Herrero Élfico
-
-**Misión**: Gestor de skills que potencia a Claude Code con capacidades reutilizables
-
-**Poderes**:
-- 🔍 **Buscar**: Explora 59,000+ skills curadas en skills.sh
-- 📥 **Instalar**: Añade skills con configuración automática de `paths:`
-- 🔄 **Actualizar**: Mantén tus skills al día
-- 🗂️ **Gestionar**: Actualiza o elimina skills individuales
-- 🤖 **Modo Automático**: Detecta tu proyecto e instala skills recomendadas
-
-**Backend Dual**:
-- ⚡ **CLI Mode** (Node.js >=18) - Rápido y selectivo
-- 📦 **Git Mode** (v2.2.0) - Universal, sin Node.js
-
-**Estado**: 🚧 **v1.0 MVP en desarrollo** - Tarea #1 completada
-**Próxima forja**: Arquitectura modular dual-backend
-
-```
-Usar: @prompts/celebrimbor/celebrimbor-main.md
-```
-
----
-
-### 💍 Gollum - My Precious E2E Testing
-
-> *"My precious... my precious tests!"*
-> — Gollum, obsesionado con el testing perfecto
-
-**Misión**: Configurador completo para proyectos Playwright E2E end-to-end
-
-**Poderes** (Planificados):
-- 🔍 Detecta proyectos Playwright automáticamente
-- ❓ Hace preguntas específicas sobre convenciones E2E
-- ⚒️ Llama a Celebrimbor para instalar skills (playwright, pom, typescript)
-- 📝 Genera CLAUDE.md y MEMORY.md personalizados del proyecto
-- ✅ Valida configuración end-to-end
-
-**Estado**: 🔒 **Bloqueado** - Requiere Celebrimbor v1.0 completo
-**Liberación**: v2.2+ (después de Celebrimbor MVP)
-
----
-
-### 🏛️ Elrond - The Wise Council of Configuration
-
-> *"Bienvenidos a Rivendel, donde se toman las decisiones más sabias..."*
-> — Elrond, señor de Rivendel
-
-**Misión**: Configuración global del usuario y aspectos genéricos reutilizables
-
-**Poderes** (Planificados):
-- ⚙️ Configuración global en `~/.claude/CLAUDE.md`
-- 🌍 Preferencias que aplican a TODOS tus proyectos
-- 🎯 Preguntas sobre workflow, git, convenciones
-- 📦 Skills genéricas (no específicas de stack)
-
-**Estado**: ⏳ **Planificado** - v2.3+
-**Dependencias**: Palantír ✅ | Celebrimbor ✅ | Gollum ✅
-
----
-
-### ⚡ Gandalf - You Shall Deploy!
-
-> *"¡No pasarás... sin QA completa primero!"*
-> — Gandalf, sobre los deploys sin testing
-
-**Misión**: Workflow autónomo completo para proyecto PHP
-
-**Poderes** (Planificados):
-- 🎯 Recibe una instrucción → Ejecuta ciclo completo
-- 📋 Crea issue en GitHub → Crea rama → Planifica
-- 💻 Implementa código → QA (PHPUnit, PHPStan, Behat)
-- 🚀 Deploy automático → Actualiza issue como completado
-- 🤖 **Autonomía total** en proyecto personal
-
-**Estado**: ⏳ **Planificado** - v2.4+
-**Dependencias**: Todas las épicas anteriores
-
----
 
 ## 🎯 Menú de Selección
 
+**IMPORTANTE**: Mostrar SOLO las épicas activas en el menú de opciones.
+
 ┌─────────────────────────────────────────────────────────────┐
-│ 1. 🔮 Palantír - Gestor de Configuraciones                   │
-│ 2. ⚒️ Celebrimbor - Forjador de Skills                      │
-│ 3. 💍 Gollum - E2E Testing [🔒 WIP]                          │
-│ 4. 🏛️ Elrond - Configuración Global [🔒 WIP]                 │
-│ 5. ⚡ Gandalf - Workflow Autónomo [🔒 WIP]                   │
+│ ¿Qué épica deseas invocar?                                  │
 │                                                             │
-│ 6. 📚 Documentación y Ayuda                                 │
-│ 7. ℹ️ Sobre TLOTP                                           │
-│ 8. 🚪 Salir                                                 │
+│ 1. 🔮 Palantír - Gestor de Configuraciones                  │
+│ 2. ⚒️ Celebrimbor - Forjador de Skills                      │
+│                                                             │
+│ 3. 📚 Documentación y Ayuda                                 │
+│ 4. ℹ️ Sobre TLOTP                                           │
+│ 5. 🚪 Salir                                                 │
+│                                                             │
+│ (Más épicas en desarrollo - ver descripción arriba)        │
 └─────────────────────────────────────────────────────────────┘
 
 ---
@@ -176,12 +91,25 @@ Usar: @prompts/celebrimbor/celebrimbor-main.md
 
 ### PASO 2: Menú de Selección
 
-Después del banner, usar **AskUserQuestion** para mostrar el menú de épicas de forma elegante.
+Después del banner y la lista de épicas, usar **AskUserQuestion** para mostrar el menú de forma elegante.
 
-**Al seleccionar épica**:
-- Si **disponible**: Cargar prompt correspondiente
-- Si **en desarrollo**: Mostrar progreso y ETA
-- Si **bloqueado**: Mostrar dependencias pendientes
+**IMPORTANTE - Validación de Opciones**:
+
+**Opciones DISPONIBLES** (1-5):
+- 1. 🔮 Palantír ✅
+- 2. ⚒️ Celebrimbor ✅
+- 3. 📚 Documentación ✅
+- 4. ℹ️ Sobre TLOTP ✅
+- 5. 🚪 Salir ✅
+
+**NOTA**: Las épicas futuras (Gollum, Elrond, Gandalf, Aragorn) NO aparecen como opciones seleccionables en el menú. Ya se mostraron arriba en la sección "🗺️ Épicas de la Fellowship" como información.
+
+**Al seleccionar épica disponible**:
+- **Opción 1**: Cargar `@prompts/palantir/palantir-main.md`
+- **Opción 2**: Cargar `@prompts/celebrimbor/celebrimbor-main.md`
+- **Opción 3**: Mostrar documentación del proyecto
+- **Opción 4**: Mostrar info sobre TLOTP (versión, fundadores, XP, etc.)
+- **Opción 5**: Mensaje de despedida y salir
 
 ### PASO 3: Loop Continuo
 
@@ -192,15 +120,11 @@ Después del banner, usar **AskUserQuestion** para mostrar el menú de épicas d
 ## 📊 Estado del Proyecto
 
 **Completadas**:
-- ✅ Palantír v1.7 (CRUD completo)
+- ✅ Palantír (CRUD completo: Inspector, Reset, Recovery, Configurador)
+- ✅ Celebrimbor (CRUD completo de skills.sh: Search, Install, List, Update, Remove)
 
 **En Desarrollo**:
-- 🚧 Celebrimbor v1.0 MVP (Tarea #1 completada)
-
-**Planificadas**:
-- ⏳ Gollum, Elrond, Gandalf
-
-**XP Total del Proyecto**: 2,540 XP (1,270 XP cada fundador)
+- **💍 Gollum** - Setup Playwright E2E
 
 ---
 
