@@ -14,12 +14,14 @@
                      🔮 P A L A N T Í R
 
              The All-Seeing Configuration Stone
-                TLOTP Inspector Module v1.7
+                  TLOTP {VERSION}
 
              Jerarquía Oficial Claude Code Memory
 
 ═══════════════════════════════════════════════════════════
 ```
+
+**IMPORTANTE**: Reemplaza `{VERSION}` con la versión actual de TLOTP cargada desde `@prompts/VERSION.md` (actualmente v2.1.0)
 
 ---
 

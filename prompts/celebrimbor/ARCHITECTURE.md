@@ -1,6 +1,6 @@
 # 🏗️ Arquitectura de Celebrimbor - Dual-Backend
 
-**Versión**: TLOTP v2.1.0
+**TLOTP**: Ver VERSION.md
 **Tarea**: #2 - Arquitectura Modular Dual-Backend
 **Estado**: ✅ Diseño Completo
 
@@ -40,7 +40,7 @@ Celebrimbor utiliza **arquitectura de capas** con **dual-backend** para máxima 
      │                                             │
 ┌────▼────────────────┐               ┌───────────▼──────┐
 │   Backend CLI (04)  │               │  Backend Git (05)│
-│   Node.js >=18      │               │  Git (v2.2.0)    │
+│   Node.js >=18      │               │  Git (v4.0.0)    │
 │   npx skills        │               │  git clone       │
 └─────────────────────┘               └──────────────────┘
 ```
@@ -112,7 +112,7 @@ interface Backend:
 - update: `npx skills update <skill>`
 - remove: `npx skills remove <skill>` o rm
 
-**Estado**: ✅ Implementado en v2.1.0 MVP
+**Estado**: ✅ Implementado (Backend CLI MVP)
 
 ---
 
@@ -122,14 +122,14 @@ interface Backend:
 **Requisitos**:
 - Git (cualquier versión)
 
-**Implementa** (v2.2.0):
+**Implementa** (v4.0.0):
 - search: grep local en repo clonado
 - install: cp de repo → destino
 - list: ls de directorios
 - update: git pull + re-copy
 - remove: rm manual
 
-**Estado**: 🚧 Hooks preparados, implementación en v2.2.0
+**Estado**: 🚧 Hooks preparados, implementación en v4.0.0
 
 ---
 
@@ -140,8 +140,8 @@ interface Backend:
 1. Leer detección de entorno (módulo 01)
 2. Verificar preferencia guardada (`~/.celebrimbor/config.yml`)
 3. Si no hay preferencia:
-   - v2.1.0: CLI automático (o error)
-   - v2.2.0: Preguntar si ambos disponibles
+   - Versión actual: CLI automático (o error)
+   - v4.0.0: Preguntar si ambos disponibles
 4. Retornar backend seleccionado
 5. Guardar preferencia
 
@@ -173,14 +173,14 @@ Experiencia consistente independiente del backend
 
 ## 🚀 Roadmap de Implementación
 
-### v2.1.0 - MVP (Actual)
+### MVP Actual (Backend CLI)
 - ✅ Arquitectura dual-backend diseñada
 - ✅ Backend CLI completamente funcional
 - ✅ Backend Git: hooks preparados (no implementado)
 - ✅ Selector: solo CLI
 - ✅ Documentación completa
 
-### v2.2.0 - Git Backend
+### v4.0.0 - Git Backend
 - ⏳ Implementar Backend Git completo
 - ⏳ Selector: preguntar CLI vs Git
 - ⏳ Testing exhaustivo dual-mode
@@ -191,4 +191,4 @@ Experiencia consistente independiente del backend
 **Diseñada por**: La Fellowship del Teclado 🥔🤖
 **Tarea**: #2 - Arquitectura Modular Dual-Backend
 **XP**: 120 XP + Badge "Maestro de las Fraguas" 🏆
-**Versión**: TLOTP v2.1.0
+**TLOTP**: Ver VERSION.md

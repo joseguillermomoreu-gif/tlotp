@@ -31,7 +31,7 @@ environment:
 
   backends_available:
     - "cli"      # Si Node.js >=18
-    - "git"      # Si Git disponible (v2.2.0)
+    - "git"      # Si Git disponible (v4.0.0)
 ```
 
 ---
@@ -61,15 +61,15 @@ last_used: "2026-02-15T10:30:00Z"
 
 #### Caso A: Ambos Backends Disponibles
 
-**v2.1.0 (MVP)**: Solo CLI disponible
+**Versión MVP Actual**: Solo CLI disponible
 ```
 ✅ Backend CLI disponible (Node.js v20.11.0)
-🚧 Backend Git disponible en v2.2.0
+🚧 Backend Git disponible en v4.0.0
 
 Usando Backend CLI automáticamente.
 ```
 
-**v2.2.0 (Futuro)**: Preguntar al usuario
+**v4.0.0 (Futuro)**: Preguntar al usuario
 ```
 🔮 Ambos backends disponibles
 
@@ -107,23 +107,23 @@ Continuando con Backend CLI...
 
 #### Caso C: Solo Git Disponible
 
-**v2.1.0**: NO soportado (Git backend no implementado)
+**Versión Actual**: NO soportado (Git backend no implementado)
 ```
 ⚠️ Solo Git disponible
 
 Node.js: v12.22.9 ❌ (requiere >=18)
 Git:     v2.34.1  ✅
 
-Backend Git estará disponible en TLOTP v2.2.0
+Backend Git estará disponible en TLOTP v4.0.0
 
 Opciones:
 1. Actualizar Node.js >=18 → Usar Backend CLI ahora
-2. Esperar v2.2.0 → Usar Backend Git
+2. Esperar v4.0.0 → Usar Backend Git
 
 Ver instrucciones: docs/REQUISITOS.md
 ```
 
-**v2.2.0**: Usar Git automáticamente
+**v4.0.0**: Usar Git automáticamente -> en realidad deberia preguntar al user si no prefiere tirar nvm use 20 y probar node mejor
 ```
 ✅ Usando Backend Git
 
@@ -148,7 +148,7 @@ Opción 1: Instalar Node.js >=18
   → Instrucciones: docs/REQUISITOS.md
 
 Opción 2: Instalar Git
-  → Usar Backend Git (v2.2.0)
+  → Usar Backend Git (v4.0.0)
   → Más simple, sin Node.js
 
 No puedes continuar sin al menos uno de ellos.
@@ -320,7 +320,7 @@ Elige [1-9]: 8
 
 Backends disponibles:
 1. ⚡ CLI (actual)
-2. 📦 Git (disponible en v2.2.0)
+2. 📦 Git (disponible en v4.0.0)
 
 ¿Cambiar a otro backend? [s/N]: _
 ```

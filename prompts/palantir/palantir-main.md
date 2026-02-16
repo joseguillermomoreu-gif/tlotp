@@ -11,7 +11,7 @@
 
 @prompts/VERSION.md
 
-**Versión cargada**: Usar la versión de Palantír definida arriba (actualmente 1.7.0)
+**IMPORTANTE**: Usa la versión TLOTP definida en VERSION.md en todos los banners y outputs
 
 ---
 

@@ -2,10 +2,20 @@
 
 > *"Tres Anillos para los Reyes Elfos bajo el cielo..."*
 
-**Versión**: TLOTP v2.1.0 (en desarrollo)
+---
+
+## 📋 Carga de Versiones
+
+@prompts/VERSION.md
+
+**IMPORTANTE**: Usa la versión TLOTP definida en VERSION.md en todos los banners y outputs
+
+---
+
+## 📊 Metadata
+
 **Épica**: #2 Celebrimbor
-**Backend**: CLI (Node.js) - MVP
-**Estado**: 🚧 En desarrollo - Tarea #6 (Actualizar)
+**Estado**: ✅ MVP Completado - CRUD Funcional
 
 ---
 
@@ -13,8 +23,8 @@
 
 Celebrimbor forja y gestiona skills para Claude Code, ofreciendo dos modos de operación:
 
-- ⚡ **Backend CLI** (Node.js) - MVP v1.0
-- 📦 **Backend Git** (universal) - v2.0 (futuro)
+- ⚡ **Backend CLI** (Node.js >=18) - ✅ Disponible
+- 📦 **Backend Git** (universal) - 🚧 Futuro
 
 ---
 
@@ -34,7 +44,7 @@ Este prompt principal carga todos los módulos de Celebrimbor:
 ### Backends (Dual-Mode)
 
 4. **04-backend-cli.md** - Backend CLI (Node.js >=18) ✅ MVP
-5. **05-backend-git.md** - Backend Git (hooks v2.2.0) ✅ Arquitectura
+5. **05-backend-git.md** - Backend Git (hooks v4.0.0) ✅ Arquitectura
 
 ### Interfaz de Usuario
 
@@ -70,8 +80,8 @@ Este prompt principal carga todos los módulos de Celebrimbor:
 
 1. Verificar preferencia guardada (`~/.celebrimbor/config.yml`)
 2. Si no hay preferencia:
-   - v2.1.0: Usar CLI si disponible, error si no
-   - v2.2.0: Preguntar CLI vs Git si ambos disponibles
+   - Versión actual: Usar CLI si disponible, error si no
+   - v4.0.0: Preguntar CLI vs Git si ambos disponibles
 3. Cargar backend seleccionado
 
 ### Paso 2.5: Verificación de Updates (NUEVO)
@@ -102,7 +112,7 @@ Menú adaptativo según backend:
 
 **Módulo backend** (04 o 05):
 - Backend CLI: `sections/04-backend-cli.md`
-- Backend Git: `sections/05-backend-git.md` (v2.2.0)
+- Backend Git: `sections/05-backend-git.md` (v4.0.0)
 
 **Usando abstracción** (`sections/03-abstraction-layer.md`):
 ```
@@ -165,7 +175,7 @@ Celebrimbor se integra con Palantír (Épica #1) para:
 
 **Estado actual**: Tarea #6 (Actualizar skills)
 **Completadas**: Tareas #1-5 (Setup, Arquitectura, CRUD básico)
-**Siguiente**: Tarea #7 (Modo Automático - v2.2.0)
+**Siguiente**: Tarea #7 (Modo Automático - v4.0.0)
 
 **Branch**: `feature/celebrimbor-6-update-module`
 **Issues**: #42 (Épica completa)

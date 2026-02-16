@@ -4,6 +4,8 @@
 
 Mostrar menú interactivo con opciones disponibles según el entorno detectado.
 
+**NOTA**: En todos los banners, reemplaza `{VERSION}` con la versión TLOTP cargada desde `@prompts/VERSION.md`.
+
 ---
 
 ## Banner de Bienvenida
@@ -15,7 +17,7 @@ Mostrar menú interactivo con opciones disponibles según el entorno detectado.
 
     "Tres Anillos para los Reyes Elfos bajo el cielo..."
 
-    TLOTP v2.1.0 | Épica #2 | Estado: 🚧 MVP en desarrollo
+    TLOTP {VERSION} | Celebrimbor | ✅ CRUD Completo
 ═══════════════════════════════════════════════════════════════
 ```
 

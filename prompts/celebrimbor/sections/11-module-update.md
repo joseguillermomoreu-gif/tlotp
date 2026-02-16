@@ -138,7 +138,7 @@ Total: 3 skills procesadas, 2 con actualizaciones
 
 ⚠️ No es posible actualizar skills de forma selectiva con CLI.
 
-💡 Actualización selectiva estará disponible con Backend Git (v2.2.0)
+💡 Actualización selectiva estará disponible con Backend Git (v4.0.0)
 
 ═══════════════════════════════════════════════════════════════
 ```
@@ -259,7 +259,7 @@ Posibles causas:
 Soluciones:
   • Verifica tu conexión a internet
   • Reintenta en unos momentos
-  • Usa Backend Git (offline) en v2.2.0
+  • Usa Backend Git (offline) en v4.0.0
 
 ═══════════════════════════════════════════════════════════════
 
@@ -534,4 +534,4 @@ Elige [1-3]: 3
 **Integra con**: 04-backend-cli.md, 09-module-list.md, 01-detector-entorno.md
 **Usa**: `npx skills check`, `npx skills update`
 **Tarea**: #6 - Módulo Actualizar (100 XP)
-**Backend**: CLI v2.1.0 (update all), Git v2.2.0 (update selective)
+**Backend**: CLI actual (update all), Git futuro v4.0.0 (update selective)

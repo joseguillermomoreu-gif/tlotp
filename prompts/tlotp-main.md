@@ -2,6 +2,14 @@
 
 ---
 
+## 📋 Carga de Versiones
+
+@prompts/VERSION.md
+
+**IMPORTANTE**: Usa la versión TLOTP definida en VERSION.md en todos los banners (reemplaza `{VERSION}`)
+
+---
+
 ## 🎭 INICIO ÉPICO
 
 **IMPORTANTE**: Antes de cualquier cosa, SIEMPRE muestra al usuario este banner completo:
@@ -24,7 +32,7 @@
           '-.                           .-'
               '''-------======-------'''
 
-                    ═══ TLOTP v2.1.0 ═══
+                    ═══ TLOTP {VERSION} ═══
                   The Fellowship of the Code
 
 ═══════════════════════════════════════════════════════════════
@@ -145,15 +153,15 @@ Usar: @prompts/celebrimbor/celebrimbor-main.md
 ## 🎯 Menú de Selección
 
 ┌─────────────────────────────────────────────────────────────┐
-│ 1. 🔮 Palantír - Gestor de Configuraciones [✅ v1.7]        │
-│ 2. ⚒️ Celebrimbor - Forjador de Skills [🚧 v1.0 MVP]       │
-│ 3. 💍 Gollum - E2E Testing [🔒 Bloqueado]                   │
-│ 4. 🏛️ Elrond - Configuración Global [⏳ v2.3+]              │
-│ 5. ⚡ Gandalf - Workflow Autónomo [⏳ v2.4+]                │
+│ 1. 🔮 Palantír - Gestor de Configuraciones                   │
+│ 2. ⚒️ Celebrimbor - Forjador de Skills                      │
+│ 3. 💍 Gollum - E2E Testing [🔒 WIP]                          │
+│ 4. 🏛️ Elrond - Configuración Global [🔒 WIP]                 │
+│ 5. ⚡ Gandalf - Workflow Autónomo [🔒 WIP]                   │
 │                                                             │
 │ 6. 📚 Documentación y Ayuda                                 │
 │ 7. ℹ️ Sobre TLOTP                                           │
-│ 8. 🚪 Salir                                                  │
+│ 8. 🚪 Salir                                                 │
 └─────────────────────────────────────────────────────────────┘
 
 ---
@@ -207,7 +215,7 @@ Después del banner, usar **AskUserQuestion** para mostrar el menú de épicas d
 
 💍 **"One Prompt to Rule Them All"**
 
-*The Lord of the Prompt - v2.1.0*
+*The Lord of the Prompt - {VERSION}*
 *Forjado en las tierras de la Fellowship del Teclado*
 
 ---

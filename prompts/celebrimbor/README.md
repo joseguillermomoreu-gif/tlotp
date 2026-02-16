@@ -2,9 +2,9 @@
 
 > *"Tres Anillos para los Reyes Elfos bajo el cielo..."*
 
-**Versión**: TLOTP v2.1.0 (en desarrollo)
+**TLOTP**: Ver VERSION.md
 **Épica**: #2 Celebrimbor
-**Estado**: 🚧 MVP Backend CLI en desarrollo
+**Estado**: ✅ CRUD Completo - Backend CLI Operativo
 
 ---
 
@@ -12,14 +12,14 @@
 
 Sistema de gestión de skills para Claude Code que ofrece **dos modos de operación**:
 
-- ⚡ **Backend CLI** (Node.js >=18) - MVP v2.1.0 - 🚧 En desarrollo
-- 📦 **Backend Git** (universal) - v2.2.0 - ⏳ Planificado
+- ⚡ **Backend CLI** (Node.js >=18) - ✅ Operativo
+- 📦 **Backend Git** (universal) - 🚧 Planificado
 
 ---
 
 ## 🚀 Inicio Rápido
 
-### Requisitos v2.1.0 (Backend CLI)
+### Requisitos (Backend CLI)
 
 - Node.js >= 18.0.0
 - npm >= 9.0.0
@@ -117,14 +117,14 @@ Valida:
 
 ## 🎮 Roadmap
 
-**v2.1.0 (Actual)** - Backend CLI MVP
+**Versión Actual** - Backend CLI MVP
 - ✅ Detección de entorno
 - 🚧 Arquitectura modular dual
 - ⏳ Módulos: Buscar, Instalar, Gestionar, Listar
 - ⏳ Modo automático
 - ⏳ Integración con Palantír
 
-**v2.2.0 (Futuro)** - Backend Git
+**v4.0.0 (Futuro)** - Backend Git
 - ⏳ Clonación de repositorio skills
 - ⏳ Búsqueda local
 - ⏳ Instalación manual

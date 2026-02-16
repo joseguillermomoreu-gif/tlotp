@@ -2,9 +2,9 @@
 
 ## Estado
 
-🚧 **WIP - Disponible en TLOTP v2.2.0**
+🚧 **WIP - Disponible en TLOTP v4.0.0**
 
-Este módulo define la arquitectura del Backend Git pero **NO se implementa** en v2.1.0 (MVP).
+Este módulo define la arquitectura del Backend Git pero **NO se implementa** en versión MVP actual (MVP).
 
 ---
 
@@ -23,7 +23,7 @@ Implementar backend que clona repositorio de skills y gestiona skills manualment
 
 ---
 
-## 🔧 Arquitectura (v2.2.0)
+## 🔧 Arquitectura (v4.0.0)
 
 ### Setup Inicial
 
@@ -214,15 +214,15 @@ fi
 
 ---
 
-## 🎯 Hooks Preparados (v2.1.0)
+## 🎯 Hooks Preparados (versión MVP actual)
 
-En la versión MVP (v2.1.0), este módulo existe pero **NO se implementa**.
+En la versión MVP (versión MVP actual), este módulo existe pero **NO se implementa**.
 
 **Mostrar al usuario**:
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │ 2. 📦 Backend Git (Sin Node.js)                             │
-│    • 🚧 WIP - Disponible en TLOTP v2.2.0                    │
+│    • 🚧 WIP - Disponible en TLOTP v4.0.0                    │
 │    • Clona repositorio completo de skills                   │
 │    • Funciona 100% offline después del setup                │
 │    • Sin dependencias de Node.js                            │
@@ -247,4 +247,4 @@ En la versión MVP (v2.1.0), este módulo existe pero **NO se implementa**.
 
 **Módulo anterior**: 04-backend-cli.md
 **Módulo siguiente**: 06-backend-selector.md
-**Versión**: Hooks preparados (implementación en v2.2.0)
+**Versión**: Hooks preparados (implementación en v4.0.0)

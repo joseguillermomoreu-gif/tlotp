@@ -1,177 +1,168 @@
-# 🏷️ TLOTP - Versiones de Prompts
+# 🏷️ TLOTP - Versionado del Proyecto
 
-> **Fuente única de verdad** para las versiones de todos los prompts de TLOTP
+> **Fuente única de verdad** para la versión de TLOTP
 
 ---
 
-## 📊 Versiones Actuales
+## 📊 Versión Actual
 
-### Palantír
-- **Versión**: 1.7.0
-- **Versión corta**: v1.7
-- **Fecha release**: 2026-02-14
-- **Descripción**: CRUD Completo - Inspector, Reset, Recovery, Reconstrucción y Configurador
-
-### Celebrimbor
-- **Versión**: 2.1.0
-- **Versión corta**: v2.1
+**TLOTP v2.1.0**
 - **Fecha release**: 2026-02-16
-- **Descripción**: Skills Manager MVP - CRUD Completo con Backend CLI
-
-### Gollum
-- **Versión**: (pendiente)
-- **Descripción**: Playwright E2E Testing
-
-### Elrond
-- **Versión**: (pendiente)
-- **Descripción**: Global Config Management
-
-### Gandalf
-- **Versión**: (pendiente)
-- **Descripción**: Autonomous PHP Development
+- **Nombre código**: "The Fellowship of the Code"
 
 ---
 
-## 📝 Formato de Uso
+## 🎯 Componentes Incluidos
 
-### Para Palantír
+### ✅ Palantír - Inspector de Configuración
+**Estado**: Completado
+- Inspector CRUD completo (Read, Reset, Recovery, Configurador)
+- Sistema de backups automáticos
+- Detección de conflictos y merge inteligente
+- 11 módulos, 3,611 líneas
+
+### ✅ Celebrimbor - Gestor de Skills
+**Estado**: MVP Completado
+- CRUD completo (Search, Install, List, Update, Remove)
+- Backend CLI (Node.js >=18)
+- Integración con skills.sh (59,000+ skills)
+- 11 módulos, 4,234 líneas
+
+### ⏳ Gollum - E2E Testing
+**Estado**: Planificado
+- Playwright automation
+- Page Object Model
+
+### ⏳ Elrond - Global Config
+**Estado**: Planificado
+- Gestión de configuración global
+
+### ⏳ Gandalf - Autonomous Workflow
+**Estado**: Planificado
+- Workflow autónomo PHP/Symfony
+
+---
+
+## 📝 Formato de Uso en Prompts
 
 **En banners header**:
 ```
-TLOTP Inspector Module v1.3
-```
-
-**En banners footer**:
-```
-Palantír (TLOTP) v1.3 - "La piedra que todo lo ve"
-```
-
-**En metadata de backups**:
-```
-Backup realizado por: Palantír (TLOTP) v1.3
+═══ TLOTP v2.1.0 ═══
 ```
 
 **En títulos de archivos**:
 ```
-# 🔮 Palantír v1.3 - Main Entry Point
+# 💍 TLOTP v2.1.0 - The Lord of the Prompt
 ```
 
----
-
-## 🔄 Cómo Usar Este Archivo
-
-**En prompts**: Importa este archivo al inicio de tu `*-main.md`:
-
-```markdown
-@prompts/VERSION.md
+**En metadata**:
 ```
-
-Luego, usa la versión correspondiente según el formato de uso arriba.
+Versión: TLOTP v2.1.0
+```
 
 ---
 
 ## 📋 Changelog
 
-### v2.1.0 - Celebrimbor (2026-02-16)
-- **Sistema de Gestión de Skills Completo** (Backend CLI MVP)
-  - Detección automática de entorno (Node.js >=18, npm, Git)
-  - Arquitectura modular dual-backend (CLI + Git futuro)
-  - Abstraction layer para backends intercambiables
-- **CRUD Completo de Skills**:
-  - CREATE: Instalación global/local con npx skills add
-  - READ: Búsqueda en skills.sh + listado de instaladas
-  - UPDATE: Actualización automática con npx skills update
-  - DELETE: Eliminación segura con confirmación
-- **Features Destacados**:
-  - Verificación automática de updates al inicio
-  - Detección de duplicados antes de instalar
-  - Banner épico con estado de sistema
-  - Integración con 59,000+ skills de skills.sh
-  - Manejo robusto de errores
-- **Arquitectura**: 11 módulos (4,234 líneas de prompts)
-- **XP Generado**: 710 XP (6 tareas completadas)
-- **Pendiente v2.2.0**: Backend Git, Update selectivo, Modo Automático
+### v2.1.0 (2026-02-16) - "The Fellowship of the Code"
 
-### v1.7.0 - Palantír (2026-02-14)
-- **Sistema de Configuración Asistida** (10-configurator-system.md)
-  - Nueva opción en menú principal: "Configurar característica"
-  - Solicitar qué característica añadir (con ejemplos)
-  - Consultar `info_claude.md` para determinar ubicación correcta
-  - Detectar si ya existe característica similar
-- **Detección de Conflictos y Contradicciones**
-  - Buscar características que se sobreescriban
-  - Identificar preferencias contradictorias
-  - Detectar inconsistencias lógicas (frameworks, configs, comportamientos)
-  - Listar todos los conflictos encontrados
-- **Sistema de Propuestas Iterativo**
-  - Generar propuesta de combinación automática
-  - Estrategias: Unificar/Priorizar nuevo/Mantener ambas
-  - Si rechazo → generar propuesta alternativa
-  - Permitir "Modificar manualmente" con input usuario
-  - Continuar iterando mientras NO acepte Y NO cancele
-  - Si cancela → abortar TODO el proceso
-- **Reestructuración con Documentación Oficial**
-  - Consultar `info_claude.md` para orden ideal de secciones
-  - Extraer secciones actuales del archivo
-  - Añadir nueva característica en orden correcto
-  - Reordenar según mejores prácticas
-  - Mostrar preview del archivo resultante completo (30+ líneas)
-- **Confirmación Crítica Antes de Aplicar**
-  - Preview completo de edición
-  - AskUserQuestion: "¿Aplicar esta edición?"
-  - Si rechazo → cancelar TODO (no aplicar NADA)
-- **Uso del Motor de Reconstrucción**
-  - Usar `09-reconstruction-engine.md` para aplicar cambios
-  - Validación de estructura por tipo de archivo
-  - Verificación post-aplicación
-- **CRUD Completo**:
-  - CREATE: Configurador (nuevo) ✅
-  - READ: Inspector ✅
-  - UPDATE: Recovery con merge ✅
-  - DELETE: Reset ✅
-- **Arquitectura**: 11 módulos (3,611 líneas de prompts)
+**🎉 Release Highlights**:
+- Palantír CRUD completo operativo
+- Celebrimbor MVP funcional con backend CLI
+- 15,845 líneas totales de prompts
+- 7 épicas diseñadas (2 completas, 5 planificadas)
 
-### v1.6.0 - Palantír (2026-02-13)
-- **Motor de Reconstrucción Inteligente** (09-reconstruction-engine.md)
-  - Sistema de acumulación temporal en memoria
-  - Validación de estructura por tipo de archivo
-  - Confirmación por cada reconstrucción
-  - Prevención de archivos corruptos
-- **Prevención de Contaminación de Auto Memory**
-  - Regla crítica para no generar MEMORY.md durante ejecución
-  - Palantír no deja rastro en memoria del proyecto
-- **Reset Selectivo con Reconstrucción**
-  - Acumula preferencias en memoria
-  - Reconstruye con estructura correcta
-  - Valida antes de escribir
-- **Recovery con Reconstrucción**
-  - Opción "Reemplazar" con validación
-  - Opción "Combinar" con merge inteligente + reconstrucción
-- **Solución a archivos corruptos** reportados en issue #40
+**✨ Features Principales**:
 
-### v1.5.0 - Palantír (2026-02-13)
-- Sistema de Reset completo e interactivo
-- Sistema de Reset Selectivo (regla por regla)
-- Sistema de Recovery desde backups
-- Menú principal con 3 modos
-- Documentación oficial Claude Code Memory integrada
+**Palantír**:
+- Sistema de configuración asistida con detección de conflictos
+- Motor de reconstrucción inteligente
+- Reset selectivo (global/proyecto/skills/regla por regla)
+- Recovery desde backups con merge
+- Inspector de 7 niveles de jerarquía oficial
 
-### v1.4.0 - Palantír (2026-02-13)
-- Sistema de versionado centralizado (VERSION.md)
-- Versión como fuente única de verdad
+**Celebrimbor**:
+- Gestión completa de skills (CRUD)
+- Arquitectura dual-backend (CLI + Git futuro)
+- Detección automática de updates al inicio
+- Integración con skills.sh
+- Detección de duplicados pre-instalación
 
-### v1.3.0 - Palantír (2026-02-13)
-- Arquitectura modular con @imports
-- 6 módulos separados por concerns
-- ARCHITECTURE.md como patrón estándar
-- Sistema de backup robusto
-- Inspección de 7 niveles de jerarquía Claude Code
+**TLOTP General**:
+- Menú épico de selección de herramientas
+- Banner del Anillo Único (One Ring ASCII art)
+- Sistema de navegación entre épicas
+- Documentación completa
 
-### v1.2.0 - Palantír (anterior)
-- Monolítico (884 líneas)
-- Sistema de backup implementado
-- Exploración completa de configuraciones
+**📊 Estadísticas**:
+- 22 módulos totales
+- 2 épicas completadas
+- 710 XP generados (gamificación)
+- 46 issues de GitHub
+- 3 épicas activas
 
 ---
 
-*Actualizar este archivo cuando se libere una nueva versión de cualquier prompt*
+### v2.0.0 (anterior)
+
+Versión inicial de desarrollo con prototipos.
+
+---
+
+## 🔄 Versionado Semántico
+
+TLOTP sigue [Semantic Versioning 2.0.0](https://semver.org/):
+
+**MAJOR** (x.0.0):
+- Cambios incompatibles con versión anterior
+- Reestructuración completa
+- Breaking changes en arquitectura
+
+**MINOR** (x.y.0):
+- Nuevas features compatibles hacia atrás
+- Nuevas épicas completadas
+- Mejoras significativas
+
+**PATCH** (x.y.z):
+- Bug fixes
+- Mejoras de documentación
+- Refactoring interno
+
+---
+
+## 🚀 Roadmap de Versiones
+
+### v2.2.0 (Próxima)
+- Celebrimbor: Backend Git implementado
+- Celebrimbor: Modo automático
+- Palantír: Export/Import de configs
+
+### v3.0.0 (Futuro)
+- Gollum: Playwright E2E MVP
+- Elrond: Global Config System
+- Gandalf: Autonomous Workflow MVP
+
+### v4.0.0+ (Visión)
+- Aragorn: Multi-Agent Orchestration
+- Dashboard web interactivo
+- CLI universal
+
+---
+
+## 🔧 Gestión de Versiones
+
+**Actualización manual** (actual):
+1. Editar este archivo (`VERSION.md`)
+2. Actualizar referencias en prompts
+3. Crear tag de Git: `git tag vX.Y.Z`
+4. Push: `git push --tags`
+
+**Automatización futura** (issue #44):
+- GitHub Action automático
+- Basado en conventional commits
+- Auto-update de `VERSION.md`
+
+---
+
+*Última actualización: 2026-02-16*
+*Mantenido por: La Fellowship del Teclado (Pépeton + Claudeton)*
