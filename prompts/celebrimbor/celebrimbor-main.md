@@ -5,7 +5,7 @@
 **Versión**: TLOTP v2.1.0 (en desarrollo)
 **Épica**: #2 Celebrimbor
 **Backend**: CLI (Node.js) - MVP
-**Estado**: 🚧 En desarrollo - Tarea #5 (Eliminar)
+**Estado**: 🚧 En desarrollo - Tarea #6 (Actualizar)
 
 ---
 
@@ -46,10 +46,9 @@ Este prompt principal carga todos los módulos de Celebrimbor:
 8. **08-module-install.md** - Instalación de skills ✅ Tarea #4
 9. **09-module-list.md** - Listar skills instaladas ✅ Tarea #3/4
 10. **10-module-remove.md** - Eliminar skills ✅ Tarea #5
+11. **11-module-update.md** - Actualizar skills ✅ Tarea #6
 
 ### Módulos Futuros (v2.2+)
-- **10-module-update.md** - Actualizar skills (Tarea #5)
-- **11-module-remove.md** - Eliminar skills (Tarea #5)
 - **12-mode-auto.md** - Modo automático (Tarea #7)
 - **13-integration-palantir.md** - Integración Palantír (Tarea #11)
 
@@ -74,6 +73,16 @@ Este prompt principal carga todos los módulos de Celebrimbor:
    - v2.1.0: Usar CLI si disponible, error si no
    - v2.2.0: Preguntar CLI vs Git si ambos disponibles
 3. Cargar backend seleccionado
+
+### Paso 2.5: Verificación de Updates (NUEVO)
+
+**IMPORTANTE**: Después de seleccionar backend CLI, antes del menú.
+
+1. Ejecutar `npx skills check`
+2. Parsear resultado (skills con updates disponibles)
+3. Mostrar banner con estado de updates en menú principal
+
+**Ver**: `sections/11-module-update.md` (Paso 0)
 
 ### Paso 3: Operaciones de Usuario
 
@@ -154,11 +163,14 @@ Celebrimbor se integra con Palantír (Épica #1) para:
 
 ## 📝 Notas de Desarrollo
 
-**Estado actual**: Tarea #1 (Setup y detección)
-**Siguiente**: Tarea #2 (Arquitectura modular dual-backend)
+**Estado actual**: Tarea #6 (Actualizar skills)
+**Completadas**: Tareas #1-5 (Setup, Arquitectura, CRUD básico)
+**Siguiente**: Tarea #7 (Modo Automático - v2.2.0)
 
-**Branch**: `feature/celebrimbor-1-setup-node`
+**Branch**: `feature/celebrimbor-6-update-module`
 **Issues**: #42 (Épica completa)
+
+**XP Acumulado**: 710 XP (Tareas #1-6)
 
 ---
 
