@@ -23,39 +23,67 @@ Mostrar menú interactivo con opciones disponibles según el entorno detectado.
 
 ## Opciones del Menú
 
-### Menú Completo (Node.js >=18 disponible)
+### Menú de Operaciones (Backend seleccionado)
+
+**IMPORTANTE**: Este menú se muestra DESPUÉS de seleccionar el backend.
 
 ```
-Elige tu modo de forja:
+═══════════════════════════════════════════════════════════════
+    🔮 Celebrimbor - Gestión de Skills ⚒️
+═══════════════════════════════════════════════════════════════
+
+Backend activo: CLI ⚡ (Node.js v20.11.0)
+
+Operaciones disponibles:
 
 ┌─────────────────────────────────────────────────────────────┐
-│ 1. ⚡ Backend CLI (Node.js)                                 │
-│    • Requiere: Node.js >=18  [✅ v20.11.0]                  │
-│    • Busca e instala skills selectivamente                  │
-│    • Acceso a 59,000+ skills curadas                        │
-│    • Recomendado: Rápido y eficiente                        │
+│ 1. 🔍 Buscar Skills                                         │
+│    Busca skills en el catálogo de skills.sh                │
+│    ✅ Disponible                                            │
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
-│ 2. 📦 Backend Git (Universal)                               │
-│    • 🚧 WIP - Disponible en TLOTP v2.2.0                    │
-│    • Sin requisitos de Node.js                              │
-│    • Clona repositorio completo de skills                   │
+│ 2. 📥 Instalar Skill                                        │
+│    Instala una skill en global o local                     │
+│    🚧 Disponible próximamente (Tarea #4)                    │
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
-│ 3. 🤖 Modo Automático (Detectar y configurar)               │
-│    • 🚧 WIP - Disponible próximamente                       │
-│    • Detecta tu proyecto automáticamente                    │
-│    • Instala skills recomendadas                            │
+│ 3. 📋 Listar Skills Instaladas                             │
+│    Ver skills instaladas (global y local)                  │
+│    🚧 Disponible próximamente (Tarea #4)                    │
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
-│ 4. ℹ️  Ayuda y Documentación                                │
-│ 5. 🚪 Salir                                                  │
+│ 4. 🔄 Actualizar Skills                                     │
+│    Actualiza skills a la última versión                    │
+│    🚧 Disponible próximamente (Tarea #5)                    │
 └─────────────────────────────────────────────────────────────┘
 
-Elige una opción [1-5]:
+┌─────────────────────────────────────────────────────────────┐
+│ 5. 🗑️  Eliminar Skill                                       │
+│    Elimina una skill instalada                             │
+│    🚧 Disponible próximamente (Tarea #5)                    │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ 6. 🤖 Modo Automático                                       │
+│    Detecta proyecto e instala skills recomendadas          │
+│    🚧 Disponible en v2.2+ (Tarea #7)                        │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ 7. ⚙️  Cambiar Backend                                      │
+│    Cambiar entre CLI y Git (v2.2.0)                        │
+│    🚧 Git disponible en v2.2.0                              │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ 8. ℹ️  Ayuda y Documentación                                │
+│ 9. 🚪 Salir                                                  │
+└─────────────────────────────────────────────────────────────┘
+
+Elige una opción [1-9]:
 ```
 
 ### Menú Limitado (Node.js < 18)
@@ -93,25 +121,55 @@ Elige una opción [2-5]:
 
 **Al seleccionar opción**:
 
-### Opción 1: Backend CLI
-- Validar Node.js >=18
-- Si OK: Cargar módulo `03-backend-cli.md`
-- Si NO OK: Mostrar error y volver al menú
+### Opción 1: Buscar Skills ✅
+- **Cargar módulo**: `sections/07-module-search.md`
+- Solicitar query de búsqueda
+- Ejecutar búsqueda con backend
+- Mostrar resultados
+- Permitir acciones posteriores
 
-### Opción 2: Backend Git
-- Mostrar mensaje: "🚧 En desarrollo - Disponible en v2.2.0"
+### Opción 2: Instalar Skill ✅
+- **Cargar módulo**: `sections/08-module-install.md`
+- Solicitar nombre de skill (o venir desde búsqueda)
+- Verificar si ya existe (duplicados)
+- Elegir ubicación (global/local)
+- Ejecutar instalación con backend
+- Configurar paths: si necesario
+- Verificar y confirmar instalación
+
+### Opción 3: Listar Skills ✅
+- **Cargar módulo**: `sections/09-module-list.md`
+- Analizar jerarquía oficial (4 ubicaciones)
+- Mostrar skills instaladas (global y local)
+- Ofrecer ver detalles completos
+- Permitir acciones (buscar, instalar, volver)
+
+### Opción 4: Actualizar Skills 🚧
+- **Estado**: WIP - Tarea #5
+- Mostrar: "🚧 Disponible próximamente"
 - Volver al menú
 
-### Opción 3: Modo Automático / Actualizar Node.js
-- Si Node OK: Mostrar WIP modo automático
-- Si Node NO OK: Mostrar instrucciones de actualización
+### Opción 5: Eliminar Skill 🚧
+- **Estado**: WIP - Tarea #5
+- Mostrar: "🚧 Disponible próximamente"
+- Volver al menú
 
-### Opción 4: Ayuda
+### Opción 6: Modo Automático 🚧
+- **Estado**: WIP - Tarea #7
+- Mostrar: "🚧 Disponible en v2.2+"
+- Volver al menú
+
+### Opción 7: Cambiar Backend 🚧
+- **Estado**: WIP - v2.2.0 (Backend Git)
+- Mostrar opciones disponibles
+- Guardar preferencia
+
+### Opción 8: Ayuda
 - Mostrar documentación de Celebrimbor
-- Link a docs/REQUISITOS.md
+- Links a ARCHITECTURE.md, README.md, docs/REQUISITOS.md
 
-### Opción 5: Salir
-- Mensaje de despedida
+### Opción 9: Salir
+- Mensaje de despedida épico
 - Finalizar
 
 ---

@@ -5,7 +5,7 @@
 **Versión**: TLOTP v2.1.0 (en desarrollo)
 **Épica**: #2 Celebrimbor
 **Backend**: CLI (Node.js) - MVP
-**Estado**: 🚧 En desarrollo - Tarea #1
+**Estado**: 🚧 En desarrollo - Tarea #4 (Instalación)
 
 ---
 
@@ -18,47 +18,90 @@ Celebrimbor forja y gestiona skills para Claude Code, ofreciendo dos modos de op
 
 ---
 
-## 📋 Módulos
+## 📋 Arquitectura Modular
 
 Este prompt principal carga todos los módulos de Celebrimbor:
 
-### Módulos Activos (v1.0)
+### Capa de Detección y Selección
 
-1. **01-detector-entorno.md** - Detección de Node.js y requisitos ✅
-2. **02-menu-principal.md** - Menú interactivo (WIP)
-3. **03-backend-cli.md** - Backend CLI de skills.sh (WIP)
+1. **01-detector-entorno.md** - Detección de Node.js, npm, Git ✅
+2. **06-backend-selector.md** - Selector inteligente de backend ✅
 
-### Módulos Futuros (v2.0)
+### Capa de Abstracción
 
-- **04-backend-git.md** - Backend Git Clone (sin Node.js)
-- **05-modo-automatico.md** - Detección y configuración automática
+3. **03-abstraction-layer.md** - Interfaz común para backends ✅
+
+### Backends (Dual-Mode)
+
+4. **04-backend-cli.md** - Backend CLI (Node.js >=18) ✅ MVP
+5. **05-backend-git.md** - Backend Git (hooks v2.2.0) ✅ Arquitectura
+
+### Interfaz de Usuario
+
+6. **02-menu-principal.md** - Menú interactivo adaptativo ✅
+
+### Módulos de Operaciones (CRUD)
+
+7. **07-module-search.md** - Búsqueda de skills ✅ Tarea #3
+8. **08-module-install.md** - Instalación de skills ✅ Tarea #4
+9. **09-module-list.md** - Listar skills instaladas ✅ Tarea #3/4
+
+### Módulos Futuros (v2.2+)
+- **10-module-update.md** - Actualizar skills (Tarea #5)
+- **11-module-remove.md** - Eliminar skills (Tarea #5)
+- **12-mode-auto.md** - Modo automático (Tarea #7)
+- **13-integration-palantir.md** - Integración Palantír (Tarea #11)
 
 ---
 
-## 🚀 Inicio
+## 🚀 Flujo de Ejecución
 
 ### Paso 1: Detección de Entorno
 
-**IMPORTANTE**: Antes de cualquier operación, ejecutar detección de entorno.
+**Módulo**: `sections/01-detector-entorno.md`
 
-**Leer módulo**: `@sections/01-detector-entorno.md`
+1. Detectar Node.js, npm, npx, Git
+2. Validar requisitos (Node.js >=18)
+3. Generar reporte visual
 
-**Ejecutar**:
-1. Detectar versión de Node.js
-2. Validar npx y skills CLI
-3. Mostrar reporte con estado
-4. Si Node.js < 18: Informar y dar opciones
+### Paso 2: Selección de Backend
 
-### Paso 2: Menú Principal
+**Módulo**: `sections/06-backend-selector.md`
 
-**Leer módulo**: `@sections/02-menu-principal.md`
+1. Verificar preferencia guardada (`~/.celebrimbor/config.yml`)
+2. Si no hay preferencia:
+   - v2.1.0: Usar CLI si disponible, error si no
+   - v2.2.0: Preguntar CLI vs Git si ambos disponibles
+3. Cargar backend seleccionado
 
-**Mostrar opciones**:
-1. ⚡ Backend CLI (si Node.js >=18)
-2. 📦 Backend Git (WIP - v2.0)
-3. 🤖 Modo Automático (detectar proyecto)
-4. ℹ️ Ayuda y documentación
-5. 🚪 Salir
+### Paso 3: Operaciones de Usuario
+
+**Módulo**: `sections/02-menu-principal.md`
+
+Menú adaptativo según backend:
+1. 🔍 Buscar skills
+2. 📥 Instalar skill
+3. 📋 Listar skills instaladas
+4. 🔄 Actualizar skills
+5. 🗑️ Eliminar skill
+6. 🤖 Modo Automático (v2.2+)
+7. ⚙️ Cambiar backend
+8. 🚪 Salir
+
+### Paso 4: Ejecutar Operación
+
+**Módulo backend** (04 o 05):
+- Backend CLI: `sections/04-backend-cli.md`
+- Backend Git: `sections/05-backend-git.md` (v2.2.0)
+
+**Usando abstracción** (`sections/03-abstraction-layer.md`):
+```
+backend.search(query)
+backend.install(skill_name, location)
+backend.list(location)
+backend.update(skill_name)
+backend.remove(skill_name)
+```
 
 ---
 
