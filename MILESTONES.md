@@ -335,9 +335,9 @@ TLOTP 2.0 - Llevar Claude Code a la N-ésima potencia mediante coordinación de 
 
 ```
 🔮 Palantír (CRUD Completo)                          [██████████] 100% 🎉 COMPLETO
-⚒️ Celebrimbor (Forjador de Skills)                  [----------]   0% ⏳ Siguiente
-💍 Gollum (Playwright MVP)                            [----------]   0%
-🏛️ Elrond (Global Config)                             [----------]   0%
+⚒️ Celebrimbor (Forjador de Skills)                  [██████████] 100% 🎉 COMPLETO
+💍 Gollum (Playwright MVP)                            [----------]   0% ⏳ Siguiente
+🏛️ Elrond (Setup por tipo de proyecto)               [----------]   0%
 ⚡ Gandalf (Autonomous)                               [----------]   0%
 ```
 
@@ -393,9 +393,9 @@ is:issue linked:joseguillermomoreu-gif/tlotp#1
 ### TLOTP v1.x - The Fellowship
 
 ```
-Palantír → Gollum → Elrond → Gandalf
-  (Dev)   (Quick)  (Scale)  (Auto)
-   ⚡       🎯       📈       🚀
+Palantír → Celebrimbor → Gollum → Elrond → Gandalf
+  (Dev)      (Skills)   (Quick)  (Scale)  (Auto)
+   ✅           ✅         🎯       📈       🚀
 ```
 
 **Orden por ROI v1.x**:
@@ -419,4 +419,4 @@ Sistema revolucionario de múltiples agentes Claude Code coordinados, comunicán
 
 *"One Prompt to Rule Them All"* 💍
 
-*Última actualización: 2026-02-13*
+*Última actualización: 2026-02-19*

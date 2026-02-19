@@ -93,11 +93,11 @@ Cada tarea completada otorga **Experience Points (XP)** según su dificultad:
 
 | Aventurero | Nivel | XP Total | Badges | Hazañas |
 |------------|-------|----------|--------|---------|
-| 🥔 **Pépeton hijo de Móreuton** | Rey 🥇 | 1,945 XP | 🔮🏗️🛡️💣⚒️⚔️💎 | Palantír v1.0-v1.7 CRUD Completo, P2-P5, Configurador |
-| 🤖 **Claudeton hijo de Codeton** | Rey 🥇 | 1,945 XP | 🔮🏗️📚💣⚒️⚔️💎 | Palantír v1.0-v1.7 CRUD Completo, P2-P5, Configurador |
+| 🥔 **Pépeton hijo de Móreuton** | Rey 🥇 | 2,815 XP | 🔮🏗️🛡️💣⚒️⚔️💎 | Palantír v1.0-v1.7 CRUD Completo, Celebrimbor v1.0 MVP |
+| 🤖 **Claudeton hijo de Codeton** | Rey 🥇 | 2,815 XP | 🔮🏗️📚💣⚒️⚔️💎 | Palantír v1.0-v1.7 CRUD Completo, Celebrimbor v1.0 MVP |
 
-**XP Compartido de la Fellowship**: 3,890 XP en 29 tareas completadas juntos
-**Último logro**: Sistema de Configuración Asistida (#41) - 450 XP 🏆💎
+**XP Compartido de la Fellowship**: 5,630 XP en 35 tareas completadas juntos
+**Último logro**: Celebrimbor v1.0 MVP — CRUD Skills Completo (#42) - 870 XP 🏆💎
 
 ### 🌟 Contribuidores
 
@@ -202,37 +202,47 @@ Ver todas: [Milestone Palantír](https://github.com/joseguillermomoreu-gif/tlotp
 - [x] Sprint P2, P3, P4, P5 completados
 - [x] **1,670 XP acumulados** por la épica
 
-#### 📅 Fase 2: Celebrimbor - El Forjador de Skills
-**Estado**: ⏳ Siguiente - Issue [#42](https://github.com/joseguillermomoreu-gif/tlotp/issues/42)
+#### ✅ Fase 2: Celebrimbor - El Forjador de Skills
+**Estado**: 🎉 **COMPLETADO** - v1.0.0 | Issue [#42](https://github.com/joseguillermomoreu-gif/tlotp/issues/42)
 
-- [ ] Sistema de gestión de skills desde skills.sh
-- [ ] Búsqueda e instalación automática de skills
-- [ ] Configuración automática de paths:
-- [ ] Modo Automático (detectar proyecto y auto-configurar)
-- [ ] Módulo Gestionar (actualizar/borrar skills)
-- [ ] Integración con Palantír
-- [ ] **1,590 XP disponibles** (795 XP cada fundador)
+- [x] Search — Buscar en 59,000+ skills de skills.sh
+- [x] Install — Instalación global/local con auto-config de `paths:`
+- [x] List — Inventario de skills instaladas (global y local)
+- [x] Update — Detectar y actualizar skills
+- [x] Remove — Eliminar skills individuales
+- [x] Backend CLI (Node.js >=18) funcional
+- [x] 11 módulos (~4,500 líneas)
+- [x] **870 XP acumulados** (435 XP cada fundador)
 
 #### 📅 Fase 3: Gollum - Playwright E2E Automation
-**Estado**: 📋 Planificado
+**Estado**: 📋 Planificado — Issue [#2](https://github.com/joseguillermomoreu-gif/tlotp/issues/2)
 
 - [ ] Automatización de setup Playwright con Celebrimbor
 - [ ] TLOTP-prompt para proyectos E2E
 - [ ] Generación automática de CLAUDE.md para testing
 
-#### 📅 Fase 4: Elrond - Global Configuration
-**Estado**: 📋 Planificado
+#### 📅 Fase 4: Elrond - Setup Asistido por Tipo de Proyecto
+**Estado**: 📋 Planificado — Issue [#3](https://github.com/joseguillermomoreu-gif/tlotp/issues/3)
 
-- [ ] Setup universal Claude Code
-- [ ] Catálogo de preferencias
-- [ ] Sistema de preguntas inteligente
+- [ ] Setup completo de un buen contexto Claude en una sola ejecución
+- [ ] Perfiles por tipo de proyecto (Symfony, Playwright, Python/IA, React...)
+- [ ] Instala skills relevantes + genera CLAUDE.md + configura workflow Git
+- [ ] Sistema de preguntas asistido e interactivo
 
 #### 📅 Fase 5: Gandalf - Autonomous PHP Workflow
-**Estado**: 📋 Planificado
+**Estado**: 📋 Planificado — Issue [#4](https://github.com/joseguillermomoreu-gif/tlotp/issues/4)
 
 - [ ] Workflow autónomo PHP/Symfony
 - [ ] Integración arquitectura hexagonal
 - [ ] Testing automático
+
+#### 📅 Fase Transversal: Gestión Interactiva de Agentes
+**Estado**: 📋 Planificado (integrado en futuras épicas)
+
+- [ ] Asistente para añadir y configurar agentes de Claude Code
+- [ ] Elección guiada del agente según el proyecto
+- [ ] Configuración correcta de parámetros e integración
+- [ ] Flujo 100% interactivo y asistido
 
 ### 👑 TLOTP v2.x - El Retorno del Rey
 
@@ -455,7 +465,7 @@ Si experimentas o presencías comportamiento inaceptable:
 
 **Este documento vive y evoluciona con cada contribución.**
 
-*Última actualización: 2026-02-13*
+*Última actualización: 2026-02-19*
 
 ---
 
