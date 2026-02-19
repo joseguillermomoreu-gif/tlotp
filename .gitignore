@@ -20,3 +20,6 @@ Thumbs.db
 tmp/
 temp/
 *.tmp
+
+# LinkedIn drafts (nunca commitear)
+linkedin-*.md
