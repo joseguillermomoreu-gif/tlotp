@@ -4,6 +4,9 @@
 
 Implementar el backend que usa `npx skills` (Node.js) para gestionar skills.
 
+> **Referencia CLI completa**: Ver `sections/14-skills-cli-reference.md`
+> **Fuente oficial**: [github.com/vercel-labs/skills](https://github.com/vercel-labs/skills)
+
 ---
 
 ## 🎯 Requisitos
@@ -28,29 +31,15 @@ npx skills --version  # Debe funcionar
 
 **Comando CLI**:
 ```bash
-npx skills search <query>
+npx skills find [query]
 ```
 
-**Ejemplo**:
+> **IMPORTANTE**: El comando es `find`, NO `search`.
+
+**Ejemplos**:
 ```bash
-npx skills search playwright
-```
-
-**Output esperado**:
-```
-🔍 Searching for "playwright"...
-
-Found 12 skills:
-
-  playwright-pom                    vercel-labs/skills
-  Page Object Model patterns for Playwright
-  1,523 installs
-
-  playwright-fixtures               playwright-community
-  Custom test fixtures for Playwright
-  892 installs
-
-  ...
+npx skills find playwright   # Buscar por keyword
+npx skills find              # Modo interactivo
 ```
 
 **Parseo**:
@@ -58,52 +47,44 @@ Found 12 skills:
 - Formatear como lista estructurada
 - Mostrar al usuario de forma clara
 
+**Alternativa** — listar skills de un repo sin instalar:
+```bash
+npx skills add vercel-labs/agent-skills --list
+```
+
 ---
 
 ### 2. **Instalar Skill**
 
 **Comando CLI**:
 ```bash
-npx skills add <owner/repo/skill-name>
+npx skills add <source> [options]
 ```
 
-**Ejemplo**:
+**Flags clave**:
+- `-a claude-code` → agente destino
+- `-s <skill-name>` → skill específica
+- `-g` → instalar en global
+- `-y` → no interactivo
+- `--copy` → copiar en vez de symlink
+
+**Ejemplos**:
 ```bash
-# Instalación global
-npx skills add vercel-labs/skills/playwright-pom
+# Instalar skill específica para Claude Code (no interactivo)
+npx skills add vercel-labs/agent-skills -s playwright-pom -a claude-code -y
 
-# El CLI preguntará la ubicación:
-# ? Where should this skill be installed?
-#   > Global (~/.claude/skills/)
-#     Local (./.claude/rules/)
+# Instalar en global
+npx skills add vercel-labs/agent-skills -s playwright-pom -g -a claude-code -y
+
+# Ver skills disponibles antes de instalar
+npx skills add vercel-labs/agent-skills --list
 ```
-
-**Automatización**:
-- NO modo interactivo (evitar preguntas del CLI)
-- Usar flags si están disponibles
-- Copiar manualmente si es necesario
 
 **Proceso**:
-1. Ejecutar `npx skills add <skill>`
-2. Si pide ubicación → responder automáticamente
+1. Ejecutar `npx skills add` con flags `-a claude-code -s <skill> -y`
+2. Si es global: añadir `-g`
 3. Verificar instalación exitosa
 4. Confirmar path final del archivo
-
-**Configuración de `paths:`**:
-
-Si la skill requiere `paths:`, añadir después de instalar:
-
-```yaml
-# En ~/.claude/skills/playwright-pom.md o ./.claude/rules/playwright-pom.md
-
----
-paths:
-  - "tests/**/*.spec.ts"
-  - "pages/**/*.ts"
----
-
-# Contenido de la skill...
-```
 
 ---
 
@@ -111,68 +92,116 @@ paths:
 
 **Comando CLI**:
 ```bash
-npx skills list
+npx skills list [options]
+npx skills ls [options]
 ```
 
-**Output esperado**:
+**Flags**:
+- `-g` → solo globales
+- `-a claude-code` → filtrar por agente
+
+**Ejemplos**:
+```bash
+npx skills list                  # Todas las instaladas
+npx skills ls -g                 # Solo globales
+npx skills ls -a claude-code     # Solo de Claude Code
 ```
-📦 Installed skills:
 
-Global (~/.claude/skills/):
-  - playwright-pom (vercel-labs/skills)
-  - typescript-utils (community/typescript)
-
-Local (./.claude/rules/):
-  - php-symfony (custom)
-```
-
-**Complementar con lectura manual**:
-
-Si `npx skills list` no existe, leer directorios:
+**Fallback** (lectura manual de directorios):
 ```bash
 # Global
 ls -1 ~/.claude/skills/*.md
+ls -1 ~/.claude/rules/*.md
 
 # Local
+ls -1 ./.claude/skills/*.md
 ls -1 ./.claude/rules/*.md
 ```
 
 ---
 
-### 4. **Actualizar Skill**
+### 4. **Verificar Actualizaciones**
 
 **Comando CLI**:
 ```bash
-npx skills update <skill-name>
+npx skills check
 ```
 
-**Ejemplo**:
+**Comportamiento**: Compara skills instaladas con sus fuentes remotas.
+
+---
+
+### 5. **Actualizar Skills**
+
+**Comando CLI**:
 ```bash
-npx skills update playwright-pom
+npx skills update
 ```
 
-**Fallback** (si comando no existe):
+> **NOTA**: Actualiza TODAS las skills de golpe. No acepta nombre individual.
+
+**Fallback** (reinstalar skill específica):
 ```bash
-# Re-instalar skill (sobreescribe)
-npx skills add vercel-labs/skills/playwright-pom --force
+npx skills add <source> -s <skill-name> -a claude-code -y
 ```
 
 ---
 
-### 5. **Eliminar Skill**
+### 6. **Eliminar Skill**
 
 **Comando CLI**:
 ```bash
-npx skills remove <skill-name>
+npx skills remove [skill] [options]
+npx skills rm [skill] [options]
 ```
 
-**Fallback** (si comando no existe):
+**Flags**:
+- `-g` → scope global
+- `-a claude-code` → agente específico
+- `-y` → sin confirmación
+- `--all` → eliminar todo
+
+**Ejemplos**:
 ```bash
-# Eliminar archivo manualmente
+npx skills remove playwright-pom -a claude-code -y   # Específica
+npx skills remove -g my-skill                         # Desde global
+npx skills remove --all                               # Todo
+```
+
+**Fallback** (eliminar archivo manualmente):
+```bash
 rm ~/.claude/skills/playwright-pom.md
-# o
 rm ./.claude/rules/playwright-pom.md
 ```
+
+---
+
+### 7. **Crear Plantilla de Skill**
+
+**Comando CLI**:
+```bash
+npx skills init [name]
+```
+
+**Comportamiento**:
+- Sin nombre: crea `SKILL.md` en directorio actual
+- Con nombre: crea subdirectorio con `SKILL.md`
+
+---
+
+## 📍 Scopes de Instalación
+
+| Scope | Flag | Ubicación | Uso |
+|-------|------|-----------|-----|
+| **Project** | (default) | `.claude/skills/` | Compartido via repo |
+| **Global** | `-g` | `~/.claude/skills/` | Personal, todos los proyectos |
+
+## 🔗 Métodos de Instalación
+
+| Método | Flag | Descripción |
+|--------|------|-------------|
+| **Symlink** | (default) | Referencia a copia canónica. Recomendado. |
+| **Copy** | `--copy` | Copia independiente. Usar si symlinks fallan. |
 
 ---
 
@@ -191,18 +220,10 @@ Requerido:   v18.0.0+
 
 Opciones:
 1. Actualizar Node.js → Usar Backend CLI
-2. Esperar v2.2.0 → Usar Backend Git (sin Node.js)
-
-Ver instrucciones: docs/REQUISITOS.md
+2. Esperar v4.0.0 → Usar Backend Git (sin Node.js)
 ```
 
 ### Error: Skill no encontrada
-
-**Comando falla**:
-```bash
-npx skills add non-existent-skill
-# Error: Skill not found
-```
 
 **Acción**:
 ```
@@ -212,7 +233,7 @@ La skill "non-existent-skill" no existe en skills.sh
 
 Sugerencias:
 - Verificar nombre (sensible a mayúsculas)
-- Buscar alternativas: npx skills search <query>
+- Buscar alternativas: npx skills find <query>
 - Ver catálogo: https://skills.sh
 ```
 
@@ -238,51 +259,34 @@ Instala npm:
 backend_cli:
   name: "cli"
   available: true (si Node.js >=18)
-  version: "1.0.0"
+  version: "2.0.0"
 
   operations:
-    search:   "npx skills search {query}"
-    install:  "npx skills add {skill}"
-    list:     "npx skills list" + lectura manual
-    update:   "npx skills update {skill}"
-    remove:   "npx skills remove {skill}" o rm manual
+    search:   "npx skills find {query}"
+    install:  "npx skills add {source} -s {skill} -a claude-code -y"
+    list:     "npx skills list" / "npx skills ls -a claude-code"
+    check:    "npx skills check"
+    update:   "npx skills update"
+    remove:   "npx skills remove {skill} -a claude-code -y"
+    init:     "npx skills init {name}"
 ```
-
----
-
-## 📦 Optimizaciones
-
-### Cache de Skills Disponibles
-
-Para evitar llamar `npx skills search` repetidamente:
-
-```yaml
-# ~/.celebrimbor/cache/skills-index.yml
-cached_at: "2026-02-15T10:30:00Z"
-ttl: 3600  # 1 hora
-
-skills:
-  - name: "playwright-pom"
-    author: "vercel-labs"
-    ...
-```
-
-**Invalidar cache**:
-- Después de 1 hora
-- Si usuario ejecuta "Actualizar índice"
 
 ---
 
 ## 🎯 Reglas de Ejecución
 
 1. **SIEMPRE validar Node.js** antes de ejecutar comandos
-2. **Capturar y parsear** output de npx skills
-3. **Manejo robusto de errores** (skill no existe, network fail, etc.)
-4. **Confirmación al usuario** antes de instalar/eliminar
-5. **Verificar instalación** después de cada operación
+2. **Usar `find`** para buscar, NUNCA `search`
+3. **Usar flags `-a claude-code -y`** para operaciones no interactivas
+4. **Capturar y parsear** output de npx skills
+5. **Manejo robusto de errores** (skill no existe, network fail, etc.)
+6. **Confirmación al usuario** antes de instalar/eliminar
+7. **Verificar instalación** después de cada operación
+8. **Consultar** `14-skills-cli-reference.md` ante cualquier duda de sintaxis
 
 ---
 
 **Módulo anterior**: 03-abstraction-layer.md
-**Módulo siguiente**: 05-backend-git.md (hooks para v2.2.0)
+**Módulo siguiente**: 05-backend-git.md (v4.0.0)
 **Módulo relacionado**: 06-backend-selector.md
+**Referencia CLI**: 14-skills-cli-reference.md
