@@ -6,8 +6,8 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v3.0.0**
-- **Fecha release**: 2026-02-16
+**TLOTP v3.2.0**
+- **Fecha release**: 2026-02-26
 - **Nombre código**: "The Two Towers" (Palantír + Celebrimbor)
 
 ---
@@ -47,22 +47,37 @@
 
 **En banners header**:
 ```
-═══ TLOTP v3.0.0 ═══
+═══ TLOTP v3.2.0 ═══
 ```
 
 **En títulos de archivos**:
 ```
-# 💍 TLOTP v3.0.0 - The Lord of the Prompt
+# 💍 TLOTP v3.2.0 - The Lord of the Prompt
 ```
 
 **En metadata**:
 ```
-Versión: TLOTP v3.0.0
+Versión: TLOTP v3.2.0
 ```
 
 ---
 
 ## 📋 Changelog
+
+### v3.2.0 (2026-02-26) - "The Forger's Knowledge"
+
+**Celebrimbor - Referencia CLI oficial**:
+- Nuevo módulo `14-skills-cli-reference.md` basado en repo oficial `vercel-labs/skills`
+- Corregido `search` → `find` (comando real del CLI)
+- Documentados todos los flags reales: `-g`, `-a`, `-s`, `-l`, `-y`, `--copy`, `--all`
+- Documentados 7 comandos: `add`, `find`, `list/ls`, `check`, `update`, `init`, `remove/rm`
+- Actualizado `04-backend-cli.md` alineado con la realidad
+- Registrado módulo 14 en arquitectura de Celebrimbor
+
+**Closes**: #54
+**Supersedes**: #47
+
+---
 
 ### v3.0.0 (2026-02-16) - "The Two Towers"
 
@@ -182,10 +197,10 @@ TLOTP sigue [Semantic Versioning 2.0.0](https://semver.org/):
 
 ## 🚀 Roadmap de Versiones
 
-### v3.1.0 (Próxima minor)
-- Celebrimbor: Backend Git implementado
-- Celebrimbor: Modo automático
-- Palantír: Export/Import de configs
+### v3.3.0 (Próxima minor)
+- Palantír: Inspección y asistencia de Hooks (#52)
+- Celebrimbor: Rules con paths para activación contextual (#53)
+- Palantír: Export/Import de configs (#28)
 
 ### v4.0.0 (Próxima major - Gollum)
 - Gollum: Playwright E2E MVP
@@ -218,5 +233,5 @@ TLOTP sigue [Semantic Versioning 2.0.0](https://semver.org/):
 
 ---
 
-*Última actualización: 2026-02-16*
+*Última actualización: 2026-02-26*
 *Mantenido por: La Fellowship del Teclado (Pépeton + Claudeton)*
