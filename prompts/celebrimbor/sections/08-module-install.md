@@ -301,6 +301,27 @@ o cuando recargues la ventana.
 
 ---
 
+### Paso 6.5: Ofrecer Rule con Paths (Post-Instalación)
+
+**Módulo**: `sections/15-module-post-install-rules.md`
+
+Tras verificar la instalación, invocar el módulo 15 para ofrecer al usuario crear
+una **rule con frontmatter `paths:`** en `.claude/rules/`.
+
+Esto permite que la skill se active **solo al tocar ficheros específicos**
+en vez de estar siempre activa (zero coste de contexto hasta activación).
+
+**Flujo resumido**:
+1. Preguntar si quiere crear rule con paths (recomendado)
+2. Si acepta: sugerir globs inteligentes según tipo de skill
+3. Detectar rules existentes (evitar duplicados, ofrecer agrupación)
+4. Crear fichero `.claude/rules/<nombre>.md` con frontmatter correcto
+5. Confirmar creación
+
+**Ver flujo completo**: `sections/15-module-post-install-rules.md`
+
+---
+
 ### Paso 7: Acciones Posteriores
 
 **Preguntar al usuario**:
