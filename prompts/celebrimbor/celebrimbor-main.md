@@ -52,15 +52,19 @@ Este prompt principal carga todos los módulos de Celebrimbor:
 
 ### Módulos de Operaciones (CRUD)
 
-7. **07-module-search.md** - Búsqueda de skills ✅ Tarea #3
-8. **08-module-install.md** - Instalación de skills ✅ Tarea #4
-9. **09-module-list.md** - Listar skills instaladas ✅ Tarea #3/4
-10. **10-module-remove.md** - Eliminar skills ✅ Tarea #5
-11. **11-module-update.md** - Actualizar skills ✅ Tarea #6
+7. **07-module-search.md** - Búsqueda de skills
+8. **08-module-install.md** - Instalación de skills
+9. **09-module-list.md** - Listar skills instaladas
+10. **10-module-remove.md** - Eliminar skills
+11. **11-module-update.md** - Actualizar skills
+
+### Referencia Técnica
+
+12. **14-skills-cli-reference.md** - Referencia CLI oficial (vercel-labs/skills)
 
 ### Módulos Futuros (v2.2+)
-- **12-mode-auto.md** - Modo automático (Tarea #7)
-- **13-integration-palantir.md** - Integración Palantír (Tarea #11)
+- **12-mode-auto.md** - Modo automático
+- **13-integration-palantir.md** - Integración Palantír
 
 ---
 
