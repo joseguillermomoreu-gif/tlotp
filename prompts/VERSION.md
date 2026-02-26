@@ -6,7 +6,7 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v3.2.0**
+**TLOTP v3.3.0**
 - **Fecha release**: 2026-02-26
 - **Nombre código**: "The Two Towers" (Palantír + Celebrimbor)
 
@@ -47,22 +47,37 @@
 
 **En banners header**:
 ```
-═══ TLOTP v3.2.0 ═══
+═══ TLOTP v3.3.0 ═══
 ```
 
 **En títulos de archivos**:
 ```
-# 💍 TLOTP v3.2.0 - The Lord of the Prompt
+# 💍 TLOTP v3.3.0 - The Lord of the Prompt
 ```
 
 **En metadata**:
 ```
-Versión: TLOTP v3.2.0
+Versión: TLOTP v3.3.0
 ```
 
 ---
 
 ## 📋 Changelog
+
+### v3.3.0 (2026-02-26) - "The Contextual Forge"
+
+**Celebrimbor - Post-instalación: Rules con Paths**:
+- Nuevo módulo `15-module-post-install-rules.md` para crear rules con `paths:` tras instalar una skill
+- Activación contextual nativa: skills se invocan solo al tocar ficheros que matchean el patrón
+- Sugerencias inteligentes de globs por tipo de skill (10 tipos: TypeScript, Playwright, Python, PHP, CI/CD...)
+- Detección de rules existentes para evitar duplicados
+- Agrupación de skills en una sola rule si comparten paths
+- Actualizado `08-module-install.md` con nuevo Paso 6.5
+- Zero coste de contexto hasta activación (vs CLAUDE.md que carga siempre)
+
+**Closes**: #53
+
+---
 
 ### v3.2.0 (2026-02-26) - "The Forger's Knowledge"
 
@@ -197,10 +212,10 @@ TLOTP sigue [Semantic Versioning 2.0.0](https://semver.org/):
 
 ## 🚀 Roadmap de Versiones
 
-### v3.3.0 (Próxima minor)
+### v3.4.0 (Próxima minor)
 - Palantír: Inspección y asistencia de Hooks (#52)
-- Celebrimbor: Rules con paths para activación contextual (#53)
 - Palantír: Export/Import de configs (#28)
+- Palantír: Mejorar detección de duplicados (#51)
 
 ### v4.0.0 (Próxima major - Gollum)
 - Gollum: Playwright E2E MVP
