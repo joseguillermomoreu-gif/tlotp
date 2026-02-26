@@ -58,9 +58,13 @@ Este prompt principal carga todos los módulos de Celebrimbor:
 10. **10-module-remove.md** - Eliminar skills
 11. **11-module-update.md** - Actualizar skills
 
+### Post-Instalación
+
+12. **15-module-post-install-rules.md** - Rules con paths para activación contextual ✅ Tarea #53
+
 ### Referencia Técnica
 
-12. **14-skills-cli-reference.md** - Referencia CLI oficial (vercel-labs/skills)
+13. **14-skills-cli-reference.md** - Referencia CLI oficial (vercel-labs/skills) ✅ Tarea #54
 
 ### Módulos Futuros (v2.2+)
 - **12-mode-auto.md** - Modo automático
