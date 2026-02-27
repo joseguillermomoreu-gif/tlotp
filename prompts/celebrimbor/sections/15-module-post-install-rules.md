@@ -6,6 +6,18 @@ Tras instalar una skill, ofrecer al usuario crear una **rule con frontmatter `pa
 
 ---
 
+## 📖 Documentación Oficial (Live)
+
+**ANTES de ejecutar este módulo**, obtener información actualizada sobre rules con paths:
+
+> **WebFetch**: https://code.claude.com/docs/en/memory
+> **Extraer**: Sección "Modular rules with .claude/rules/", específicamente:
+> - Estructura básica de `.claude/rules/`
+> - Path-specific rules con frontmatter YAML `paths:`
+> - Glob patterns soportados (incluyendo brace expansion)
+> - Subdirectorios y symlinks
+> - User-level rules vs project-level rules
+
 ## Contexto: Por qué Rules con Paths
 
 Las rules con `paths:` son el **mecanismo nativo de Claude Code** para activación contextual de skills:
