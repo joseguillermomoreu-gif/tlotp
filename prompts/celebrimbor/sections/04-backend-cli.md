@@ -4,8 +4,14 @@
 
 Implementar el backend que usa `npx skills` (Node.js) para gestionar skills.
 
-> **Referencia CLI completa**: Ver `sections/14-skills-cli-reference.md`
+> **Referencia CLI completa**: Ver `sections/14-skills-cli-reference.md` (obtiene docs live via WebFetch)
 > **Fuente oficial**: [github.com/vercel-labs/skills](https://github.com/vercel-labs/skills)
+
+## 📖 Documentación Oficial (Live)
+
+**ANTES de ejecutar operaciones**, el módulo 14 obtiene la referencia CLI actualizada via WebFetch.
+Este módulo define la **lógica operacional** de cómo Celebrimbor usa el CLI.
+Para sintaxis y flags exactos, consultar siempre el módulo 14.
 
 ---
 

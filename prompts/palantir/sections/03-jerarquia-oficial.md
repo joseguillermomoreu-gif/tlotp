@@ -1,6 +1,24 @@
 # 📋 Inspección de Jerarquía Oficial
 
-Debes inspeccionar **TODA la jerarquía oficial de memoria** de Claude Code en el siguiente orden:
+## 📖 Documentación Oficial (Live)
+
+**ANTES de ejecutar la inspección**, obtener la jerarquía actualizada:
+
+> **WebFetch**: https://code.claude.com/docs/en/memory
+> **Extraer**:
+> - Tabla completa de tipos de memoria (ubicaciones, propósitos, scope)
+> - Jerarquía de precedencia
+> - Estructura de auto memory
+> - Sistema de rules con paths
+> - Sistema de @imports
+
+**Usar la información obtenida como fuente de verdad** para todos los niveles de inspección.
+
+---
+
+## Procedimiento de Inspección
+
+Debes inspeccionar **TODA la jerarquía oficial de memoria** de Claude Code en el orden que indique la documentación oficial.
 
 ## Para CADA ubicación de memoria:
 
@@ -12,27 +30,21 @@ Debes inspeccionar **TODA la jerarquía oficial de memoria** de Claude Code en e
 
 ---
 
-## 🏢 1. Managed Policy (Organización)
+## Niveles de Inspección
 
-**Descripción**: Políticas organizacionales gestionadas por IT/DevOps.
+Inspeccionar cada nivel según la documentación oficial obtenida via WebFetch.
+Para cada nivel, seguir estas instrucciones específicas:
 
-**Ubicaciones según OS** (busca en la correspondiente):
-- **Linux**: `/etc/claude-code/CLAUDE.md`
-- **macOS**: `/Library/Application Support/ClaudeCode/CLAUDE.md`
-- **Windows**: `C:\Program Files\ClaudeCode\CLAUDE.md`
+### Managed Policy (Organización)
 
 **Qué mostrar**:
-- PATH completo del archivo
+- PATH completo del archivo (según OS detectado)
 - STATUS (✅/❌/⚠️)
 - Contenido completo si existe
 
 ---
 
-## 👤 2. User Memory (Personal - Global)
-
-**Descripción**: Preferencias personales que aplican a todos los proyectos.
-
-**Ubicación**: `~/.claude/CLAUDE.md`
+### User Memory (Personal - Global)
 
 **Qué mostrar**:
 - PATH completo
@@ -42,14 +54,10 @@ Debes inspeccionar **TODA la jerarquía oficial de memoria** de Claude Code en e
 
 ---
 
-## 📚 3. User Rules (Personal - Modular)
-
-**Descripción**: Reglas personales organizadas por tema.
-
-**Ubicación**: `~/.claude/rules/*.md`
+### User Rules (Personal - Modular)
 
 **Qué mostrar**:
-- PATH del directorio `~/.claude/rules/`
+- PATH del directorio
 - Listar TODOS los archivos `.md` recursivamente (incluyendo subdirectorios)
 - Para cada archivo:
   - PATH completo
@@ -57,77 +65,33 @@ Debes inspeccionar **TODA la jerarquía oficial de memoria** de Claude Code en e
   - Contenido completo del archivo
   - Si es symlink, indicar a qué apunta
 
-**Ejemplo de archivo con paths**:
-```markdown
----
-paths:
-  - "src/**/*.ts"
-  - "lib/**/*.ts"
 ---
 
-# TypeScript Rules
-[contenido...]
-```
-
----
-
-## 📁 4. Project Memory (Equipo - Compartido)
-
-**Descripción**: Instrucciones compartidas del proyecto con el equipo (en git).
-
-**Ubicaciones posibles** (buscar ambas):
-1. `./CLAUDE.md` (raíz del proyecto)
-2. `./.claude/CLAUDE.md` (directorio oculto)
-
-**Además, buscar recursivamente hacia ARRIBA**:
-- Desde el directorio actual, busca CLAUDE.md en cada directorio padre hasta la raíz
-- Ejemplo: Si estás en `/project/src/components/`, buscar en:
-  - `/project/src/components/CLAUDE.md`
-  - `/project/src/CLAUDE.md`
-  - `/project/CLAUDE.md`
+### Project Memory (Equipo - Compartido)
 
 **Qué mostrar**:
-- Todos los CLAUDE.md encontrados (del actual hacia arriba)
-- Para cada uno: PATH, STATUS, contenido
+- Buscar en ambas ubicaciones posibles (raíz y directorio oculto)
+- Buscar recursivamente hacia ARRIBA hasta la raíz
+- Para cada CLAUDE.md encontrado: PATH, STATUS, contenido
 - **Detectar imports**: Si contiene `@path/to/file`, listar archivos importados
 
 ---
 
-## 📋 5. Project Rules (Equipo - Modular)
-
-**Descripción**: Reglas modulares del proyecto, organizadas por tema, con soporte de paths específicos.
-
-**Ubicación**: `./.claude/rules/*.md`
+### Project Rules (Equipo - Modular)
 
 **Qué mostrar**:
-- PATH del directorio `./.claude/rules/`
+- PATH del directorio
 - Listar TODOS los archivos `.md` recursivamente
-- Estructura de subdirectorios (ej: `frontend/`, `backend/`)
+- Estructura de subdirectorios
 - Para cada archivo:
   - PATH completo
   - Si tiene YAML frontmatter con `paths:`, mostrarlo
   - Contenido completo del archivo
   - Si es symlink, indicar a qué apunta y mostrar contenido del destino
 
-**Ejemplo de estructura**:
-```
-./.claude/rules/
-├── frontend/
-│   ├── react.md         (con paths: "src/**/*.tsx")
-│   └── styles.md        (con paths: "src/**/*.css")
-├── backend/
-│   ├── api.md           (con paths: "src/api/**/*.ts")
-│   └── database.md      (sin paths - aplica a todo)
-└── security.md          (sin paths - aplica a todo)
-```
-
 ---
 
-## 🔒 6. Project Local (Personal - No en Git)
-
-**Descripción**: Preferencias personales del proyecto actual (automáticamente gitignored).
-
-**Ubicación**: `./CLAUDE.local.md`
+### Project Local (Personal - No en Git)
 
 **Qué mostrar**:
 - PATH completo
@@ -135,29 +99,9 @@ paths:
 - Contenido completo
 - **Detectar imports**: Si contiene `@path/to/file`, listar archivos importados
 
-**Nota**: Este archivo NO se comparte con el equipo (está en .gitignore automáticamente).
-
 ---
 
-## 🤖 7. Auto Memory (Claude Auto-Guarda)
-
-**Descripción**: Notas que Claude guarda automáticamente mientras trabaja en el proyecto.
-
-**Ubicación**: `~/.claude/projects/<project>/memory/`
-
-**Identificar <project>**:
-- Si el proyecto es un repositorio git: usar la raíz del repo
-- Si no es git: usar el directorio de trabajo actual
-
-**Estructura**:
-```
-~/.claude/projects/<project>/memory/
-├── MEMORY.md          ← Solo primeras 200 líneas se cargan al inicio
-├── debugging.md       ← Topic files (se leen on-demand)
-├── patterns.md
-├── api-conventions.md
-└── ...
-```
+### Auto Memory (Claude Auto-Guarda)
 
 **Qué mostrar**:
 - PATH completo del directorio de auto memory
@@ -165,7 +109,6 @@ paths:
 - Para `MEMORY.md`:
   - Mostrar **SOLO las primeras 200 líneas** (resto no se carga en Claude)
   - Indicar cuántas líneas tiene en total
-  - Ejemplo: "MEMORY.md (412 líneas, solo primeras 200 cargadas)"
 - Para otros archivos (topic files):
   - Nombre y número de líneas
   - PATH completo

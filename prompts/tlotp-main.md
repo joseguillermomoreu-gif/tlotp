@@ -310,7 +310,8 @@ Docs: Ver opción "Documentación y Ayuda"
 ## 🔗 Recursos
 
 - **Repositorio**: https://github.com/joseguillermomoreu-gif/tlotp
-- **Documentación**: `docs/`
+- **Documentación oficial (live)**: `prompts/docs-sources.md`
+- **Documentación interna**: `docs/`
 - **Milestones**: `MILESTONES.md`
 - **Contribuir**: `CONTRIBUTING.md`
 
