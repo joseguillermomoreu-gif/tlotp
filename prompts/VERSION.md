@@ -6,8 +6,8 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v3.3.0**
-- **Fecha release**: 2026-02-26
+**TLOTP v3.4.0**
+- **Fecha release**: 2026-02-27
 - **Nombre código**: "The Two Towers" (Palantír + Celebrimbor)
 
 ---
@@ -16,10 +16,11 @@
 
 ### ✅ Palantír - Inspector de Configuración
 **Estado**: Completado
-- Inspector CRUD completo (Read, Reset, Recovery, Configurador)
+- Inspector CRUD completo (Read, Reset, Recovery, Configurador, Hooks)
 - Sistema de backups automáticos
 - Detección de conflictos y merge inteligente
-- 11 módulos, 3,611 líneas
+- Gestión de hooks: inspección, creación asistida, decision helper
+- 12 módulos
 
 ### ✅ Celebrimbor - Gestor de Skills
 **Estado**: MVP Completado
@@ -47,22 +48,47 @@
 
 **En banners header**:
 ```
-═══ TLOTP v3.3.0 ═══
+═══ TLOTP v3.4.0 ═══
 ```
 
 **En títulos de archivos**:
 ```
-# 💍 TLOTP v3.3.0 - The Lord of the Prompt
+# 💍 TLOTP v3.4.0 - The Lord of the Prompt
 ```
 
 **En metadata**:
 ```
-Versión: TLOTP v3.3.0
+Versión: TLOTP v3.4.0
 ```
 
 ---
 
 ## 📋 Changelog
+
+### v3.4.0 (2026-02-27) - "The All-Seeing Hooks"
+
+**Palantír - Sistema de Hooks**:
+- Nuevo módulo `11-hooks-system.md` para gestión completa de hooks (#52)
+- Inspección de hooks en 3 niveles de settings.json con análisis inteligente
+- Creación asistida: describe qué automatizar → Palantír genera el hook JSON
+- Decision Helper: árbol interactivo para elegir entre hook vs rule vs CLAUDE.md vs MCP
+- Validación exclusiva contra documentación oficial via WebFetch
+- Detección de conflictos, anti-loops, y métricas de cobertura
+
+**TLOTP General - Documentación Live**:
+- Nuevo fichero `docs-sources.md` como índice central de documentación (#64)
+- Reemplazadas ~545 líneas hardcodeadas por instrucciones WebFetch a URLs oficiales
+- 7+ fuentes oficiales indexadas (memory, hooks-guide, agent-teams, skills, sub-agents, output-styles)
+- Módulos afectados: info_claude.md, 03-jerarquia-oficial.md, 14-skills-cli-reference.md, 04-backend-cli.md, 15-module-post-install-rules.md
+
+**TLOTP General - Permisos Pre-aprobados**:
+- Nuevo PASO 1.5 al inicio de TLOTP para solicitar permisos antes del menú (#49)
+- 5 permisos necesarios: Bash, WebFetch, Write, Edit, Read
+- 3 opciones: aprobar todos, revisar uno a uno, cancelar
+
+**Closes**: #49, #52, #64
+
+---
 
 ### v3.3.0 (2026-02-26) - "The Contextual Forge"
 
@@ -212,10 +238,10 @@ TLOTP sigue [Semantic Versioning 2.0.0](https://semver.org/):
 
 ## 🚀 Roadmap de Versiones
 
-### v3.4.0 (Próxima minor)
-- Palantír: Inspección y asistencia de Hooks (#52)
+### v3.5.0 (Próxima minor)
 - Palantír: Export/Import de configs (#28)
 - Palantír: Mejorar detección de duplicados (#51)
+- Palantír: Mejorar sistema de backup (#37)
 
 ### v4.0.0 (Próxima major - Gollum)
 - Gollum: Playwright E2E MVP
@@ -248,5 +274,5 @@ TLOTP sigue [Semantic Versioning 2.0.0](https://semver.org/):
 
 ---
 
-*Última actualización: 2026-02-26*
+*Última actualización: 2026-02-27*
 *Mantenido por: La Fellowship del Teclado (Pépeton + Claudeton)*

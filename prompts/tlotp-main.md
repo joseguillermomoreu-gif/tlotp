@@ -92,6 +92,62 @@ Configura tu entorno Claude Code fácilmente y de forma adecuada para hacerlo lo
 
 **NO saltarse** este paso. **NO resumirlo**. Mostrarlo EXACTAMENTE como está en la sección "INICIO ÉPICO".
 
+### PASO 1.5: Solicitar Permisos (OBLIGATORIO)
+
+**CRÍTICO**: Inmediatamente después del banner, ANTES del menú, solicitar al usuario la aprobación de permisos que TLOTP necesita para funcionar sin interrupciones.
+
+**Mostrar al usuario**:
+
+```
+🔐 Permisos necesarios para TLOTP
+
+Para que las épicas funcionen sin interrupciones,
+TLOTP necesita los siguientes permisos:
+
+  🖥️  Bash     — Ejecutar comandos del sistema
+                  (git, npm, npx, node -v, ls, mkdir, cat...)
+
+  🌐  WebFetch — Consultar documentación oficial de Claude Code
+                  (code.claude.com/docs)
+
+  📝  Write    — Crear archivos de configuración
+                  (.claude/, CLAUDE.md, rules, skills)
+
+  ✏️  Edit     — Modificar archivos existentes de configuración
+
+  📖  Read     — Leer configuración actual del usuario
+```
+
+**Usar AskUserQuestion** con las opciones:
+
+1. **✅ Aprobar todos** (Recomendado) — TLOTP funcionará sin interrupciones
+2. **🔍 Revisar uno a uno** — Se pedirá permiso individual para cada acción
+3. **🚫 Cancelar** — Salir de TLOTP
+
+**Comportamiento según respuesta**:
+
+- **Aprobar todos**: Registrar internamente que los permisos fueron pre-aprobados. Continuar con PASO 2 (menú). Todas las épicas asumen permisos concedidos y ejecutan sin interrupciones.
+- **Revisar uno a uno**: Continuar con PASO 2 (menú). Las épicas pedirán confirmación antes de cada acción que requiera estos permisos (comportamiento por defecto de Claude Code).
+- **Cancelar**: Mostrar mensaje de despedida y terminar.
+
+**NOTA IMPORTANTE**: Este paso NO cambia los permisos técnicos de Claude Code (esos los gestiona el usuario en su configuración de allowedTools). Lo que hace es **informar al usuario** de qué va a necesitar TLOTP, para que pueda:
+1. Pre-aprobar las acciones cuando Claude Code se las pida
+2. O configurar `allowedTools` en su `settings.json` si prefiere no ver prompts de permiso
+
+**Referencia para el usuario avanzado** (mostrar solo si elige "Revisar uno a uno"):
+```
+💡 Tip: Si quieres evitar prompts de permiso permanentemente,
+añade en tu settings.json:
+
+{
+  "permissions": {
+    "allow": ["Bash", "WebFetch", "Write", "Edit", "Read"]
+  }
+}
+
+Más info: https://code.claude.com/docs/en/permissions
+```
+
 ### PASO 2: Menú de Selección
 
 Después del banner y la lista de épicas, usar **AskUserQuestion** para mostrar el menú de forma elegante.
@@ -254,7 +310,8 @@ Docs: Ver opción "Documentación y Ayuda"
 ## 🔗 Recursos
 
 - **Repositorio**: https://github.com/joseguillermomoreu-gif/tlotp
-- **Documentación**: `docs/`
+- **Documentación oficial (live)**: `prompts/docs-sources.md`
+- **Documentación interna**: `docs/`
 - **Milestones**: `MILESTONES.md`
 - **Contribuir**: `CONTRIBUTING.md`
 

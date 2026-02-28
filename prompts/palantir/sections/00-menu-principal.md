@@ -54,6 +54,10 @@ Ejecuta **AskUserQuestion** con esta configuración EXACTA:
         {
           "label": "Configurar característica",
           "description": "Añadir nueva configuración con asistente inteligente"
+        },
+        {
+          "label": "Gestionar Hooks",
+          "description": "Inspeccionar, crear o analizar hooks de automatización"
         }
       ]
     }
@@ -131,6 +135,21 @@ Procede a ejecutar:
    - Mostrar preview completo antes de aplicar
    - Usar motor de reconstrucción para aplicar cambios
    - Validar y notificar resultado
+
+---
+
+### Opción 5: Gestionar Hooks
+
+**Acción**: Ejecutar sistema de hooks (módulo 11-hooks-system.md)
+
+Procede a ejecutar:
+1. Ejecutar el flujo de hooks (desde 11-hooks-system.md)
+2. El módulo de hooks se encargará de:
+   - Mostrar submenu (inspeccionar, crear, decidir hook vs alternativa)
+   - Inspeccionar hooks en 3 niveles de settings.json
+   - Analizar configuración y sugerir mejoras
+   - Asistir en creación guiada de hooks
+   - Ayudar a decidir si un hook es la mejor opción
 
 ---
 
