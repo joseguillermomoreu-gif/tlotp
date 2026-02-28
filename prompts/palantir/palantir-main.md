@@ -36,12 +36,13 @@
 @prompts/palantir/sections/08-recovery-system.md
 @prompts/palantir/sections/09-reconstruction-engine.md
 @prompts/palantir/sections/10-configurator-system.md
+@prompts/palantir/sections/11-hooks-system.md
 
 ---
 
 ## 🎯 Módulos Cargados
 
-1. **00-menu-principal.md** - Menú de selección de modo (Inspector/Reset/Recovery/Configurador)
+1. **00-menu-principal.md** - Menú de selección de modo (Inspector/Reset/Recovery/Configurador/Hooks)
 2. **01-metadata.md** - Banner, misión, jerarquía oficial
 3. **02-backup-system.md** - Sistema de backup (4 opciones de path)
 4. **03-jerarquia-oficial.md** - Inspección de 7 niveles oficiales
@@ -52,6 +53,7 @@
 9. **08-recovery-system.md** - Sistema de recovery desde backup
 10. **09-reconstruction-engine.md** - Motor de reconstrucción inteligente
 11. **10-configurator-system.md** - Sistema de configuración asistida (CREATE)
+12. **11-hooks-system.md** - Gestión de Hooks (inspección, creación asistida, decision helper)
 
 ---
 
@@ -105,5 +107,6 @@ Procede según las instrucciones de `00-menu-principal.md`:
    - **Si elige Reset**: Ejecutar flujo de `07-reset-system.md`
    - **Si elige Recovery**: Ejecutar flujo de `08-recovery-system.md`
    - **Si elige Configurar**: Ejecutar flujo de `10-configurator-system.md`
+   - **Si elige Hooks**: Ejecutar flujo de `11-hooks-system.md`
 
 ¡Adelante, Palantír! 🔮👁️
