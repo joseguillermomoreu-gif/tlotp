@@ -50,6 +50,7 @@ Configura tu entorno Claude Code fácilmente y de forma adecuada para hacerlo lo
 ## 🗺️ Épicas Disponibles
 **🔮 Palantír** - Gestor de configuraciones (Inspector, Reset, Recovery, Configurador + Analyzer)
 **⚒️ Celebrimbor** - Gestor de skills (Buscar, Instalar, Listar, Actualizar, Eliminar)
+**🌳 Ents** - Guardianes del CI/CD (Analizar, Mejorar, Crear GitHub Actions)
 
 ---
 ## 🔒 Épicas Futuras
@@ -74,10 +75,11 @@ Configura tu entorno Claude Code fácilmente y de forma adecuada para hacerlo lo
 │                                                             │
 │ 1. 🔮 Palantír - Gestor de Configuraciones                  │
 │ 2. ⚒️ Celebrimbor - Forjador de Skills                      │
+│ 3. 🌳 Ents - Guardianes del CI/CD                            │
 │                                                             │
-│ 3. 📚 Documentación y Ayuda                                 │
-│ 4. ℹ️ Sobre TLOTP                                           │
-│ 5. 🚪 Salir                                                 │
+│ 4. 📚 Documentación y Ayuda                                 │
+│ 5. ℹ️ Sobre TLOTP                                           │
+│ 6. 🚪 Salir                                                 │
 │                                                             │
 │ (Más épicas en desarrollo - ver descripción arriba)        │
 └─────────────────────────────────────────────────────────────┘
@@ -154,21 +156,23 @@ Después del banner y la lista de épicas, usar **AskUserQuestion** para mostrar
 
 **IMPORTANTE - Validación de Opciones**:
 
-**Opciones DISPONIBLES** (1-5):
+**Opciones DISPONIBLES** (1-6):
 - 1. 🔮 Palantír ✅
 - 2. ⚒️ Celebrimbor ✅
-- 3. 📚 Documentación ✅
-- 4. ℹ️ Sobre TLOTP ✅
-- 5. 🚪 Salir ✅
+- 3. 🌳 Ents ✅
+- 4. 📚 Documentación ✅
+- 5. ℹ️ Sobre TLOTP ✅
+- 6. 🚪 Salir ✅
 
 **NOTA**: Las épicas futuras (Gollum, Elrond, Gandalf, Aragorn) NO aparecen como opciones seleccionables en el menú. Ya se mostraron arriba en la sección "🗺️ Épicas de la Fellowship" como información.
 
 **Al seleccionar épica disponible**:
 - **Opción 1**: Cargar `@prompts/palantir/palantir-main.md`
 - **Opción 2**: Cargar `@prompts/celebrimbor/celebrimbor-main.md`
-- **Opción 3**: Mostrar documentación del proyecto
-- **Opción 4**: Mostrar info sobre TLOTP (versión, fundadores, XP, etc.)
-- **Opción 5**: Mensaje de despedida y salir
+- **Opción 3**: Cargar `@prompts/ents/ents-main.md`
+- **Opción 4**: Mostrar documentación del proyecto
+- **Opción 5**: Mostrar info sobre TLOTP (versión, fundadores, XP, etc.)
+- **Opción 6**: Mensaje de despedida y salir
 
 ### PASO 3: Loop Continuo
 
@@ -178,7 +182,7 @@ Después del banner y la lista de épicas, usar **AskUserQuestion** para mostrar
 
 ## 📚 Contenido de "Documentación y Ayuda"
 
-**Si el usuario selecciona Opción 3**, mostrar:
+**Si el usuario selecciona Opción 4**, mostrar:
 
 ```
 ═══════════════════════════════════════════════════════════
@@ -213,6 +217,11 @@ para hacerlo lo más autónomo posible.
    Buscar, instalar, listar, actualizar y eliminar skills
    Estado: MVP Completado
 
+✅ 🌳 Ents - Guardianes del CI/CD
+   Analizar CI/CD actual, sugerir mejoras, crear GitHub Actions
+   Consulta documentación oficial en tiempo real
+   Estado: MVP Completado
+
 🔒 💍 Gollum - Setup Playwright E2E (Futuro)
 🔒 🏛️ Elrond - Configuración Global (Futuro)
 🔒 ⚡ Gandalf - Workflow Autónomo (Futuro)
@@ -228,6 +237,7 @@ Menú Principal:
 Acceso Directo:
 • Palantír: @prompts/palantir/palantir-main.md
 • Celebrimbor: @prompts/celebrimbor/celebrimbor-main.md
+• Ents: @prompts/ents/ents-main.md
 
 ---
 
@@ -251,14 +261,15 @@ Issues: https://github.com/joseguillermomoreu-gif/tlotp/issues
 1. Volver al menú principal
 2. Ejecutar Palantír
 3. Ejecutar Celebrimbor
-4. Salir
+4. Ejecutar Ents
+5. Salir
 ```
 
 ---
 
 ## ℹ️ Contenido de "Sobre TLOTP"
 
-**Si el usuario selecciona Opción 4**, mostrar:
+**Si el usuario selecciona Opción 5**, mostrar:
 
 ```
 ═══════════════════════════════════════════════════════════
@@ -301,6 +312,7 @@ Docs: Ver opción "Documentación y Ayuda"
 **Completadas**:
 - ✅ Palantír (CRUD completo: Inspector, Reset, Recovery, Configurador)
 - ✅ Celebrimbor (CRUD completo de skills.sh: Search, Install, List, Update, Remove)
+- ✅ Ents (Analizar CI/CD, Mejorar, Crear GitHub Actions)
 
 **En Desarrollo**:
 - **💍 Gollum** - Setup Playwright E2E
