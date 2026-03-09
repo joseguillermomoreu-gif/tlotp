@@ -57,6 +57,7 @@ Configura tu entorno Claude Code fácilmente y de forma adecuada para hacerlo lo
 **💍 Gollum** - Setup Playwright E2E
 **🏛️ Elrond** - Configuración global del usuario
 **⚡ Gandalf** - Workflow autónomo PHP/Symfony
+**🪞 Galadriel** - Spec-Driven Development (SDD + ecosistema profesional)
 **👑 Aragorn** - Orquestación multi-agente (TBD)
 
 ═══════════════════════════════════════════════════════════
