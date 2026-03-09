@@ -44,7 +44,8 @@ Ejecuta el menú principal de TLOTP para acceder a todas las épicas:
 Desde ahí podrás elegir:
 - 🔮 **Palantír** — Gestor de configuraciones ✅ v1.7 Production-ready
 - ⚒️ **Celebrimbor** — Forjador de skills ✅ v1.0 Production-ready
-- 💍 **Gollum**, 🏛️ **Elrond**, ⚡ **Gandalf** ⏳ Planificadas
+- 🌳 **Ents** — Guardianes del CI/CD ✅ v1.0 Production-ready
+- 💍 **Gollum**, 🏛️ **Elrond**, ⚡ **Gandalf**, 🪞 **Galadriel** ⏳ Planificadas
 
 O puedes usar cada épica directamente:
 
@@ -53,6 +54,9 @@ O puedes usar cada épica directamente:
 ```
 ```
 @prompts/celebrimbor/celebrimbor-main.md
+```
+```
+@prompts/ents/ents-main.md
 ```
 
 ---
@@ -65,16 +69,18 @@ O puedes usar cada épica directamente:
 |-------|--------|-------------|
 | 🔮 **Palantír v1.7** | ✅ Completado | CRUD completo de configuraciones Claude Code |
 | ⚒️ **Celebrimbor v1.0** | ✅ Completado | Gestión de skills desde skills.sh |
+| 🌳 **Ents v1.0** | ✅ Completado | Analizar, mejorar y crear pipelines GitHub Actions |
 | 💍 **Gollum** | ⏳ Próximo | Playwright E2E setup asistido |
 | 🏛️ **Elrond** | ⏳ Planificado | Setup asistido por tipo de proyecto |
 | ⚡ **Gandalf** | ⏳ Planificado | Workflow autónomo PHP/Symfony |
+| 🪞 **Galadriel** | 💭 Futuro | Spec-Driven Development + ecosistema profesional |
 | 👑 **Aragorn** | 💭 Futuro | Multi-Agent Orchestration |
 
-**Estadísticas v3.1.0**:
-- 2 épicas production-ready
-- 22 módulos totales
-- ~8,330 líneas de prompts
-- 2,540 XP acumulados (gamificación)
+**Estadísticas v3.4.0**:
+- 3 épicas production-ready
+- 31 módulos totales
+- ~9,700 líneas de prompts
+- 2,820 XP acumulados (gamificación)
 
 ---
 
@@ -107,6 +113,22 @@ Gestión completa de skills desde [skills.sh](https://skills.sh) (59,000+ skills
 
 ---
 
+## 🌳 Ents — Guardianes del CI/CD
+
+Asistente interactivo para analizar, visualizar, mejorar y crear pipelines
+de GitHub Actions. Sin docs estáticas: consulta la documentación oficial
+en tiempo real vía WebFetch.
+
+- **Analyzer** — Escaneo completo del CI/CD del proyecto
+- **Diagram Renderer** — Visualización ASCII de pipelines
+- **Improvement Engine** — Sugerencias con docs oficiales live
+- **Modifier** — Modificación guiada con preview antes de aplicar
+- **Creator** — Crear GitHub Actions desde cero paso a paso
+
+**Acceso directo**: `@prompts/ents/ents-main.md` | **Issue épica**: [#71](https://github.com/joseguillermomoreu-gif/tlotp/issues/71)
+
+---
+
 ## 🚀 Visión a Futuro
 
 TLOTP está diseñado para crecer. Las próximas épicas traerán:
@@ -116,6 +138,12 @@ Una sola ejecución de TLOTP configurará **todo** lo que necesitas según tu st
 - Proyecto Symfony → CLAUDE.md + skills PHP/Symfony/Doctrine + workflow Git
 - Proyecto Playwright → skills E2E + configuración de tests + POM setup
 - Proyecto Python/IA → skills LLM + configuración de evaluación + APIs
+
+### Spec-Driven Development con Galadriel 🪞
+TLOTP te asistirá para montar tu ecosistema profesional y crear un SDD completo
+con la metodología **CGS (Context & Guided Specification)**: ecosistema configurado
+a medida + especificación estructurada que guía todo el desarrollo asistido por IA.
+Adiós al vibe coding, hola al desarrollo con contexto real.
 
 ### Gestión Interactiva de Agentes
 TLOTP asistirá al usuario para **añadir y configurar agentes** de Claude Code de forma correcta e interactiva: elección del agente, configuración de parámetros, integración con el proyecto.

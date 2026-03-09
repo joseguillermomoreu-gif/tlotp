@@ -156,7 +156,50 @@ Crear la base de gestión de skills reutilizable para todas las épicas futuras,
 
 ---
 
-### **3. 💍 Gollum - Primer MVP Completo de TLOTP para E2E**
+### **3. 🌳 Ents - CI/CD Guardians con GitHub Actions**
+
+**GitHub Issue**: [#71](https://github.com/joseguillermomoreu-gif/tlotp/issues/71)
+**Prioridad**: Alta
+**ROI**: Alto - Cualquier proyecto necesita CI/CD profesional
+
+**Símbolo**: Los pastores del bosque que custodian el código desde las sombras
+
+**Descripción**:
+Asistente interactivo completo para analizar, visualizar, mejorar y crear
+pipelines de GitHub Actions. Sin docs estáticas: consulta la documentación
+oficial en tiempo real vía WebFetch. Siete módulos especializados.
+
+**Principios de diseño**:
+- No docs estáticas: fetch en tiempo real de docs oficiales de GitHub Actions
+- "You code, user decides, you advise": Claude propone, el usuario decide
+- Preview antes de aplicar cualquier cambio
+- Prioridades: seguridad > rendimiento > nice-to-have
+
+**Entregables** ✅ COMPLETADOS:
+- [x] **#71** `ents-main.md` — Entry point con routing a las 3 opciones ✅
+- [x] `01-metadata.md` — Banner épico con lore de los Ents ✅
+- [x] `02-menu-principal.md` — Menú interactivo con 3 opciones ✅
+- [x] `03-analyzer.md` — Análisis completo del proyecto ✅
+- [x] `04-diagram-renderer.md` — Visualizador ASCII de pipelines ✅
+- [x] `05-improvement-engine.md` — Motor de mejoras con WebFetch ✅
+- [x] `06-modifier.md` — Modificador guiado con preview ✅
+- [x] `07-creator.md` — Creador de workflows desde cero ✅
+- [x] `tlotp-main.md` — Actualizado con Ents como épica #3 ✅
+
+**Tareas futuras**:
+- [ ] **#79** E2 - Isengard Mejorado: Optimizar CI/CD interno de TLOTP
+
+**Progreso**: 🎉 **ÉPICA COMPLETA (100%)** - Ents v1.0 ✅
+**Estado**: ✅ Completado
+**Arquitectura**: 8 módulos (~1,361 líneas de prompts)
+**Testing**: ✅ Validado en sesión real
+**XP**: 280 XP (140 XP cada fundador)
+**Dependencias**: Palantír ✅, Celebrimbor ✅
+**Target**: v3.4.0 ✅ RELEASED
+
+---
+
+### **4. 💍 Gollum - Primer MVP Completo de TLOTP para E2E**
 
 **GitHub Issue**: [#2](https://github.com/joseguillermomoreu-gif/tlotp/issues/2)
 **Prioridad**: Alta
@@ -276,7 +319,40 @@ El objetivo final de TLOTP - autonomía total en un proyecto real.
 
 ---
 
-### **6. 👑 Aragorn - Agent Orchestrator & Unified Command**
+### **6. 🪞 Galadriel - Spec-Driven Development & Ecosistema Profesional**
+
+**GitHub Issues**: [#73](https://github.com/joseguillermomoreu-gif/tlotp/issues/73) - [#78](https://github.com/joseguillermomoreu-gif/tlotp/issues/78)
+**Prioridad**: Alta
+**ROI**: Alto - Eleva la calidad del desarrollo asistido por IA
+
+**Símbolo**: El Espejo que muestra el proyecto tal como es, fue y debería ser
+
+**Descripción**:
+Épica de dos fases: primero monta el ecosistema profesional del developer
+(detectando gaps y configurando lo que falta), y después le enseña a usar
+la metodología **CGS (Context & Guided Specification)** para crear un SDD
+completo que guíe todo el desarrollo asistido por IA. Adiós al vibe coding.
+
+**Fases**:
+1. **Fase 1 - Los Dones**: Detectar ecosistema actual, identificar gaps, configurar
+2. **Fase 2 - El Espejo**: Guiar la creación de un SDD profesional con CGS
+
+**Entregables**:
+- [ ] **#73** G1 - La Arquitectura del Espejo: Diseño de módulos y estructura (120 XP)
+- [ ] **#74** G2 - Los Dones de Lothlórien: Detector de ecosistema y gap analyzer (200 XP)
+- [ ] **#75** G3 - El Asistente del Viajero: Wizard interactivo de setup guiado (250 XP)
+- [ ] **#76** G4 - El Espejo de Galadriel: Asistente de creación SDD/CGS (300 XP)
+- [ ] **#77** G5 - Las Fases del Viaje: Configuración de fases SDD (180 XP)
+- [ ] **#78** G6 - La Luz de Eärendil: Integración inter-épicas y validación (150 XP)
+
+**Estado**: ⏳ Pendiente (planificado)
+**Dependencias**: Palantír ✅, Celebrimbor ✅, Ents ✅
+**XP Estimado**: 1,200 XP total (600 XP cada fundador)
+**Target**: Por definir
+
+---
+
+### **7. 👑 Aragorn - Agent Orchestrator & Unified Command**
 
 **GitHub Issue**: [#5](https://github.com/joseguillermomoreu-gif/tlotp/issues/5)
 **Prioridad**: Futura (TLOTP v2.0)
@@ -336,9 +412,11 @@ TLOTP 2.0 - Llevar Claude Code a la N-ésima potencia mediante coordinación de 
 ```
 🔮 Palantír (CRUD Completo)                          [██████████] 100% 🎉 COMPLETO
 ⚒️ Celebrimbor (Forjador de Skills)                  [██████████] 100% 🎉 COMPLETO
+🌳 Ents (CI/CD Guardians)                            [██████████] 100% 🎉 COMPLETO
 💍 Gollum (Playwright MVP)                            [----------]   0% ⏳ Siguiente
 🏛️ Elrond (Setup por tipo de proyecto)               [----------]   0%
 ⚡ Gandalf (Autonomous)                               [----------]   0%
+🪞 Galadriel (Spec-Driven Development)               [----------]   0% 💭 Planificado
 ```
 
 ### TLOTP v2.x - The Return of the King
@@ -393,16 +471,19 @@ is:issue linked:joseguillermomoreu-gif/tlotp#1
 ### TLOTP v1.x - The Fellowship
 
 ```
-Palantír → Celebrimbor → Gollum → Elrond → Gandalf
-  (Dev)      (Skills)   (Quick)  (Scale)  (Auto)
-   ✅           ✅         🎯       📈       🚀
+Palantír → Celebrimbor → Ents → Gollum → Elrond → Gandalf → Galadriel
+  (Dev)      (Skills)   (CI/CD) (Quick)  (Scale)  (Auto)    (Spec)
+   ✅           ✅         ✅      🎯       📈       🚀        💭
 ```
 
 **Orden por ROI v1.x**:
 1. Herramienta de soporte (necesaria para desarrollo)
-2. MVP específico (valida el concepto)
-3. Generalización (escala la solución)
-4. Autonomía de proyecto (objetivo v1.0)
+2. Gestión de skills (base reutilizable)
+3. CI/CD guardians (cualquier proyecto lo necesita)
+4. MVP específico E2E (valida el concepto)
+5. Generalización (escala la solución)
+6. Autonomía de proyecto (objetivo v1.0)
+7. Spec-Driven Development (eleva la calidad del desarrollo IA)
 
 ### TLOTP v2.x - The Return of the King
 
