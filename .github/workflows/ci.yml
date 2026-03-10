@@ -1,0 +1,75 @@
+name: 🌳 CI - Guardianes del Bosque
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master, develop]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  markdown-lint:
+    name: Validar Markdown
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint Markdown
+        uses: DavidAnson/markdownlint-cli2-action@v17
+        with:
+          globs: "**/*.md"
+          config: ".markdownlint.json"
+
+  check-internal-links:
+    name: Verificar links internos (@prompts/)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check @prompts/ references
+        run: |
+          failed=0
+          while IFS= read -r file; do
+            while IFS= read -r ref; do
+              path="${ref#@}"
+              if [ ! -f "$path" ]; then
+                echo "❌ Link roto en $file -> @$path"
+                failed=1
+              fi
+            done < <(grep -oP '@prompts/[^\s\`\"]+' "$file" 2>/dev/null || true)
+          done < <(find . -name "*.md" -not -path "./.git/*")
+          if [ "$failed" -eq 1 ]; then
+            echo "::error::Se encontraron links internos rotos"
+            exit 1
+          fi
+          echo "✅ Todos los @prompts/ son válidos"
+
+  check-external-links:
+    name: Verificar links externos
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check external links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >
+            --verbose
+            --no-progress
+            --timeout 20
+            --max-retries 3
+            --exclude-loopback
+            --exclude 'localhost'
+            --exclude 'example\.com'
+            '**/*.md'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
