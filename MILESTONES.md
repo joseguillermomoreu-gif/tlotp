@@ -423,14 +423,14 @@ Que cualquier usuario pueda, con un solo comando, analizar su configuración act
 qué MCP servers y plugins son relevantes para su stack, e instalarlos de forma guiada.
 
 **Entregables**:
-- [ ] **#81** B0 - El Puerto de Lake-town: Creación de la épica y documentación
-- [ ] **#82** B1 - La Red de Bardo: Análisis de MCP activos del proyecto
-- [ ] **#83** B2 - Los Almacenes de Lake-town: Análisis de plugins instalados
-- [ ] **#84** B3 - El Ojo del Contrabandista: Detector de stack tecnológico
-- [ ] **#85** B4 - Los Canales Ocultos: Consulta en tiempo real al marketplace
-- [ ] **#86** B5 - El Cargamento Recomendado: Motor de recomendaciones
-- [ ] **#87** B6 - El Contrabando: Asistente de instalación guiada
-- [ ] **#88** B7 - Verificación del Puerto: Validación post-instalación
+- [x] **#81** B0 - El Puerto de Lake-town: Creación de la épica y documentación ✅
+- [x] **#82** B1 - La Red de Bardo: Análisis de MCP activos del proyecto ✅
+- [x] **#83** B2 - Los Almacenes de Lake-town: Análisis de plugins instalados ✅
+- [x] **#84** B3 - El Ojo del Contrabandista: Detector de stack tecnológico ✅
+- [x] **#85** B4 - Los Canales Ocultos: Consulta en tiempo real al marketplace ✅
+- [x] **#86** B5 - El Cargamento Recomendado: Motor de recomendaciones ✅
+- [x] **#87** B6 - El Contrabando: Asistente de instalación guiada ✅
+- [x] **#88** B7 - Verificación del Puerto: Validación post-instalación ✅
 
 **Características Clave**:
 - **Sin hardcodeo**: WebFetch a docs oficiales en cada ejecución
@@ -439,7 +439,7 @@ qué MCP servers y plugins son relevantes para su stack, e instalarlos de forma 
 - **Instalación guiada**: Paso a paso con confirmación por ítem
 - **Verificación**: Comprueba que todo funciona tras instalar
 
-**Estado**: 🚧 En progreso (B0 activo)
+**Estado**: 🎉 **ÉPICA COMPLETA (100%)** — B0–B7 implementados ✅
 
 ---
 
@@ -461,7 +461,7 @@ qué MCP servers y plugins son relevantes para su stack, e instalarlos de forma 
 
 ```
 👑 Aragorn (Multi-Agent)      [----------]   0%
-🏹 Bardo (MCP & Plugins)      [>---------]   0% 🚧 En progreso
+🏹 Bardo (MCP & Plugins)      [██████████] 100% 🎉 COMPLETO
 ```
 
 
