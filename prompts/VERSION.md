@@ -6,9 +6,9 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v3.4.0**
-- **Fecha release**: 2026-02-27
-- **Nombre código**: "The Two Towers" (Palantír + Celebrimbor)
+**TLOTP v3.5.0**
+- **Fecha release**: 2026-03-10
+- **Nombre código**: "The Smuggler of Lake-town" (Palantír + Bardo + Celebrimbor + Ents)
 
 ---
 
@@ -28,6 +28,17 @@
 - Backend CLI (Node.js >=18)
 - Integración con skills.sh (59,000+ skills)
 - 11 módulos, 4,234 líneas
+
+### ✅ Bardo - Proveedor de MCPs y Plugins
+**Estado**: Completado
+- Análisis de MCP servers en todos los scopes (local/project/user)
+- Análisis de plugins instalados con clasificación por tipo
+- Detector de stack tecnológico (lenguajes, frameworks, DBs, servicios)
+- Consulta en tiempo real al marketplace oficial (sin hardcodeo)
+- Motor de recomendaciones con por qué, para qué y ejemplos de uso
+- Asistente de instalación guiada ítem a ítem con confirmación
+- Verificación post-instalación con semáforos ✅⚠️❌
+- 7 módulos (B1–B7)
 
 ### ⏳ Gollum - E2E Testing
 **Estado**: Planificado
@@ -64,6 +75,22 @@ Versión: TLOTP v3.4.0
 ---
 
 ## 📋 Changelog
+
+### v3.5.0 (2026-03-10) - "The Smuggler of Lake-town"
+
+**🏹 Bardo - Proveedor de MCPs y Plugins (épica completa)**:
+- B1: Análisis de MCP servers en scopes local/project/user desde `~/.claude.json` y `.mcp.json`
+- B2: Análisis de plugins instalados con clasificación por tipo (LSP/integración/workflow/output)
+- B3: Detector de stack tecnológico (PHP, TypeScript, Python, Go, Rust, Java + frameworks + DBs + servicios)
+- B4: Consulta en tiempo real al marketplace oficial vía WebFetch — nunca hardcodeado
+- B5: Motor de recomendaciones con matching stack→MCPs/plugins + por qué, para qué y ejemplo de uso
+- B6: Asistente de instalación guiada ítem a ítem con selección de scope y confirmación explícita
+- B7: Verificación post-instalación con semáforos ✅⚠️❌ y resolución accionable por ítem
+- Bardo integrado en menú principal de TLOTP como opción 2 (entre Palantír y Celebrimbor)
+
+**Closes**: #81–#88, #98, #99
+
+---
 
 ### v3.4.0 (2026-02-27) - "The All-Seeing Hooks"
 
@@ -238,7 +265,7 @@ TLOTP sigue [Semantic Versioning 2.0.0](https://semver.org/):
 
 ## 🚀 Roadmap de Versiones
 
-### v3.5.0 (Próxima minor)
+### v3.6.0 (Próxima minor)
 - Palantír: Export/Import de configs (#28)
 - Palantír: Mejorar detección de duplicados (#51)
 - Palantír: Mejorar sistema de backup (#37)
@@ -274,5 +301,5 @@ TLOTP sigue [Semantic Versioning 2.0.0](https://semver.org/):
 
 ---
 
-*Última actualización: 2026-02-27*
+*Última actualización: 2026-03-10*
 *Mantenido por: La Fellowship del Teclado (Pépeton + Claudeton)*
