@@ -1,12 +1,13 @@
 {
-  "default": true,
-  "MD013": false,
-  "MD033": false,
-  "MD041": false,
-  "MD024": { "siblings_only": true },
-  "MD007": { "indent": 2 },
-  "MD010": false,
-  "MD040": false,
-  "MD031": false,
-  "MD032": false
+  "default": false,
+  "MD001": true,
+  "MD011": true,
+  "MD012": true,
+  "MD018": true,
+  "MD019": true,
+  "MD023": true,
+  "MD037": true,
+  "MD038": true,
+  "MD042": true,
+  "MD045": true
 }

@@ -141,7 +141,7 @@ Todas las tareas están en [GitHub Issues](https://github.com/joseguillermomoreu
 - **#32** - Validar opción resumen (50 XP) 🥉 Hobbit
 - **#33** - Mejorar mensaje CLAUDE.md superior (50 XP) 🥉 Hobbit
 
-Ver todas: [MILESTONES.md](../MILESTONES.md)
+Ver todas: [MILESTONES.md](MILESTONES.md)
 
 #### 💍 Épica 2: Gollum (Playwright E2E)
 **Próximamente** - Automatización de testing

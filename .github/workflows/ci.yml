@@ -39,7 +39,16 @@ jobs:
           failed=0
           while IFS= read -r file; do
             while IFS= read -r ref; do
+              # Skip template placeholders like @prompts/[nombre]/...
+              if echo "$ref" | grep -qP '\[|\]'; then
+                continue
+              fi
               path="${ref#@}"
+              # Skip if the epic directory doesn't exist (documentation examples)
+              epic_dir=$(echo "$path" | cut -d'/' -f1-2)
+              if [ ! -d "$epic_dir" ]; then
+                continue
+              fi
               if [ ! -f "$path" ]; then
                 echo "❌ Link roto en $file -> @$path"
                 failed=1
