@@ -49,6 +49,7 @@ Configura tu entorno Claude Code fácilmente y de forma adecuada para hacerlo lo
 ---
 ## 🗺️ Épicas Disponibles
 **🔮 Palantír** - Gestor de configuraciones (Inspector, Reset, Recovery, Configurador + Analyzer)
+**🏹 Bardo** - Proveedor de MCPs y Plugins (Analizar, Descubrir, Recomendar, Instalar, Verificar)
 **⚒️ Celebrimbor** - Gestor de skills (Buscar, Instalar, Listar, Actualizar, Eliminar)
 **🌳 Ents** - Guardianes del CI/CD (Analizar, Mejorar, Crear GitHub Actions)
 
@@ -75,12 +76,13 @@ Configura tu entorno Claude Code fácilmente y de forma adecuada para hacerlo lo
 │ ¿Qué épica deseas invocar?                                  │
 │                                                             │
 │ 1. 🔮 Palantír - Gestor de Configuraciones                  │
-│ 2. ⚒️ Celebrimbor - Forjador de Skills                      │
-│ 3. 🌳 Ents - Guardianes del CI/CD                            │
+│ 2. 🏹 Bardo - Proveedor de MCPs y Plugins                   │
+│ 3. ⚒️ Celebrimbor - Forjador de Skills                      │
+│ 4. 🌳 Ents - Guardianes del CI/CD                            │
 │                                                             │
-│ 4. 📚 Documentación y Ayuda                                 │
-│ 5. ℹ️ Sobre TLOTP                                           │
-│ 6. 🚪 Salir                                                 │
+│ 5. 📚 Documentación y Ayuda                                 │
+│ 6. ℹ️ Sobre TLOTP                                           │
+│ 7. 🚪 Salir                                                 │
 │                                                             │
 │ (Más épicas en desarrollo - ver descripción arriba)        │
 └─────────────────────────────────────────────────────────────┘
@@ -157,23 +159,25 @@ Después del banner y la lista de épicas, usar **AskUserQuestion** para mostrar
 
 **IMPORTANTE - Validación de Opciones**:
 
-**Opciones DISPONIBLES** (1-6):
+**Opciones DISPONIBLES** (1-7):
 - 1. 🔮 Palantír ✅
-- 2. ⚒️ Celebrimbor ✅
-- 3. 🌳 Ents ✅
-- 4. 📚 Documentación ✅
-- 5. ℹ️ Sobre TLOTP ✅
-- 6. 🚪 Salir ✅
+- 2. 🏹 Bardo ✅
+- 3. ⚒️ Celebrimbor ✅
+- 4. 🌳 Ents ✅
+- 5. 📚 Documentación ✅
+- 6. ℹ️ Sobre TLOTP ✅
+- 7. 🚪 Salir ✅
 
 **NOTA**: Las épicas futuras (Gollum, Elrond, Gandalf, Aragorn) NO aparecen como opciones seleccionables en el menú. Ya se mostraron arriba en la sección "🗺️ Épicas de la Fellowship" como información.
 
 **Al seleccionar épica disponible**:
 - **Opción 1**: Cargar `@prompts/palantir/palantir-main.md`
-- **Opción 2**: Cargar `@prompts/celebrimbor/celebrimbor-main.md`
-- **Opción 3**: Cargar `@prompts/ents/ents-main.md`
-- **Opción 4**: Mostrar documentación del proyecto
-- **Opción 5**: Mostrar info sobre TLOTP (versión, fundadores, XP, etc.)
-- **Opción 6**: Mensaje de despedida y salir
+- **Opción 2**: Cargar `@prompts/bardo/bardo-main.md`
+- **Opción 3**: Cargar `@prompts/celebrimbor/celebrimbor-main.md`
+- **Opción 4**: Cargar `@prompts/ents/ents-main.md`
+- **Opción 5**: Mostrar documentación del proyecto
+- **Opción 6**: Mostrar info sobre TLOTP (versión, fundadores, XP, etc.)
+- **Opción 7**: Mensaje de despedida y salir
 
 ### PASO 3: Loop Continuo
 
@@ -214,6 +218,15 @@ para hacerlo lo más autónomo posible.
    • Backup obligatorio antes de cambios destructivos
    Estado: Completado
 
+✅ 🏹 Bardo - Proveedor de MCPs y Plugins
+   • Analizar MCPs y plugins instalados en todos los scopes
+   • Detectar stack tecnológico del proyecto
+   • Consultar marketplace en tiempo real (sin hardcodeo)
+   • Recomendaciones con por qué, para qué y ejemplos de uso
+   • Instalación guiada ítem a ítem con confirmación
+   • Verificación post-instalación con semáforos
+   Estado: Completado
+
 ✅ ⚒️ Celebrimbor - Gestor de Skills
    Buscar, instalar, listar, actualizar y eliminar skills
    Estado: MVP Completado
@@ -236,9 +249,10 @@ Menú Principal:
 @prompts/tlotp-main.md
 
 Acceso Directo:
-• Palantír: @prompts/palantir/palantir-main.md
+• Palantír:    @prompts/palantir/palantir-main.md
+• Bardo:       @prompts/bardo/bardo-main.md
 • Celebrimbor: @prompts/celebrimbor/celebrimbor-main.md
-• Ents: @prompts/ents/ents-main.md
+• Ents:        @prompts/ents/ents-main.md
 
 ---
 
@@ -312,6 +326,7 @@ Docs: Ver opción "Documentación y Ayuda"
 
 **Completadas**:
 - ✅ Palantír (CRUD completo: Inspector, Reset, Recovery, Configurador)
+- ✅ Bardo (MCPs y Plugins: Analizar, Descubrir, Recomendar, Instalar, Verificar)
 - ✅ Celebrimbor (CRUD completo de skills.sh: Search, Install, List, Update, Remove)
 - ✅ Ents (Analizar CI/CD, Mejorar, Crear GitHub Actions)
 
