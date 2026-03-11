@@ -445,6 +445,37 @@ o al recargar la configuración.
 ═══════════════════════════════════════════════════════════
 ```
 
+**Usar AskUserQuestion** para navegar tras la creación:
+```json
+{
+  "questions": [
+    {
+      "header": "¿Qué hacemos ahora?",
+      "question": "Hook creado. ¿Qué deseas hacer a continuación?",
+      "multiSelect": false,
+      "options": [
+        {
+          "label": "➕ Crear otro hook",
+          "description": "Volver al asistente guiado de creación"
+        },
+        {
+          "label": "🔙 Volver al menú de Hooks",
+          "description": "Volver al submenu de hooks"
+        },
+        {
+          "label": "🏠 Volver al menú de Palantír",
+          "description": "Volver al menú principal para cambiar de modo"
+        }
+      ]
+    }
+  ]
+}
+```
+
+**Si elige "➕ Crear otro hook"**: Reiniciar desde el Paso 1 de Opción 2.
+**Si elige "🔙 Volver al menú de Hooks"**: Ejecutar el submenu inicial de este módulo.
+**Si elige "🏠 Volver al menú de Palantír"**: Ejecutar `00-menu-principal.md` desde PASO 2 (sin repetir permisos).
+
 ---
 
 ## 🤔 Opción 3: ¿Necesito un Hook o Algo Mejor?
@@ -538,6 +569,37 @@ Los MCP servers son la opción correcta porque:
 → Esto está fuera del alcance actual de Palantír
    Consulta: https://code.claude.com/docs/en/mcp
 ```
+
+Tras mostrar la recomendación, **usar AskUserQuestion**:
+```json
+{
+  "questions": [
+    {
+      "header": "¿Qué hacemos ahora?",
+      "question": "¿Qué deseas hacer con esta recomendación?",
+      "multiSelect": false,
+      "options": [
+        {
+          "label": "⚙️ Ir al Configurador",
+          "description": "Abrir el modo Configurar característica de Palantír"
+        },
+        {
+          "label": "🪝 Crear un hook",
+          "description": "Ir al asistente guiado de creación de hooks"
+        },
+        {
+          "label": "🔙 Volver al menú de Palantír",
+          "description": "Volver al menú principal para elegir otro modo"
+        }
+      ]
+    }
+  ]
+}
+```
+
+**Si elige "⚙️ Ir al Configurador"**: Ejecutar `10-configurator-system.md`.
+**Si elige "🪝 Crear un hook"**: Ir a Opción 2 de este módulo.
+**Si elige "🔙 Volver al menú de Palantír"**: Ejecutar `00-menu-principal.md` desde PASO 2 (sin repetir permisos).
 
 ---
 
