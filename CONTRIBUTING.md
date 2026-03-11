@@ -93,11 +93,11 @@ Cada tarea completada otorga **Experience Points (XP)** según su dificultad:
 
 | Aventurero | Nivel | XP Total | Badges | Hazañas |
 |------------|-------|----------|--------|---------|
-| 🥔 **Pépeton hijo de Móreuton** | Rey 🥇 | 2,815 XP | 🔮🏗️🛡️💣⚒️⚔️💎 | Palantír v1.0-v1.7 CRUD Completo, Celebrimbor v1.0 MVP |
-| 🤖 **Claudeton hijo de Codeton** | Rey 🥇 | 2,815 XP | 🔮🏗️📚💣⚒️⚔️💎 | Palantír v1.0-v1.7 CRUD Completo, Celebrimbor v1.0 MVP |
+| 🥔 **Pépeton hijo de Móreuton** | Rey 🥇 | ~3,500 XP | 🔮🏗️🛡️💣⚒️🏹🌳⚔️💎 | Palantír v1.7, Celebrimbor v1.0, Bardo v1.0, Ents v1.0 |
+| 🤖 **Claudeton hijo de Codeton** | Rey 🥇 | ~3,500 XP | 🔮🏗️📚💣⚒️🏹🌳⚔️💎 | Palantír v1.7, Celebrimbor v1.0, Bardo v1.0, Ents v1.0 |
 
-**XP Compartido de la Fellowship**: 5,630 XP en 35 tareas completadas juntos
-**Último logro**: Celebrimbor v1.0 MVP — CRUD Skills Completo (#42) - 870 XP 🏆💎
+**XP Compartido de la Fellowship**: ~7,000 XP en 50+ tareas completadas juntos
+**Último logro**: Ents v1.0 + CI/CD interno TLOTP (#71, #79, #102) 🌳⚔️
 
 ### 🌟 Contribuidores
 
@@ -115,45 +115,32 @@ Todas las tareas están en [GitHub Issues](https://github.com/joseguillermomoreu
 - 💎 **Recompensa XP** (según dificultad)
 - 🏆 **Badges** (si aplica)
 
-### 📋 Tareas Disponibles por Épica
+### 📋 Épicas y Estado
 
-#### 🔮 Épica 1: Palantír (Inspector, Reset & Recovery)
-**Issues #5-#38** - Progreso: 90% Sprint P3 avanzado
+#### 🔮 Palantír — Inspector de Configuración ✅ COMPLETO
+CRUD completo de configuraciones Claude Code. 12 módulos, v1.7.
+Ver [MILESTONES.md](MILESTONES.md) para detalle de tareas completadas.
 
-**Sprint P2 ✅ Completado** (6 tareas - 470 XP):
-- ✅ **#7** - Inspector config global (resumen) - 50 XP
-- ✅ **#8** - Inspector config global (completo) - 80 XP
-- ✅ **#9** - Inspector config proyecto (resumen) - 50 XP
-- ✅ **#10** - Inspector config proyecto (completo) - 80 XP
-- ✅ **#11** - Inspector de skills - 60 XP
-- ✅ **#18** - Palantír prompt v1.2 - 150 XP 🏆
+#### 🏹 Bardo — Proveedor de MCPs y Plugins ✅ COMPLETO
+Análisis, descubrimiento e instalación de MCPs/plugins en tiempo real. 7 módulos, v1.0.
 
-**Sprint P3 ✅ Sistema Reset/Recovery Completado** (1 tarea - 350 XP):
-- ✅ **#38** - Sistema de Reset y Recovery - 350 XP 🏆🥇
-  - Reset Completo (fichero por fichero)
-  - Reset Selectivo (regla por regla)
-  - Recovery desde backups
-  - Merge inteligente sin pérdida
-  - 2 tests completos de validación
+#### ⚒️ Celebrimbor — Gestor de Skills ✅ COMPLETO
+Búsqueda e instalación desde skills.sh (59,000+). 11 módulos, v1.0.
 
-**Sprint P4 ⏳ Mejoras Pendientes**:
-- **#31** - Mejorar condicionales imports/topics (60 XP) 🥉 Hobbit
-- **#32** - Validar opción resumen (50 XP) 🥉 Hobbit
-- **#33** - Mejorar mensaje CLAUDE.md superior (50 XP) 🥉 Hobbit
+#### 🌳 Ents — CI/CD Guardians ✅ COMPLETO
+Analizar, mejorar y crear GitHub Actions. 8 módulos, v1.0.
 
-Ver todas: [MILESTONES.md](MILESTONES.md)
+#### 👑 Aragorn — Gestor de Agentes 🚧 EN DESARROLLO
+Marketplace de agentes/subagents: VoltAgent + aitmpl.com.
+**Tareas abiertas**: AR0–AR9 ([#57](https://github.com/joseguillermomoreu-gif/tlotp/issues/57)–[#63](https://github.com/joseguillermomoreu-gif/tlotp/issues/63), [#105](https://github.com/joseguillermomoreu-gif/tlotp/issues/105)–[#109](https://github.com/joseguillermomoreu-gif/tlotp/issues/109))
 
-#### 💍 Épica 2: Gollum (Playwright E2E)
-**Próximamente** - Automatización de testing
+#### ⚡ Gandalf — Iniciar una Nueva Aventura 📐 DISEÑADO
+Spec-Driven Development con lore del Consejo de Rivendel. Genera requirements.md + design.md + tasks.md.
+**Tareas abiertas**: G0–G8 ([#111](https://github.com/joseguillermomoreu-gif/tlotp/issues/111))
 
-#### 🏛️ Épica 3: Elrond (Configuración Global)
-**Próximamente** - Setup universal de Claude Code
-
-#### ⚡ Épica 4: Gandalf (Autonomous PHP)
-**Próximamente** - Workflow autónomo PHP/Symfony
-
-#### 👑 Épica 5: Aragorn (Multi-Agent System)
-**Futuro (v2.0)** - Orquestación de agentes
+#### 💍 Gollum — Companion de Testing 💭 FUTURO
+Companion especializado en testing. Forma final (skill/agente/subagente) TBD.
+([#2](https://github.com/joseguillermomoreu-gif/tlotp/issues/2))
 
 ### 🎯 Tipos de Contribución
 
@@ -186,73 +173,34 @@ Ver todas: [MILESTONES.md](MILESTONES.md)
 
 ## 🗺️ Mapa de la Aventura - Roadmap
 
-### 🔮 TLOTP v1.x - La Comunidad del Anillo
+### ✅ Completadas
 
-#### ✅ Fase 1: Palantír - CRUD Completo de Configuraciones
-**Estado**: 🎉 **COMPLETADO** - v1.7.0
+| Épica | Versión | XP |
+|---|---|---|
+| 🔮 Palantír — Inspector de Configuración | v1.7 | ~1,670 XP |
+| 🏹 Bardo — Proveedor de MCPs y Plugins | v1.0 | ~560 XP |
+| ⚒️ Celebrimbor — Gestor de Skills | v1.0 | ~870 XP |
+| 🌳 Ents — CI/CD Guardians | v1.0 | ~280 XP |
 
-- [x] Gamificación completa del proyecto
-- [x] Sistema de contribución y XP
-- [x] **Palantír v1.2** - Inspector completado ✅
-- [x] **Palantír v1.5** - Reset & Recovery completado ✅
-- [x] **Palantír v1.6** - Motor de Reconstrucción ✅
-- [x] **Palantír v1.7** - Sistema de Configuración Asistida ✅
-- [x] **CRUD Total**: Inspector (READ) | Reset (DELETE) | Recovery (UPDATE) | Configurador (CREATE)
-- [x] 11 módulos (~3,830 líneas de prompts)
-- [x] Sprint P2, P3, P4, P5 completados
-- [x] **1,670 XP acumulados** por la épica
+### 🚧 En Desarrollo
 
-#### ✅ Fase 2: Celebrimbor - El Forjador de Skills
-**Estado**: 🎉 **COMPLETADO** - v1.0.0 | Issue [#42](https://github.com/joseguillermomoreu-gif/tlotp/issues/42)
+**👑 Aragorn — Gestor de Agentes** ([#57–#63](https://github.com/joseguillermomoreu-gif/tlotp/issues/57), [#105–#109](https://github.com/joseguillermomoreu-gif/tlotp/issues/105))
+- Marketplace de agentes/subagentes: VoltAgent (127+) + aitmpl.com (600+)
+- Listar, buscar, instalar (scope global/proyecto), verificar, actualizar, eliminar
+- Team Builder para Agent Teams experimentales
 
-- [x] Search — Buscar en 59,000+ skills de skills.sh
-- [x] Install — Instalación global/local con auto-config de `paths:`
-- [x] List — Inventario de skills instaladas (global y local)
-- [x] Update — Detectar y actualizar skills
-- [x] Remove — Eliminar skills individuales
-- [x] Backend CLI (Node.js >=18) funcional
-- [x] 11 módulos (~4,500 líneas)
-- [x] **870 XP acumulados** (435 XP cada fundador)
+### 📐 Diseñado (próxima épica tras Aragorn)
 
-#### 📅 Fase 3: Gollum - Playwright E2E Automation
-**Estado**: 📋 Planificado — Issue [#2](https://github.com/joseguillermomoreu-gif/tlotp/issues/2)
+**⚡ Gandalf — Iniciar una Nueva Aventura** ([#111](https://github.com/joseguillermomoreu-gif/tlotp/issues/111))
+- Asistente Spec-Driven Development — genera requirements.md + design.md + tasks.md
+- Estándar Kiro/GitHub Spec-Kit (2025-2026)
+- Lore: El Consejo de Rivendel — cada componente suma un miembro a la Fellowship
 
-- [ ] Automatización de setup Playwright con Celebrimbor
-- [ ] TLOTP-prompt para proyectos E2E
-- [ ] Generación automática de CLAUDE.md para testing
+### 💭 Futuro
 
-#### 📅 Fase 4: Elrond - Setup Asistido por Tipo de Proyecto
-**Estado**: 📋 Planificado — Issue [#3](https://github.com/joseguillermomoreu-gif/tlotp/issues/3)
-
-- [ ] Setup completo de un buen contexto Claude en una sola ejecución
-- [ ] Perfiles por tipo de proyecto (Symfony, Playwright, Python/IA, React...)
-- [ ] Instala skills relevantes + genera CLAUDE.md + configura workflow Git
-- [ ] Sistema de preguntas asistido e interactivo
-
-#### 📅 Fase 5: Gandalf - Autonomous PHP Workflow
-**Estado**: 📋 Planificado — Issue [#4](https://github.com/joseguillermomoreu-gif/tlotp/issues/4)
-
-- [ ] Workflow autónomo PHP/Symfony
-- [ ] Integración arquitectura hexagonal
-- [ ] Testing automático
-
-#### 📅 Fase Transversal: Gestión Interactiva de Agentes
-**Estado**: 📋 Planificado (integrado en futuras épicas)
-
-- [ ] Asistente para añadir y configurar agentes de Claude Code
-- [ ] Elección guiada del agente según el proyecto
-- [ ] Configuración correcta de parámetros e integración
-- [ ] Flujo 100% interactivo y asistido
-
-### 👑 TLOTP v2.x - El Retorno del Rey
-
-#### 📅 Fase 6: Aragorn - Multi-Agent Orchestration
-**Estado**: 💭 Concepto
-
-- [ ] Sistema de agentes (.md files)
-- [ ] Dashboard interactivo
-- [ ] Comunicación inter-agente
-- [ ] Orquestación unificada
+**💍 Gollum — Companion de Testing** ([#2](https://github.com/joseguillermomoreu-gif/tlotp/issues/2))
+- Companion especializado en testing (PHPUnit, Playwright, Jest, pytest...)
+- Forma final TBD: skill, agente o subagente instalable vía Aragorn/Celebrimbor
 
 ---
 
@@ -465,7 +413,7 @@ Si experimentas o presencías comportamiento inaceptable:
 
 **Este documento vive y evoluciona con cada contribución.**
 
-*Última actualización: 2026-02-19*
+*Última actualización: 2026-03-11*
 
 ---
 
