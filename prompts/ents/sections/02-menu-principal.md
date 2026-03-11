@@ -8,6 +8,40 @@ Mostrar menú interactivo con las tres operaciones principales de los Ents.
 
 ---
 
+## 📋 Permisos de Ents
+
+**CRÍTICO**: Antes del menú, solicitar aprobación de permisos con `AskUserQuestion`:
+
+```
+🌳 Permisos necesarios para los Ents
+
+  🖥️  Bash     — Ejecutar comandos del sistema
+                  (ls, cat, git para leer/detectar workflows)
+
+  📖  Read     — Leer workflows y configuración del proyecto
+                  (.github/workflows/, package.json, composer.json...)
+
+  📝  Write    — Crear nuevos workflows de GitHub Actions
+                  (.github/workflows/)  ← Solo opciones 2 y 3
+
+  ✏️  Edit     — Modificar workflows existentes
+                  (.github/workflows/)  ← Solo opciones 2 y 3
+
+  🌐  WebFetch — Consultar documentación oficial en tiempo real
+                  • docs.github.com (GitHub Actions docs)
+```
+
+**Opciones** (AskUserQuestion):
+1. **✅ Aprobar todos** (Recomendado) — Los Ents trabajarán sin interrupciones
+2. **🔍 Revisar uno a uno** — Se pedirá permiso individual para cada acción
+3. **🚫 Cancelar** — Salir de Ents
+
+- **Aprobar todos**: Registrar permisos pre-aprobados. Continuar al menú.
+- **Revisar uno a uno**: Continuar al menú. Se pedirá confirmación en cada acción.
+- **Cancelar**: Mostrar despedida y terminar.
+
+---
+
 ## Menú de Selección
 
 **IMPORTANTE**: **DEBES usar la herramienta `AskUserQuestion`** (NO texto plano).
