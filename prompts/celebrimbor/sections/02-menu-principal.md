@@ -26,6 +26,39 @@ Mostrar menú interactivo con opciones disponibles según el entorno detectado.
 
 ---
 
+## 📋 Permisos de Celebrimbor
+
+**CRÍTICO**: Antes del menú, solicitar aprobación de permisos con `AskUserQuestion`:
+
+```
+⚒️ Permisos necesarios para Celebrimbor
+
+  🖥️  Bash     — Ejecutar comandos del sistema
+                  (npx skills-cli, nvm, node -v, ls, cat...)
+
+  📖  Read     — Leer skills instaladas y configuración
+                  (~/.claude/skills/, .claude/skills/, settings.json)
+
+  📝  Write    — Instalar nuevas skills y rules
+                  (~/.claude/skills/, .claude/rules/)
+
+  ✏️  Edit     — Actualizar y eliminar skills existentes
+
+  🌐  WebFetch — Consultar el marketplace de skills
+                  • skills.sh (Skills marketplace oficial)
+```
+
+**Opciones** (AskUserQuestion):
+1. **✅ Aprobar todos** (Recomendado) — Celebrimbor funcionará sin interrupciones
+2. **🔍 Revisar uno a uno** — Se pedirá permiso individual para cada acción
+3. **🚫 Cancelar** — Salir de Celebrimbor
+
+- **Aprobar todos**: Registrar permisos pre-aprobados. Continuar al menú.
+- **Revisar uno a uno**: Continuar al menú. Se pedirá confirmación en cada acción.
+- **Cancelar**: Mostrar despedida y terminar.
+
+---
+
 ## Opciones del Menú
 
 **IMPORTANTE**: NO repetir banner. Ir directo a opciones.
