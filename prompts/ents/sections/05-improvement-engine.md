@@ -17,14 +17,14 @@ Usar **WebFetch** para consultar las URLs oficiales según lo que se necesite:
 
 | Área de mejora | URL a consultar |
 |---|---|
-| Buenas prácticas generales | `https://docs.github.com/en/actions/security-for-github-actions/security-hardening-for-github-actions` |
+| Buenas prácticas generales | `https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions` |
 | Caching | `https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows` |
 | Matrix strategy | `https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow` |
 | Reusable workflows | `https://docs.github.com/en/actions/sharing-automations/reusing-workflows` |
 | Secrets | `https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions` |
 | Environments | `https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-deployments/managing-environments-for-deployment` |
 | Concurrency | `https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/control-the-concurrency-of-workflows-and-jobs` |
-| Permissions | `https://docs.github.com/en/actions/security-for-github-actions/security-hardening-for-github-actions#using-least-privilege-for-workflow-permissions` |
+| Permissions | `https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions#using-least-privilege-for-workflow-permissions` |
 | Branch protection | `https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches` |
 
 **NO consultar todas las URLs**: Solo las relevantes según las carencias detectadas por el Analyzer.
@@ -35,6 +35,11 @@ Si WebFetch falla o no está disponible:
 1. Informar al usuario que no se pudo consultar la documentación oficial
 2. Ofrecer sugerencias basadas en el conocimiento general pero marcándolas claramente
 3. Proporcionar los enlaces para que el usuario consulte manualmente
+
+Si WebFetch devuelve 404 en una URL:
+1. Intentar variantes del path (añadir o quitar segmentos intermedios como `/security-guides/`, `/writing-workflows/`, etc.)
+2. Si sigue fallando, intentar la URL raíz de la sección (ej: `https://docs.github.com/en/actions`)
+3. Si ninguna variante funciona, marcar la sugerencia con ⚠️ y proporcionar la URL para consulta manual
 
 ---
 

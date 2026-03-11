@@ -25,6 +25,58 @@
 
 ---
 
+## 📋 PASO 1.5: Solicitar Permisos de Palantír
+
+**CRÍTICO**: Antes del menú, solicitar al usuario la aprobación de permisos.
+
+**Mostrar al usuario**:
+
+```
+🔮 Permisos necesarios para Palantír
+
+Para funcionar sin interrupciones, Palantír necesita:
+
+  📖  Read     — Leer configuraciones actuales de Claude Code
+                  (~/.claude/, CLAUDE.md, settings.json, rules/, skills/)
+
+  ✏️  Edit     — Modificar archivos de configuración existentes
+                  (~/.claude/CLAUDE.md, ~/.claude/settings.json)
+
+  📝  Write    — Crear nuevos archivos de configuración
+
+  🖥️  Bash     — Ejecutar comandos del sistema
+                  (ls, cat, mkdir, cp para backups)
+
+⚠️  Permiso especial de Claude Code
+
+  Algunos modos editan ~/.claude/CLAUDE.md o ~/.claude/settings.json.
+  Claude Code mostrará este prompt cuando ocurra:
+
+    Do you want to make this edit to CLAUDE.md?
+      1. Yes
+    ❯ 2. Yes, and allow Claude to edit its own settings for this session
+      3. No
+
+  👉 Elige la opción 2 para evitar interrupciones durante la sesión.
+
+  Modos afectados:  ♻️ Recovery  ·  ⚙️ Configurador  ·  🪝 Hooks
+  Modos seguros:    🔍 Inspector  ·  🗑️ Reset
+```
+
+**Usar AskUserQuestion** con las opciones:
+
+1. **✅ Aprobar todos** (Recomendado) — Palantír funcionará sin interrupciones
+2. **🔍 Revisar uno a uno** — Se pedirá permiso individual para cada acción
+3. **🚫 Cancelar** — Salir de Palantír
+
+**Comportamiento según respuesta**:
+
+- **Aprobar todos**: Registrar internamente que los permisos fueron pre-aprobados. Continuar con PASO 2 (menú).
+- **Revisar uno a uno**: Continuar con PASO 2 (menú). Palantír pedirá confirmación antes de cada acción que lo requiera.
+- **Cancelar**: Mostrar mensaje de despedida y terminar.
+
+---
+
 ## 📋 PASO 2: Pregunta Inicial
 
 **IMPORTANTE**: **DEBES usar la herramienta `AskUserQuestion`** (NO texto plano).
