@@ -128,8 +128,10 @@ TLOTP necesita los siguientes permisos:
   🖥️  Bash     — Ejecutar comandos del sistema
                   (git, npm, npx, node -v, ls, mkdir, cat...)
 
-  🌐  WebFetch — Consultar documentación oficial de Claude Code
-                  (code.claude.com/docs)
+  🌐  WebFetch — Consultar documentación y marketplaces
+                  • code.claude.com/docs  (Palantír, Bardo)
+                  • api.anthropic.com     (Bardo — MCP registry)
+                  • skills.sh            (Celebrimbor — Skills marketplace)
 
   📝  Write    — Crear archivos de configuración
                   (.claude/, CLAUDE.md, rules, skills)
@@ -162,7 +164,10 @@ añade en tu settings.json:
 
 {
   "permissions": {
-    "allow": ["Bash", "WebFetch", "Write", "Edit", "Read"]
+    "allow": ["Bash", "Write", "Edit", "Read",
+              "WebFetch(code.claude.com)",
+              "WebFetch(api.anthropic.com)",
+              "WebFetch(skills.sh)"]
   }
 }
 
