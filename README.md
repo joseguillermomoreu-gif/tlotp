@@ -6,7 +6,7 @@
 
 Un único super-prompt para auto-configurar Claude Code de forma asistida, inteligente y evolutiva.
 
-> ⚠️ **TLOTP está en desarrollo activo.** Las épicas actuales (Palantír + Celebrimbor) son production-ready. Las futuras versiones ampliarán el sistema con setup asistido completo para distintos tipos de proyecto y gestión interactiva de agentes.
+> ✅ **4 épicas production-ready** (Palantír · Bardo · Celebrimbor · Ents). En desarrollo: Aragorn (agentes) y Gandalf (Spec-Driven Development).
 
 ---
 
@@ -25,9 +25,11 @@ Configurar Claude Code correctamente requiere:
 
 **Un único prompt** que hace todo de forma asistida e interactiva:
 - 🔮 **Inspecciona y gestiona** todas tus configuraciones de Claude Code
-- ⚒️ **Busca, instala y actualiza** skills desde el repositorio oficial [skills.sh](https://skills.sh) (59,000+ skills)
-- 🤖 **Configura agentes** de forma asistida e interactiva *(próximamente)*
-- 🎯 **Setup completo** para distintos tipos de proyecto de una sola vez *(próximamente)*
+- 🏹 **Descubre e instala** MCPs y plugins desde el marketplace oficial en tiempo real
+- ⚒️ **Busca, instala y actualiza** skills desde [skills.sh](https://skills.sh) (59,000+)
+- 🌳 **Analiza, mejora y crea** pipelines de GitHub Actions
+- 👑 **Gestiona agentes** desde marketplaces (VoltAgent + aitmpl.com) *(en desarrollo)*
+- ⚡ **Diseña proyectos** con Spec-Driven Development antes de escribir código *(en desarrollo)*
 
 Sin instalación. Sin scripts. Solo copy-paste del prompt.
 
@@ -42,9 +44,12 @@ Ejecuta el menú principal de TLOTP para acceder a todas las épicas:
 ```
 
 Desde ahí podrás elegir:
-- 🔮 **Palantír** — Gestor de configuraciones ✅ v1.7 Production-ready
-- ⚒️ **Celebrimbor** — Forjador de skills ✅ v1.0 Production-ready
-- 💍 **Gollum**, 🏛️ **Elrond**, ⚡ **Gandalf** ⏳ Planificadas
+- 🔮 **Palantír** — Gestor de configuraciones ✅ Production-ready
+- 🏹 **Bardo** — Proveedor de MCPs y plugins ✅ Production-ready
+- ⚒️ **Celebrimbor** — Forjador de skills ✅ Production-ready
+- 🌳 **Ents** — Guardianes del CI/CD ✅ Production-ready
+- 👑 **Aragorn** — Gestor de agentes 🚧 En desarrollo
+- ⚡ **Gandalf** — Iniciar una nueva aventura (SDD) 📐 Diseñado
 
 O puedes usar cada épica directamente:
 
@@ -52,29 +57,30 @@ O puedes usar cada épica directamente:
 @prompts/palantir/palantir-main.md
 ```
 ```
+@prompts/bardo/bardo-main.md
+```
+```
 @prompts/celebrimbor/celebrimbor-main.md
+```
+```
+@prompts/ents/ents-main.md
 ```
 
 ---
 
 ## 📊 Estado Actual
 
-**Versión**: TLOTP v3.1.0 — *"The Two Towers"* 🏰
+**Versión**: TLOTP v3.5.0 — *"The Smuggler of Lake-town"*
 
 | Épica | Estado | Descripción |
 |-------|--------|-------------|
 | 🔮 **Palantír v1.7** | ✅ Completado | CRUD completo de configuraciones Claude Code |
-| ⚒️ **Celebrimbor v1.0** | ✅ Completado | Gestión de skills desde skills.sh |
-| 💍 **Gollum** | ⏳ Próximo | Playwright E2E setup asistido |
-| 🏛️ **Elrond** | ⏳ Planificado | Setup asistido por tipo de proyecto |
-| ⚡ **Gandalf** | ⏳ Planificado | Workflow autónomo PHP/Symfony |
-| 👑 **Aragorn** | 💭 Futuro | Multi-Agent Orchestration |
-
-**Estadísticas v3.1.0**:
-- 2 épicas production-ready
-- 22 módulos totales
-- ~8,330 líneas de prompts
-- 2,540 XP acumulados (gamificación)
+| 🏹 **Bardo v1.0** | ✅ Completado | MCPs y plugins: analizar, recomendar, instalar, verificar |
+| ⚒️ **Celebrimbor v1.0** | ✅ Completado | Gestión de skills desde skills.sh (59,000+) |
+| 🌳 **Ents v1.0** | ✅ Completado | Analizar, mejorar y crear pipelines GitHub Actions |
+| 👑 **Aragorn** | 🚧 En desarrollo | Gestor de agentes/subagentes (VoltAgent + aitmpl.com) |
+| ⚡ **Gandalf** | 📐 Diseñado | Spec-Driven Development — El Consejo de Rivendel |
+| 💍 **Gollum** | 💭 Futuro | Companion de testing (skill/agente — forma TBD) |
 
 ---
 
@@ -107,21 +113,37 @@ Gestión completa de skills desde [skills.sh](https://skills.sh) (59,000+ skills
 
 ---
 
-## 🚀 Visión a Futuro
+## 🌳 Ents — Guardianes del CI/CD
 
-TLOTP está diseñado para crecer. Las próximas épicas traerán:
+Asistente interactivo para analizar, visualizar, mejorar y crear pipelines
+de GitHub Actions. Sin docs estáticas: consulta la documentación oficial
+en tiempo real vía WebFetch.
 
-### Setup Asistido por Tipo de Proyecto
-Una sola ejecución de TLOTP configurará **todo** lo que necesitas según tu stack:
-- Proyecto Symfony → CLAUDE.md + skills PHP/Symfony/Doctrine + workflow Git
-- Proyecto Playwright → skills E2E + configuración de tests + POM setup
-- Proyecto Python/IA → skills LLM + configuración de evaluación + APIs
+- **Analyzer** — Escaneo completo del CI/CD del proyecto
+- **Diagram Renderer** — Visualización ASCII de pipelines
+- **Improvement Engine** — Sugerencias con docs oficiales live
+- **Modifier** — Modificación guiada con preview antes de aplicar
+- **Creator** — Crear GitHub Actions desde cero paso a paso
 
-### Gestión Interactiva de Agentes
-TLOTP asistirá al usuario para **añadir y configurar agentes** de Claude Code de forma correcta e interactiva: elección del agente, configuración de parámetros, integración con el proyecto.
+**Acceso directo**: `@prompts/ents/ents-main.md` | **Issue épica**: [#71](https://github.com/joseguillermomoreu-gif/tlotp/issues/71)
 
-### Autonomía Progresiva
-Desde configuración asistida hasta workflow completamente autónomo (Gandalf) donde Claude ejecuta el ciclo completo: tarea → código → QA → deploy.
+---
+
+## 🚀 Próximas Épicas
+
+### 👑 Aragorn — Gestor de Agentes y Subagentes *(en desarrollo)*
+Análogo a Celebrimbor pero para agentes: descubre e instala agentes desde
+**VoltAgent** (127+ agentes) y **aitmpl.com** (600+ componentes). Gestión completa
+(buscar, instalar con scope global/proyecto, verificar, actualizar, eliminar) y
+**Team Builder** para configurar Agent Teams experimentales.
+
+### ⚡ Gandalf — Iniciar una Nueva Aventura *(diseñado)*
+La última opción del menú TLOTP. Asistente de **Spec-Driven Development** que guía
+la creación de un SDD profesional antes de escribir código — el antídoto al vibe coding.
+Genera 3 ficheros compatibles con Claude Code Plan Mode, Amazon Kiro y Cursor:
+`requirements.md` (EARS format) + `design.md` (arquitectura + decisiones) + `tasks.md`.
+Lore: el **Consejo de Rivendel**, donde cada componente del proyecto suma un miembro
+a la Fellowship con su frase icónica (*"¡Cuenta con mi hacha!"*, *"¡Y con mi arco!"*...).
 
 ---
 
@@ -168,6 +190,8 @@ TLOTP es la **evolución** de claude-code-auto-skills.
 Por definir.
 
 ---
+
+*Última actualización: 2026-03-11*
 
 **Desarrollado con 💙 usando Claude Code**
 

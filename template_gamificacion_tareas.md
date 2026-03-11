@@ -219,6 +219,7 @@ Cada tarea tiene una ubicación relacionada que añade contexto:
 - **Gondor**: Tareas de governance y gestión
 - **Monte del Destino**: Tareas destructivas críticas
 - **Mordor**: Tareas complejas y oscuras (debugging difícil)
+- **Lake-town**: Tareas de conectividad, mercados y plugins externos (Bardo)
 
 ---
 
@@ -230,6 +231,7 @@ Cada tarea tiene una ubicación relacionada que añade contexto:
 - 🏛️ Elrond/Config features
 - ⚡ Gandalf/Autonomous features
 - 👑 Aragorn/Multi-agent features
+- 🏹 Bardo/MCP & Plugins features
 - 🐛 Bug fixes
 - 📚 Documentación
 - 🧪 Testing

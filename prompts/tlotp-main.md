@@ -44,19 +44,38 @@
 
 **Un prompt para dominarlos a todos.**
 
-Configura tu entorno Claude Code fácilmente y de forma adecuada para hacerlo lo más autónomo posible.
+TLOTP es un **super-prompt interactivo** que convierte a Claude Code en un asistente
+de configuración y gestión completo para cualquier proyecto. No requiere instalación:
+solo carga el prompt y el menú aparece.
+
+**¿Para qué sirve?**
+Gestionar todo el ecosistema de Claude Code de forma asistida: configuraciones,
+MCPs y plugins, skills, pipelines de CI/CD, agentes/subagentes y especificación
+técnica de proyectos. Cada herramienta (épica) es autónoma e inteligente: consulta
+documentación oficial en tiempo real, detecta tu stack, hace preguntas guiadas y
+aplica cambios con confirmación explícita.
+
+**¿Cómo lo hace?**
+A través de un menú de épicas especializadas. Cada épica es un conjunto de prompts
+que Claude ejecuta de forma interactiva, sin hardcodeo de datos: toda la información
+se obtiene en tiempo real (WebFetch a docs oficiales, GitHub API, marketplaces).
+Combina siempre con tu configuración existente — nunca borra sin backup.
 
 ---
 ## 🗺️ Épicas Disponibles
 **🔮 Palantír** - Gestor de configuraciones (Inspector, Reset, Recovery, Configurador + Analyzer)
+**🏹 Bardo** - Proveedor de MCPs y Plugins (Analizar, Descubrir, Recomendar, Instalar, Verificar)
 **⚒️ Celebrimbor** - Gestor de skills (Buscar, Instalar, Listar, Actualizar, Eliminar)
+**🌳 Ents** - Guardianes del CI/CD (Analizar, Mejorar, Crear GitHub Actions)
+
+---
+## 🚧 Épicas En Desarrollo
+**👑 Aragorn** - Gestor de agentes y subagentes (VoltAgent + aitmpl.com — marketplace, instalar, gestionar)
+**⚡ Gandalf** - Iniciar una nueva aventura (Spec-Driven Development — El Consejo de Rivendel)
 
 ---
 ## 🔒 Épicas Futuras
-**💍 Gollum** - Setup Playwright E2E
-**🏛️ Elrond** - Configuración global del usuario
-**⚡ Gandalf** - Workflow autónomo PHP/Symfony
-**👑 Aragorn** - Orquestación multi-agente (TBD)
+**💍 Gollum** - Companion de testing (skill/agente/subagente — forma TBD)
 
 ═══════════════════════════════════════════════════════════
 
@@ -73,11 +92,13 @@ Configura tu entorno Claude Code fácilmente y de forma adecuada para hacerlo lo
 │ ¿Qué épica deseas invocar?                                  │
 │                                                             │
 │ 1. 🔮 Palantír - Gestor de Configuraciones                  │
-│ 2. ⚒️ Celebrimbor - Forjador de Skills                      │
+│ 2. 🏹 Bardo - Proveedor de MCPs y Plugins                   │
+│ 3. ⚒️ Celebrimbor - Forjador de Skills                      │
+│ 4. 🌳 Ents - Guardianes del CI/CD                            │
 │                                                             │
-│ 3. 📚 Documentación y Ayuda                                 │
-│ 4. ℹ️ Sobre TLOTP                                           │
-│ 5. 🚪 Salir                                                 │
+│ 5. 📚 Documentación y Ayuda                                 │
+│ 6. ℹ️ Sobre TLOTP                                           │
+│ 7. 🚪 Salir                                                 │
 │                                                             │
 │ (Más épicas en desarrollo - ver descripción arriba)        │
 └─────────────────────────────────────────────────────────────┘
@@ -154,21 +175,25 @@ Después del banner y la lista de épicas, usar **AskUserQuestion** para mostrar
 
 **IMPORTANTE - Validación de Opciones**:
 
-**Opciones DISPONIBLES** (1-5):
+**Opciones DISPONIBLES** (1-7):
 - 1. 🔮 Palantír ✅
-- 2. ⚒️ Celebrimbor ✅
-- 3. 📚 Documentación ✅
-- 4. ℹ️ Sobre TLOTP ✅
-- 5. 🚪 Salir ✅
+- 2. 🏹 Bardo ✅
+- 3. ⚒️ Celebrimbor ✅
+- 4. 🌳 Ents ✅
+- 5. 📚 Documentación ✅
+- 6. ℹ️ Sobre TLOTP ✅
+- 7. 🚪 Salir ✅
 
-**NOTA**: Las épicas futuras (Gollum, Elrond, Gandalf, Aragorn) NO aparecen como opciones seleccionables en el menú. Ya se mostraron arriba en la sección "🗺️ Épicas de la Fellowship" como información.
+**NOTA**: Las épicas en desarrollo (Aragorn, Gandalf) y futuras (Gollum) NO aparecen como opciones seleccionables en el menú. Ya se mostraron arriba como información.
 
 **Al seleccionar épica disponible**:
 - **Opción 1**: Cargar `@prompts/palantir/palantir-main.md`
-- **Opción 2**: Cargar `@prompts/celebrimbor/celebrimbor-main.md`
-- **Opción 3**: Mostrar documentación del proyecto
-- **Opción 4**: Mostrar info sobre TLOTP (versión, fundadores, XP, etc.)
-- **Opción 5**: Mensaje de despedida y salir
+- **Opción 2**: Cargar `@prompts/bardo/bardo-main.md`
+- **Opción 3**: Cargar `@prompts/celebrimbor/celebrimbor-main.md`
+- **Opción 4**: Cargar `@prompts/ents/ents-main.md`
+- **Opción 5**: Mostrar documentación del proyecto
+- **Opción 6**: Mostrar info sobre TLOTP (versión, fundadores, XP, etc.)
+- **Opción 7**: Mensaje de despedida y salir
 
 ### PASO 3: Loop Continuo
 
@@ -178,7 +203,7 @@ Después del banner y la lista de épicas, usar **AskUserQuestion** para mostrar
 
 ## 📚 Contenido de "Documentación y Ayuda"
 
-**Si el usuario selecciona Opción 3**, mostrar:
+**Si el usuario selecciona Opción 4**, mostrar:
 
 ```
 ═══════════════════════════════════════════════════════════
@@ -209,14 +234,27 @@ para hacerlo lo más autónomo posible.
    • Backup obligatorio antes de cambios destructivos
    Estado: Completado
 
+✅ 🏹 Bardo - Proveedor de MCPs y Plugins
+   • Analizar MCPs y plugins instalados en todos los scopes
+   • Detectar stack tecnológico del proyecto
+   • Consultar marketplace en tiempo real (sin hardcodeo)
+   • Recomendaciones con por qué, para qué y ejemplos de uso
+   • Instalación guiada ítem a ítem con confirmación
+   • Verificación post-instalación con semáforos
+   Estado: Completado
+
 ✅ ⚒️ Celebrimbor - Gestor de Skills
    Buscar, instalar, listar, actualizar y eliminar skills
    Estado: MVP Completado
 
-🔒 💍 Gollum - Setup Playwright E2E (Futuro)
-🔒 🏛️ Elrond - Configuración Global (Futuro)
-🔒 ⚡ Gandalf - Workflow Autónomo (Futuro)
-🔒 👑 Aragorn - Multi-Agent (Futuro)
+✅ 🌳 Ents - Guardianes del CI/CD
+   Analizar CI/CD actual, sugerir mejoras, crear GitHub Actions
+   Consulta documentación oficial en tiempo real
+   Estado: MVP Completado
+
+🚧 👑 Aragorn - Gestor de Agentes (En desarrollo)
+🚧 ⚡ Gandalf - Iniciar una Nueva Aventura / SDD (Diseñado)
+🔒 💍 Gollum - Companion de Testing (Futuro — forma TBD)
 
 ---
 
@@ -226,8 +264,10 @@ Menú Principal:
 @prompts/tlotp-main.md
 
 Acceso Directo:
-• Palantír: @prompts/palantir/palantir-main.md
+• Palantír:    @prompts/palantir/palantir-main.md
+• Bardo:       @prompts/bardo/bardo-main.md
 • Celebrimbor: @prompts/celebrimbor/celebrimbor-main.md
+• Ents:        @prompts/ents/ents-main.md
 
 ---
 
@@ -251,14 +291,15 @@ Issues: https://github.com/joseguillermomoreu-gif/tlotp/issues
 1. Volver al menú principal
 2. Ejecutar Palantír
 3. Ejecutar Celebrimbor
-4. Salir
+4. Ejecutar Ents
+5. Salir
 ```
 
 ---
 
 ## ℹ️ Contenido de "Sobre TLOTP"
 
-**Si el usuario selecciona Opción 4**, mostrar:
+**Si el usuario selecciona Opción 5**, mostrar:
 
 ```
 ═══════════════════════════════════════════════════════════
@@ -300,10 +341,16 @@ Docs: Ver opción "Documentación y Ayuda"
 
 **Completadas**:
 - ✅ Palantír (CRUD completo: Inspector, Reset, Recovery, Configurador)
+- ✅ Bardo (MCPs y Plugins: Analizar, Descubrir, Recomendar, Instalar, Verificar)
 - ✅ Celebrimbor (CRUD completo de skills.sh: Search, Install, List, Update, Remove)
+- ✅ Ents (Analizar CI/CD, Mejorar, Crear GitHub Actions)
 
 **En Desarrollo**:
-- **💍 Gollum** - Setup Playwright E2E
+- 🚧 **👑 Aragorn** - Gestor de agentes/subagentes (VoltAgent + aitmpl.com)
+- 📐 **⚡ Gandalf** - Iniciar una Nueva Aventura (Spec-Driven Development)
+
+**Futuras**:
+- 💭 **💍 Gollum** - Companion de testing (forma TBD)
 
 ---
 
