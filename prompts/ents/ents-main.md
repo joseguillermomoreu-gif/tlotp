@@ -108,7 +108,7 @@ Según la opción seleccionada:
 - **Reusable workflows**: `https://docs.github.com/en/actions/sharing-automations/reusing-workflows`
 - **Caching**: `https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows`
 - **Matrix strategy**: `https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow`
-- **Security hardening**: `https://docs.github.com/en/actions/security-for-github-actions/security-hardening-for-github-actions`
+- **Security hardening**: `https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions`
 - **Branch protection**: `https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches`
 
 ### 📝 Protocolo de Consulta
