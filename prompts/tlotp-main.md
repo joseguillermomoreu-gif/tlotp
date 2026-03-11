@@ -67,10 +67,10 @@ Combina siempre con tu configuración existente — nunca borra sin backup.
 **🏹 Bardo** - Proveedor de MCPs y Plugins (Analizar, Descubrir, Recomendar, Instalar, Verificar)
 **⚒️ Celebrimbor** - Gestor de skills (Buscar, Instalar, Listar, Actualizar, Eliminar)
 **🌳 Ents** - Guardianes del CI/CD (Analizar, Mejorar, Crear GitHub Actions)
+**👑 Aragorn** - Gestor de agentes y subagentes (VoltAgent + aitmpl.com — marketplace, instalar, gestionar, teams)
 
 ---
 ## 🚧 Épicas En Desarrollo
-**👑 Aragorn** - Gestor de agentes y subagentes (VoltAgent + aitmpl.com — marketplace, instalar, gestionar)
 **⚡ Gandalf** - Iniciar una nueva aventura (Spec-Driven Development — El Consejo de Rivendel)
 
 ---
@@ -95,10 +95,11 @@ Combina siempre con tu configuración existente — nunca borra sin backup.
 │ 2. 🏹 Bardo - Proveedor de MCPs y Plugins                   │
 │ 3. ⚒️ Celebrimbor - Forjador de Skills                      │
 │ 4. 🌳 Ents - Guardianes del CI/CD                            │
+│ 5. 👑 Aragorn - Gestor de Agentes                           │
 │                                                             │
-│ 5. 📚 Documentación y Ayuda                                 │
-│ 6. ℹ️ Sobre TLOTP                                           │
-│ 7. 🚪 Salir                                                 │
+│ 6. 📚 Documentación y Ayuda                                 │
+│ 7. ℹ️ Sobre TLOTP                                           │
+│ 8. 🚪 Salir                                                 │
 │                                                             │
 │ (Más épicas en desarrollo - ver descripción arriba)        │
 └─────────────────────────────────────────────────────────────┘
@@ -119,25 +120,27 @@ Después del banner y la lista de épicas, usar **AskUserQuestion** para mostrar
 
 **IMPORTANTE - Validación de Opciones**:
 
-**Opciones DISPONIBLES** (1-7):
+**Opciones DISPONIBLES** (1-8):
 - 1. 🔮 Palantír ✅
 - 2. 🏹 Bardo ✅
 - 3. ⚒️ Celebrimbor ✅
 - 4. 🌳 Ents ✅
-- 5. 📚 Documentación ✅
-- 6. ℹ️ Sobre TLOTP ✅
-- 7. 🚪 Salir ✅
+- 5. 👑 Aragorn ✅
+- 6. 📚 Documentación ✅
+- 7. ℹ️ Sobre TLOTP ✅
+- 8. 🚪 Salir ✅
 
-**NOTA**: Las épicas en desarrollo (Aragorn, Gandalf) y futuras (Gollum) NO aparecen como opciones seleccionables en el menú. Ya se mostraron arriba como información.
+**NOTA**: Las épicas en desarrollo (Gandalf) y futuras (Gollum) NO aparecen como opciones seleccionables en el menú. Ya se mostraron arriba como información.
 
 **Al seleccionar épica disponible**:
 - **Opción 1**: Cargar `@prompts/palantir/palantir-main.md`
 - **Opción 2**: Cargar `@prompts/bardo/bardo-main.md`
 - **Opción 3**: Cargar `@prompts/celebrimbor/celebrimbor-main.md`
 - **Opción 4**: Cargar `@prompts/ents/ents-main.md`
-- **Opción 5**: Mostrar documentación del proyecto
-- **Opción 6**: Mostrar info sobre TLOTP (versión, fundadores, XP, etc.)
-- **Opción 7**: Mensaje de despedida y salir
+- **Opción 5**: Cargar `@prompts/aragorn/aragorn-main.md`
+- **Opción 6**: Mostrar documentación del proyecto
+- **Opción 7**: Mostrar info sobre TLOTP (versión, fundadores, XP, etc.)
+- **Opción 8**: Mensaje de despedida y salir
 
 ### PASO 3: Loop Continuo
 
@@ -196,7 +199,11 @@ para hacerlo lo más autónomo posible.
    Consulta documentación oficial en tiempo real
    Estado: MVP Completado
 
-🚧 👑 Aragorn - Gestor de Agentes (En desarrollo)
+✅ 👑 Aragorn - Gestor de Agentes
+   Buscar, instalar, eliminar y actualizar agentes desde VoltAgent + aitmpl.com
+   Configurar Agent Teams para trabajo paralelo (experimental)
+   Estado: Completado
+
 🚧 ⚡ Gandalf - Iniciar una Nueva Aventura / SDD (Diseñado)
 🔒 💍 Gollum - Companion de Testing (Futuro — forma TBD)
 
@@ -288,9 +295,9 @@ Docs: Ver opción "Documentación y Ayuda"
 - ✅ Bardo (MCPs y Plugins: Analizar, Descubrir, Recomendar, Instalar, Verificar)
 - ✅ Celebrimbor (CRUD completo de skills.sh: Search, Install, List, Update, Remove)
 - ✅ Ents (Analizar CI/CD, Mejorar, Crear GitHub Actions)
+- ✅ Aragorn (Agentes: Listar, Buscar, Instalar, Eliminar, Actualizar, Team Builder)
 
 **En Desarrollo**:
-- 🚧 **👑 Aragorn** - Gestor de agentes/subagentes (VoltAgent + aitmpl.com)
 - 📐 **⚡ Gandalf** - Iniciar una Nueva Aventura (Spec-Driven Development)
 
 **Futuras**:
