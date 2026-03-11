@@ -815,22 +815,29 @@ Después de mostrar la notificación de éxito, preguntar al usuario:
 Usar `AskUserQuestion`:
 ```
 header: "Continuar configurando"
-question: "¿Deseas añadir otra característica?"
+question: "¿Qué deseas hacer ahora?"
 multiSelect: false
 options:
-  1. label: "Sí, añadir otra"
+  1. label: "➕ Añadir otra característica"
      description: "Configurar una característica adicional"
 
-  2. label: "No, finalizar"
+  2. label: "🔙 Volver al menú de Palantír"
+     description: "Volver al menú principal para cambiar de modo"
+
+  3. label: "🚪 Finalizar"
      description: "Terminar y salir del Configurador"
 ```
 
-**Si elige "Sí, añadir otra"**:
+**Si elige "➕ Añadir otra característica"**:
 - **Volver al PASO 1** (Solicitar Característica)
 - Reiniciar el flujo completo del configurador
 - Mantener contexto de lo ya configurado
 
-**Si elige "No, finalizar"**:
+**Si elige "🔙 Volver al menú de Palantír"**:
+- Ejecutar el flujo de `00-menu-principal.md` desde el PASO 2 (menú)
+- Saltar el PASO 1.5 de permisos (ya pre-aprobados en esta sesión)
+
+**Si elige "🚪 Finalizar"**:
 - Mostrar mensaje final y terminar:
 
 ```markdown
