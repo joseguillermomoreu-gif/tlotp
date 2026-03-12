@@ -118,9 +118,9 @@ Nunca actúa sin confirmación.
 
 ⚔️ **🔮 Palantír** — La Piedra Vidente. Domina las configuraciones de tu reino. *(CLAUDE.md · settings.json · rules/ · hooks · MEMORY.md)*
 ⚔️ **🏹 Bardo** — El Contrabandista. Invoca MCPs y plugins desde la Ciudad de Valle. *(~/.claude.json · .mcp.json · plugins/ · settings.json)*
-⚔️ **⚒️ Celebrimbor** — El Gran Herrero de los Ñoldor. Forja skills a medida. *(~/.claude/skills/ · .claude/skills/)*
-⚔️ **🌳 Ents** — Los Pastores del Fangorn. Custodian y optimizan tu CI/CD. *(.github/workflows/ · GitHub Actions)*
-⚔️ **👑 Aragorn** — El Rey Elessar. Convoca y gestiona tu ejército de agentes. *(agents/ · commands/ · teams/)*
+⚔️ **⚒️ Celebrimbor** — El Maestro Herrero Élfico, forjador de los Anillos de Poder. Forja skills a medida. *(~/.claude/skills/ · .claude/skills/)*
+⚔️ **🌳 Ents** — Los Pastores del Fangorn. Custodian las ramas y optimizan tu CI/CD. *(.github/workflows/ · GitHub Actions)*
+⚔️ **👑 Aragorn** — El Rey de Gondor. Convoca y gestiona tu ejército de agentes. *(agents/ · commands/ · teams/)*
 
 🚧 En forja: **⚡ Gandalf** — El Mago Blanco. Spec-Driven Development.
 🔒 En las sombras: **💍 Gollum** — El Companion de Testing.
@@ -150,7 +150,7 @@ Nunca actúa sin confirmación.
       },
       {
         "label": "⚒️ Celebrimbor",
-        "description": "El Gran Herrero de los Ñoldor — forja skills a medida"
+        "description": "El Maestro Herrero Élfico, forjador de los Anillos de Poder — forja skills a medida"
       },
       {
         "label": "➕ Ver más épicas...",
@@ -176,7 +176,7 @@ Nunca actúa sin confirmación.
       },
       {
         "label": "👑 Aragorn",
-        "description": "El Rey Elessar — convoca y gestiona tu ejército de agentes"
+        "description": "El Rey de Gondor — convoca y gestiona tu ejército de agentes"
       },
       {
         "label": "🚪 Salir",
