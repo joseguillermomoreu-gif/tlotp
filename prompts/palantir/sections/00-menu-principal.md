@@ -73,17 +73,11 @@ Ejecuta **AskUserQuestion** con esta configuración EXACTA:
 
 ## 🔀 Routing según Elección
 
-### Opción 1: Inspeccionar configuraciones
+### Opción 1: Contemplar el reino
 
-**Acción**: Ejecutar el flujo normal de Palantír (modo inspector)
+**Acción**: Ejecutar el análisis completo de configuración
 
-Procede a ejecutar:
-1. Mostrar cabecera elegante (desde 05-formato-output.md)
-2. Preguntar por backup (desde 02-backup-system.md)
-3. Inspeccionar jerarquía oficial (desde 03-jerarquia-oficial.md)
-4. Explorar otros archivos (desde 04-exploracion-custom.md)
-5. Preguntar por resumen (desde 05-formato-output.md)
-6. Mostrar banner footer (desde 05-formato-output.md)
+Cargar: `@prompts/palantir/sections/03-contemplar-reino.md`
 
 ---
 
