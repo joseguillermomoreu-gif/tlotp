@@ -41,29 +41,25 @@ Ejecuta **AskUserQuestion** con esta configuración EXACTA:
 {
   "questions": [
     {
-      "header": "Modo de ejecución",
-      "question": "¿Qué deseas hacer con Palantír?",
+      "header": "Palantír",
+      "question": "¿Qué deseas hacer?",
       "multiSelect": false,
       "options": [
         {
-          "label": "Inspeccionar configuraciones",
-          "description": "Ver todas las configuraciones de Claude Code (modo inspector)"
+          "label": "🔍 Contemplar el reino",
+          "description": "Analizar todas las configuraciones actuales de Claude Code"
         },
         {
-          "label": "Reset de configuraciones",
-          "description": "Borrar configuraciones (con backup obligatorio)"
+          "label": "🗣️ Susurrar planes en la Piedra",
+          "description": "Añadir o eliminar registros de configuración"
         },
         {
-          "label": "Recovery desde backup",
-          "description": "Restaurar configuraciones desde un backup anterior"
+          "label": "📤 Compartir visiones entre Palantíri",
+          "description": "Importar o exportar configuraciones"
         },
         {
-          "label": "Configurar característica",
-          "description": "Añadir nueva configuración con asistente inteligente"
-        },
-        {
-          "label": "Gestionar Hooks",
-          "description": "Inspeccionar, crear o analizar hooks de automatización"
+          "label": "🫣 Cubrir el Palantír de ojos ajenos",
+          "description": "Salir de Palantír y volver al menú de TLOTP"
         }
       ]
     }
