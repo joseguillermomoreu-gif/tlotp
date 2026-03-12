@@ -114,11 +114,11 @@ Nunca actúa sin confirmación.
 
 🗺️ **Épicas Disponibles**
 
-⚔️ **🔮 Palantír** — La Piedra Vidente. Domina las configuraciones de tu reino. *(Inspector, Reset, Recovery, Configurador + Analyzer)*
-⚔️ **🏹 Bardo** — El Trovador. Invoca MCPs y plugins desde los Shire Markets. *(Analizar, Descubrir, Recomendar, Instalar, Verificar)*
-⚔️ **⚒️ Celebrimbor** — El Forjador de Eregion. Forja skills a medida. *(Buscar, Instalar, Listar, Actualizar, Eliminar)*
-⚔️ **🌳 Ents** — Los Pastores del Fangorn. Custodian y optimizan tu CI/CD. *(Analizar, Mejorar, Crear GitHub Actions)*
-⚔️ **👑 Aragorn** — El Rey Elessar. Convoca y gestiona tu ejército de agentes. *(VoltAgent + aitmpl.com — marketplace, instalar, gestionar, teams)*
+⚔️ **🔮 Palantír** — La Piedra Vidente. Domina las configuraciones de tu reino. *(CLAUDE.md · settings.json · rules/ · hooks · MEMORY.md)*
+⚔️ **🏹 Bardo** — El Trovador. Invoca MCPs y plugins desde los Shire Markets. *(~/.claude.json · .mcp.json · plugins/ · settings.json)*
+⚔️ **⚒️ Celebrimbor** — El Forjador de Eregion. Forja skills a medida. *(~/.claude/skills/ · .claude/skills/)*
+⚔️ **🌳 Ents** — Los Pastores del Fangorn. Custodian y optimizan tu CI/CD. *(.github/workflows/ · GitHub Actions)*
+⚔️ **👑 Aragorn** — El Rey Elessar. Convoca y gestiona tu ejército de agentes. *(agents/ · commands/ · teams/)*
 
 🚧 En forja: **⚡ Gandalf** — El Mago Blanco. Spec-Driven Development.
 🔒 En las sombras: **💍 Gollum** — El Companion de Testing.
