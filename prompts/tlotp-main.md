@@ -141,16 +141,16 @@ Nunca actúa sin confirmación.
     "multiSelect": false,
     "options": [
       {
-        "label": "🔮 Palantír",
-        "description": "La Piedra Vidente — domina las configuraciones de tu reino (CLAUDE.md · settings.json · rules/ · hooks · MEMORY.md)"
+        "label": "🔮 Contemplar la Piedra Vidente",
+        "description": "CLAUDE.md · settings.json · rules/ · hooks · MEMORY.md"
       },
       {
-        "label": "🏹 Bardo",
-        "description": "El Contrabandista — comercia con MCPs y plugins desde la Ciudad de Valle (~/.claude.json · .mcp.json · plugins/ · settings.json)"
+        "label": "🏹 Reunir monedas para Bardo",
+        "description": "~/.claude.json · .mcp.json · plugins/ · settings.json"
       },
       {
-        "label": "⚒️ Celebrimbor",
-        "description": "El Maestro Herrero Élfico, forjador de los Anillos de Poder — forja skills a medida (~/.claude/skills/ · .claude/skills/)"
+        "label": "⚒️ Acudir a la forja de Celebrimbor",
+        "description": "~/.claude/skills/ · .claude/skills/"
       },
       {
         "label": "➕ Ver más épicas...",
@@ -171,12 +171,12 @@ Nunca actúa sin confirmación.
     "multiSelect": false,
     "options": [
       {
-        "label": "🌳 Ents",
-        "description": "Los Pastores del Fangorn — custodian las ramas y optimizan tu CI/CD (.github/workflows/ · GitHub Actions)"
+        "label": "🌳 Despertar a los Ents del Fangorn",
+        "description": ".github/workflows/ · GitHub Actions"
       },
       {
-        "label": "👑 Aragorn",
-        "description": "El Rey de Gondor — convoca y gestiona tu ejército de agentes (agents/ · commands/ · teams/)"
+        "label": "👑 Usar el cuerno de Gondor para convocar a Aragorn",
+        "description": "agents/ · commands/ · teams/"
       },
       {
         "label": "🚪 Salir",
@@ -192,11 +192,11 @@ Nunca actúa sin confirmación.
 ```
 
 **Routing**:
-- 🔮 Palantír → Cargar `@prompts/palantir/palantir-main.md`
-- 🏹 Bardo → Cargar `@prompts/bardo/bardo-main.md`
-- ⚒️ Celebrimbor → Cargar `@prompts/celebrimbor/celebrimbor-main.md`
-- 🌳 Ents → Cargar `@prompts/ents/ents-main.md`
-- 👑 Aragorn → Cargar `@prompts/aragorn/aragorn-main.md`
+- 🔮 Contemplar la Piedra Vidente → Cargar `@prompts/palantir/palantir-main.md`
+- 🏹 Reunir monedas para Bardo → Cargar `@prompts/bardo/bardo-main.md`
+- ⚒️ Acudir a la forja de Celebrimbor → Cargar `@prompts/celebrimbor/celebrimbor-main.md`
+- 🌳 Despertar a los Ents del Fangorn → Cargar `@prompts/ents/ents-main.md`
+- 👑 Usar el cuerno de Gondor para convocar a Aragorn → Cargar `@prompts/aragorn/aragorn-main.md`
 - 🚪 Salir → Mensaje de despedida épico y terminar
 - 🔙 Volver → Mostrar Pantalla 1
 
