@@ -89,52 +89,19 @@ Cargar: `@prompts/palantir/sections/13-susurrar-planes.md`
 
 ---
 
-### Opción 3: Recovery desde backup
+### Opción 3: Compartir visiones entre Palantíri
 
-**Acción**: Ejecutar sistema de recovery (módulo 08-recovery-system.md)
+**Acción**: Importar, exportar o eliminar configuraciones
 
-Procede a ejecutar:
-1. Ejecutar el flujo de recovery (desde 08-recovery-system.md)
-2. El módulo de recovery se encargará de:
-   - Preguntar path del backup
-   - Mostrar preview del backup
-   - Preguntar qué restaurar
-   - Ejecutar recovery
-   - Mostrar resultado
+Cargar: `@prompts/palantir/sections/14-compartir-visiones.md`
 
 ---
 
-### Opción 4: Configurar característica
+### Opción 4: Cubrir el Palantír de ojos ajenos
 
-**Acción**: Ejecutar sistema de configuración asistida (módulo 10-configurator-system.md)
+**Acción**: Salir de Palantír y volver al menú principal de TLOTP
 
-Procede a ejecutar:
-1. Ejecutar el flujo del configurador (desde 10-configurator-system.md)
-2. El módulo de configuración se encargará de:
-   - Solicitar qué característica añadir
-   - Consultar documentación oficial (info_claude.md)
-   - Detectar si ya existe o hay conflictos
-   - Resolver conflictos con propuestas iterativas
-   - Determinar ubicación y formato correcto
-   - Reestructurar archivo según mejores prácticas
-   - Mostrar preview completo antes de aplicar
-   - Usar motor de reconstrucción para aplicar cambios
-   - Validar y notificar resultado
-
----
-
-### Opción 5: Gestionar Hooks
-
-**Acción**: Ejecutar sistema de hooks (módulo 11-hooks-system.md)
-
-Procede a ejecutar:
-1. Ejecutar el flujo de hooks (desde 11-hooks-system.md)
-2. El módulo de hooks se encargará de:
-   - Mostrar submenu (inspeccionar, crear, decidir hook vs alternativa)
-   - Inspeccionar hooks en 3 niveles de settings.json
-   - Analizar configuración y sugerir mejoras
-   - Asistir en creación guiada de hooks
-   - Ayudar a decidir si un hook es la mejor opción
+Cargar: `@prompts/tlotp-main.md`
 
 ---
 
@@ -143,8 +110,7 @@ Procede a ejecutar:
 1. **NO ejecutar múltiples modos**: Solo uno a la vez
 2. **NO saltarse el menú**: Siempre preguntar primero
 3. **NO asumir el modo**: Dejar que el usuario elija
-4. **Backup obligatorio**: Solo en modo Reset (no en Inspector, Recovery ni Configurador)
 
 ---
 
-*Menú principal - Punto de entrada de Palantír v1.7*
+*Menú principal - Punto de entrada de Palantír v2.0*
