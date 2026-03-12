@@ -37,8 +37,6 @@
 
 ═══════════════════════════════════════════════════════════════
 
-**DESPUÉS** del banner, mostrar contexto completo del proyecto.
-
 ---
 
 ## 🖥️ PASO 0.5: Detección de Sistema Operativo
@@ -80,65 +78,6 @@ uname -s 2>/dev/null
 rutas, comandos y análisis al entorno del usuario.
 
 ---
-## 📖 ¿Qué es TLOTP?
-
-**"Un prompt para dominarlos a todos."**
-
-En las profundidades del código, un artefacto fue forjado para gobernar
-el caos de las configuraciones, los agentes, los skills y los pipelines.
-Quien lo empuñe dominará su entorno de Claude Code sin esfuerzo.
-
-TLOTP es un **super-prompt interactivo**: sin instalación, sin setup.
-Solo invócalo y el Consejo de las Épicas aparecerá ante ti.
-
-Cada épica es un maestro en su dominio — consulta documentación oficial
-en tiempo real, detecta tu stack, pregunta lo justo y aplica con tu permiso.
-Nunca actúa sin confirmación.
-
----
-## 🗺️ Épicas Disponibles
-**🔮 Palantír** - Gestor de configuraciones (Inspector, Reset, Recovery, Configurador + Analyzer)
-**🏹 Bardo** - Proveedor de MCPs y Plugins (Analizar, Descubrir, Recomendar, Instalar, Verificar)
-**⚒️ Celebrimbor** - Gestor de skills (Buscar, Instalar, Listar, Actualizar, Eliminar)
-**🌳 Ents** - Guardianes del CI/CD (Analizar, Mejorar, Crear GitHub Actions)
-**👑 Aragorn** - Gestor de agentes y subagentes (VoltAgent + aitmpl.com — marketplace, instalar, gestionar, teams)
-
----
-## 🚧 Épicas En Desarrollo
-**⚡ Gandalf** - Iniciar una nueva aventura (Spec-Driven Development — El Consejo de Rivendel)
-
----
-## 🔒 Épicas Futuras
-**💍 Gollum** - Companion de testing (skill/agente/subagente — forma TBD)
-
-═══════════════════════════════════════════════════════════
-
-**DESPUÉS de mostrar épicas**, continuar con el menú de selección.
-
----
-
-
-## 🎯 Menú de Selección
-
-**IMPORTANTE**: Mostrar SOLO las épicas activas en el menú de opciones.
-
-┌─────────────────────────────────────────────────────────────┐
-│ ¿Qué épica deseas invocar?                                  │
-│                                                             │
-│ 1. 🔮 Palantír - Gestor de Configuraciones                  │
-│ 2. 🏹 Bardo - Proveedor de MCPs y Plugins                   │
-│ 3. ⚒️ Celebrimbor - Forjador de Skills                      │
-│ 4. 🌳 Ents - Guardianes del CI/CD                            │
-│ 5. 👑 Aragorn - Gestor de Agentes                           │
-│                                                             │
-│ 6. 📚 Documentación y Ayuda                                 │
-│ 7. ℹ️ Sobre TLOTP                                           │
-│ 8. 🚪 Salir                                                 │
-│                                                             │
-│ (Más épicas en desarrollo - ver descripción arriba)        │
-└─────────────────────────────────────────────────────────────┘
-
----
 
 ## 🚀 Reglas de Ejecución
 
@@ -148,35 +87,125 @@ Nunca actúa sin confirmación.
 
 **NO saltarse** este paso. **NO resumirlo**. Mostrarlo EXACTAMENTE como está en la sección "INICIO ÉPICO".
 
-### PASO 2: Menú de Selección
+### PASO 1.5: Detectar SO (OBLIGATORIO)
 
-Después del banner y la lista de épicas, usar **AskUserQuestion** para mostrar el menú de forma elegante.
+Ejecutar PASO 0.5 (detección de sistema operativo).
 
-**IMPORTANTE - Validación de Opciones**:
+### PASO 2: Mostrar Lore e Intro (OBLIGATORIO)
 
-**Opciones DISPONIBLES** (1-8):
-- 1. 🔮 Palantír ✅
-- 2. 🏹 Bardo ✅
-- 3. ⚒️ Celebrimbor ✅
-- 4. 🌳 Ents ✅
-- 5. 👑 Aragorn ✅
-- 6. 📚 Documentación ✅
-- 7. ℹ️ Sobre TLOTP ✅
-- 8. 🚪 Salir ✅
+**CRÍTICO**: Después del SO detectado, mostrar SIEMPRE este bloque de texto completo:
 
-**NOTA**: Las épicas en desarrollo (Gandalf) y futuras (Gollum) NO aparecen como opciones seleccionables en el menú. Ya se mostraron arriba como información.
+---
 
-**Al seleccionar épica disponible**:
-- **Opción 1**: Cargar `@prompts/palantir/palantir-main.md`
-- **Opción 2**: Cargar `@prompts/bardo/bardo-main.md`
-- **Opción 3**: Cargar `@prompts/celebrimbor/celebrimbor-main.md`
-- **Opción 4**: Cargar `@prompts/ents/ents-main.md`
-- **Opción 5**: Cargar `@prompts/aragorn/aragorn-main.md`
-- **Opción 6**: Mostrar documentación del proyecto
-- **Opción 7**: Mostrar info sobre TLOTP (versión, fundadores, XP, etc.)
-- **Opción 8**: Mensaje de despedida y salir
+**"Un prompt para dominarlos a todos."**
 
-### PASO 3: Loop Continuo
+En las profundidades del código, un artefacto fue forjado para gobernar
+el caos de las configuraciones, los agentes, los skills y los pipelines.
+Quien lo empuñe dominará su entorno de Claude Code sin esfuerzo.
+
+TLOTP es un **super-prompt interactivo**: sin instalación, sin setup.
+Haz sonar el cuerno de Gondor y la Tierra Media acudirá para ayudarte.
+
+Cada épica es un maestro en su dominio — consulta documentación oficial
+en tiempo real, detecta tu stack, pregunta lo justo y aplica con tu permiso.
+Nunca actúa sin confirmación.
+
+*"Un mago no llega tarde ni pronto, llega exactamente cuando se lo propone."*
+
+---
+
+🗺️ **Épicas Disponibles**
+
+⚔️ **🔮 Palantír** — La Piedra Vidente. Domina las configuraciones de tu reino.
+   *(CLAUDE.md · settings.json · rules/ · hooks · MEMORY.md)*
+⚔️ **🏹 Bardo** — El Contrabandista. Comercia con MCPs y plugins desde la Ciudad de Valle.
+   *(~/.claude.json · .mcp.json · plugins/ · settings.json)*
+⚔️ **⚒️ Celebrimbor** — El Maestro Herrero Élfico, forjador de los Anillos de Poder. Forja skills a medida.
+   *(~/.claude/skills/ · .claude/skills/)*
+⚔️ **🌳 Ents** — Los Pastores del Fangorn. Custodian las ramas y optimizan tu CI/CD.
+   *(.github/workflows/ · GitHub Actions)*
+⚔️ **👑 Aragorn** — El Rey de Gondor. Convoca y gestiona tu ejército de agentes.
+   *(agents/ · commands/ · teams/)*
+
+🚧 En forja: **⚡ Gandalf** — El Mago Blanco. Spec-Driven Development.
+🔒 En las sombras: **💍 Gollum** — El Companion de Testing.
+
+---
+
+### PASO 3: Menú de Selección (PAGINADO)
+
+**CRÍTICO**: Usar **AskUserQuestion** (límite 4 opciones). El menú se divide en 2 pantallas.
+
+**Pantalla 1** (mostrar primero):
+
+```json
+{
+  "questions": [{
+    "header": "Fellowship (1/2)",
+    "question": "¿A qué épica convocas hoy?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🔮 Contemplar a Palantír, la Piedra Vidente",
+        "description": ""
+      },
+      {
+        "label": "🏹 Reunir monedas para Bardo",
+        "description": ""
+      },
+      {
+        "label": "⚒️ Acudir a la forja de Celebrimbor",
+        "description": ""
+      },
+      {
+        "label": "➕ Ver más...",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+**Si elige "Ver más épicas..."**, mostrar **Pantalla 2**:
+
+```json
+{
+  "questions": [{
+    "header": "Fellowship (2/2)",
+    "question": "¿A qué épica convocas hoy?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🌳 Despertar a los Ents del Fangorn",
+        "description": ""
+      },
+      {
+        "label": "👑 Usar el cuerno de Gondor para convocar a Aragorn",
+        "description": ""
+      },
+      {
+        "label": "🚪 Salir",
+        "description": ""
+      },
+      {
+        "label": "🔙 Volver",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+**Routing**:
+- 🔮 Contemplar la Piedra Vidente → Cargar `@prompts/palantir/palantir-main.md`
+- 🏹 Reunir monedas para Bardo → Cargar `@prompts/bardo/bardo-main.md`
+- ⚒️ Acudir a la forja de Celebrimbor → Cargar `@prompts/celebrimbor/celebrimbor-main.md`
+- 🌳 Despertar a los Ents del Fangorn → Cargar `@prompts/ents/ents-main.md`
+- 👑 Usar el cuerno de Gondor para convocar a Aragorn → Cargar `@prompts/aragorn/aragorn-main.md`
+- 🚪 Salir → Mensaje de despedida épico y terminar
+- 🔙 Volver → Mostrar Pantalla 1
+
+### PASO 4: Loop Continuo
 
 **Loop continuo** hasta que el usuario elija Salir o seleccione una épica específica.
 
