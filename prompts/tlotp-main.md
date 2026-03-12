@@ -117,7 +117,7 @@ Nunca actúa sin confirmación.
 🗺️ **Épicas Disponibles**
 
 ⚔️ **🔮 Palantír** — La Piedra Vidente. Domina las configuraciones de tu reino. *(CLAUDE.md · settings.json · rules/ · hooks · MEMORY.md)*
-⚔️ **🏹 Bardo** — El Contrabandista. Invoca MCPs y plugins desde la Ciudad de Valle. *(~/.claude.json · .mcp.json · plugins/ · settings.json)*
+⚔️ **🏹 Bardo** — El Contrabandista. Comercia con MCPs y plugins desde la Ciudad de Valle. *(~/.claude.json · .mcp.json · plugins/ · settings.json)*
 ⚔️ **⚒️ Celebrimbor** — El Maestro Herrero Élfico, forjador de los Anillos de Poder. Forja skills a medida. *(~/.claude/skills/ · .claude/skills/)*
 ⚔️ **🌳 Ents** — Los Pastores del Fangorn. Custodian las ramas y optimizan tu CI/CD. *(.github/workflows/ · GitHub Actions)*
 ⚔️ **👑 Aragorn** — El Rey de Gondor. Convoca y gestiona tu ejército de agentes. *(agents/ · commands/ · teams/)*
