@@ -118,7 +118,7 @@ Nunca actúa sin confirmación.
 
 ⚔️ **🔮 Palantír** — La Piedra Vidente. Domina las configuraciones de tu reino. *(CLAUDE.md · settings.json · rules/ · hooks · MEMORY.md)*
 ⚔️ **🏹 Bardo** — El Contrabandista. Invoca MCPs y plugins desde la Ciudad de Valle. *(~/.claude.json · .mcp.json · plugins/ · settings.json)*
-⚔️ **⚒️ Celebrimbor** — El Forjador de Eregion. Forja skills a medida. *(~/.claude/skills/ · .claude/skills/)*
+⚔️ **⚒️ Celebrimbor** — El Gran Herrero de los Ñoldor. Forja skills a medida. *(~/.claude/skills/ · .claude/skills/)*
 ⚔️ **🌳 Ents** — Los Pastores del Fangorn. Custodian y optimizan tu CI/CD. *(.github/workflows/ · GitHub Actions)*
 ⚔️ **👑 Aragorn** — El Rey Elessar. Convoca y gestiona tu ejército de agentes. *(agents/ · commands/ · teams/)*
 
@@ -150,7 +150,7 @@ Nunca actúa sin confirmación.
       },
       {
         "label": "⚒️ Celebrimbor",
-        "description": "El Forjador de Eregion — forja skills a medida"
+        "description": "El Gran Herrero de los Ñoldor — forja skills a medida"
       },
       {
         "label": "➕ Ver más épicas...",
