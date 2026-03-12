@@ -82,24 +82,18 @@ rutas, comandos y análisis al entorno del usuario.
 ---
 ## 📖 ¿Qué es TLOTP?
 
-**Un prompt para dominarlos a todos.**
+**"Un prompt para dominarlos a todos."**
 
-TLOTP es un **super-prompt interactivo** que convierte a Claude Code en un asistente
-de configuración y gestión completo para cualquier proyecto. No requiere instalación:
-solo carga el prompt y el menú aparece.
+En las profundidades del código, un artefacto fue forjado para gobernar
+el caos de las configuraciones, los agentes, los skills y los pipelines.
+Quien lo empuñe dominará su entorno de Claude Code sin esfuerzo.
 
-**¿Para qué sirve?**
-Gestionar todo el ecosistema de Claude Code de forma asistida: configuraciones,
-MCPs y plugins, skills, pipelines de CI/CD, agentes/subagentes y especificación
-técnica de proyectos. Cada herramienta (épica) es autónoma e inteligente: consulta
-documentación oficial en tiempo real, detecta tu stack, hace preguntas guiadas y
-aplica cambios con confirmación explícita.
+TLOTP es un **super-prompt interactivo**: sin instalación, sin setup.
+Solo invócalo y el Consejo de las Épicas aparecerá ante ti.
 
-**¿Cómo lo hace?**
-A través de un menú de épicas especializadas. Cada épica es un conjunto de prompts
-que Claude ejecuta de forma interactiva, sin hardcodeo de datos: toda la información
-se obtiene en tiempo real (WebFetch a docs oficiales, GitHub API, marketplaces).
-Combina siempre con tu configuración existente — nunca borra sin backup.
+Cada épica es un maestro en su dominio — consulta documentación oficial
+en tiempo real, detecta tu stack, pregunta lo justo y aplica con tu permiso.
+Nunca actúa sin confirmación.
 
 ---
 ## 🗺️ Épicas Disponibles
