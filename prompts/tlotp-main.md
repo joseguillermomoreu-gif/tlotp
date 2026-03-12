@@ -153,7 +153,7 @@ Nunca actúa sin confirmación.
         "description": ""
       },
       {
-        "label": "➕ Ver más épicas...",
+        "label": "➕ Ver más...",
         "description": ""
       }
     ]
