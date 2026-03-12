@@ -55,39 +55,72 @@ que haya hecho los WebFetch).
 
 ## PASO 3: Analizar la petición del usuario
 
-Con la petición del usuario y la documentación oficial, razonar:
+Con la petición del usuario y la documentación oficial, razonar en profundidad.
 
-1. **¿Es correcta la petición tal como está?** — ¿Se puede aplicar directamente según las docs?
-2. **¿Hay una forma más adecuada?** — ¿Debería ir en otro fichero, tener otro formato, o expresarse de otra manera?
-3. **¿Qué tipo de configuración es?**:
-   - Instrucción de comportamiento → `CLAUDE.md`
-   - Regla modular por path → `rules/`
-   - Automatización de evento → hook en `settings.json`
-   - Configuración técnica (modelo, permisos) → `settings.json`
-   - Memoria persistente → `MEMORY.md`
+**Mostrar SIEMPRE** el análisis completo, independientemente de si hay mejora o no:
 
-**Si la petición es correcta**: no sugerir cambios, continuar con la propuesta tal cual.
+```
+🔍 ANÁLISIS DE PALANTÍR
+══════════════════════════════════════════════════════
 
-**Si se puede mejorar**: mostrar sugerencia antes de proceder:
+📝 Tu petición:
+   "[petición original con las palabras del usuario]"
+
+🏷️  Tipo de configuración:
+   [CLAUDE.md / rules/ con paths: / hook en settings.json /
+    settings.json / MEMORY.md]
+
+   Por qué este tipo:
+   [razonamiento claro basado en las docs — qué hace este tipo,
+    para qué sirve, y por qué encaja con lo que el usuario pidió]
+
+   [Si hay un tipo alternativo más adecuado]:
+   💡 Alternativa recomendada: [otro tipo]
+      Por qué sería mejor: [justificación según docs]
+
+══════════════════════════════════════════════════════
+```
+
+**Si la petición puede expresarse mejor** según las docs (formato, ubicación, redacción):
 
 ```
 💡 SUGERENCIA DE PALANTÍR
 ══════════════════════════════════════════════════════
 
-Tu petición es válida, pero hay una forma más adecuada según
-la documentación oficial:
-
   Lo que pediste:  [petición original resumida]
-  Sugerencia:      [mejora propuesta]
-  Motivo:          [por qué es mejor según docs]
+  Propuesta:       [versión mejorada manteniendo la esencia]
+  Motivo:          [por qué es mejor según docs, sin perder la intención original]
 
 ══════════════════════════════════════════════════════
 ```
 
-**AskUserQuestion**:
-- ✅ Usar la sugerencia de Palantír
-- 📝 Mantener mi petición original
-- ✏️ Modificar (ajustar manualmente)
+**AskUserQuestion** (solo si hay sugerencia):
+
+```json
+{
+  "questions": [{
+    "header": "Análisis",
+    "question": "¿Cómo deseas proceder?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Usar la propuesta de Palantír",
+        "description": "Aplicar la versión mejorada manteniendo tu intención original"
+      },
+      {
+        "label": "📝 Mantener mi petición original",
+        "description": "Aplicar exactamente lo que describiste"
+      },
+      {
+        "label": "✏️ Ajustar manualmente",
+        "description": "Modificar la propuesta antes de continuar"
+      }
+    ]
+  }]
+}
+```
+
+**Si no hay sugerencia**: continuar directamente al PASO 4 sin interrumpir al usuario.
 
 ---
 
@@ -125,15 +158,28 @@ Mostrar siempre (haya o no cambios tras la inspección):
 📝 Qué se añadirá:
    [contenido exacto que se escribirá]
 
-📍 Dónde:
+📍 Fichero:
    [ruta completa del fichero]
-
-🌍 Scope: [Global (~/.claude/) / Proyecto (.claude/)]
-   Recomendación: [justificación según docs oficiales]
-   ¿Puedes cambiarlo? Sí — ver opciones abajo.
 
 ⚠️  Impacto detectado:
    [conflictos o solapamientos encontrados, o "Ninguno detectado"]
+
+══════════════════════════════════════════════════════
+
+🌍 DÓNDE APLICARLO — ANÁLISIS DE SCOPE
+══════════════════════════════════════════════════════
+
+  🏠 Local (.claude/) — solo afecta a este proyecto
+     [consecuencias concretas: qué cambia, qué no, cuándo tiene sentido]
+     Cuándo elegirlo: [casos de uso específicos]
+
+  🌍 Global (~/.claude/) — afecta a todos tus proyectos
+     [consecuencias concretas: qué cambia, qué no, cuándo tiene sentido]
+     Cuándo elegirlo: [casos de uso específicos]
+
+  ⭐ Recomendación: [cuál y por qué, basado en docs y en la naturaleza
+     de la petición — si es una preferencia personal → global;
+     si es específica del stack/proyecto → local]
 
 ══════════════════════════════════════════════════════
 ```
@@ -144,16 +190,16 @@ Mostrar siempre (haya o no cambios tras la inspección):
 {
   "questions": [{
     "header": "Aplicar",
-    "question": "¿Aplicamos esta configuración?",
+    "question": "¿Dónde aplicamos esta configuración?",
     "multiSelect": false,
     "options": [
       {
-        "label": "✅ Aplicar",
-        "description": "Aplicar en el scope recomendado"
+        "label": "⭐ Aplicar en scope recomendado",
+        "description": "[local o global según recomendación — indicar cuál]"
       },
       {
-        "label": "🔄 Cambiar scope",
-        "description": "Aplicar en global en lugar de proyecto o viceversa"
+        "label": "🔄 Aplicar en el scope alternativo",
+        "description": "[el otro scope — indicar cuál con su consecuencia principal]"
       },
       {
         "label": "✏️ Modificar contenido",
