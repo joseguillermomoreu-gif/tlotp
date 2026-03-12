@@ -63,10 +63,12 @@ WebFetch: https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subage
 
 ---
 
-## Paso 3 — Matching stack → agentes
+## Paso 3 — Matching stack → agentes y superpowers
 
 Para cada tecnología detectada, aplicar estas reglas de matching.
 **Excluir siempre** agentes ya instalados (comparando con AR1).
+
+### Agentes recomendados por stack
 
 | Stack detectado | Agentes recomendados | Por qué |
 |-----------------|----------------------|---------|
@@ -86,6 +88,19 @@ Para cada tecnología detectada, aplicar estas reglas de matching.
 | Go | `go-expert` | Patrones idiomáticos de Go |
 | Rust | `rust-expert` | Ownership, lifetimes, patrones Rust |
 
+### Superpowers recomendados por stack (commands y hooks de aitmpl.com)
+
+| Stack detectado | Superpower | Tipo | Por qué |
+|-----------------|------------|------|---------|
+| PHP / Symfony | `symfony-lint` | command | Lanza PHPStan/CS-Fixer con un slash command |
+| PHPUnit | `run-tests` | command | Ejecuta la suite de tests con `/run-tests` |
+| Playwright | `e2e-run` | command | Lanza E2E con filtro por tag o título |
+| Git (siempre) | `pre-commit-lint` | hook | Linting automático antes de cada commit |
+| Git (siempre) | `post-commit-notify` | hook | Notificación tras commit exitoso |
+| GitHub Actions | `ci-status` | command | Consulta estado del CI con `/ci-status` |
+| Docker | `docker-clean` | command | Limpia imágenes y containers con un comando |
+| Cualquier proyecto | `review-before-commit` | hook | Ejecuta code-reviewer agent en PreToolUse Bash |
+
 ---
 
 ## Paso 4 — Mostrar recomendaciones
@@ -96,7 +111,7 @@ Para cada tecnología detectada, aplicar estas reglas de matching.
 
 Stack detectado: PHP/Symfony · PHPUnit · Playwright · GitHub Actions
 
-Agentes recomendados:
+🤖 Agentes recomendados:
 ──────────────────────────────────────────────────────
 
   ⭐ symfony-expert  [VoltAgent / 08-backend]
@@ -114,19 +129,32 @@ Agentes recomendados:
      📝 Qué hace: Escribe tests E2E siguiendo Page Object Model
      💡 Ejemplo: "Genera el test E2E del flujo de checkout"
 
-  ⭐ github-actions-optimizer  [aitmpl.com]
-     🎯 Por qué: Tienes workflows en .github/workflows/
-     📝 Qué hace: Analiza y optimiza pipelines CI/CD
-     💡 Ejemplo: "Revisa mi CI y reduce el tiempo de ejecución"
+✨ Superpowers recomendados:
+──────────────────────────────────────────────────────
+
+  ✨ run-tests  [aitmpl.com / commands]  — slash command
+     🎯 Por qué: Tienes PHPUnit — ejecuta tests con /run-tests
+     📝 Qué hace: Slash command que lanza la suite y muestra fallos
+     💡 Uso: /run-tests  o  /run-tests OrderServiceTest
+
+  ✨ e2e-run  [aitmpl.com / commands]  — slash command
+     🎯 Por qué: Tienes Playwright — lanza E2E sin recordar el comando
+     📝 Qué hace: Ejecuta Playwright con filtro por tag o título
+     💡 Uso: /e2e-run @checkout
+
+  ✨ pre-commit-lint  [aitmpl.com / hooks]  — hook PreCommit
+     🎯 Por qué: Previene commits con errores de estilo
+     📝 Qué hace: Lanza linter automáticamente antes de cada commit
+     ⚙️  Instalación: vía Palantír (gestión de hooks)
 
 ══════════════════════════════════════════════════════
-📊 4 recomendaciones  |  3 de VoltAgent  |  1 de aitmpl.com
+📊 3 agentes + 3 superpowers recomendados
 ```
 
 Si no hay recomendaciones tras el matching:
 ```
 👑 El Fuerte ya está bien equipado o usa tecnologías poco comunes.
-   Puedes explorar el marketplace manualmente (opción 2).
+   Puedes explorar el marketplace manualmente (Buscar en marketplaces).
 ```
 
 ---
@@ -134,7 +162,7 @@ Si no hay recomendaciones tras el matching:
 ## Paso 5 — Ofrecer instalación
 
 Tras mostrar recomendaciones, **usar AskUserQuestion**:
-- Instalar todos los recomendados (ir a AR5 con lista pre-cargada)
-- Seleccionar cuáles instalar (ir a AR5 con selección manual)
+- Instalar agentes recomendados (ir a AR5 con lista pre-cargada)
+- Instalar superpowers recomendados (ir a AR10)
+- Instalar todo (agentes primero via AR5, luego superpowers via AR10)
 - Volver al menú de Aragorn
-- Salir
