@@ -124,6 +124,8 @@ Iterar por cada sugerencia **en orden de prioridad** (🔴 primero, luego 🟡, 
 **Mostrar para cada sugerencia** (contador visible):
 
 ```
+🔮 Palantír muestra la mejora #[X]...
+
 ⚔️ MEJORA [X/N] — [🔴/🟡/🟢] [PRIORIDAD]
 ══════════════════════════════════════════════════════
 
@@ -175,10 +177,15 @@ Iterar por cada sugerencia **en orden de prioridad** (🔴 primero, luego 🟡, 
 
 **Comportamiento por opción**:
 
-- **Aplicar**: Ejecutar el cambio, confirmar éxito (`✅ Aplicado en [ruta]`) y pasar a la siguiente.
+- **Aplicar**: Ejecutar el cambio, confirmar éxito y mostrar una frase de lore variada, por ejemplo:
+  - *"Desde el Palantír, el reino se ve más seguro."*
+  - *"El reino gana poder. Palantír lo confirma."*
+  - *"Saruman aprobaría esta mejora."*
+  - *(Variar la frase según la mejora aplicada — que sea breve y épica)*
+  - Luego pasar a la siguiente.
 - **Modificar propuesta**: Preguntar qué cambiar (scope, contenido, formato). Mostrar propuesta actualizada y confirmar antes de aplicar.
 - **Buscar alternativa en docs**: **NO re-fetchear** — releer y razonar explícitamente sobre la documentación oficial ya cargada en contexto (WebFetch 1-6 del PASO 1). Proponer una solución alternativa al mismo problema y volver a preguntar.
-- **Saltar**: Pasar a la siguiente sugerencia sin cambios.
+- **Saltar**: Mostrar `🔮 Palantír ignoró esto por el momento.` y pasar a la siguiente sugerencia.
 
 **IMPORTANTE**: Antes de aplicar cualquier cambio, indicar siempre:
 - Si afecta configuración **global** (`~/.claude/`) o **de proyecto** (`.claude/`)
