@@ -3,8 +3,7 @@
 ## Bloque informativo (mostrar sin interacción)
 
 ```
-🔮 EL OJO QUE TODO LO VE — PALANTÍR
-══════════════════════════════════════════════════════
+🔮 El Ojo que Todo lo Ve, Palantír
 
 "Desde las profundidades de Isengar, Saruman lo veía todo:
 movimientos de ejércitos, secretos de reyes, planes de enemigos.
