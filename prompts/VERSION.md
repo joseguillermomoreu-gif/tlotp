@@ -6,9 +6,9 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v3.5.0**
-- **Fecha release**: 2026-03-10
-- **Nombre código**: "The Smuggler of Lake-town" (Palantír + Bardo + Celebrimbor + Ents)
+**TLOTP v3.13.0**
+- **Fecha release**: 2026-03-12
+- **Nombre código**: "The Voices in the Stone" (Palantír redesign + TLOTP lore)
 
 ---
 
@@ -75,6 +75,28 @@ Versión: TLOTP v3.4.0
 ---
 
 ## 📋 Changelog
+
+### v3.13.0 (2026-03-12) - "The Voices in the Stone"
+
+**🔮 Palantír v2.0 — Rediseño completo**:
+- Nuevo menú principal con lore LOTR: Contemplar el reino / Susurrar planes / Compartir visiones / Salir
+- Nuevo módulo `02-contemplar-reino`: análisis completo con 6 WebFetch docs oficiales, scoring 0-100, sugerencias priorizadas 🔴🟡🟢, revisor uno a uno con contador y frases de lore
+- Nuevo módulo `05-susurrar-planes`: añadir configuración con análisis de tipo visible (CLAUDE.md/rules/hook/settings/MEMORY), análisis de scope con consecuencias de local vs global, WebFetch condicional
+- Nuevo módulo `06-compartir-visiones`: importar (análisis + modo seguro / de golpe / mejorar importación), exportar por scope a .md portable, eliminar con análisis de impacto
+- Reescritura de `01-mini-guide`: lore de Isengar + solicitud de permisos al final
+- Eliminados 9 módulos obsoletos (backup, reset, recovery, reconstruction-engine, configurator, hooks-system, metadata, formato-output, reglas-ejecucion)
+- Renumeración coherente de secciones según flujo de ejecución (00→01→02→03→04→05→06)
+- `palantir-main.md` actualizado: eliminados 11 @imports obsoletos + info_claude.md estática
+
+**🧭 TLOTP Main — Lore y navegación**:
+- Menú principal paginado con lore épico completo para las 5 épicas
+- Detección de OS al inicio (`uname -s` → 🐧/🍎/🪟)
+- Epics con archivos afectados en línea separada bajo cada opción
+- Mini-guía de Palantír integrada al invocar la épica
+
+**Closes**: #139, #140, #147, #148, #150, #151
+
+---
 
 ### v3.5.0 (2026-03-10) - "The Smuggler of Lake-town"
 
