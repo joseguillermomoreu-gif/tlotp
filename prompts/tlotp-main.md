@@ -141,20 +141,20 @@ Nunca actúa sin confirmación.
     "multiSelect": false,
     "options": [
       {
-        "label": "🔮 Contemplar la Piedra Vidente",
-        "description": "CLAUDE.md · settings.json · rules/ · hooks · MEMORY.md"
+        "label": "🔮 Contemplar la Piedra Vidente — Palantír",
+        "description": ""
       },
       {
         "label": "🏹 Reunir monedas para Bardo",
-        "description": "~/.claude.json · .mcp.json · plugins/ · settings.json"
+        "description": ""
       },
       {
         "label": "⚒️ Acudir a la forja de Celebrimbor",
-        "description": "~/.claude/skills/ · .claude/skills/"
+        "description": ""
       },
       {
         "label": "➕ Ver más épicas...",
-        "description": "Ents · Aragorn · Salir"
+        "description": ""
       }
     ]
   }]
@@ -172,19 +172,19 @@ Nunca actúa sin confirmación.
     "options": [
       {
         "label": "🌳 Despertar a los Ents del Fangorn",
-        "description": ".github/workflows/ · GitHub Actions"
+        "description": ""
       },
       {
         "label": "👑 Usar el cuerno de Gondor para convocar a Aragorn",
-        "description": "agents/ · commands/ · teams/"
+        "description": ""
       },
       {
         "label": "🚪 Salir",
-        "description": "Abandonar la Fellowship hasta la próxima aventura"
+        "description": ""
       },
       {
         "label": "🔙 Volver",
-        "description": "Volver a la pantalla anterior"
+        "description": ""
       }
     ]
   }]
