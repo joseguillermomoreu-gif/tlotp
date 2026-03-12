@@ -8,9 +8,14 @@ Este módulo ejecuta los siguientes pasos en orden:
 
 ## PASO 1: Leer y mapear toda la configuración
 
+**Nota sobre WebFetch**: Antes de ejecutar los módulos, comprobar si la documentación
+oficial de las 6 URLs ya está cargada en el contexto de esta sesión (por haber ejecutado
+previamente "Susurrar planes" u otro módulo que los haya obtenido). Si ya están en contexto,
+indicárselo al módulo de jerarquía para que no re-fetchee.
+
 Ejecutar los dos módulos de lectura existentes:
 
-1. `@prompts/palantir/sections/03-jerarquia-oficial.md` — leer jerarquía oficial (CLAUDE.md, rules/, auto memory) y obtener los 6 WebFetch de documentación oficial
+1. `@prompts/palantir/sections/03-jerarquia-oficial.md` — leer jerarquía oficial (CLAUDE.md, rules/, auto memory) y obtener los 6 WebFetch de documentación oficial (solo si no están ya en contexto)
 2. `@prompts/palantir/sections/04-exploracion-custom.md` — explorar settings.json, skills/, hooks/ y otros ficheros adicionales
 
 ---

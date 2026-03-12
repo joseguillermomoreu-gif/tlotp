@@ -81,22 +81,11 @@ Cargar: `@prompts/palantir/sections/03-contemplar-reino.md`
 
 ---
 
-### Opción 2: Reset de configuraciones
+### Opción 2: Susurrar planes en la Piedra
 
-**Acción**: Ejecutar sistema de reset (módulo 07-reset-system.md)
+**Acción**: Añadir nueva configuración con asistencia inteligente
 
-**IMPORTANTE**:
-- Antes de cualquier reset, SIEMPRE hacer backup (obligatorio)
-- No continuar sin backup
-
-Procede a ejecutar:
-1. Ejecutar el flujo de reset (desde 07-reset-system.md)
-2. El módulo de reset se encargará de:
-   - Hacer backup obligatorio
-   - Preguntar nivel de reset
-   - Confirmaciones según nivel
-   - Ejecutar reset
-   - Mostrar resultado
+Cargar: `@prompts/palantir/sections/13-susurrar-planes.md`
 
 ---
 
