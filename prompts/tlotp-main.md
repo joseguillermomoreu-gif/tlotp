@@ -40,6 +40,46 @@
 **DESPUÉS** del banner, mostrar contexto completo del proyecto.
 
 ---
+
+## 🖥️ PASO 0.5: Detección de Sistema Operativo
+
+**Ejecutar inmediatamente** después del banner, antes de mostrar cualquier contenido adicional:
+
+**Paso 1** — Detectar SO via Bash (silencioso):
+
+```bash
+uname -s 2>/dev/null
+```
+
+**Paso 2** — Mapear resultado:
+
+| Resultado `uname -s` | SO detectado |
+|----------------------|-------------|
+| `Linux` | 🐧 Linux |
+| `Darwin` | 🍎 macOS |
+| `MINGW*` / `MSYS*` / `CYGWIN*` | 🪟 Windows (Git Bash) |
+| error / vacío | Preguntar al usuario |
+
+**Si se detecta** → Mostrar sin interacción:
+
+```
+🔍 Detectando entorno...
+
+  ✅ Sistema operativo: [emoji + nombre]
+
+  Preparando TLOTP para Claude Code en [nombre]...
+```
+
+**Si no se detecta** → Usar AskUserQuestion con opciones:
+- 🐧 Linux
+- 🍎 macOS
+- 🪟 Windows
+
+**IMPORTANTE**: Guardar el SO detectado en contexto. Todos los módulos de TLOTP
+(Palantír, Bardo, Aragorn, Celebrimbor, Ents) deben usar este valor para ajustar
+rutas, comandos y análisis al entorno del usuario.
+
+---
 ## 📖 ¿Qué es TLOTP?
 
 **Un prompt para dominarlos a todos.**
