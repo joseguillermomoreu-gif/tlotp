@@ -141,7 +141,7 @@ Nunca actúa sin confirmación.
     "multiSelect": false,
     "options": [
       {
-        "label": "🔮 Contemplar la Piedra Vidente — Palantír",
+        "label": "🔮 Contemplar a Palantír, la Piedra Vidente",
         "description": ""
       },
       {
