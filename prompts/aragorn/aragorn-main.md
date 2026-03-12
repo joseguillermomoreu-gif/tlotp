@@ -28,56 +28,109 @@ Este prompt requiere las siguientes herramientas:
 
 ---
 
-## 🗺️ Menú Principal
+## 🗺️ Menú Principal — Paginado (3 opciones + Ver más)
 
-Después del banner, mostrar el menú con **AskUserQuestion**:
+Por limitación de AskUserQuestion (máx 4 opciones), el menú se divide en pantallas de 3 + "Ver más".
+
+Después del banner, mostrar la **Pantalla 1** con **AskUserQuestion**:
 
 ```
-👑 ARAGORN - El Gestor de Agentes
+👑 ARAGORN - El Gestor de Agentes (1/3)
 ══════════════════════════════════════════════════════
 
-1. 📋 Listar agentes instalados
+📋 Listar agentes instalados
    Ver todos los agentes en ~/.claude/agents/ y .claude/agents/
 
-2. 🔍 Buscar agentes en marketplaces
-   VoltAgent (127+ agentes) + aitmpl.com (600+ componentes)
+⭐ Recomendaciones por stack
+   Detecta tu stack y sugiere agentes + superpowers ideales
 
-3. 📥 Instalar agente (guiado)
-   Instalar desde marketplace con selección de scope
+🔍 Buscar en marketplaces
+   VoltAgent + aitmpl.com: agentes, commands, hooks
+```
 
-4. 🗑️  Eliminar agente
+Opciones AskUserQuestion:
+- 📋 Listar agentes instalados
+- ⭐ Recomendaciones por stack
+- 🔍 Buscar en marketplaces
+- ➕ Ver más opciones...
+
+Si elige **Ver más**, mostrar **Pantalla 2**:
+
+```
+👑 ARAGORN - El Gestor de Agentes (2/3)
+══════════════════════════════════════════════════════
+
+📥 Instalar agente (guiado)
+   Instalar agente desde marketplace con selección de scope
+
+✨ Instalar Superpower
+   Instalar command o hook desde aitmpl.com
+
+⚔️  Team Builder
+   Configurar Agent Teams para trabajo paralelo (experimental)
+```
+
+Opciones AskUserQuestion:
+- 📥 Instalar agente (guiado)
+- ✨ Instalar Superpower (command/hook)
+- ⚔️ Team Builder
+- ➕ Ver más opciones...
+
+Si elige **Ver más**, mostrar **Pantalla 3**:
+
+```
+👑 ARAGORN - El Gestor de Agentes (3/3)
+══════════════════════════════════════════════════════
+
+🗑️  Eliminar agente
    Eliminar un agente instalado con confirmación
 
-5. 🔄 Actualizar agentes
+🔄 Actualizar agentes
    Comprobar versiones nuevas en los marketplaces
 
-6. ⚔️  Team Builder
-   Configurar Agent Teams para trabajo paralelo (experimental)
-
-7. 📖 Guía: Subagents vs Agent Teams
-   Referencia técnica + cuándo usar cada uno
-
-8. 🔙 Volver al menú TLOTP
+📖 Guía técnica
+   Subagents vs Agent Teams: referencia + cuándo usar cada uno
 ```
+
+Opciones AskUserQuestion:
+- 🗑️ Eliminar agente
+- 🔄 Actualizar agentes
+- 📖 Guía técnica
+- 🔙 Volver al menú TLOTP
 
 ---
 
 ## 🚀 Routing a Módulos
 
-### Opción 1 — Listar agentes instalados
+### Pantalla 1
+
+#### 📋 Listar agentes instalados
 Cargar: `@prompts/aragorn/ar1-listar-agentes.md`
 
-### Opción 2 — Buscar en marketplaces
+#### ⭐ Recomendaciones por stack
+Cargar: `@prompts/aragorn/ar4-recomendaciones.md`
+
+#### 🔍 Buscar en marketplaces
 Cargar: `@prompts/aragorn/ar3-buscar-agentes.md`
 
-### Opción 3 — Instalar agente
+### Pantalla 2
+
+#### 📥 Instalar agente
 Cargar: `@prompts/aragorn/ar5-instalar-agente.md`
 
-### Opción 4 — Eliminar agente
+#### ✨ Instalar Superpower
+Cargar: `@prompts/aragorn/ar10-superpowers.md`
+
+#### ⚔️ Team Builder
+Cargar: `@prompts/aragorn/ar7-team-builder.md`
+
+### Pantalla 3
+
+#### 🗑️ Eliminar agente
 
 Ejecutar flujo integrado:
 
-**Paso 4.1** — Listar agentes instalados (modo silencioso):
+**Paso 1** — Listar agentes instalados (modo silencioso):
 
 ```bash
 ls ~/.claude/agents/ 2>/dev/null
@@ -89,20 +142,19 @@ Si no hay ninguno:
 🗑️  No hay agentes instalados que eliminar.
 ```
 
-**Paso 4.2** — Preguntar cuál eliminar (AskUserQuestion) con la lista de agentes encontrados.
+**Paso 2** — Preguntar cuál eliminar (AskUserQuestion) con la lista encontrada.
 
-**Paso 4.3** — Confirmar eliminación (AskUserQuestion):
+**Paso 3** — Confirmar eliminación (AskUserQuestion):
 
 ```
 🗑️  ELIMINAR AGENTE: [nombre]
 ══════════════════════════════════
   📍 Ubicación: [ruta completa]
   ⚠️  Esta acción no se puede deshacer.
-
 ¿Confirmas la eliminación?
 ```
 
-**Paso 4.4** — Ejecutar:
+**Paso 4** — Ejecutar:
 
 ```bash
 rm ~/.claude/agents/[nombre].md
@@ -110,20 +162,15 @@ rm ~/.claude/agents/[nombre].md
 rm .claude/agents/[nombre].md
 ```
 
-Confirmar al usuario y volver al menú.
+#### 🔄 Actualizar agentes
 
-### Opción 5 — Actualizar agentes
+**Paso 1** — Listar agentes instalados con sus fuentes conocidas.
 
-Ejecutar flujo integrado:
-
-**Paso 5.1** — Listar agentes instalados con sus fuentes conocidas.
-
-**Paso 5.2** — Para cada agente instalado, intentar obtener la versión más reciente del marketplace:
-
-- Si tiene frontmatter con `source` o `version`: comparar con la versión en el marketplace
+**Paso 2** — Para cada agente, intentar obtener versión más reciente del marketplace:
+- Si tiene frontmatter con `source` o `version`: comparar con marketplace
 - Si no tiene metadatos de versión: informar que no se puede verificar automáticamente
 
-**Paso 5.3** — Mostrar resumen:
+**Paso 3** — Mostrar resumen:
 
 ```
 🔄 ESTADO DE ACTUALIZACIONES
@@ -134,16 +181,12 @@ Ejecutar flujo integrado:
 ══════════════════════════════════════════
 ```
 
-**Paso 5.4** — Para cada agente con actualización disponible, preguntar si instalar.
-Redirigir a AR5 para la instalación con scope ya pre-seleccionado.
+**Paso 4** — Para cada agente con actualización, preguntar si instalar (redirigir a AR5).
 
-### Opción 6 — Team Builder
-Cargar: `@prompts/aragorn/ar7-team-builder.md`
-
-### Opción 7 — Guía técnica
+#### 📖 Guía técnica
 Cargar: `@prompts/aragorn/ar2-referencia-tecnica.md`
 
-### Opción 8 — Volver al menú TLOTP
+#### 🔙 Volver al menú TLOTP
 Cargar: `@prompts/tlotp-main.md`
 
 ---

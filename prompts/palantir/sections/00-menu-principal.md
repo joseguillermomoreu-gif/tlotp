@@ -25,6 +25,12 @@
 
 ---
 
+## 📋 PASO 1.2: Mini-guía de Palantír
+
+@prompts/palantir/sections/12-mini-guide.md
+
+---
+
 ## 📋 PASO 1.5: Solicitar Permisos de Palantír
 
 **CRÍTICO**: Antes del menú, solicitar al usuario la aprobación de permisos.
