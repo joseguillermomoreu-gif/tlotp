@@ -87,24 +87,28 @@ Si no hay sugerencias:
 
 ---
 
-## PASO 4: Menú de revisión
+## PASO 4: Menú post-análisis
 
-**Usar AskUserQuestion**:
+Tras mostrar el scoring y las sugerencias priorizadas, **usar AskUserQuestion**:
 
 ```json
 {
   "questions": [{
-    "header": "Sugerencias",
-    "question": "¿Cómo deseas proceder con las sugerencias?",
+    "header": "¿Qué hacemos?",
+    "question": "El análisis ha concluido. ¿Cómo deseas continuar?",
     "multiSelect": false,
     "options": [
       {
-        "label": "🔍 Revisar una a una",
-        "description": "Revisar cada sugerencia con propuesta de solución"
+        "label": "⚔️ Aplicar mejoras",
+        "description": "Revisaremos cada mejora una a una — confirmarás antes de aplicar cualquier cambio"
       },
       {
-        "label": "⏭️ Saltar todas",
-        "description": "Ignorar sugerencias y volver al menú de Palantír"
+        "label": "🔙 Volver al menú de Palantír",
+        "description": "Volver sin aplicar cambios"
+      },
+      {
+        "label": "🚪 Salir",
+        "description": "Cerrar Palantír y TLOTP"
       }
     ]
   }]
@@ -113,27 +117,28 @@ Si no hay sugerencias:
 
 ---
 
-## PASO 5: Revisor uno a uno
+## PASO 5: Revisor uno a uno (si elige "Aplicar mejoras")
 
-Si el usuario elige "Revisar una a una", iterar por cada sugerencia con este flujo:
+Iterar por cada sugerencia **en orden de prioridad** (🔴 primero, luego 🟡, luego 🟢).
 
 **Mostrar para cada sugerencia** (contador visible):
 
 ```
-🔧 SUGERENCIA [X/N] — [🔴/🟡/🟢] [PRIORIDAD]
+⚔️ MEJORA [X/N] — [🔴/🟡/🟢] [PRIORIDAD]
 ══════════════════════════════════════════════════════
 
-📍 Ubicación:  [fichero afectado]
-🌍 Scope:      [Global (~/.claude/) / Proyecto (.claude/)] — [justificación]
+📍 Fichero afectado: [ruta completa]
+🌍 Scope sugerido:   [Global (~/.claude/) / Proyecto (.claude/)]
+   Motivo: [justificación clara de por qué global o proyecto]
 
 ❌ Problema:
-   [descripción clara del problema]
+   [descripción clara del problema detectado]
 
 ✅ Solución propuesta:
-   [descripción de qué se haría exactamente]
+   [descripción exacta de qué se aplicaría]
 
-   Destino sugerido: [ruta completa]
-   Motivo: [por qué global o proyecto]
+🎯 Resultado esperado:
+   [qué mejorará o se corregirá tras aplicar]
 
 ══════════════════════════════════════════════════════
 ```
@@ -143,54 +148,80 @@ Si el usuario elige "Revisar una a una", iterar por cada sugerencia con este flu
 ```json
 {
   "questions": [{
-    "header": "Sugerencia [X/N]",
-    "question": "¿Qué hacemos con esta sugerencia?",
+    "header": "Mejora [X/N]",
+    "question": "¿Qué hacemos con esta mejora?",
     "multiSelect": false,
     "options": [
       {
         "label": "✅ Aplicar",
-        "description": "Aplicar la solución propuesta"
+        "description": "Aplicar la solución propuesta en el scope sugerido"
       },
       {
-        "label": "✏️ Modificar",
-        "description": "Ajustar la solución antes de aplicar"
+        "label": "✏️ Modificar propuesta",
+        "description": "Ajustar la solución o cambiar el scope antes de aplicar"
       },
       {
-        "label": "🔄 Cambiar destino",
-        "description": "Aplicar en global en lugar de proyecto o viceversa"
+        "label": "🔎 Buscar alternativa en docs",
+        "description": "Razonar sobre la documentación ya cargada para proponer otra solución"
       },
       {
         "label": "⏭️ Saltar",
-        "description": "Dejar esta sugerencia sin cambios"
+        "description": "Dejar esta mejora sin cambios y pasar a la siguiente"
       }
     ]
   }]
 }
 ```
 
-**Si elige "Modificar"**: Preguntar qué cambiar, confirmar y aplicar.
-**Si elige "Cambiar destino"**: Mostrar las dos opciones (global/proyecto) con rutas, confirmar y aplicar.
-**Si elige "Aplicar"**: Ejecutar el cambio, confirmar éxito y pasar a la siguiente.
-**Si elige "Saltar"**: Pasar a la siguiente sugerencia.
+**Comportamiento por opción**:
+
+- **Aplicar**: Ejecutar el cambio, confirmar éxito (`✅ Aplicado en [ruta]`) y pasar a la siguiente.
+- **Modificar propuesta**: Preguntar qué cambiar (scope, contenido, formato). Mostrar propuesta actualizada y confirmar antes de aplicar.
+- **Buscar alternativa en docs**: **NO re-fetchear** — releer y razonar explícitamente sobre la documentación oficial ya cargada en contexto (WebFetch 1-6 del PASO 1). Proponer una solución alternativa al mismo problema y volver a preguntar.
+- **Saltar**: Pasar a la siguiente sugerencia sin cambios.
 
 **IMPORTANTE**: Antes de aplicar cualquier cambio, indicar siempre:
 - Si afecta configuración **global** (`~/.claude/`) o **de proyecto** (`.claude/`)
 - La ruta exacta del fichero que se modificará
-- Si el cambio requiere crear un fichero nuevo o modificar uno existente
+- Si el cambio crea un fichero nuevo o modifica uno existente
 
 ---
 
 ## PASO 6: Resumen final
 
-Al terminar el revisor, mostrar:
+Al terminar el revisor (o si no hay sugerencias), mostrar:
 
 ```
 📋 RESUMEN DE CAMBIOS
 ══════════════════════════════════════════════════════
-  ✅ Aplicadas:  [X]
+  ✅ Aplicadas:   [X]
   ✏️  Modificadas: [X]
-  ⏭️  Saltadas:   [X]
+  ⏭️  Saltadas:    [X]
 ══════════════════════════════════════════════════════
 ```
 
-Luego volver automáticamente al menú principal de Palantír.
+**AskUserQuestion**:
+
+```json
+{
+  "questions": [{
+    "header": "Finalizar",
+    "question": "Análisis completado. ¿Qué deseas hacer?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🔙 Volver al menú de Palantír",
+        "description": "Continuar con otras opciones de Palantír"
+      },
+      {
+        "label": "🏠 Volver al menú de TLOTP",
+        "description": "Volver al menú principal de TLOTP"
+      },
+      {
+        "label": "🚪 Salir",
+        "description": "Cerrar Palantír y TLOTP"
+      }
+    ]
+  }]
+}
+```
