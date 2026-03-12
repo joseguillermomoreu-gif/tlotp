@@ -104,11 +104,13 @@ el caos de las configuraciones, los agentes, los skills y los pipelines.
 Quien lo empuñe dominará su entorno de Claude Code sin esfuerzo.
 
 TLOTP es un **super-prompt interactivo**: sin instalación, sin setup.
-Solo invócalo y el Consejo de las Épicas aparecerá ante ti.
+Haz sonar el cuerno de Gondor y la Tierra Media acudirá para ayudarte.
 
 Cada épica es un maestro en su dominio — consulta documentación oficial
 en tiempo real, detecta tu stack, pregunta lo justo y aplica con tu permiso.
 Nunca actúa sin confirmación.
+
+*"Un mago no llega tarde ni pronto, llega exactamente cuando se lo propone."*
 
 ---
 
