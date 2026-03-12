@@ -15,45 +15,27 @@
 
 ---
 
-## 📖 Carga de Información de Claude Code
-
-@prompts/info_claude.md
-
-**Info cargada**: Documentación oficial del sistema de memoria de Claude Code
-
----
-
 ## 📚 Carga de Módulos
 
 @prompts/palantir/sections/00-menu-principal.md
-@prompts/palantir/sections/01-metadata.md
-@prompts/palantir/sections/02-backup-system.md
+@prompts/palantir/sections/01-mini-guide.md
+@prompts/palantir/sections/02-contemplar-reino.md
 @prompts/palantir/sections/03-jerarquia-oficial.md
 @prompts/palantir/sections/04-exploracion-custom.md
-@prompts/palantir/sections/05-formato-output.md
-@prompts/palantir/sections/06-reglas-ejecucion.md
-@prompts/palantir/sections/07-reset-system.md
-@prompts/palantir/sections/08-recovery-system.md
-@prompts/palantir/sections/09-reconstruction-engine.md
-@prompts/palantir/sections/10-configurator-system.md
-@prompts/palantir/sections/11-hooks-system.md
+@prompts/palantir/sections/05-susurrar-planes.md
+@prompts/palantir/sections/06-compartir-visiones.md
 
 ---
 
 ## 🎯 Módulos Cargados
 
-1. **00-menu-principal.md** - Menú de selección de modo (Inspector/Reset/Recovery/Configurador/Hooks)
-2. **01-metadata.md** - Banner, misión, jerarquía oficial
-3. **02-backup-system.md** - Sistema de backup (4 opciones de path)
-4. **03-jerarquia-oficial.md** - Inspección de 7 niveles oficiales
-5. **04-exploracion-custom.md** - Detección genérica (Sección 8)
-6. **05-formato-output.md** - Templates y formato de respuesta
-7. **06-reglas-ejecucion.md** - Flujo de ejecución y reglas (modo Inspector)
-8. **07-reset-system.md** - Sistema de reset de configuraciones
-9. **08-recovery-system.md** - Sistema de recovery desde backup
-10. **09-reconstruction-engine.md** - Motor de reconstrucción inteligente
-11. **10-configurator-system.md** - Sistema de configuración asistida (CREATE)
-12. **11-hooks-system.md** - Gestión de Hooks (inspección, creación asistida, decision helper)
+1. **00-menu-principal.md** - Menú principal (Contemplar / Susurrar / Compartir / Salir)
+2. **01-mini-guide.md** - Mini-guía de Palantír con lore + solicitud de permisos
+3. **02-contemplar-reino.md** - Análisis completo de configuración con scoring y sugerencias
+4. **03-jerarquia-oficial.md** - Inspección de jerarquía oficial (6 WebFetch docs)
+5. **04-exploracion-custom.md** - Exploración de settings.json, skills/, hooks/
+6. **05-susurrar-planes.md** - Añadir configuración con análisis inteligente
+7. **06-compartir-visiones.md** - Importar, exportar y eliminar configuraciones
 
 ---
 
@@ -90,23 +72,14 @@ Esta sesión es de inspección/mantenimiento, **NO** es una sesión de desarroll
 
 ## ✨ Inicio de Ejecución
 
-Ya tienes toda la información cargada de los módulos anteriores.
+Ya tienes todos los módulos cargados. Procede según las instrucciones de `00-menu-principal.md`:
 
-**PASO 1: Ejecutar Menú Principal**
-
-Procede según las instrucciones de `00-menu-principal.md`:
-
-1. Preguntar al usuario qué modo quiere ejecutar:
-   - Inspeccionar configuraciones
-   - Reset de configuraciones
-   - Recovery desde backup
-   - Configurar característica
-
-2. Según la elección, ejecutar el flujo correspondiente:
-   - **Si elige Inspeccionar**: Ejecutar flujo de `06-reglas-ejecucion.md`
-   - **Si elige Reset**: Ejecutar flujo de `07-reset-system.md`
-   - **Si elige Recovery**: Ejecutar flujo de `08-recovery-system.md`
-   - **Si elige Configurar**: Ejecutar flujo de `10-configurator-system.md`
-   - **Si elige Hooks**: Ejecutar flujo de `11-hooks-system.md`
+1. Mostrar banner de Palantír
+2. Mostrar mini-guía y solicitar permisos (`01-mini-guide.md`)
+3. Mostrar menú principal con `AskUserQuestion` y ejecutar el módulo elegido:
+   - **Contemplar el reino** → `02-contemplar-reino.md`
+   - **Susurrar planes en la Piedra** → `05-susurrar-planes.md`
+   - **Compartir visiones entre Palantíri** → `06-compartir-visiones.md`
+   - **Cubrir el Palantír** → volver a `tlotp-main.md`
 
 ¡Adelante, Palantír! 🔮👁️

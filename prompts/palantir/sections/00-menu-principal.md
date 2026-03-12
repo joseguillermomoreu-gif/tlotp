@@ -27,7 +27,7 @@
 
 ## 📋 PASO 1.2: Mini-guía de Palantír
 
-@prompts/palantir/sections/12-mini-guide.md
+@prompts/palantir/sections/01-mini-guide.md
 
 ---
 
@@ -77,7 +77,7 @@ Ejecuta **AskUserQuestion** con esta configuración EXACTA:
 
 **Acción**: Ejecutar el análisis completo de configuración
 
-Cargar: `@prompts/palantir/sections/03-contemplar-reino.md`
+Cargar: `@prompts/palantir/sections/02-contemplar-reino.md`
 
 ---
 
@@ -85,7 +85,7 @@ Cargar: `@prompts/palantir/sections/03-contemplar-reino.md`
 
 **Acción**: Añadir nueva configuración con asistencia inteligente
 
-Cargar: `@prompts/palantir/sections/13-susurrar-planes.md`
+Cargar: `@prompts/palantir/sections/05-susurrar-planes.md`
 
 ---
 
@@ -93,7 +93,7 @@ Cargar: `@prompts/palantir/sections/13-susurrar-planes.md`
 
 **Acción**: Importar, exportar o eliminar configuraciones
 
-Cargar: `@prompts/palantir/sections/14-compartir-visiones.md`
+Cargar: `@prompts/palantir/sections/06-compartir-visiones.md`
 
 ---
 
