@@ -1,0 +1,144 @@
+name: 🏰 Release Prep - El Heraldo anuncia la versión
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump_type:
+        description: 'Tipo de bump (auto detecta desde commits)'
+        required: true
+        default: 'auto'
+        type: choice
+        options: [auto, major, minor, patch]
+      release_name:
+        description: 'Nombre de la release (ej: "The Return of the King")'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: release-prep
+  cancel-in-progress: false
+
+jobs:
+  prepare-release:
+    name: Preparar release
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: develop
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Obtener último tag
+        id: last_tag
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "tag=$LAST_TAG" >> $GITHUB_OUTPUT
+          echo "Último tag: $LAST_TAG"
+
+      - name: Determinar tipo de bump
+        id: bump
+        run: |
+          BUMP="${{ inputs.bump_type }}"
+
+          if [ "$BUMP" = "auto" ]; then
+            LAST_TAG="${{ steps.last_tag.outputs.tag }}"
+            COMMITS=$(git log "${LAST_TAG}..HEAD" --pretty=format:"%s" 2>/dev/null || git log --pretty=format:"%s")
+
+            echo "Commits desde $LAST_TAG:"
+            echo "$COMMITS"
+
+            if echo "$COMMITS" | grep -qE "^feat!:|BREAKING CHANGE"; then
+              BUMP="major"
+            elif echo "$COMMITS" | grep -qE "^feat(\(.+\))?:"; then
+              BUMP="minor"
+            elif echo "$COMMITS" | grep -qE "^fix(\(.+\))?:"; then
+              BUMP="patch"
+            else
+              BUMP="none"
+            fi
+          fi
+
+          echo "bump=$BUMP" >> $GITHUB_OUTPUT
+          echo "Tipo de bump: $BUMP"
+
+      - name: Calcular nueva versión
+        id: version
+        if: steps.bump.outputs.bump != 'none'
+        run: |
+          LAST_TAG="${{ steps.last_tag.outputs.tag }}"
+          VERSION="${LAST_TAG#v}"
+          MAJOR=$(echo "$VERSION" | cut -d. -f1)
+          MINOR=$(echo "$VERSION" | cut -d. -f2)
+          PATCH=$(echo "$VERSION" | cut -d. -f3)
+
+          case "${{ steps.bump.outputs.bump }}" in
+            major) MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
+            minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
+            patch) PATCH=$((PATCH + 1)) ;;
+          esac
+
+          NEW_VERSION="v${MAJOR}.${MINOR}.${PATCH}"
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "Nueva versión: $NEW_VERSION"
+
+      - name: Actualizar VERSION.md
+        if: steps.bump.outputs.bump != 'none'
+        run: |
+          NEW_VERSION="${{ steps.version.outputs.version }}"
+          RELEASE_NAME="${{ inputs.release_name }}"
+          TODAY=$(date +%Y-%m-%d)
+
+          # Actualizar versión actual en la sección "Versión Actual"
+          sed -i "s/\*\*TLOTP v[0-9]\+\.[0-9]\+\.[0-9]\+\*\*/**TLOTP ${NEW_VERSION}**/" prompts/VERSION.md
+          sed -i "s/^- \*\*Fecha release\*\*:.*$/- **Fecha release**: ${TODAY}/" prompts/VERSION.md
+
+          if [ -n "$RELEASE_NAME" ]; then
+            sed -i "s/^- \*\*Nombre código\*\*:.*$/- **Nombre código**: \"${RELEASE_NAME}\"/" prompts/VERSION.md
+          fi
+
+          echo "✅ VERSION.md actualizado a ${NEW_VERSION}"
+          head -15 prompts/VERSION.md
+
+      - name: Commit bump
+        if: steps.bump.outputs.bump != 'none'
+        run: |
+          NEW_VERSION="${{ steps.version.outputs.version }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add prompts/VERSION.md
+          git commit -m "chore: bump version ${NEW_VERSION}"
+          git push origin develop
+          echo "✅ Commit bump pusheado a develop"
+
+      - name: Crear PR develop → master
+        if: steps.bump.outputs.bump != 'none'
+        run: |
+          NEW_VERSION="${{ steps.version.outputs.version }}"
+          RELEASE_NAME="${{ inputs.release_name }}"
+          BUMP_TYPE="${{ steps.bump.outputs.bump }}"
+
+          TITLE="release: ${NEW_VERSION}"
+          if [ -n "$RELEASE_NAME" ]; then
+            TITLE="${TITLE} \"${RELEASE_NAME}\""
+          fi
+
+          gh pr create \
+            --base master \
+            --head develop \
+            --title "$TITLE" \
+            --body "Release ${NEW_VERSION}. Bump: ${{ steps.bump.outputs.bump }}. Desde tag: ${{ steps.last_tag.outputs.tag }}. Tras el merge, semver.yml creará el tag y la GitHub Release. El backmerge.yml sincronizará develop con master."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sin cambios que versionar
+        if: steps.bump.outputs.bump == 'none'
+        run: |
+          echo "ℹ️  No se detectaron commits feat/fix desde ${{ steps.last_tag.outputs.tag }}"
+          echo "   Especifica bump_type manualmente si deseas forzar una release."

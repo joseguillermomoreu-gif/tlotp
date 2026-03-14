@@ -1,0 +1,61 @@
+name: 🔄 Backmerge - El bosque no olvida
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  backmerge:
+    name: Sincronizar master → develop
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Evitar loop: no ejecutar si el push viene de un backmerge previo
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configurar git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Crear rama de backmerge con commit [skip ci]
+        id: branch
+        run: |
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)
+          BRANCH="backmerge/master-to-develop-${TIMESTAMP}"
+
+          git checkout -b "$BRANCH"
+          git commit --allow-empty -m "chore: backmerge master → develop [skip ci]"
+          git push origin "$BRANCH"
+
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+          echo "✅ Rama $BRANCH creada"
+
+      - name: Crear PR con auto-merge
+        run: |
+          BRANCH="${{ steps.branch.outputs.branch }}"
+
+          PR_URL=$(gh pr create \
+            --base develop \
+            --head "$BRANCH" \
+            --title "chore: backmerge master → develop [skip ci]" \
+            --body "Backmerge automático. Código ya validado en master — CI omitido. Se auto-mergeará en cuanto los checks estén en verde.")
+
+          echo "PR creada: $PR_URL"
+
+          # Extraer número de PR y activar auto-merge
+          PR_NUMBER=$(echo "$PR_URL" | grep -oE '[0-9]+$')
+          gh pr merge "$PR_NUMBER" --auto --merge
+          echo "✅ Auto-merge activado en PR #${PR_NUMBER}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
