@@ -3,8 +3,14 @@ name: 🌳 CI - Guardianes del Bosque
 on:
   push:
     branches: [master]
+    paths:
+      - '**/*.md'
+      - '.github/workflows/ci.yml'
   pull_request:
     branches: [master, develop]
+    paths:
+      - '**/*.md'
+      - '.github/workflows/ci.yml'
 
 permissions:
   contents: read
