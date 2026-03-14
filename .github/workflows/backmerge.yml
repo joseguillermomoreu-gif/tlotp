@@ -49,11 +49,7 @@ jobs:
             --base develop \
             --head "$BRANCH" \
             --title "chore: backmerge master → develop [skip ci]" \
-            --body "Backmerge automático tras merge a master.
-
-El código ya fue validado por CI antes de llegar a master — CI omitido en este PR.
-
-Este PR se mergeará automáticamente en cuanto los checks estén en verde.")
+            --body "Backmerge automático. Código ya validado en master — CI omitido. Se auto-mergeará en cuanto los checks estén en verde.")
 
           echo "PR creada: $PR_URL"
 
