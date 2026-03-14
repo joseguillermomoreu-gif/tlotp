@@ -28,14 +28,14 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Crear rama de backmerge con commit [skip ci]
+      - name: Crear rama de backmerge
         id: branch
         run: |
           TIMESTAMP=$(date +%Y%m%d%H%M%S)
           BRANCH="backmerge/master-to-develop-${TIMESTAMP}"
 
           git checkout -b "$BRANCH"
-          git commit --allow-empty -m "chore: backmerge master → develop [skip ci]"
+          git commit --allow-empty -m "chore: backmerge master → develop"
           git push origin "$BRANCH"
 
           echo "branch=$BRANCH" >> $GITHUB_OUTPUT
