@@ -8,9 +8,6 @@ on:
       - 'prompts/**'
       - '.github/workflows/semver.yml'
 
-permissions:
-  contents: write
-
 concurrency:
   group: semver-${{ github.ref }}
   cancel-in-progress: false
@@ -20,6 +17,8 @@ jobs:
     name: Bump versión semántica
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: write
     # Evitar loop infinito: no ejecutar en commits del propio workflow
     if: "!contains(github.event.head_commit.message, 'chore: bump version')"
 
