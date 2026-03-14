@@ -134,14 +134,15 @@ Nunca actúa sin confirmación.
 
 ### PASO 3: Menú de Selección (PAGINADO)
 
-**CRÍTICO**: Usar **AskUserQuestion** (límite 4 opciones). El menú se divide en 2 pantallas.
+**CRÍTICO**: Usar **AskUserQuestion** (límite 4 opciones). El menú se divide en 3 pantallas.
+Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (última página: "🔙 Volver al inicio" en lugar de "➕ Ver más...").
 
 **Pantalla 1** (mostrar primero):
 
 ```json
 {
   "questions": [{
-    "header": "Fellowship (1/2)",
+    "header": "Fellowship (1/3)",
     "question": "¿A qué épica convocas hoy?",
     "multiSelect": false,
     "options": [
@@ -154,11 +155,11 @@ Nunca actúa sin confirmación.
         "description": ""
       },
       {
-        "label": "⚒️ Acudir a la forja de Celebrimbor",
+        "label": "➕ Ver más...",
         "description": ""
       },
       {
-        "label": "➕ Ver más...",
+        "label": "🚪 Salir",
         "description": ""
       }
     ]
@@ -166,29 +167,59 @@ Nunca actúa sin confirmación.
 }
 ```
 
-**Si elige "Ver más épicas..."**, mostrar **Pantalla 2**:
+**Si elige "➕ Ver más..."**, mostrar **Pantalla 2**:
 
 ```json
 {
   "questions": [{
-    "header": "Fellowship (2/2)",
+    "header": "Fellowship (2/3)",
     "question": "¿A qué épica convocas hoy?",
     "multiSelect": false,
     "options": [
       {
-        "label": "🌳 Despertar a los Ents del Fangorn",
+        "label": "⚒️ Acudir a la forja de Celebrimbor",
         "description": ""
       },
       {
-        "label": "👑 Usar el cuerno de Gondor para convocar a Aragorn",
+        "label": "🌳 Convocar la Asamblea de los Ents",
+        "description": ""
+      },
+      {
+        "label": "➕ Ver más...",
         "description": ""
       },
       {
         "label": "🚪 Salir",
         "description": ""
+      }
+    ]
+  }]
+}
+```
+
+**Si elige "➕ Ver más..."**, mostrar **Pantalla 3**:
+
+```json
+{
+  "questions": [{
+    "header": "Fellowship (3/3)",
+    "question": "¿A qué épica convocas hoy?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "👑 Usar el cuerno de Gondor para convocar a Aragorn",
+        "description": ""
       },
       {
-        "label": "🔙 Volver",
+        "label": "📚 Documentación y Ayuda",
+        "description": ""
+      },
+      {
+        "label": "🔙 Volver al inicio",
+        "description": ""
+      },
+      {
+        "label": "🚪 Salir",
         "description": ""
       }
     ]
@@ -200,10 +231,11 @@ Nunca actúa sin confirmación.
 - 🔮 Contemplar la Piedra Vidente → Cargar `@prompts/palantir/palantir-main.md`
 - 🏹 Reunir monedas para Bardo → Cargar `@prompts/bardo/bardo-main.md`
 - ⚒️ Acudir a la forja de Celebrimbor → Cargar `@prompts/celebrimbor/celebrimbor-main.md`
-- 🌳 Despertar a los Ents del Fangorn → Cargar `@prompts/ents/ents-main.md`
+- 🌳 Convocar la Asamblea de los Ents → Cargar `@prompts/ents/ents-main.md`
 - 👑 Usar el cuerno de Gondor para convocar a Aragorn → Cargar `@prompts/aragorn/aragorn-main.md`
+- 📚 Documentación y Ayuda → Mostrar sección "Documentación y Ayuda" (ver más abajo)
+- 🔙 Volver al inicio → Mostrar Pantalla 1
 - 🚪 Salir → Mensaje de despedida épico y terminar
-- 🔙 Volver → Mostrar Pantalla 1
 
 ### PASO 4: Loop Continuo
 
@@ -213,7 +245,7 @@ Nunca actúa sin confirmación.
 
 ## 📚 Contenido de "Documentación y Ayuda"
 
-**Si el usuario selecciona Opción 4**, mostrar:
+**Si el usuario selecciona "📚 Documentación y Ayuda"**, mostrar:
 
 ```
 ═══════════════════════════════════════════════════════════
@@ -282,6 +314,7 @@ Acceso Directo:
 • Bardo:       @prompts/bardo/bardo-main.md
 • Celebrimbor: @prompts/celebrimbor/celebrimbor-main.md
 • Ents:        @prompts/ents/ents-main.md
+• Aragorn:     @prompts/aragorn/aragorn-main.md
 
 ---
 
@@ -300,20 +333,49 @@ Repositorio: https://github.com/joseguillermomoreu-gif/tlotp
 Issues: https://github.com/joseguillermomoreu-gif/tlotp/issues
 
 ═══════════════════════════════════════════════════════════
-
-¿Qué deseas hacer?
-1. Volver al menú principal
-2. Ejecutar Palantír
-3. Ejecutar Celebrimbor
-4. Ejecutar Ents
-5. Salir
 ```
+
+Tras mostrar el bloque anterior, usar **AskUserQuestion**:
+
+```json
+{
+  "questions": [{
+    "header": "Documentación",
+    "question": "¿Qué deseas hacer?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🔮 Ir a Palantír",
+        "description": ""
+      },
+      {
+        "label": "⚒️ Ir a Celebrimbor",
+        "description": ""
+      },
+      {
+        "label": "🔙 Volver al menú principal",
+        "description": ""
+      },
+      {
+        "label": "🚪 Salir",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+**Routing**:
+- 🔮 Ir a Palantír → Cargar `@prompts/palantir/palantir-main.md`
+- ⚒️ Ir a Celebrimbor → Cargar `@prompts/celebrimbor/celebrimbor-main.md`
+- 🔙 Volver al menú principal → Mostrar Pantalla 1 del menú principal
+- 🚪 Salir → Mensaje de despedida épico y terminar
 
 ---
 
 ## ℹ️ Contenido de "Sobre TLOTP"
 
-**Si el usuario selecciona Opción 5**, mostrar:
+**Sección de referencia interna** — no accesible desde el menú principal actual. Mostrar solo si el usuario lo solicita explícitamente.
 
 ```
 ═══════════════════════════════════════════════════════════
@@ -324,8 +386,8 @@ Issues: https://github.com/joseguillermomoreu-gif/tlotp/issues
 "One Prompt to Rule Them All"
 
 Versión: {VERSION}
-Release: 2026-02-16
-Código: "The Fellowship of the Code"
+Release: 2026-03-12
+Código: "The Voices in the Stone"
 
 ---
 
