@@ -6,13 +6,31 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v3.14.0**
+**TLOTP v3.16.0**
 - **Fecha release**: 2026-03-14
-- **Nombre código**: "Guardians of the Branch" (Ents redesign + CI/CD hardening)
+- **Nombre código**: "Las Almenaras de Gondor" (CI/CD automation: release-prep + backmerge + branch protection hardening)
 
 ---
 
 ## 📦 Historial de Versiones
+
+### v3.16.0 — "Las Almenaras de Gondor"
+- **Fecha release**: 2026-03-14
+- Automatización del ciclo de release completo:
+  - `release-prep.yml`: pre-bump workflow_dispatch — calcula versión, actualiza VERSION.md, crea PR develop → master
+  - `backmerge.yml`: sincronización automática master → develop con [skip ci] y auto-merge
+- CI hardening en `semver.yml`: paths filter + warning visible cuando falta sección de changelog
+- Branch protection endurecida: dismiss_stale_reviews, require_code_owner_reviews (develop), required_conversation_resolution
+
+**Closes**: #177, #178, #179, #180, #181
+
+### v3.15.0 — "Guardians of the Branch"
+- **Fecha release**: 2026-03-14
+- Ents redesign completo + CI/CD hardening
+
+### v3.14.0 — "The Voices in the Stone"
+- **Fecha release**: 2026-03-14
+- Menú principal TLOTP rediseñado (paginación 3 pantallas)
 
 ### v3.13.0 — "The Voices in the Stone"
 - **Fecha release**: 2026-03-12
