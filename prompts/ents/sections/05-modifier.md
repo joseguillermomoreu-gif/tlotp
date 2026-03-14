@@ -61,7 +61,7 @@ Si elige "Otro cambio", preguntar en texto libre qué desea modificar.
 ### Paso 2: Consultar Documentación Oficial
 
 Antes de proponer cambios, consultar con **WebFetch** la documentación oficial
-relevante al cambio solicitado (ver URLs en `ents-main.md`).
+relevante al cambio solicitado (ver URLs en `00-menu-principal.md`).
 
 Extraer:
 - Sintaxis correcta actualizada
@@ -219,4 +219,4 @@ Después de aplicar cambios, preguntar:
 
 ---
 
-*Módulo 06 - Modifier v1.0*
+*Módulo 05 — Modifier*
