@@ -118,8 +118,8 @@ Si no se encontró ningún workflow, mostrar:
 ## Después del Diagrama
 
 Una vez mostrado el diagrama, el flujo continúa con:
-- **05-improvement-engine.md** → Sugerir mejoras basadas en documentación oficial
+- **04-improvement-engine.md** → Sugerir mejoras basadas en documentación oficial
 
 ---
 
-*Módulo 04 - Diagram Renderer v1.0*
+*Módulo 03 — Diagram Renderer*

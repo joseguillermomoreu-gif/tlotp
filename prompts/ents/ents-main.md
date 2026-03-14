@@ -1,6 +1,9 @@
-# 🌳 Ents - Guardianes del CI/CD
+# 🌳 Ents - Main Entry Point
 
-> *"Los Ents son los pastores de los árboles... y de las ramas."*
+> **Arquitectura Modular con @imports**
+>
+> Este es el entry point principal que orquesta todos los módulos de los Ents.
+> Cada sección está separada por concerns para facilitar el mantenimiento.
 
 ---
 
@@ -12,115 +15,90 @@
 
 ---
 
-## 📊 Metadata
+## 🌿 Entrada al Bosque
 
-**Épica**: #3 Ents
-**Estado**: ✅ MVP Completado
+**Antes de cargar los módulos**, mostrar este mensaje de transición:
 
----
+```
+🌳 ...
 
-## 🎯 Misión
+   El bosque despierta.
 
-Los Ents protegen las ramas del repositorio. Analizan, mejoran y crean pipelines de CI/CD
-con GitHub Actions, guiando al usuario con las mejores prácticas de la documentación oficial.
+   Raíces antiguas se estiran bajo la tierra.
+   Bárbol abre los ojos — esos ojos viejos, lentos y profundos
+   como pozos de agua clara.
 
-**Filosofía**: No almacenar documentación estática. Consultar fuentes oficiales en tiempo real
-cuando se necesite asesorar al usuario.
+   "Hmm... venís al bosque con prisa, lo noto.
+    No os apresuréis. Los Ents no nos apresuramos.
+    Pero cuando actuamos... el suelo tiembla."
 
----
+   Los Guardianes de las Ramas os esperan.
 
-## 📋 Arquitectura Modular
-
-Este prompt principal carga todos los módulos de Ents:
-
-### Interfaz de Usuario
-
-1. **01-metadata.md** - Banner y metadata de la épica
-2. **02-menu-principal.md** - Menú interactivo con 3 opciones principales
-
-### Motor de Análisis
-
-3. **03-analyzer.md** - Escaneo completo del CI/CD actual del proyecto
-4. **04-diagram-renderer.md** - Renderizado de diagramas del pipeline actual
-
-### Motor de Mejoras
-
-5. **05-improvement-engine.md** - Sugerencias basadas en documentación oficial (live)
-
-### Operaciones
-
-6. **06-modifier.md** - Aplicar mejoras y modificar CI/CD existente (asistido)
-7. **07-creator.md** - Crear GitHub Actions CI/CD desde cero (asistido)
+🌳 ...
+```
 
 ---
 
 ## 📚 Carga de Módulos
 
-@prompts/ents/sections/01-metadata.md
-@prompts/ents/sections/02-menu-principal.md
-@prompts/ents/sections/03-analyzer.md
-@prompts/ents/sections/04-diagram-renderer.md
-@prompts/ents/sections/05-improvement-engine.md
-@prompts/ents/sections/06-modifier.md
-@prompts/ents/sections/07-creator.md
+@prompts/ents/sections/00-menu-principal.md
+@prompts/ents/sections/01-mini-guide.md
+@prompts/ents/sections/02-analyzer.md
+@prompts/ents/sections/03-diagram-renderer.md
+@prompts/ents/sections/04-improvement-engine.md
+@prompts/ents/sections/05-modifier.md
+@prompts/ents/sections/06-creator.md
 
 ---
 
-## 🚀 Flujo de Ejecución
+## 🎯 Módulos Cargados
 
-### Paso 1: Mostrar Banner
-
-**Módulo**: `sections/01-metadata.md`
-
-1. Mostrar banner ASCII de los Ents
-2. Mostrar versión y estado
-
-### Paso 2: Menú Principal
-
-**Módulo**: `sections/02-menu-principal.md`
-
-1. Mostrar menú con AskUserQuestion
-2. Routing según elección del usuario
-
-### Paso 3: Ejecutar Operación
-
-Según la opción seleccionada:
-
-- **Analizar CI/CD actual** → `03-analyzer.md` → `04-diagram-renderer.md` → `05-improvement-engine.md` → opcionalmente `06-modifier.md`
-- **Modificar CI/CD existente** → `06-modifier.md`
-- **Crear CI/CD desde cero** → `07-creator.md`
+1. **00-menu-principal.md** - Banner + menú principal (La Asamblea / La Marcha / Plantar / Retirarse)
+2. **01-mini-guide.md** - Mini-guía con lore de Bárbol + solicitud de permisos
+3. **02-analyzer.md** - Escaneo completo del CI/CD actual del proyecto
+4. **03-diagram-renderer.md** - Mapa visual del pipeline (diagrama ASCII)
+5. **04-improvement-engine.md** - Mejoras con scoring 0-100 + revisor uno a uno
+6. **05-modifier.md** - Modificación asistida del CI/CD existente
+7. **06-creator.md** - Creación de GitHub Actions CI/CD desde cero
 
 ---
 
-## ⚠️ REGLA CRÍTICA - Documentación Oficial en Tiempo Real
+## ⚠️ REGLA CRÍTICA — Documentación Oficial en Tiempo Real
 
-**IMPORTANTE**: Los Ents NO almacenan documentación de GitHub Actions en el proyecto.
+**IMPORTANTE**: Los Ents NO almacenan documentación estática en el proyecto.
 
-### 🌐 Fuentes Oficiales (consultar con WebFetch cuando se necesite)
+### 🌐 Fuentes Oficiales
 
-- **GitHub Actions Docs**: `https://docs.github.com/en/actions`
-- **Workflow Syntax**: `https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions`
-- **Events that trigger**: `https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows`
-- **Expressions**: `https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/evaluate-expressions-in-a-workflow`
-- **Contexts**: `https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs`
-- **Variables**: `https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/store-information-in-variables`
-- **Secrets**: `https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions`
-- **Reusable workflows**: `https://docs.github.com/en/actions/sharing-automations/reusing-workflows`
-- **Caching**: `https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows`
-- **Matrix strategy**: `https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow`
-- **Security hardening**: `https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions`
-- **Branch protection**: `https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches`
+**Primarias — Claude Code** (consultar primero):
+
+| URL | Qué extraer |
+|---|---|
+| `https://code.claude.com/docs/en/github-actions` | Integración Claude Code + GitHub Actions |
+| `https://code.claude.com/docs/en/code-review` | Code review automatizado con Claude |
+| `https://code.claude.com/docs/en/gitlab-ci-cd` | Integración GitLab CI/CD |
+
+**Secundarias — GitHub Actions** (consultar según necesidad):
+
+| URL | Cuándo usarla |
+|---|---|
+| `https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions` | Sintaxis de workflows |
+| `https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions` | Seguridad y permisos |
+| `https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/caching-dependencies-to-speed-up-workflows` | Caching |
+| `https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow` | Matrix strategy |
+| `https://docs.github.com/en/actions/sharing-automations/reusing-workflows` | Reusable workflows |
+| `https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/control-the-concurrency-of-workflows-and-jobs` | Concurrency groups |
+| `https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches` | Branch protection |
 
 ### 📝 Protocolo de Consulta
 
-1. Cuando necesites asesorar al usuario sobre una práctica específica → **WebFetch** a la URL oficial relevante
-2. Extraer las mejores prácticas actualizadas del resultado
-3. Aplicarlas en las sugerencias y generación de código
+1. **Comprobar primero** si la documentación ya está cargada en el contexto de esta sesión
+2. **Si ya está en contexto**: usar directamente sin re-fetchear
+3. **Si no está en contexto**: consultar las primarias primero, luego las secundarias según la necesidad específica
 4. **NUNCA inventar** prácticas: si no puedes consultar, informar al usuario
 
 ---
 
-## ⚠️ REGLA CRÍTICA - Prevención de Contaminación de Auto Memory
+## ⚠️ REGLA CRÍTICA — Prevención de Contaminación de Auto Memory
 
 **IMPORTANTE**: Durante TODA la ejecución de Ents:
 
@@ -130,27 +108,22 @@ Según la opción seleccionada:
 
 Los Ents son herramientas de infraestructura, NO sesiones de desarrollo.
 
+**Analogía**: Como Bárbol marchando sobre Isengard — actúa, termina, y el bosque no guarda registro de la batalla.
+
 ---
 
 ## ✨ Inicio de Ejecución
 
-Ya tienes toda la información cargada de los módulos anteriores.
+Ya tienes todos los módulos cargados. Procede según las instrucciones de `00-menu-principal.md`:
 
-**PASO 1: Ejecutar Menú Principal**
+1. Mostrar banner de los Ents
+2. Mostrar mini-guía de Bárbol y solicitar permisos (`01-mini-guide.md`)
+3. Mostrar menú principal con `AskUserQuestion` y ejecutar el módulo elegido:
+   - **Convocar la Asamblea** → `02-analyzer.md` → `03-diagram-renderer.md` → `04-improvement-engine.md`
+   - **La Marcha sobre Isengard** → `05-modifier.md`
+   - **Plantar nuevos árboles** → `06-creator.md`
+   - **Retirarse al Fangorn** → volver a `tlotp-main.md`
 
-Procede según las instrucciones de `01-metadata.md` y luego `02-menu-principal.md`:
+🌳 *"No os apresuréis... pero cuando los Ents marchan, el bosque entero tiembla."*
 
-1. Mostrar banner de bienvenida
-2. Preguntar al usuario qué quiere hacer:
-   - Analizar CI/CD actual
-   - Modificar CI/CD existente
-   - Crear CI/CD desde cero
-
-3. Según la elección, ejecutar el flujo correspondiente:
-   - **Si elige Analizar**: Ejecutar `03-analyzer.md` → `04-diagram-renderer.md` → `05-improvement-engine.md`
-   - **Si elige Modificar**: Ejecutar `06-modifier.md`
-   - **Si elige Crear**: Ejecutar `07-creator.md`
-
-🌳 *"Los árboles más viejos son los que mejor conocen el bosque..."*
-
-💍 *One Prompt to Rule Them All*
+— Bárbol
