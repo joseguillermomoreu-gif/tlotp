@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'prompts/**'
+      - '.github/workflows/semver.yml'
 
 permissions:
   contents: write
@@ -21,7 +24,7 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'chore: bump version')"
 
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -96,6 +99,7 @@ jobs:
             grep -v '^---' | head -60 > /tmp/changelog.md
           # Si no hay sección específica, generar un resumen de commits
           if [ ! -s /tmp/changelog.md ]; then
+            echo "::warning::No se encontró la sección ### ${NEW_VERSION} en prompts/VERSION.md — usando fallback de commits"
             LAST_TAG="${{ steps.last_tag.outputs.tag }}"
             echo "## Cambios desde ${LAST_TAG}" > /tmp/changelog.md
             echo "" >> /tmp/changelog.md
