@@ -85,6 +85,7 @@ jobs:
             --no-progress
             --timeout 20
             --max-retries 3
+            --accept 429,502
             --exclude-loopback
             --exclude 'localhost'
             --exclude 'example\.com'
