@@ -142,13 +142,13 @@ jobs:
             TITLE="${TITLE} \"${RELEASE_NAME}\""
           fi
 
+          BODY="Release ${NEW_VERSION}. Bump: ${{ steps.bump.outputs.bump }}. Desde tag: ${{ steps.last_tag.outputs.tag }}. Tras el merge, semver.yml creará el tag y la GitHub Release. El backmerge.yml sincronizará master → develop."
+
           gh pr create \
             --base master \
             --head "$BRANCH" \
             --title "$TITLE" \
-            --body "Release ${NEW_VERSION}. Bump: ${{ steps.bump.outputs.bump }}. Desde tag: ${{ steps.last_tag.outputs.tag }}.
-
-Tras el merge, semver.yml creará el tag y la GitHub Release. El backmerge.yml sincronizará master → develop."
+            --body "$BODY"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
