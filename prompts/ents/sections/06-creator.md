@@ -294,4 +294,4 @@ Preguntar si quiere:
 
 ---
 
-*Módulo 07 - Creator v1.0*
+*Módulo 06 — Creator*

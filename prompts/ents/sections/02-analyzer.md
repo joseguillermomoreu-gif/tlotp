@@ -191,4 +191,4 @@ sin repetir el escaneo.
 
 ---
 
-*Módulo 03 - Analyzer de CI/CD v1.0*
+*Módulo 02 — Analyzer de CI/CD*
