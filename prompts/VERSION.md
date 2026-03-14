@@ -6,9 +6,21 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v3.13.0**
+**TLOTP v3.15.0**
+- **Fecha release**: 2026-03-14
+- **Nombre código**: "Guardians of the Branch" (Ents redesign + CI/CD hardening)
+
+---
+
+## 📦 Historial de Versiones
+
+### v3.14.0 — "The Voices in the Stone"
+- **Fecha release**: 2026-03-14
+- Menú principal TLOTP rediseñado (paginación 3 pantallas)
+
+### v3.13.0 — "The Voices in the Stone"
 - **Fecha release**: 2026-03-12
-- **Nombre código**: "The Voices in the Stone" (Palantír redesign + TLOTP lore)
+- Palantír redesign completo + narrativa lore TLOTP
 
 ---
 
