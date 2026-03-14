@@ -5,12 +5,12 @@ on:
     branches: [master]
     paths:
       - '**/*.md'
-      - '.github/workflows/ci.yml'
+      - '.github/workflows/**'
   pull_request:
     branches: [master, develop]
     paths:
       - '**/*.md'
-      - '.github/workflows/ci.yml'
+      - '.github/workflows/**'
 
 permissions:
   contents: read
