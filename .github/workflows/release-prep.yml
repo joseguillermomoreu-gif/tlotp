@@ -32,7 +32,7 @@ jobs:
         with:
           ref: develop
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.WORKFLOW_TOKEN }}
 
       - name: Obtener último tag
         id: last_tag
@@ -150,7 +150,7 @@ jobs:
             --title "$TITLE" \
             --body "$BODY"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.WORKFLOW_TOKEN }}
 
       - name: Sin cambios que versionar
         if: steps.bump.outputs.bump == 'none'
