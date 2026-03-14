@@ -87,6 +87,20 @@ jobs:
           echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
           echo "Nueva versión: $NEW_VERSION"
 
+      - name: Crear rama release
+        id: branch
+        if: steps.bump.outputs.bump != 'none'
+        run: |
+          NEW_VERSION="${{ steps.version.outputs.version }}"
+          BRANCH="release/${NEW_VERSION}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+          echo "✅ Rama $BRANCH creada desde develop"
+
       - name: Actualizar VERSION.md
         if: steps.bump.outputs.bump != 'none'
         run: |
@@ -105,23 +119,23 @@ jobs:
           echo "✅ VERSION.md actualizado a ${NEW_VERSION}"
           head -15 prompts/VERSION.md
 
-      - name: Commit bump
+      - name: Commit y push rama release
         if: steps.bump.outputs.bump != 'none'
         run: |
           NEW_VERSION="${{ steps.version.outputs.version }}"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="${{ steps.branch.outputs.branch }}"
+
           git add prompts/VERSION.md
           git commit -m "chore: bump version ${NEW_VERSION}"
-          git push origin develop
-          echo "✅ Commit bump pusheado a develop"
+          git push origin "$BRANCH"
+          echo "✅ Rama $BRANCH pusheada"
 
-      - name: Crear PR develop → master
+      - name: Crear PR release → master
         if: steps.bump.outputs.bump != 'none'
         run: |
           NEW_VERSION="${{ steps.version.outputs.version }}"
           RELEASE_NAME="${{ inputs.release_name }}"
-          BUMP_TYPE="${{ steps.bump.outputs.bump }}"
+          BRANCH="${{ steps.branch.outputs.branch }}"
 
           TITLE="release: ${NEW_VERSION}"
           if [ -n "$RELEASE_NAME" ]; then
@@ -130,9 +144,11 @@ jobs:
 
           gh pr create \
             --base master \
-            --head develop \
+            --head "$BRANCH" \
             --title "$TITLE" \
-            --body "Release ${NEW_VERSION}. Bump: ${{ steps.bump.outputs.bump }}. Desde tag: ${{ steps.last_tag.outputs.tag }}. Tras el merge, semver.yml creará el tag y la GitHub Release. El backmerge.yml sincronizará develop con master."
+            --body "Release ${NEW_VERSION}. Bump: ${{ steps.bump.outputs.bump }}. Desde tag: ${{ steps.last_tag.outputs.tag }}.
+
+Tras el merge, semver.yml creará el tag y la GitHub Release. El backmerge.yml sincronizará master → develop."
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
