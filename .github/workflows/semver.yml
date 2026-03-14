@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'prompts/**'
+      - '.github/workflows/semver.yml'
 
 permissions:
   contents: write
@@ -96,6 +99,7 @@ jobs:
             grep -v '^---' | head -60 > /tmp/changelog.md
           # Si no hay sección específica, generar un resumen de commits
           if [ ! -s /tmp/changelog.md ]; then
+            echo "::warning::No se encontró la sección ### ${NEW_VERSION} en prompts/VERSION.md — usando fallback de commits"
             LAST_TAG="${{ steps.last_tag.outputs.tag }}"
             echo "## Cambios desde ${LAST_TAG}" > /tmp/changelog.md
             echo "" >> /tmp/changelog.md
