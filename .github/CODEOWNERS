@@ -3,3 +3,7 @@
 # Nota: GitHub no exige aprobación propia si eres el autor de la PR
 
 * @joseguillermomoreu-gif
+
+# Nota: branch protection migrada a GitHub Rulesets (IDs: 13914962=master, 13914965=develop)
+# develop: sin require_code_owner_review → github-actions[bot] puede auto-mergear
+# master:  con require_code_owner_review → releases requieren aprobación humana
