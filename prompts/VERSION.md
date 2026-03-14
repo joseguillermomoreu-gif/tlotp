@@ -6,7 +6,7 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v3.16.0**
+**TLOTP v3.16.1**
 - **Fecha release**: 2026-03-14
 - **Nombre código**: "Las Almenaras de Gondor" (CI/CD automation: release-prep + backmerge + branch protection hardening)
 
@@ -33,7 +33,7 @@
 - Menú principal TLOTP rediseñado (paginación 3 pantallas)
 
 ### v3.13.0 — "The Voices in the Stone"
-- **Fecha release**: 2026-03-12
+- **Fecha release**: 2026-03-14
 - Palantír redesign completo + narrativa lore TLOTP
 
 ---
