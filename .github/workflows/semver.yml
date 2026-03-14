@@ -8,15 +8,20 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: semver-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   semver:
     name: Bump versión semántica
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     # Evitar loop infinito: no ejecutar en commits del propio workflow
     if: "!contains(github.event.head_commit.message, 'chore: bump version')"
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -100,7 +105,7 @@ jobs:
 
       - name: Crear GitHub Release
         if: steps.bump.outputs.bump != 'none'
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # v2
         with:
           tag_name: ${{ steps.version.outputs.version }}
           name: "TLOTP ${{ steps.version.outputs.version }}"
