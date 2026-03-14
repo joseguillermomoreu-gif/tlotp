@@ -14,10 +14,6 @@ on:
         required: false
         default: ''
 
-permissions:
-  contents: write
-  pull-requests: write
-
 concurrency:
   group: release-prep
   cancel-in-progress: false
@@ -27,6 +23,9 @@ jobs:
     name: Preparar release
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -88,6 +87,20 @@ jobs:
           echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
           echo "Nueva versión: $NEW_VERSION"
 
+      - name: Crear rama release
+        id: branch
+        if: steps.bump.outputs.bump != 'none'
+        run: |
+          NEW_VERSION="${{ steps.version.outputs.version }}"
+          BRANCH="release/${NEW_VERSION}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+          echo "✅ Rama $BRANCH creada desde develop"
+
       - name: Actualizar VERSION.md
         if: steps.bump.outputs.bump != 'none'
         run: |
@@ -106,34 +119,36 @@ jobs:
           echo "✅ VERSION.md actualizado a ${NEW_VERSION}"
           head -15 prompts/VERSION.md
 
-      - name: Commit bump
+      - name: Commit y push rama release
         if: steps.bump.outputs.bump != 'none'
         run: |
           NEW_VERSION="${{ steps.version.outputs.version }}"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          BRANCH="${{ steps.branch.outputs.branch }}"
+
           git add prompts/VERSION.md
           git commit -m "chore: bump version ${NEW_VERSION}"
-          git push origin develop
-          echo "✅ Commit bump pusheado a develop"
+          git push origin "$BRANCH"
+          echo "✅ Rama $BRANCH pusheada"
 
-      - name: Crear PR develop → master
+      - name: Crear PR release → master
         if: steps.bump.outputs.bump != 'none'
         run: |
           NEW_VERSION="${{ steps.version.outputs.version }}"
           RELEASE_NAME="${{ inputs.release_name }}"
-          BUMP_TYPE="${{ steps.bump.outputs.bump }}"
+          BRANCH="${{ steps.branch.outputs.branch }}"
 
           TITLE="release: ${NEW_VERSION}"
           if [ -n "$RELEASE_NAME" ]; then
             TITLE="${TITLE} \"${RELEASE_NAME}\""
           fi
 
+          BODY="Release ${NEW_VERSION}. Bump: ${{ steps.bump.outputs.bump }}. Desde tag: ${{ steps.last_tag.outputs.tag }}. Tras el merge, semver.yml creará el tag y la GitHub Release. El backmerge.yml sincronizará master → develop."
+
           gh pr create \
             --base master \
-            --head develop \
+            --head "$BRANCH" \
             --title "$TITLE" \
-            --body "Release ${NEW_VERSION}. Bump: ${{ steps.bump.outputs.bump }}. Desde tag: ${{ steps.last_tag.outputs.tag }}. Tras el merge, semver.yml creará el tag y la GitHub Release. El backmerge.yml sincronizará develop con master."
+            --body "$BODY"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
