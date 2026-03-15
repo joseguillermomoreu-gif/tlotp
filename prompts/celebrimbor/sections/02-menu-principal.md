@@ -100,7 +100,7 @@ Mostrar con `AskUserQuestion`:
 ## Flujo de Navegación
 
 ### Opción 1: Analizar skills y sugerir mejoras
-- Cargar módulo: `sections/07-module-search.md` *(análisis — pendiente rediseño #211)*
+- Cargar módulo: `sections/07-module-analyze.md`
 - Inspeccionar skills instaladas en rutas oficiales
 - Comparar con doc oficial (WebFetch on-demand si no está en contexto)
 - Mostrar resumen con sugerencias
