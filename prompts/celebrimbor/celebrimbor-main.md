@@ -1,6 +1,10 @@
-# ⚒️ Celebrimbor - El Forjador de Skills
+# ⚒️ Celebrimbor — La Forja de Eregion
 
-> *"En las fraguas de Eregion, cada herramienta se adapta a su artesano..."*
+> *"Los Gwaith-i-Mírdain no forjan por encargo. Forjan por trato. ¿Qué ofreces a cambio, viajero?"*
+
+Has llegado a Ost-in-Edhil, la ciudad de los herreros elfos de Eregion. Celebrimbor,
+señor de los Gwaith-i-Mírdain, te escucha. Como Annatar en su día, traes conocimiento
+y necesidad. Él pone la forja. Tú pones el propósito.
 
 ---
 
