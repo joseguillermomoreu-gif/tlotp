@@ -46,7 +46,10 @@ Celebrimbor gestiona skills de Claude Code: busca e instala desde skills.sh, ana
 ### Operaciones
 
 - **07-module-analyze.md** — Analizar skills instaladas y sugerir mejoras
-- **08-module-install.md** — Instalación de skills
+- **07-module-search.md** — Buscar skills en skills.sh
+- **08-module-install.md** — Instalar skills
+- **11-module-update.md** — Actualizar skills
+- **12-module-create-skill.md** — Crear skill asistida (nueva)
 - **09-module-list.md** — Listar skills instaladas
 - **10-module-remove.md** — Eliminar skills
 - **11-module-update.md** — Actualizar skills
@@ -97,19 +100,21 @@ Si hay updates, avisarlo en el menú.
 
 ```
 prompts/celebrimbor/
-├── celebrimbor-main.md          # Entry point (este archivo)
-├── ARCHITECTURE.md              # Arquitectura del sistema
-├── README.md                    # Introducción
+├── celebrimbor-main.md           # Entry point (este archivo)
+├── ARCHITECTURE.md               # Arquitectura del sistema
+├── README.md                     # Introducción
 └── sections/
-    ├── 01-detector-entorno.md   # Detección de entorno
-    ├── 02-menu-principal.md     # Menú interactivo
-    ├── 04-backend-cli.md        # Referencia npx skills
-    ├── 07-module-search.md      # Búsqueda
-    ├── 08-module-install.md     # Instalación
-    ├── 09-module-list.md        # Listar
-    ├── 10-module-remove.md      # Eliminar
-    ├── 11-module-update.md      # Actualizar
-    └── 14-skills-cli-reference.md  # Referencia técnica
+    ├── 01-detector-entorno.md    # Detección de entorno
+    ├── 02-menu-principal.md      # Menú interactivo + permisos
+    ├── 04-backend-cli.md         # Referencia npx skills
+    ├── 07-module-analyze.md      # Analizar skills instaladas
+    ├── 07-module-search.md       # Buscar en skills.sh
+    ├── 08-module-install.md      # Instalar skills
+    ├── 09-module-list.md         # Listar skills
+    ├── 10-module-remove.md       # Eliminar skills
+    ├── 11-module-update.md       # Actualizar skills
+    ├── 12-module-create-skill.md # Crear skill asistida ✨
+    └── 14-skills-cli-reference.md # Referencia técnica CLI
 ```
 
 ---

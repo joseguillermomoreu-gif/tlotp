@@ -117,10 +117,10 @@ Mostrar con `AskUserQuestion`:
 - Confirmar y ejecutar `npx skills update`
 
 ### Opción 4: Crear una skill (asistido)
-- Módulo nuevo *(pendiente implementación #214)*
+- Cargar módulo: `sections/12-module-create-skill.md`
 - WebFetch on-demand a `https://code.claude.com/docs/en/skills`
-- Guiar al usuario paso a paso
-- Mostrar mensaje de lore épico al finalizar
+- Guiar al usuario paso a paso (nombre, tipo, description, invocación, contenido)
+- Mostrar lore épico al finalizar
 
 ### Opción 5: Salir de Eregion
 ```
