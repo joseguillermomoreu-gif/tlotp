@@ -59,27 +59,37 @@ Celebrimbor gestiona skills de Claude Code: busca e instala desde skills.sh, ana
 
 ## 🚀 Flujo de Ejecución
 
-### Paso 1: Detección de Entorno
+### Paso 1: Banner de Bienvenida + Detección de Entorno
 
-**Módulo**: `sections/01-detector-entorno.md`
+**Módulo**: `sections/02-menu-principal.md`
 
-1. Detectar Node.js, npm, npx
-2. Validar Node.js >=18
-3. Generar reporte visual
+1. Mostrar banner de Eregion (solo una vez)
+2. Ejecutar `sections/01-detector-entorno.md` — validar Node.js >=18
 
-### Paso 2: Verificación de Updates
+### Paso 2: Solicitud de Permisos
 
-Antes del menú, ejecutar silenciosamente:
+**Módulo**: `sections/02-menu-principal.md`
+
+AskUserQuestion con los permisos necesarios (Bash, Read, Write, Edit, WebFetch).
+
+### Paso 3: Verificación de Updates (silenciosa)
+
 ```bash
 npx skills check
 ```
-Si hay updates, indicarlo en el banner del menú.
+Si hay updates, avisarlo en el menú.
 
-**Ver**: `sections/11-module-update.md` (Paso 0)
-
-### Paso 3: Menú Principal
+### Paso 4: Menú Principal (loop)
 
 **Módulo**: `sections/02-menu-principal.md`
+
+```
+1. 🔍 Analizar skills instaladas y sugerir mejoras
+2. 📦 Buscar e instalar skills (skills.sh)
+3. 🔄 Actualizar skills (skills.sh)
+4. ✨ Crear una skill (asistido)
+5. 🚪 Salir de Eregion
+```
 
 ---
 
