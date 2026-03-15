@@ -6,7 +6,7 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v3.18.0**
+**TLOTP v3.19.0**
 - **Fecha release**: 2026-03-15
 - **Nombre código**: "Las Almenaras de Gondor" (CI/CD automation: release-prep + backmerge + branch protection hardening)
 
