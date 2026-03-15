@@ -45,7 +45,7 @@ Celebrimbor gestiona skills de Claude Code: busca e instala desde skills.sh, ana
 
 ### Operaciones
 
-- **07-module-search.md** — Búsqueda de skills en skills.sh
+- **07-module-analyze.md** — Analizar skills instaladas y sugerir mejoras
 - **08-module-install.md** — Instalación de skills
 - **09-module-list.md** — Listar skills instaladas
 - **10-module-remove.md** — Eliminar skills
