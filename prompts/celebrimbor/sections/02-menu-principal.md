@@ -112,7 +112,7 @@ Mostrar con `AskUserQuestion`:
 - Mostrar mensaje de lore épico al finalizar
 
 ### Opción 3: Actualizar skills (skills.sh)
-- Cargar módulo: `sections/11-module-update.md` *(pendiente rediseño #213)*
+- Cargar módulo: `sections/11-module-update.md`
 - Mostrar skills con updates disponibles
 - Confirmar y ejecutar `npx skills update`
 
