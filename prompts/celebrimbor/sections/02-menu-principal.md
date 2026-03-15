@@ -106,7 +106,7 @@ Mostrar con `AskUserQuestion`:
 - Mostrar resumen con sugerencias
 
 ### Opción 2: Buscar e instalar skills (skills.sh)
-- Cargar módulo: `sections/08-module-install.md` *(pendiente rediseño #212)*
+- Cargar módulo: `sections/07-module-search.md` → continúa en `sections/08-module-install.md`
 - Buscar en skills.sh con `npx skills find <query>`
 - Instalar en estructura `<name>/SKILL.md`
 - Mostrar mensaje de lore épico al finalizar
