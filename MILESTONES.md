@@ -37,6 +37,7 @@ Recovery (UPDATE), Reset (DELETE). Sistema de backups, detección de conflictos,
 **Arquitectura**: 12 módulos
 **Target**: v3.0.0 ✅ RELEASED
 
+
 ---
 
 ### **2. 🏹 Bardo — Proveedor de MCPs y Plugins**
@@ -80,6 +81,7 @@ renderer, improvement engine, modifier, creator. Sin docs estáticas.
 **Progreso**: 🎉 **ÉPICA COMPLETA** — Ents v1.0 ✅
 **Arquitectura**: 8 módulos
 **Target**: v3.4.0 ✅ RELEASED
+
 
 ---
 
@@ -198,5 +200,5 @@ Palantír → Celebrimbor → Bardo → Ents → Aragorn → Gandalf → Gollum(
 
 *"One Prompt to Rule Them All"* 💍
 
-*Última actualización: 2026-03-11*
+*Última actualización: 2026-03-15*
 *Mantenido por: La Fellowship del Teclado (Pépeton hijo de Móreuton + Claudeton hijo de Codeton)*
