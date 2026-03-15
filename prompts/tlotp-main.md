@@ -118,12 +118,12 @@ Nunca actúa sin confirmación.
 
 ⚔️ **🔮 Palantír** — La Piedra Vidente. Domina las configuraciones de tu reino.
    *(CLAUDE.md · settings.json · rules/ · hooks · MEMORY.md)*
-⚔️ **🏹 Bardo** — El Contrabandista. Comercia con MCPs y plugins desde la Ciudad de Valle.
-   *(~/.claude.json · .mcp.json · plugins/ · settings.json)*
-⚔️ **⚒️ Celebrimbor** — El Maestro Herrero Élfico, forjador de los Anillos de Poder. Forja skills a medida.
-   *(~/.claude/skills/ · .claude/skills/)*
 ⚔️ **🌳 Ents** — Los Pastores del Fangorn. Custodian las ramas y optimizan tu CI/CD.
    *(.github/workflows/ · GitHub Actions)*
+⚔️ **⚒️ Celebrimbor** — El Maestro Herrero Élfico, forjador de los Anillos de Poder. Forja skills a medida.
+   *(~/.claude/skills/ · .claude/skills/)*
+⚔️ **🏹 Bardo** — El Contrabandista. Comercia con MCPs y plugins desde la Ciudad de Valle.
+   *(~/.claude.json · .mcp.json · plugins/ · settings.json)*
 ⚔️ **👑 Aragorn** — El Rey de Gondor. Convoca y gestiona tu ejército de agentes.
    *(agents/ · commands/ · teams/)*
 
@@ -151,7 +151,7 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (últim
         "description": ""
       },
       {
-        "label": "🏹 Reunir monedas para Bardo",
+        "label": "🌳 Convocar la Asamblea de los Ents",
         "description": ""
       },
       {
@@ -181,7 +181,7 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (últim
         "description": ""
       },
       {
-        "label": "🌳 Convocar la Asamblea de los Ents",
+        "label": "🏹 Reunir monedas para Bardo",
         "description": ""
       },
       {
@@ -211,7 +211,7 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (últim
         "description": ""
       },
       {
-        "label": "📚 Documentación y Ayuda",
+        "label": "⚡ Consultar al Mago Blanco — Gandalf",
         "description": ""
       },
       {
@@ -229,17 +229,45 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (últim
 
 **Routing**:
 - 🔮 Contemplar la Piedra Vidente → Cargar `@prompts/palantir/palantir-main.md`
-- 🏹 Reunir monedas para Bardo → Cargar `@prompts/bardo/bardo-main.md`
-- ⚒️ Acudir a la forja de Celebrimbor → Cargar `@prompts/celebrimbor/celebrimbor-main.md`
 - 🌳 Convocar la Asamblea de los Ents → Cargar `@prompts/ents/ents-main.md`
+- ⚒️ Acudir a la forja de Celebrimbor → Cargar `@prompts/celebrimbor/celebrimbor-main.md`
+- 🏹 Reunir monedas para Bardo → Cargar `@prompts/bardo/bardo-main.md`
 - 👑 Usar el cuerno de Gondor para convocar a Aragorn → Cargar `@prompts/aragorn/aragorn-main.md`
-- 📚 Documentación y Ayuda → Mostrar sección "Documentación y Ayuda" (ver más abajo)
+- ⚡ Consultar al Mago Blanco — Gandalf → Mostrar mensaje WIP (ver más abajo)
 - 🔙 Volver al inicio → Mostrar Pantalla 1
 - 🚪 Salir → Mensaje de despedida épico y terminar
 
 ### PASO 4: Loop Continuo
 
 **Loop continuo** hasta que el usuario elija Salir o seleccione una épica específica.
+
+---
+
+## ⚡ Contenido de "Consultar al Mago Blanco — Gandalf"
+
+**Si el usuario selecciona "⚡ Consultar al Mago Blanco — Gandalf"**, mostrar:
+
+```
+⚡ ...
+
+   "Un mago nunca llega tarde...
+    pero esta épica aún está siendo forjada
+    en las profundidades de Isengard."
+
+   ⚡ Gandalf — Spec-Driven Development
+
+   Cuando esté listo, el Mago Blanco te ayudará a diseñar
+   Software Design Documents de forma interactiva:
+   contexto, requisitos, arquitectura y decisiones técnicas
+   antes de escribir una sola línea de código.
+
+   🚧 Estado: En diseño activo
+   📋 Issue: github.com/joseguillermomoreu-gif/tlotp/issues/111
+
+⚡ ...
+```
+
+Tras mostrar el mensaje, volver al menú principal (Pantalla 1).
 
 ---
 
