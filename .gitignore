@@ -24,3 +24,4 @@ temp/
 # LinkedIn drafts (nunca commitear)
 linkedin-*.md
 /.claude/rules/workflow.md
+/.claude/rules/git-workflow.md

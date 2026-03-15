@@ -177,7 +177,7 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (últim
     "multiSelect": false,
     "options": [
       {
-        "label": "⚒️ Acudir a la forja de Celebrimbor",
+        "label": "⚒️ Peregrinaje a Eregion, Celebrimbor nos espera",
         "description": ""
       },
       {
@@ -230,7 +230,7 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (últim
 **Routing**:
 - 🔮 Contemplar la Piedra Vidente → Cargar `@prompts/palantir/palantir-main.md`
 - 🌳 Convocar la Asamblea de los Ents → Cargar `@prompts/ents/ents-main.md`
-- ⚒️ Acudir a la forja de Celebrimbor → Cargar `@prompts/celebrimbor/celebrimbor-main.md`
+- ⚒️ Peregrinaje a Eregion, Celebrimbor nos espera → Cargar `@prompts/celebrimbor/celebrimbor-main.md`
 - 🏹 Reunir monedas para Bardo → Cargar `@prompts/bardo/bardo-main.md`
 - 👑 Usar el cuerno de Gondor para convocar a Aragorn → Cargar `@prompts/aragorn/aragorn-main.md`
 - ⚡ Consultar al Mago Blanco — Gandalf → Mostrar mensaje WIP (ver más abajo)
@@ -377,7 +377,7 @@ Tras mostrar el bloque anterior, usar **AskUserQuestion**:
         "description": ""
       },
       {
-        "label": "⚒️ Ir a Celebrimbor",
+        "label": "⚒️ Peregrinaje a Eregion, Celebrimbor nos espera",
         "description": ""
       },
       {
@@ -395,7 +395,7 @@ Tras mostrar el bloque anterior, usar **AskUserQuestion**:
 
 **Routing**:
 - 🔮 Ir a Palantír → Cargar `@prompts/palantir/palantir-main.md`
-- ⚒️ Ir a Celebrimbor → Cargar `@prompts/celebrimbor/celebrimbor-main.md`
+- ⚒️ Peregrinaje a Eregion, Celebrimbor nos espera → Cargar `@prompts/celebrimbor/celebrimbor-main.md`
 - 🔙 Volver al menú principal → Mostrar Pantalla 1 del menú principal
 - 🚪 Salir → Mensaje de despedida épico y terminar
 
