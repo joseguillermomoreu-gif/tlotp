@@ -7,20 +7,27 @@ según criterios oficiales, detectar oportunidades y guiar la aplicación de mej
 
 ---
 
-## Paso 0 — Documentación oficial (on-the-fly)
+## Paso 0 — Documentación y marketplaces (on-the-fly)
 
-**IMPORTANTE**: Comprobar primero si la documentación ya está cargada en el contexto.
+**IMPORTANTE**: Comprobar primero si cada fuente ya está cargada en el contexto.
 
 **Si ya está en contexto**: usar directamente sin re-fetchear.
 
-**Si no está en contexto**, hacer WebFetch:
+**Si no está en contexto**, hacer WebFetch en paralelo:
 
 > **WebFetch 1**: `https://code.claude.com/docs/en/sub-agents`
 > **Extraer**: campos válidos del frontmatter YAML (name, description, tools, model, permissionMode,
 > maxTurns, disallowedTools, skills, mcpServers, hooks, memory, background), scopes, invocación
 > automática vs explícita, mejores prácticas de description.
 
-**Fallback si WebFetch falla**: Continuar con conocimiento interno marcando sugerencias con ⚠️ sin doc oficial.
+> **WebFetch 2**: `https://raw.githubusercontent.com/VoltAgent/awesome-claude-code-subagents/main/README.md`
+> **Extraer**: lista completa de agentes por categoría, nombre y descripción de cada uno.
+
+> **WebFetch 3**: `https://aitmpl.com/agents`
+> **Extraer**: agentes disponibles con nombre y descripción.
+
+**Fallback si WebFetch 1 falla**: Continuar marcando sugerencias con ⚠️ sin doc oficial.
+**Fallback si WebFetch 2 o 3 fallan**: Mostrar en Paso 4 solo las URLs del marketplace como referencia, sin sugerir agentes concretos.
 
 ---
 
@@ -136,18 +143,54 @@ Score global = media de puntuaciones individuales (redondeado a 1 decimal)
 
 ## Paso 4 — Agentes recomendados no instalados
 
-Basado en el stack detectado y la documentación oficial, listar oportunidades:
+Usando los datos obtenidos vía WebFetch en el Paso 0 (VoltAgent + aitmpl.com),
+cruzar el stack detectado con los agentes disponibles en los marketplaces.
+
+**CRÍTICO**: Los nombres y descripciones de los agentes recomendados deben extraerse
+del contenido real de los WebFetch. No hardcodear nombres de agentes.
+
+**Proceso de matching**:
+1. Para cada tecnología detectada en el stack (PHP, Symfony, TypeScript, Playwright, etc.)
+2. Buscar en los datos de VoltAgent y aitmpl.com agentes cuyo nombre o descripción
+   mencione esa tecnología o su dominio (testing, devops, backend, etc.)
+3. Excluir los agentes ya instalados (comparar con la lista del Paso 1)
+4. Ordenar por relevancia al stack
+
+Mostrar resultado:
 
 ```
 💡 OPORTUNIDADES PARA TU STACK
 ──────────────────────────────────────────────────────────────
   Stack: PHP/Symfony · TypeScript · PostgreSQL
 
-  ⚔️  Agentes recomendados no instalados:
-    • phpunit-expert   — tests unitarios PHPUnit para tu stack PHP
-    • playwright-agent — E2E con Playwright para tu TypeScript
-    • db-analyzer      — análisis de queries y esquemas PostgreSQL
+  📦 VoltAgent:
+    • [nombre real del marketplace] — [descripción real del marketplace]
+    • [nombre real del marketplace] — [descripción real del marketplace]
+
+  🤖 aitmpl.com:
+    • [nombre real del marketplace] — [descripción real del marketplace]
 ──────────────────────────────────────────────────────────────
+```
+
+**Si el WebFetch del marketplace falló** (fallback):
+
+```
+💡 OPORTUNIDADES PARA TU STACK
+──────────────────────────────────────────────────────────────
+  ⚠️  No se pudo consultar los marketplaces en tiempo real.
+      Explóralos directamente para encontrar agentes para tu stack:
+
+  📦 VoltAgent:  https://github.com/VoltAgent/awesome-claude-code-subagents
+  🤖 aitmpl.com: https://aitmpl.com/agents
+──────────────────────────────────────────────────────────────
+```
+
+**Si no hay matches tras el cruce**:
+
+```
+💡 Tu stack no tiene coincidencias directas en los marketplaces
+   o ya tienes instalados los agentes más relevantes.
+   Explora el catálogo completo en "Buscar e instalar desde marketplaces".
 ```
 
 ---
@@ -324,6 +367,8 @@ Score global: 10/10 👑 — todos en estado Guerrero de Gondor
 
 Ver índice completo en `@prompts/docs-sources.md`:
 - Sub-agents: `https://code.claude.com/docs/en/sub-agents`
+- VoltAgent:  `https://github.com/VoltAgent/awesome-claude-code-subagents`
+- aitmpl.com: `https://aitmpl.com/agents`
 
 ---
 
