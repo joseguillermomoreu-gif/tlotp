@@ -70,12 +70,12 @@ Tras cargar la documentación, mostrar menú:
         "description": "Listar y gestionar teams existentes"
       },
       {
-        "label": "❓ ¿Cuándo usar Agent Teams vs Subagents?",
-        "description": "Explicación desde docs oficiales"
+        "label": "🪟 ¿Cómo ver cada agente en su propia pestaña?",
+        "description": "Guía para visualizar resultados independientes"
       },
       {
-        "label": "🔙 Volver al menú de Aragorn",
-        "description": ""
+        "label": "❓ ¿Cuándo usar Agent Teams vs Subagents?",
+        "description": "Explicación desde docs oficiales"
       }
     ]
   }]
@@ -85,6 +85,58 @@ Tras cargar la documentación, mostrar menú:
 ---
 
 ## Opción A — Crear nuevo team
+
+### Paso A0 — Proponer team según stack y agentes instalados
+
+**Antes de pedir nombre**, Aragorn analiza el stack y los agentes disponibles y propone
+combinaciones de team con nombre + agentes sugeridos. El usuario elige una propuesta
+o crea la suya.
+
+**Reglas de matching** (basadas en agentes instalados detectados en Paso A1):
+
+| Stack / Patrón | Team sugerido | Agentes candidatos |
+|----------------|--------------|-------------------|
+| PHP + tests disponibles | "quality-shield" | code-reviewer + php-pro + test-automator |
+| TypeScript + Playwright | "frontend-guard" | typescript-pro + playwright-agent + code-reviewer |
+| Backend + Frontend | "full-stack-review" | backend-agent + frontend-agent + architect-reviewer |
+| Deploy / CI/CD | "deploy-guard" | devops-engineer + deployment-engineer + security-auditor |
+| Refactoring | "clean-architecture" | refactoring-specialist + architect-reviewer + code-reviewer |
+| Cualquier proyecto | "war-council" | Los 3 agentes con más alta puntuación del arsenal |
+
+Si no hay suficientes agentes instalados para una propuesta (< 2), saltar directamente al Paso A3.
+
+Mostrar propuestas con AskUserQuestion:
+
+```json
+{
+  "questions": [{
+    "header": "Propuesta de team",
+    "question": "⚔️  Aragorn ha analizado tu arsenal. ¿Qué ejército convocamos?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "⚔️  [nombre-propuesto-1] — [agentes]",
+        "description": "[descripción del propósito del team]"
+      },
+      {
+        "label": "⚔️  [nombre-propuesto-2] — [agentes]",
+        "description": "[descripción del propósito del team]"
+      },
+      {
+        "label": "✍️  Crear team personalizado",
+        "description": "Elegir nombre y agentes manualmente"
+      },
+      {
+        "label": "🔙 Volver",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+Si el usuario elige una propuesta: saltar directamente al Paso A5 (activación) con los datos pre-cargados.
+Si elige personalizado: continuar por el flujo normal (Paso A3).
 
 ### Paso A1 — Verificar activación de Agent Teams
 
@@ -233,27 +285,42 @@ mkdir -p .claude/teams/
 Escribir el fichero `.claude/teams/[nombre].yml` usando Write con la estructura
 extraída de las docs oficiales.
 
-### Paso A7 — Confirmación
+### Paso A7 — Confirmación con lore épico
+
+Asignar un nombre de batalla al team basado en los agentes y su propósito:
 
 ```
-✅ TEAM CONFIGURADO CORRECTAMENTE
+══════════════════════════════════════════════════════════════
+⚔️  EJÉRCITO FORMADO: [nombre-del-team]
 ══════════════════════════════════════════════════════════════
 
-  🏛️  Team:     [nombre]
-  📝  Para:     [descripción]
-  ⚔️   Agentes:  [lista]
-  📍  Fichero:  .claude/teams/[nombre].yml
+  🏰 "[Frase épica de batalla — variada]"
 
-  [Incluir cómo usar el team según las docs oficiales]
+  Guerreros convocados:
+    [emoji-personaje] [Personaje] ([nombre-agente]) — "[frase breve]"
+    [emoji-personaje] [Personaje] ([nombre-agente]) — "[frase breve]"
+
+  📍 Fichero:  .claude/teams/[nombre].yml
+  📝 Misión:   [descripción]
+
+  [Cómo usar el team según las docs oficiales]
 
 ══════════════════════════════════════════════════════════════
-👑 "Los ejércitos de Gondor están listos, señor.
-    El team marcha."
 ```
+
+**Frases épicas de batalla** (rotar, nunca repetir la misma):
+- *"¡La Batalla del Pelennor Fields comienza! Rohirrim y Elfos marchan juntos."*
+- *"¡El cuerno de Gondor resuena! El ejército responde."*
+- *"¡Por Frodo! ¡Por la Comarca! El team marcha al combate."*
+- *"Sauron no esperaba esta coordinación. Que tiemble."*
+- *"¡Rohirrim, a la carga! El team no conoce la derrota."*
+
+Usar el sistema de personajes de `aragorn-main.md` para asignar a cada agente del team.
 
 AskUserQuestion:
 - 🆕 Crear otro team
 - 📋 Ver todos los teams
+- 💡 Cómo ver pestañas separadas por agente
 - 🔙 Volver al menú de Aragorn
 
 ---
@@ -298,7 +365,51 @@ AskUserQuestion:
 
 ---
 
-## Opción C — ¿Cuándo usar Agent Teams vs Subagents?
+## Opción C — ¿Cómo ver cada agente en su propia pestaña?
+
+**CRÍTICO**: El contenido de esta sección debe extraerse de las docs oficiales obtenidas
+en el Paso 0 (`agent-teams`). Si las docs no mencionan display modes o pestañas,
+mostrar solo lo que aparezca en las docs + las instrucciones prácticas de abajo.
+
+Mostrar:
+
+```
+🪟 AGENTES EN PESTAÑAS SEPARADAS
+══════════════════════════════════════════════════════════════
+
+Cada agente de un Agent Team es una instancia de Claude Code
+independiente. Para verlos en pestañas separadas:
+
+📖 Según las docs oficiales:
+   [insertar aquí el contenido relevante de las docs sobre
+    display modes, cómo se visualizan los agentes paralelos,
+    output de cada instancia — extraído del WebFetch]
+
+💡 Guía práctica:
+   1. Abre Claude Code en modo terminal
+   2. Invoca tu team: "@[nombre-team] [tu tarea]"
+   3. Cada agente del team abre su propio proceso
+   4. Si tu terminal lo soporta (tmux, iTerm2, WezTerm...):
+      - Claude Code puede sugerir abrir cada instancia
+        en un panel/pestaña diferente automáticamente
+   5. Los resultados de cada agente aparecen por separado
+      con su nombre como prefijo
+
+🔧 Configuración recomendada para ver tabs:
+   - Terminal con soporte de splits: tmux, WezTerm, iTerm2
+   - O abre múltiples ventanas de terminal manualmente
+   - Cada agente del team = una pestaña dedicada
+══════════════════════════════════════════════════════════════
+```
+
+AskUserQuestion:
+- 🆕 Crear un team ahora
+- 📋 Ver mis teams configurados
+- 🔙 Volver al menú de Aragorn
+
+---
+
+## Opción E — ¿Cuándo usar Agent Teams vs Subagents?
 
 **CRÍTICO**: Mostrar EXCLUSIVAMENTE el contenido extraído de las docs oficiales
 en el Paso 0. NO usar conocimiento interno para generar la comparativa.
