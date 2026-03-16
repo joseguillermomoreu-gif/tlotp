@@ -77,9 +77,14 @@ Puedes consultarla directamente:
 
 ## Paso 3 — Generar resumen según nivel
 
+**CRÍTICO**: Los resúmenes de los tres niveles deben construirse **exclusivamente** a partir
+del contenido extraído por WebFetch en el Paso 2. No usar conocimiento interno para generar
+el contenido. Si el WebFetch falló, mostrar solo el bloque de fallback del Paso 2 y no
+intentar resumir desde conocimiento propio.
+
 ### 📖 El grimorio completo
 
-Presentar el contenido completo extraído, organizado en capítulos con lore épico:
+Presentar el contenido completo extraído via WebFetch, organizado en capítulos con lore épico:
 
 ```
 🏹 CAPÍTULO I — El Protocolo MCP: Servidores del Exterior
@@ -97,7 +102,7 @@ Presentar el contenido completo extraído, organizado en capítulos con lore ép
 
 ### ⚡ El resumen del Arquero (5 minutos)
 
-Incluir únicamente:
+Construir a partir del contenido de WebFetch. Incluir únicamente:
 - Qué es un MCP y para qué sirve (2-3 líneas)
 - Qué es un plugin y en qué se diferencia del MCP (2-3 líneas)
 - Dónde se configuran los MCPs: `~/.claude.json` (user) y `.mcp.json` (project)
@@ -107,7 +112,7 @@ Incluir únicamente:
 
 ### 🕐 La nota del Hobbit (2 minutos)
 
-Solo lo imprescindible:
+Construir a partir del contenido de WebFetch. Solo lo imprescindible:
 - Una frase: qué es un MCP
 - Una frase: qué es un plugin y cuándo elegir uno sobre el otro
 - Dónde va la config MCP: `~/.claude.json` (global) / `.mcp.json` (proyecto)
