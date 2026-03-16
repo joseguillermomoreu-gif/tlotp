@@ -335,20 +335,108 @@ AskUserQuestion con opciones de continuación:
 
 ## Casos especiales
 
-### Sin agentes instalados
+### Sin agentes instalados — Flujo de sugerencias uno a uno
+
+Cuando no hay ningún agente instalado, NO mostrar solo el mensaje vacío.
+En su lugar, iniciar automáticamente un flujo de sugerencias:
+
+**Paso A** — Mostrar estado y anunciar sugerencias:
 
 ```
 👑 Los campamentos están vacíos, señor.
 
    No se encontraron agentes en ningún scope.
-
    Rutas verificadas:
      • ~/.claude/agents/ (global)
      • .claude/agents/ (proyecto)
 
-💡 Usa "Buscar e instalar desde marketplaces" o "Crear un agente asistido"
-   para reclutar tu primer guerrero.
+🏇 Pero Aragorn ya conoce tu stack. Los heraldos parten al mercado...
+   Un momento — consultando VoltAgent y aitmpl.com en tiempo real.
 ```
+
+**Paso B** — Consultar marketplaces (si no están ya en contexto del Paso 0):
+Reutilizar los datos de VoltAgent y aitmpl.com del Paso 0. Si el WebFetch falló,
+ofrecer solo AskUserQuestion con opciones de ir al marketplace manualmente.
+
+**Paso C** — Construir lista de sugerencias combinada:
+1. Agentes del marketplace relevantes para el stack (matching nombre/descripción con tecnologías detectadas)
+2. Agentes de interés general independientes del stack (siempre útiles para cualquier desarrollador):
+   - code-reviewer (revisión de código)
+   - refactoring-specialist (mejora de código)
+   - documentation-engineer (generar docs)
+   - security-auditor (seguridad)
+   - git-workflow-manager (gestión de git)
+
+Mezclar ambos grupos, priorizando los del stack primero.
+
+**Paso D** — Sugerir uno a uno con AskUserQuestion:
+
+Para cada agente de la lista (mostrar contador `Sugerencia [X/N]`):
+
+```
+👑 SUGERENCIA [X/N]
+══════════════════════════════════════════════════════════════
+
+[emoji personaje] [Personaje] dice:
+   "[frase épica del personaje]"
+
+  🤖 Agente: [nombre]
+  📝 [descripción real del marketplace]
+  🏷️  [categoría] · [fuente: VoltAgent / aitmpl.com]
+  🎯 Por qué para ti: [razón concreta — stack o uso general]
+
+══════════════════════════════════════════════════════════════
+```
+
+```json
+{
+  "questions": [{
+    "header": "Sugerencia [X/N]",
+    "question": "👑 ¿Reclutamos a este guerrero?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Sí, reclutar ahora",
+        "description": "Instalar en scope global (~/.claude/agents/)"
+      },
+      {
+        "label": "📁 Sí, pero en scope proyecto",
+        "description": "Instalar solo en este repositorio"
+      },
+      {
+        "label": "⏭️ Saltar — no me interesa",
+        "description": "Pasar al siguiente"
+      },
+      {
+        "label": "🚫 Parar sugerencias",
+        "description": "Ver resumen e ir al menú"
+      }
+    ]
+  }]
+}
+```
+
+**Si elige instalar**: Descargar el agente (WebFetch al fichero raw del marketplace),
+mostrar el personaje asignado con su frase épica (ver sección "Lore al instalar agentes"),
+y continuar con la siguiente sugerencia.
+
+**Paso E** — Resumen final tras las sugerencias:
+
+```
+══════════════════════════════════════════════════════════════
+👑 RECLUTAMIENTO INICIAL COMPLETADO
+══════════════════════════════════════════════════════════════
+  ✅ Reclutados: [X] guerreros
+  ⏭️  Saltados:  [Y]
+
+  El ejército de Gondor comienza a tomar forma, señor.
+══════════════════════════════════════════════════════════════
+```
+
+AskUserQuestion:
+- 🏪 Ver más agentes en el marketplace
+- 🔍 Inspeccionar el arsenal recién creado
+- 🔙 Volver al menú de Aragorn
 
 ### Arsenal perfecto
 
