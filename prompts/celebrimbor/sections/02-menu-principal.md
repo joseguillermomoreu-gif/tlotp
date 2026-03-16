@@ -77,20 +77,130 @@ Guardar resultado. Si hay updates disponibles, mostrarlo en el menú como aviso:
 
 ---
 
-## 🗡️ Menú Principal
+## 🗡️ Menú Principal (PAGINADO)
 
-Mostrar con `AskUserQuestion`:
+**CRÍTICO**: Usar **AskUserQuestion** (límite 4 opciones). El menú se divide en 4 pantallas.
+Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir de Eregion" (última página: "🔙 Volver al inicio" en lugar de "➕ Ver más...").
 
+Mostrar aviso de updates si procede:
 ```
-⚒️ La Forja de Eregion — ¿Cuál es tu trato, viajero?
+⚠️  Hay skills con actualizaciones disponibles → Opción de actualizar
+```
 
-  {AVISO_UPDATES_SI_PROCEDE}
+**Pantalla 1** (mostrar primero):
 
-  1. 🔍  Analizar skills instaladas y sugerir mejoras
-  2. 📦  Buscar e instalar skills (skills.sh)
-  3. 🔄  Actualizar skills (skills.sh)
-  4. ✨  Crear una skill (asistido)
-  5. 🚪  Salir de Eregion
+```json
+{
+  "questions": [{
+    "header": "La Forja de Eregion (1/4)",
+    "question": "¿Cuál es tu trato, viajero?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🔍 Examinar las forjas de Eregion — Analizar y mejorar",
+        "description": ""
+      },
+      {
+        "label": "📦 Explorar el mercado de Ost-in-Edhil — Buscar e instalar",
+        "description": ""
+      },
+      {
+        "label": "➕ Ver más...",
+        "description": ""
+      },
+      {
+        "label": "🚪 Salir de Eregion",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+**Si elige "➕ Ver más..."**, mostrar **Pantalla 2**:
+
+```json
+{
+  "questions": [{
+    "header": "La Forja de Eregion (2/4)",
+    "question": "¿Cuál es tu trato, viajero?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🔄 Reafilar las hojas en la fragua — Actualizar skills",
+        "description": ""
+      },
+      {
+        "label": "✨ Forjar desde cero — Crear nueva skill asistida",
+        "description": ""
+      },
+      {
+        "label": "➕ Ver más...",
+        "description": ""
+      },
+      {
+        "label": "🚪 Salir de Eregion",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+**Si elige "➕ Ver más..."**, mostrar **Pantalla 3**:
+
+```json
+{
+  "questions": [{
+    "header": "La Forja de Eregion (3/4)",
+    "question": "¿Cuál es tu trato, viajero?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "⚔️ Revisar el inventario de la Forja — Listar y eliminar",
+        "description": ""
+      },
+      {
+        "label": "📜 Consultar los pergaminos de Eregion — Guía y documentación",
+        "description": ""
+      },
+      {
+        "label": "➕ Ver más...",
+        "description": ""
+      },
+      {
+        "label": "🚪 Salir de Eregion",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+**Si elige "➕ Ver más..."**, mostrar **Pantalla 4**:
+
+```json
+{
+  "questions": [{
+    "header": "La Forja de Eregion (4/4)",
+    "question": "¿Cuál es tu trato, viajero?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🔙 Abandonar Eregion — Volver a La Comunidad del Código",
+        "description": ""
+      },
+      {
+        "label": "🔙 Volver al inicio",
+        "description": ""
+      },
+      {
+        "label": "🚪 Salir de Eregion",
+        "description": ""
+      }
+    ]
+  }]
+}
 ```
 
 **Loop continuo**: al terminar cada módulo, volver a este menú (sin repetir banner ni permisos).
@@ -99,30 +209,50 @@ Mostrar con `AskUserQuestion`:
 
 ## Flujo de Navegación
 
-### Opción 1: Analizar skills y sugerir mejoras
+### "🔍 Examinar las forjas de Eregion — Analizar y mejorar"
 - Cargar módulo: `sections/07-module-analyze.md`
 - Inspeccionar skills instaladas en rutas oficiales
 - Comparar con doc oficial (WebFetch on-demand si no está en contexto)
 - Mostrar resumen con sugerencias
 
-### Opción 2: Buscar e instalar skills (skills.sh)
+### "📦 Explorar el mercado de Ost-in-Edhil — Buscar e instalar"
 - Cargar módulo: `sections/07-module-search.md` → continúa en `sections/08-module-install.md`
 - Buscar en skills.sh con `npx skills find <query>`
 - Instalar en estructura `<name>/SKILL.md`
 - Mostrar mensaje de lore épico al finalizar
 
-### Opción 3: Actualizar skills (skills.sh)
+### "🔄 Reafilar las hojas en la fragua — Actualizar skills"
 - Cargar módulo: `sections/11-module-update.md`
 - Mostrar skills con updates disponibles
 - Confirmar y ejecutar `npx skills update`
 
-### Opción 4: Crear una skill (asistido)
+### "✨ Forjar desde cero — Crear nueva skill asistida"
 - Cargar módulo: `sections/12-module-create-skill.md`
-- WebFetch on-demand a `https://code.claude.com/docs/en/skills`
+- WebFetch on-demand a la documentación oficial de skills
 - Guiar al usuario paso a paso (nombre, tipo, description, invocación, contenido)
 - Mostrar lore épico al finalizar
 
-### Opción 5: Salir de Eregion
+### "📜 Consultar los pergaminos de Eregion — Guía y documentación"
+- Cargar módulo: `sections/13-module-docs.md`
+- Preguntar nivel de detalle (completo / 5 min / 2 min)
+- WebFetch on-the-fly si las docs no están en contexto: `skills` + `vercel-labs/skills`
+- Generar resumen con intro y cierre épico
+
+### "⚔️ Revisar el inventario de la Forja — Listar y eliminar"
+- Mostrar sub-menú (AskUserQuestion):
+  - `📋 Ver el inventario completo — Listar skills instaladas` → `sections/09-module-list.md`
+  - `🗑️ Retirar una pieza de la Forja — Eliminar skill` → `sections/10-module-remove.md`
+  - `🔙 Volver al menú principal`
+
+### "🔙 Abandonar Eregion — Volver a La Comunidad del Código"
+- Finalizar el loop de Celebrimbor
+- Mostrar despedida breve:
+```
+Los Gwaith-i-Mírdain guardan el fuego hasta tu regreso, viajero.
+```
+- Cargar `@prompts/tlotp-main.md` para retomar el menú principal de TLOTP
+
+### "🚪 Salir de Eregion"
 ```
 Los Gwaith-i-Mírdain guardan el fuego hasta tu regreso.
 Que tus skills sirvan bien en la Tierra Media, viajero.

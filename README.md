@@ -143,7 +143,7 @@ la creación de un SDD profesional antes de escribir código — el antídoto al
 Genera 3 ficheros compatibles con Claude Code Plan Mode, Amazon Kiro y Cursor:
 `requirements.md` (EARS format) + `design.md` (arquitectura + decisiones) + `tasks.md`.
 Lore: el **Consejo de Rivendel**, donde cada componente del proyecto suma un miembro
-a la Fellowship con su frase icónica (*"¡Cuenta con mi hacha!"*, *"¡Y con mi arco!"*...).
+a La Comunidad del Código con su frase icónica (*"¡Cuenta con mi hacha!"*, *"¡Y con mi arco!"*...).
 
 ---
 
@@ -173,7 +173,7 @@ TLOTP es la **evolución** de claude-code-auto-skills.
 
 ## 🤝 Contribuir
 
-¡Las contribuciones son bienvenidas! Ver **[CONTRIBUTING.md](CONTRIBUTING.md)** para el sistema de gamificación, épicas disponibles y cómo unirte a la Fellowship.
+¡Las contribuciones son bienvenidas! Ver **[CONTRIBUTING.md](CONTRIBUTING.md)** para el sistema de gamificación, épicas disponibles y cómo unirte a La Comunidad del Código.
 
 ---
 
@@ -185,13 +185,50 @@ TLOTP es la **evolución** de claude-code-auto-skills.
 
 ---
 
+## 📖 Glosario de Documentación Oficial
+
+TLOTP consulta documentación en tiempo de ejecución (nunca hardcodeada). Este glosario centraliza todas las fuentes, qué épica las usa y dónde más podrían aplicarse.
+
+> Índice completo con instrucciones de uso: [`prompts/docs-sources.md`](prompts/docs-sources.md)
+
+### Claude Code — Documentación Oficial
+
+| URL | Descripción | Épicas | Potencial |
+|-----|-------------|--------|-----------|
+| [how-claude-code-works](https://code.claude.com/docs/en/how-claude-code-works) | Arquitectura interna y flujo de contexto | Palantír | Todos |
+| [features-overview](https://code.claude.com/docs/en/features-overview) | Resumen de todas las features disponibles | Palantír | Todos |
+| [best-practices](https://code.claude.com/docs/en/best-practices) | Mejores prácticas oficiales | Palantír | Celebrimbor, Gandalf |
+| [settings](https://code.claude.com/docs/en/settings) | Configuración global/proyecto, permisos, allowlists | Palantír | Celebrimbor, Aragorn |
+| [memory](https://code.claude.com/docs/en/memory) | Jerarquía de memoria (7 niveles), rules, auto memory | Palantír, Celebrimbor | Aragorn, Gandalf |
+| [hooks-guide](https://code.claude.com/docs/en/hooks-guide) | Hooks: tipos, eventos, matchers, configuración | Palantír | Ents, Aragorn |
+| [skills](https://code.claude.com/docs/en/skills) | Skills nativas: SKILL.md, frontmatter, invocación | Celebrimbor | Palantír |
+| [mcp](https://code.claude.com/docs/en/mcp) | MCPs: configurar servidores, scopes, transports | Bardo | Aragorn, Palantír |
+| [plugins](https://code.claude.com/docs/en/plugins) | Plugins: estructura, instalación, diferencias con skills | Bardo | Celebrimbor |
+| [output-styles](https://code.claude.com/docs/en/output-styles) | Output styles: built-in y custom, frontmatter | Palantír | Celebrimbor, Gandalf |
+| [sub-agents](https://code.claude.com/docs/en/sub-agents) | Sub-agentes: built-in, custom, permisos, memory | Aragorn | Ents, Gandalf |
+| [agent-teams](https://code.claude.com/docs/en/agent-teams) | Agent Teams: lead+teammates, task list, mailbox | Aragorn | Gandalf |
+| [github-actions](https://code.claude.com/docs/en/github-actions) | Integración Claude Code + GitHub Actions | Ents | Gandalf |
+| [code-review](https://code.claude.com/docs/en/code-review) | Code review automatizado en pipelines | Ents | Gandalf |
+
+### Recursos Externos
+
+| URL | Descripción | Épicas | Potencial |
+|-----|-------------|--------|-----------|
+| [vercel-labs/skills](https://github.com/vercel-labs/skills) | CLI `npx skills`: comandos, flags, scopes | Celebrimbor | Palantír |
+| [skills.sh](https://skills.sh) | Portal web de skills: catálogo público | Celebrimbor | Palantír |
+| [awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents) | Catálogo curado de subagentes | Aragorn | Gandalf |
+| [aitmpl.com/agents](https://aitmpl.com/agents) | Marketplace de agentes con API pública | Aragorn | — |
+| [wmedia.es hooks](https://wmedia.es/es/articulos/claude-code-hooks-guia-practica) | Guía práctica de hooks en español | Palantír | Ents |
+
+---
+
 ## 📜 Licencia
 
 Por definir.
 
 ---
 
-*Última actualización: 2026-03-11*
+*Última actualización: 2026-03-16*
 
 **Desarrollado con 💙 usando Claude Code**
 

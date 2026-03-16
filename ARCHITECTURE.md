@@ -508,6 +508,6 @@ Cuando modularices un prompt, verifica:
 
 ---
 
-*Arquitectura definida por la Fellowship del Teclado* 🥔🤖
+*Arquitectura definida por la Comunidad del Código* 🥔🤖
 *Base para todas las futuras épicas* 🏗️
 *Última actualización: 2026-02-19*

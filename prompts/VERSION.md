@@ -6,8 +6,8 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v3.19.0**
-- **Fecha release**: 2026-03-15
+**TLOTP v3.20.0**
+- **Fecha release**: 2026-03-16
 - **Nombre código**: "Las Almenaras de Gondor" (CI/CD automation: release-prep + backmerge + branch protection hardening)
 
 ---
@@ -15,7 +15,7 @@
 ## 📦 Historial de Versiones
 
 ### v3.16.0 — "Las Almenaras de Gondor"
-- **Fecha release**: 2026-03-15
+- **Fecha release**: 2026-03-16
 - Automatización del ciclo de release completo:
   - `release-prep.yml`: pre-bump workflow_dispatch — calcula versión, actualiza VERSION.md, crea PR develop → master
   - `backmerge.yml`: sincronización automática master → develop con [skip ci] y auto-merge
@@ -25,15 +25,15 @@
 **Closes**: #177, #178, #179, #180, #181
 
 ### v3.15.0 — "Guardians of the Branch"
-- **Fecha release**: 2026-03-15
+- **Fecha release**: 2026-03-16
 - Ents redesign completo + CI/CD hardening
 
 ### v3.14.0 — "The Voices in the Stone"
-- **Fecha release**: 2026-03-15
+- **Fecha release**: 2026-03-16
 - Menú principal TLOTP rediseñado (paginación 3 pantallas)
 
 ### v3.13.0 — "The Voices in the Stone"
-- **Fecha release**: 2026-03-15
+- **Fecha release**: 2026-03-16
 - Palantír redesign completo + narrativa lore TLOTP
 
 ---
@@ -245,7 +245,7 @@ Versión: TLOTP v3.4.0
 
 ---
 
-### v2.1.0 (2026-02-16) - "The Fellowship of the Code"
+### v2.1.0 (2026-02-16) - "La Comunidad del Código"
 
 **🎉 Release Highlights**:
 - Palantír CRUD completo operativo
@@ -350,4 +350,4 @@ TLOTP sigue [Semantic Versioning 2.0.0](https://semver.org/):
 ---
 
 *Última actualización: 2026-03-10*
-*Mantenido por: La Fellowship del Teclado (Pépeton + Claudeton)*
+*Mantenido por: La Comunidad del Código (Pépeton + Claudeton)*

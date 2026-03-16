@@ -33,7 +33,7 @@
               '''-------======-------'''
 
                     ═══ TLOTP {VERSION} ═══
-                  The Fellowship of the Code
+                  La Comunidad del Código
 
 ═══════════════════════════════════════════════════════════════
 
@@ -142,7 +142,7 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (últim
 ```json
 {
   "questions": [{
-    "header": "Fellowship (1/3)",
+    "header": "El Poney Pisador (1/3)",
     "question": "¿A qué épica convocas hoy?",
     "multiSelect": false,
     "options": [
@@ -172,7 +172,7 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (últim
 ```json
 {
   "questions": [{
-    "header": "Fellowship (2/3)",
+    "header": "El Poney Pisador (2/3)",
     "question": "¿A qué épica convocas hoy?",
     "multiSelect": false,
     "options": [
@@ -202,7 +202,7 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (últim
 ```json
 {
   "questions": [{
-    "header": "Fellowship (3/3)",
+    "header": "El Poney Pisador (3/3)",
     "question": "¿A qué épica convocas hoy?",
     "multiSelect": false,
     "options": [
@@ -471,7 +471,7 @@ Docs: Ver opción "Documentación y Ayuda"
 💍 **"One Prompt to Rule Them All"**
 
 *The Lord of the Prompt - {VERSION}*
-*Forjado en las tierras de la Fellowship del Teclado*
+*Forjado en las tierras de la Comunidad del Código*
 
 ---
 

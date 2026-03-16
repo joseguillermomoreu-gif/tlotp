@@ -50,8 +50,9 @@ Celebrimbor gestiona skills de Claude Code: busca e instala desde skills.sh, ana
 - **08-module-install.md** — Instalar skills
 - **11-module-update.md** — Actualizar skills
 - **12-module-create-skill.md** — Crear skill asistida (nueva)
-- **09-module-list.md** — Listar skills instaladas
-- **10-module-remove.md** — Eliminar skills
+- **13-module-docs.md** — Guía y documentación on-demand 📜
+- **09-module-list.md** — Listar skills instaladas *(accesible desde opción Inventario)*
+- **10-module-remove.md** — Eliminar skills *(accesible desde opción Inventario)*
 - **11-module-update.md** — Actualizar skills
 
 ### Referencia Técnica
@@ -82,16 +83,27 @@ npx skills check
 ```
 Si hay updates, avisarlo en el menú.
 
-### Paso 4: Menú Principal (loop)
+### Paso 4: Menú Principal (loop paginado)
 
 **Módulo**: `sections/02-menu-principal.md`
 
+Menú paginado (3 pantallas, 2 opciones de contenido por pantalla):
+
 ```
-1. 🔍 Analizar skills instaladas y sugerir mejoras
-2. 📦 Buscar e instalar skills (skills.sh)
-3. 🔄 Actualizar skills (skills.sh)
-4. ✨ Crear una skill (asistido)
-5. 🚪 Salir de Eregion
+Pantalla 1/3:
+  🔍 Examinar las forjas de Eregion — Analizar y mejorar
+  📦 Explorar el mercado de Ost-in-Edhil — Buscar e instalar
+
+Pantalla 2/3:
+  🔄 Reafilar las hojas en la fragua — Actualizar skills
+  ✨ Forjar desde cero — Crear nueva skill asistida
+
+Pantalla 3/4:
+  ⚔️ Revisar el inventario de la Forja — Listar y eliminar
+  📜 Consultar los pergaminos de Eregion — Guía y documentación
+
+Pantalla 4/4:
+  🔙 Abandonar Eregion — Volver a La Comunidad del Código
 ```
 
 ---
@@ -114,8 +126,16 @@ prompts/celebrimbor/
     ├── 10-module-remove.md       # Eliminar skills
     ├── 11-module-update.md       # Actualizar skills
     ├── 12-module-create-skill.md # Crear skill asistida ✨
+    └── 13-module-docs.md         # Guía y documentación on-demand 📜
     └── 14-skills-cli-reference.md # Referencia técnica CLI
 ```
+
+---
+
+## 🗺️ Navegación entre épicas
+
+- **Volver a La Comunidad del Código**: Cargar `@prompts/tlotp-main.md` para retomar el menú principal de TLOTP
+- **Salir de Eregion**: Finalizar la sesión completamente con despedida épica
 
 ---
 
