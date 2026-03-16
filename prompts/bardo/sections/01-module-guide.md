@@ -25,7 +25,17 @@ basados en el stack detectado del proyecto.
 > **WebFetch 3**: `https://code.claude.com/docs/en/discover-plugins`
 > **Extraer**: catálogo de plugins disponibles, descripciones, compatibilidad.
 
-**Fallback si WebFetch falla**: Continuar con conocimiento interno marcando con ⚠️.
+**Fallback si WebFetch falla**: NO usar conocimiento interno. Mostrar:
+```
+⚠️ No se pudo cargar la documentación oficial en este momento.
+   Las explicaciones requieren las docs oficiales de Claude Code.
+
+   Puedes consultarlas directamente:
+     🔗 MCP:              https://code.claude.com/docs/en/mcp
+     🔌 Plugins:          https://code.claude.com/docs/en/plugins
+     🔍 Discover plugins: https://code.claude.com/docs/en/discover-plugins
+```
+→ Ofrecer AskUserQuestion: reintentar WebFetch / volver al menú.
 
 ---
 
@@ -127,6 +137,10 @@ Si hay más de 2 ítems, paginar (máx 4 opciones por pantalla incluyendo "Ver m
 ---
 
 ## Paso 5 — Asistencia en profundidad
+
+**CRÍTICO**: Todo el contenido de las explicaciones debe extraerse de la documentación oficial
+cargada en el Paso 0 (WebFetch). No generar descripciones, capacidades ni ejemplos desde
+conocimiento interno — usar exclusivamente lo obtenido de las docs oficiales de Claude Code.
 
 Para cada ítem seleccionado, presentar:
 
