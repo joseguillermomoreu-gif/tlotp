@@ -55,6 +55,8 @@ npx skills check
 
 ## Paso 2 — Advertencia y confirmación
 
+Mostrar resumen de lo que se actualizará:
+
 ```
 ⚠️  npx skills update actualiza TODAS las skills instaladas.
     No es posible actualizar de forma selectiva con el CLI.
@@ -63,11 +65,28 @@ Skills que se procesarán:
   ↑ playwright-pom   (v1.2.0 → v1.3.0)
   ↑ typescript-utils (v2.1.0 → v2.2.0)
   · other-skill      (sin cambios)
+```
 
-¿Confirmas la actualización?
+Mostrar con `AskUserQuestion`:
 
-1. ✅ Sí, actualizar todas
-2. 🚪 Cancelar
+```json
+{
+  "questions": [{
+    "header": "Confirmar actualización",
+    "question": "¿Confirmas la actualización de todas las skills?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Sí, actualizar todas",
+        "description": "npx skills update se ejecutará ahora"
+      },
+      {
+        "label": "🚫 Cancelar",
+        "description": "Volver sin actualizar"
+      }
+    ]
+  }]
+}
 ```
 
 ---
@@ -102,11 +121,26 @@ Mostrar output en tiempo real mientras se ejecuta.
 
 ## Paso 5 — Acciones posteriores
 
-```
-¿Qué deseas hacer ahora?
+Mostrar con `AskUserQuestion`:
 
-1. 🔙 Volver al menú principal
-2. 🔍 Buscar e instalar más skills
+```json
+{
+  "questions": [{
+    "header": "Actualización completada",
+    "question": "¿Qué deseas hacer ahora?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🔍 Buscar e instalar más skills",
+        "description": ""
+      },
+      {
+        "label": "🔙 Volver al menú principal",
+        "description": ""
+      }
+    ]
+  }]
+}
 ```
 
 ---

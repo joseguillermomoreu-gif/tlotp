@@ -38,28 +38,37 @@ Gestionar el entry point de Celebrimbor: pedir permisos, mostrar el menú y enru
 ```
 ⚒️ Celebrimbor necesita los siguientes permisos
 
-  🖥️  Bash     — Ejecutar npx skills, node, ls, mkdir, rm...
+  🖥️  Bash     — npx skills (check/find/add/update/remove/list)
+                  nvm/node (verificar entorno)
+                  rm (eliminar skills sin CLI), mkdir
 
-  📖  Read     — Leer skills instaladas
-                  (~/.claude/skills/, .claude/skills/)
+  📖  Read     — Skills instaladas (~/.claude/skills/, .claude/skills/)
+                  Configuraciones del sistema (si usas Palantír):
+                  ~/.claude/CLAUDE.md · ~/.claude/rules/ · ~/.claude/memory/
+                  ./CLAUDE.md · ./.claude/rules/
+
+  🔍  Glob     — Buscar archivos SKILL.md en rutas globales y locales
 
   📝  Write    — Instalar y crear skills
                   (~/.claude/skills/, .claude/skills/)
 
-  ✏️  Edit     — Actualizar skills existentes
+  ✏️  Edit     — Mejorar y actualizar skills existentes
 
-  🌐  WebFetch — Consultar skills.sh y documentación oficial
-                  on-demand (nunca precargada)
+  🌐  WebFetch — Documentación oficial on-demand (nunca precargada):
+                  skills · skills.sh · memoria/configuración
 
 ¿Apruebas los permisos de la Forja?
 ```
 
 **Opciones** (AskUserQuestion):
-1. **✅ Aprobar todos** — Celebrimbor funcionará sin interrupciones
+1. **✅ Aprobar todos** — Celebrimbor trabajará sin interrupciones durante toda la sesión
 2. **🚫 Cancelar** — Salir de Eregion
 
 - **Aprobar todos**: Registrar permisos. Continuar al menú.
 - **Cancelar**: Mostrar despedida épica y terminar.
+
+> 💡 **Nota**: Claude Code puede mostrar confirmaciones de herramientas propias (Bash, Read, Write...)
+> durante la sesión. Son del sistema — responde **Sí** a todas para que Celebrimbor funcione sin interrupciones.
 
 ---
 
