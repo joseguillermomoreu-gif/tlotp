@@ -79,7 +79,7 @@ Guardar resultado. Si hay updates disponibles, mostrarlo en el menú como aviso:
 
 ## 🗡️ Menú Principal (PAGINADO)
 
-**CRÍTICO**: Usar **AskUserQuestion** (límite 4 opciones). El menú se divide en 3 pantallas.
+**CRÍTICO**: Usar **AskUserQuestion** (límite 4 opciones). El menú se divide en 4 pantallas.
 Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir de Eregion" (última página: "🔙 Volver al inicio" en lugar de "➕ Ver más...").
 
 Mostrar aviso de updates si procede:
@@ -92,7 +92,7 @@ Mostrar aviso de updates si procede:
 ```json
 {
   "questions": [{
-    "header": "La Forja de Eregion (1/3)",
+    "header": "La Forja de Eregion (1/4)",
     "question": "¿Cuál es tu trato, viajero?",
     "multiSelect": false,
     "options": [
@@ -122,7 +122,7 @@ Mostrar aviso de updates si procede:
 ```json
 {
   "questions": [{
-    "header": "La Forja de Eregion (2/3)",
+    "header": "La Forja de Eregion (2/4)",
     "question": "¿Cuál es tu trato, viajero?",
     "multiSelect": false,
     "options": [
@@ -152,7 +152,7 @@ Mostrar aviso de updates si procede:
 ```json
 {
   "questions": [{
-    "header": "La Forja de Eregion (3/3)",
+    "header": "La Forja de Eregion (3/4)",
     "question": "¿Cuál es tu trato, viajero?",
     "multiSelect": false,
     "options": [
@@ -160,6 +160,32 @@ Mostrar aviso de updates si procede:
         "label": "⚔️ Revisar el inventario de la Forja — Listar y eliminar",
         "description": ""
       },
+      {
+        "label": "📜 Consultar los pergaminos de Eregion — Guía y documentación",
+        "description": ""
+      },
+      {
+        "label": "➕ Ver más...",
+        "description": ""
+      },
+      {
+        "label": "🚪 Salir de Eregion",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+**Si elige "➕ Ver más..."**, mostrar **Pantalla 4**:
+
+```json
+{
+  "questions": [{
+    "header": "La Forja de Eregion (4/4)",
+    "question": "¿Cuál es tu trato, viajero?",
+    "multiSelect": false,
+    "options": [
       {
         "label": "🔙 Abandonar Eregion — Volver a La Comunidad del Código",
         "description": ""
@@ -205,6 +231,12 @@ Mostrar aviso de updates si procede:
 - WebFetch on-demand a la documentación oficial de skills
 - Guiar al usuario paso a paso (nombre, tipo, description, invocación, contenido)
 - Mostrar lore épico al finalizar
+
+### "📜 Consultar los pergaminos de Eregion — Guía y documentación"
+- Cargar módulo: `sections/13-module-docs.md`
+- Preguntar nivel de detalle (completo / 5 min / 2 min)
+- WebFetch on-the-fly si las docs no están en contexto: `skills` + `vercel-labs/skills`
+- Generar resumen con intro y cierre épico
 
 ### "⚔️ Revisar el inventario de la Forja — Listar y eliminar"
 - Mostrar sub-menú (AskUserQuestion):
