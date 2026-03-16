@@ -143,11 +143,14 @@
 
 ### Servidores MCP Populares
 
-| URL | Qué contiene | Épicas que lo usan | Podría beneficiar |
-|-----|-------------|-------------------|--------------------|
-| https://api.githubcopilot.com/mcp/ | Servidor MCP oficial de GitHub Copilot | Bardo | Aragorn |
-| https://mcp.sentry.dev/mcp | Servidor MCP oficial de Sentry | Bardo | Ents |
-| https://mcp.slack.com/mcp | Servidor MCP oficial de Slack | Bardo | Aragorn |
+> Estos son **endpoints de conexión** (no documentación), van en `settings.json` bajo `mcpServers`.
+> No se hace WebFetch a estas URLs — se usan directamente en la configuración del usuario.
+
+| Endpoint | Qué es | Épicas que lo usan | Podría beneficiar |
+|----------|--------|-------------------|--------------------|
+| `https://api.githubcopilot.com/mcp/` | Servidor MCP oficial de GitHub Copilot | Bardo | Aragorn |
+| `https://mcp.sentry.dev/mcp` | Servidor MCP oficial de Sentry | Bardo | Ents |
+| `https://mcp.slack.com/mcp` | Servidor MCP oficial de Slack | Bardo | Aragorn |
 
 ---
 
