@@ -60,6 +60,40 @@ Una sola pasada para minimizar llamadas Bash:
 
 ---
 
+## Paso 1b — Health check de MCPs instalados
+
+Para cada MCP detectado, verificar si realmente está funcionando según su tipo de transport.
+Ejecutar todas las comprobaciones en una sola llamada Bash:
+
+```bash
+# Para cada MCP con transport stdio: intentar ejecutar el comando con timeout
+# Para cada MCP con transport HTTP/SSE: comprobar accesibilidad del endpoint
+# Comprobar variables de entorno requeridas
+
+{
+  # MCPs stdio — verificar que el comando existe y responde
+  # (sustituir [command] por el valor real de cada MCP)
+  timeout 3 [command] --version 2>/dev/null && echo "OK" || echo "FAIL"
+
+  # MCPs HTTP/SSE — verificar accesibilidad del endpoint
+  curl -s --max-time 3 -o /dev/null -w "%{http_code}" [url] 2>/dev/null
+
+  # Variables de entorno — comprobar que existen
+  # (sustituir ENV_VAR por las definidas en el config de cada MCP)
+  echo "${ENV_VAR:+defined}" 2>/dev/null
+} 2>/dev/null
+```
+
+**Estados posibles por MCP**:
+- ✅ **Responde** — comando ejecuta correctamente / endpoint accesible (HTTP 2xx)
+- ❌ **No responde** — comando falla o timeout / endpoint inaccesible o error HTTP
+- ⚠️ **Env var faltante** — variable de entorno requerida no está definida en el entorno actual
+- ℹ️ **No verificable** — transport desconocido o configuración incompleta (se marca como revisar)
+
+**Guardar resultado del health check** para usarlo en el scoring del Paso 2.
+
+---
+
 ## Paso 2 — Analizar y puntuar cada ítem
 
 Cada MCP y plugin parte de **10 puntos** y se penaliza:
@@ -69,10 +103,13 @@ Cada MCP y plugin parte de **10 puntos** y se penaliza:
 | Criterio | Penalización | Severidad |
 |----------|-------------|-----------|
 | MCP sin campo `command` o `url` válido | -4 pts | ❌ Crítico |
-| MCP con URL/endpoint obsoleto o inaccesible | -3 pts | ❌ Crítico |
+| MCP no responde (comando falla o timeout) | -4 pts | ❌ Crítico |
+| MCP endpoint HTTP inaccesible (error de red, 4xx o 5xx) | -3 pts | ❌ Crítico |
+| Variable de entorno requerida no definida en el entorno | -3 pts | ❌ Crítico |
 | MCP en scope incorrecto (user cuando debería ser project o viceversa) | -2 pts | ⚠️ Mejorable |
 | Plugin sin configuración recomendada según docs oficiales | -2 pts | ⚠️ Mejorable |
 | Redundancia: MCP + plugin que cubren la misma funcionalidad | -2 pts | ⚠️ Mejorable |
+| MCP no verificable (transport desconocido o config incompleta) | -1 pt | ℹ️ Revisable |
 | MCP relevante para el stack pero no instalado | -1 pt (global) | ℹ️ Oportunidad |
 
 ### Niveles de calidad
@@ -106,18 +143,19 @@ Score global = media de puntuaciones individuales (redondeado a 1 decimal)
 🔗 MCPs INSTALADOS
 ──────────────────────────────────────────────────────────────
   🌍 User scope (~/.claude.json):
-    🏹 10/10  github-copilot   — endpoint ✅ · scope correcto ✅
-    ⚔️  8/10  sentry           — scope user ⚠️ (recomendado: project)
+    🏹 10/10  github-copilot   — responde ✅ · scope correcto ✅
+    ⚔️  7/10  sentry           — responde ✅ · scope user ⚠️ (recomendado: project)
 
   📂 Project scope (.mcp.json):
-    ❌  5/10  db-explorer      — command inválido ❌
+    ❌  3/10  db-explorer      — no responde ❌ · env DB_URL no definida ❌
+    ❌  2/10  old-api-mcp      — endpoint inaccesible ❌ · command inválido ❌
 
 🔌 PLUGINS INSTALADOS
 ──────────────────────────────────────────────────────────────
   ⚔️  8/10  git-lens          — sin configuración recomendada ⚠️
 
 ══════════════════════════════════════════════════════════════
-📊 Score global: 7.8/10 ⚔️ — 4 ítems · 1 🏹 · 2 ⚔️ · 1 ❌
+📊 Score global: 6.0/10 🗡️ — 5 ítems · 1 🏹 · 2 ⚔️ · 2 ❌
 ══════════════════════════════════════════════════════════════
 ```
 
@@ -187,6 +225,15 @@ Mostrar total: `X mejoras encontradas (Y ❌ críticas · Z ⚠️ mejorables ·
 ## Paso 7 — Revisor uno a uno
 
 Iterar por cada mejora de la lista del Paso 5, **en orden de severidad** (❌ primero, ⚠️ después, ℹ️ al final).
+
+**Soluciones concretas para problemas de health check**:
+
+| Problema detectado | Solución propuesta en el revisor |
+|--------------------|----------------------------------|
+| MCP no responde (stdio) | Verificar que el comando está en PATH; reinstalar si es necesario |
+| Endpoint HTTP inaccesible | Mostrar la URL configurada + sugerir verificarla manualmente; actualizar si hay nueva URL |
+| Env var no definida | Mostrar exactamente qué variable falta + cómo definirla (`export VAR=valor` en `.env` o `~/.profile`) |
+| Command inválido | Mostrar el valor actual + proponer corrección según docs oficiales del MCP |
 
 **Mostrar para cada mejora**:
 
