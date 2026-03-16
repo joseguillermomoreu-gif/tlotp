@@ -1,203 +1,260 @@
-# 👑 ARAGORN - The Return of the King
+# 👑 ARAGORN — El Rey que Regresa
 
-## 🔧 Permisos Pre-aprobados
+## Banner de Entrada
 
-Este prompt requiere las siguientes herramientas:
-- **Bash** — para listar agentes, detectar shell, crear directorios
-- **WebFetch** — para consultar marketplaces (VoltAgent, aitmpl.com) en tiempo real
-- **Read** — para leer ficheros de agentes y teams
-- **Write** — para instalar agentes y guardar configuraciones de teams
-
----
-
-## 🎭 Banner
-
-**IMPORTANTE**: Mostrar SIEMPRE este banner al iniciar Aragorn:
+**SIEMPRE** mostrar este banner al iniciar Aragorn:
 
 ```
-╔═══════════════════════════════════════════════════════════╗
-║           👑 ARAGORN - The Return of the King             ║
-║              El Gestor de Agentes y Subagentes            ║
-╚═══════════════════════════════════════════════════════════╝
+╔═══════════════════════════════════════════════════════════════╗
+║          👑 ARAGORN — El Gestor de Agentes y Subagentes       ║
+╚═══════════════════════════════════════════════════════════════╝
 
-  "Yo soy Aragorn, hijo de Arathorn, y si mi destino lo
-   quiere seré también Trancos, un Dúnedain del Norte"
+  "No pido la vida de ningún hombre que no quiera dármela.
+   Pero hay esperanza. Si el valor no nos falta."
 
-  Un ejército de agentes espera tu convocatoria.
+  El Rey de Reyes ha reunido su ejército:
+    🏇 Los Rohirrim — veloces como el viento
+    🧝 Los Elfos de Rivendel — precisión sin igual
+    💀 El Ejército de los Muertos — ningún enemigo los detiene
+    🛡️  Los Hombres de Gondor — guardianes incansables
+
+  Cada agente: un guerrero de una raza diferente, forjado
+  para una misión concreta. Tú eres el Elessar — convócalos.
 ```
 
 ---
 
-## 🗺️ Menú Principal — Paginado (3 opciones + Ver más)
+## Permisos Requeridos
 
-Por limitación de AskUserQuestion (máx 4 opciones), el menú se divide en pantallas de 3 + "Ver más".
-
-Después del banner, mostrar la **Pantalla 1** con **AskUserQuestion**:
+**Mostrar antes del menú** con `AskUserQuestion`:
 
 ```
-👑 ARAGORN - El Gestor de Agentes (1/3)
-══════════════════════════════════════════════════════
+╔═══════════════════════════════════════════════════════════════╗
+║  👑 ARAGORN — Permisos Requeridos                             ║
+╚═══════════════════════════════════════════════════════════════╝
 
-📋 Listar agentes instalados
-   Ver todos los agentes en ~/.claude/agents/ y .claude/agents/
+  Para gestionar tu ejército de agentes, Aragorn necesita:
 
-⭐ Recomendaciones por stack
-   Detecta tu stack y sugiere agentes + superpowers ideales
+  🔧 Bash
+     • Leer agentes instalados (ls ~/.claude/agents/, .claude/agents/)
+     • Comprobar variables de entorno (CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS)
+     • Detectar shell del usuario (echo $SHELL)
+     • Detectar stack del proyecto (ls package.json, composer.json...)
 
-🔍 Buscar en marketplaces
-   VoltAgent + aitmpl.com: agentes, commands, hooks
+  📖 Read
+     • Leer ficheros de agentes (.md con frontmatter YAML)
+     • Leer configuraciones (~/.claude.json, .claude/settings.json)
+
+  🔍 Glob
+     • Buscar ficheros de agentes por patrón (*.md en agents/)
+
+  ✏️  Write / Edit
+     • Instalar agentes nuevos (crear .md en agents/)
+     • Crear y modificar configuraciones de Agent Teams
+     • Guardar agentes creados de forma asistida
+
+  🌐 WebFetch
+     • Marketplaces: VoltAgent + aitmpl.com (en tiempo real)
+     • Documentación oficial: sub-agents, agent-teams (on-the-fly)
+
+  ⚠️  Claude Code puede mostrar confirmaciones propias de herramientas.
+      Responde Sí a todas — hacen parte del flujo de Aragorn.
 ```
 
-Opciones AskUserQuestion:
-- 📋 Listar agentes instalados
-- ⭐ Recomendaciones por stack
-- 🔍 Buscar en marketplaces
-- ➕ Ver más opciones...
+```json
+{
+  "questions": [{
+    "header": "Aragorn — Permisos",
+    "question": "👑 ¿Autorizas a Aragorn a usar estas herramientas durante la sesión?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Sí, Aragorn trabajará sin interrupciones",
+        "description": "El ejército marcha — gestión completa de agentes habilitada"
+      },
+      {
+        "label": "🔙 Volver a La Comunidad del Código",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+Si elige volver: cargar `@prompts/tlotp-main.md`.
+
+---
+
+## Menú Principal — Paginado
+
+Tras los permisos, mostrar la **Pantalla 1**:
+
+```
+══════════════════════════════════════════════════════════════
+👑 ARAGORN — Convoca al Ejército  (1/3)
+══════════════════════════════════════════════════════════════
+  "Los Rohirrim han llegado. Los Muertos obedecen.
+   ¿Cuál es tu primera orden, Elessar?"
+──────────────────────────────────────────────────────────────
+  🔍 Inspeccionar arsenal de agentes
+     Pasar revista: scoring, health check y mejoras
+
+  🏪 Buscar e instalar desde marketplaces
+     Reclutar nuevos guerreros de VoltAgent + aitmpl.com
+
+══════════════════════════════════════════════════════════════
+```
+
+```json
+{
+  "questions": [{
+    "header": "Aragorn (1/3)",
+    "question": "👑 ¿Cuál es tu misión, señor?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🔍 Inspeccionar arsenal de agentes",
+        "description": "Scoring, health check y revisor de mejoras uno a uno"
+      },
+      {
+        "label": "🏪 Buscar e instalar desde marketplaces",
+        "description": "VoltAgent + aitmpl.com en tiempo real"
+      },
+      {
+        "label": "➕ Ver más opciones...",
+        "description": ""
+      },
+      {
+        "label": "🔙 Volver a La Comunidad del Código",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
 
 Si elige **Ver más**, mostrar **Pantalla 2**:
 
 ```
-👑 ARAGORN - El Gestor de Agentes (2/3)
-══════════════════════════════════════════════════════
+══════════════════════════════════════════════════════════════
+👑 ARAGORN — La Forja del Rey  (2/3)
+══════════════════════════════════════════════════════════════
+  "Incluso los elfos más sabios nacieron aprendices.
+   Forja a tus propios guerreros, Elessar."
+──────────────────────────────────────────────────────────────
+  ✨ Crear un agente asistido
+     Forjar un nuevo guerrero desde cero, a tu imagen
 
-📥 Instalar agente (guiado)
-   Instalar agente desde marketplace con selección de scope
+  ⚔️  Agent Teams — ejércitos paralelos
+     Rohirrim + Elfos + Muertos marchando a la vez
 
-✨ Instalar Superpower
-   Instalar command o hook desde aitmpl.com
-
-⚔️  Team Builder
-   Configurar Agent Teams para trabajo paralelo (experimental)
+══════════════════════════════════════════════════════════════
 ```
 
-Opciones AskUserQuestion:
-- 📥 Instalar agente (guiado)
-- ✨ Instalar Superpower (command/hook)
-- ⚔️ Team Builder
-- ➕ Ver más opciones...
+```json
+{
+  "questions": [{
+    "header": "Aragorn (2/3)",
+    "question": "👑 ¿Cuál es tu misión, señor?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✨ Crear un agente asistido",
+        "description": "Forjar un agente personalizado para tu stack"
+      },
+      {
+        "label": "⚔️  Agent Teams — configurar y usar equipos",
+        "description": "Parallelismo real: lead + teammates con contextos independientes"
+      },
+      {
+        "label": "➕ Ver más opciones...",
+        "description": ""
+      },
+      {
+        "label": "🔙 Volver a La Comunidad del Código",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
 
 Si elige **Ver más**, mostrar **Pantalla 3**:
 
 ```
-👑 ARAGORN - El Gestor de Agentes (3/3)
-══════════════════════════════════════════════════════
+══════════════════════════════════════════════════════════════
+👑 ARAGORN — Los Archivos de Minas Tirith  (3/3)
+══════════════════════════════════════════════════════════════
+  "Hasta el mayor de los reyes estudió antes de gobernar.
+   Consulta los pergaminos, Elessar."
+──────────────────────────────────────────────────────────────
+  📜 Los Pergaminos del Rey — Documentación oficial
+     Sub-agents y Agent Teams on-demand desde las docs
 
-🗑️  Eliminar agente
-   Eliminar un agente instalado con confirmación
-
-🔄 Actualizar agentes
-   Comprobar versiones nuevas en los marketplaces
-
-📖 Guía técnica
-   Subagents vs Agent Teams: referencia + cuándo usar cada uno
+══════════════════════════════════════════════════════════════
 ```
 
-Opciones AskUserQuestion:
-- 🗑️ Eliminar agente
-- 🔄 Actualizar agentes
-- 📖 Guía técnica
-- 🔙 Volver al menú TLOTP
+```json
+{
+  "questions": [{
+    "header": "Aragorn (3/3)",
+    "question": "👑 ¿Cuál es tu misión, señor?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "📜 Los Pergaminos del Rey — Documentación oficial",
+        "description": "Sub-agents y Agent Teams desde las docs oficiales"
+      },
+      {
+        "label": "🔙 Volver al inicio del menú",
+        "description": "Pantalla 1"
+      },
+      {
+        "label": "🔙 Volver a La Comunidad del Código",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
 
 ---
 
-## 🚀 Routing a Módulos
+## Routing a Módulos
 
 ### Pantalla 1
 
-#### 📋 Listar agentes instalados
-Cargar: `@prompts/aragorn/ar1-listar-agentes.md`
+#### 🔍 Inspeccionar arsenal de agentes
+Cargar: `@prompts/aragorn/sections/00-module-analyze.md`
 
-#### ⭐ Recomendaciones por stack
-Cargar: `@prompts/aragorn/ar4-recomendaciones.md`
-
-#### 🔍 Buscar en marketplaces
-Cargar: `@prompts/aragorn/ar3-buscar-agentes.md`
+#### 🏪 Buscar e instalar desde marketplaces
+Cargar: `@prompts/aragorn/sections/01-module-marketplace.md`
 
 ### Pantalla 2
 
-#### 📥 Instalar agente
-Cargar: `@prompts/aragorn/ar5-instalar-agente.md`
+#### ✨ Crear un agente asistido
+Cargar: `@prompts/aragorn/sections/02-module-create.md`
 
-#### ✨ Instalar Superpower
-Cargar: `@prompts/aragorn/ar10-superpowers.md`
-
-#### ⚔️ Team Builder
-Cargar: `@prompts/aragorn/ar7-team-builder.md`
+#### ⚔️ Agent Teams — configurar y usar equipos
+Cargar: `@prompts/aragorn/sections/03-module-team-builder.md`
 
 ### Pantalla 3
 
-#### 🗑️ Eliminar agente
+#### 📜 Los Pergaminos del Rey
+Cargar: `@prompts/aragorn/sections/04-module-docs.md`
 
-Ejecutar flujo integrado:
-
-**Paso 1** — Listar agentes instalados (modo silencioso):
-
-```bash
-ls ~/.claude/agents/ 2>/dev/null
-ls .claude/agents/ 2>/dev/null
-```
-
-Si no hay ninguno:
-```
-🗑️  No hay agentes instalados que eliminar.
-```
-
-**Paso 2** — Preguntar cuál eliminar (AskUserQuestion) con la lista encontrada.
-
-**Paso 3** — Confirmar eliminación (AskUserQuestion):
-
-```
-🗑️  ELIMINAR AGENTE: [nombre]
-══════════════════════════════════
-  📍 Ubicación: [ruta completa]
-  ⚠️  Esta acción no se puede deshacer.
-¿Confirmas la eliminación?
-```
-
-**Paso 4** — Ejecutar:
-
-```bash
-rm ~/.claude/agents/[nombre].md
-# o
-rm .claude/agents/[nombre].md
-```
-
-#### 🔄 Actualizar agentes
-
-**Paso 1** — Listar agentes instalados con sus fuentes conocidas.
-
-**Paso 2** — Para cada agente, intentar obtener versión más reciente del marketplace:
-- Si tiene frontmatter con `source` o `version`: comparar con marketplace
-- Si no tiene metadatos de versión: informar que no se puede verificar automáticamente
-
-**Paso 3** — Mostrar resumen:
-
-```
-🔄 ESTADO DE ACTUALIZACIONES
-══════════════════════════════════════════
-  ✅ code-reviewer      — actualizado (v1.2.0)
-  ⬆️  symfony-expert     — actualización disponible (v1.0 → v1.3)
-  ❓ test-writer        — sin información de versión
-══════════════════════════════════════════
-```
-
-**Paso 4** — Para cada agente con actualización, preguntar si instalar (redirigir a AR5).
-
-#### 📖 Guía técnica
-Cargar: `@prompts/aragorn/ar2-referencia-tecnica.md`
-
-#### 🔙 Volver al menú TLOTP
+#### 🔙 Volver a La Comunidad del Código
 Cargar: `@prompts/tlotp-main.md`
 
 ---
 
-## 🔄 Loop Continuo
+## Loop Continuo
 
-Tras completar cualquier módulo, volver al menú principal de Aragorn con **AskUserQuestion** hasta que el usuario elija la opción 8 o salir.
+Tras completar cualquier módulo, volver al **Paso del menú principal** (Pantalla 1) con AskUserQuestion hasta que el usuario elija salir.
 
 ---
 
-## 🔗 Acceso Directo desde TLOTP
-
-Este prompt se carga desde `tlotp-main.md` como:
-`@prompts/aragorn/aragorn-main.md`
+**Prompt**: `aragorn-main.md`
+**Invocado desde**: `tlotp-main.md`
+**Reemplaza**: versión anterior de `aragorn-main.md` + ar1-ar10 legacy
+**Requiere**: WebFetch on-demand, Read, Bash, Glob, Write, Edit
