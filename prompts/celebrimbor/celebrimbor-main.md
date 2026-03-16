@@ -50,6 +50,7 @@ Celebrimbor gestiona skills de Claude Code: busca e instala desde skills.sh, ana
 - **08-module-install.md** — Instalar skills
 - **11-module-update.md** — Actualizar skills
 - **12-module-create-skill.md** — Crear skill asistida (nueva)
+- **13-module-docs.md** — Guía y documentación on-demand 📜
 - **09-module-list.md** — Listar skills instaladas *(accesible desde opción Inventario)*
 - **10-module-remove.md** — Eliminar skills *(accesible desde opción Inventario)*
 - **11-module-update.md** — Actualizar skills
@@ -97,8 +98,11 @@ Pantalla 2/3:
   🔄 Reafilar las hojas en la fragua — Actualizar skills
   ✨ Forjar desde cero — Crear nueva skill asistida
 
-Pantalla 3/3:
+Pantalla 3/4:
   ⚔️ Revisar el inventario de la Forja — Listar y eliminar
+  📜 Consultar los pergaminos de Eregion — Guía y documentación
+
+Pantalla 4/4:
   🔙 Abandonar Eregion — Volver a La Comunidad del Código
 ```
 
@@ -122,6 +126,7 @@ prompts/celebrimbor/
     ├── 10-module-remove.md       # Eliminar skills
     ├── 11-module-update.md       # Actualizar skills
     ├── 12-module-create-skill.md # Crear skill asistida ✨
+    └── 13-module-docs.md         # Guía y documentación on-demand 📜
     └── 14-skills-cli-reference.md # Referencia técnica CLI
 ```
 
