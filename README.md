@@ -143,7 +143,7 @@ la creación de un SDD profesional antes de escribir código — el antídoto al
 Genera 3 ficheros compatibles con Claude Code Plan Mode, Amazon Kiro y Cursor:
 `requirements.md` (EARS format) + `design.md` (arquitectura + decisiones) + `tasks.md`.
 Lore: el **Consejo de Rivendel**, donde cada componente del proyecto suma un miembro
-a la Fellowship con su frase icónica (*"¡Cuenta con mi hacha!"*, *"¡Y con mi arco!"*...).
+a La Comunidad del Código con su frase icónica (*"¡Cuenta con mi hacha!"*, *"¡Y con mi arco!"*...).
 
 ---
 
@@ -173,7 +173,7 @@ TLOTP es la **evolución** de claude-code-auto-skills.
 
 ## 🤝 Contribuir
 
-¡Las contribuciones son bienvenidas! Ver **[CONTRIBUTING.md](CONTRIBUTING.md)** para el sistema de gamificación, épicas disponibles y cómo unirte a la Fellowship.
+¡Las contribuciones son bienvenidas! Ver **[CONTRIBUTING.md](CONTRIBUTING.md)** para el sistema de gamificación, épicas disponibles y cómo unirte a La Comunidad del Código.
 
 ---
 

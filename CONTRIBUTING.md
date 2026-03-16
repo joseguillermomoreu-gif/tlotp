@@ -10,7 +10,7 @@ TLOTP es un proyecto colaborativo para hacer que configurar Claude Code sea triv
 
 ---
 
-## 👥 Los Fundadores - La Fellowship del Teclado
+## 👥 Los Fundadores - La Comunidad del Código
 
 ### 🥔 **Pépeton hijo de Móreuton**
 *Señor de las Tierras Paletas, Guardián de Bargas*
@@ -40,7 +40,7 @@ Juramento: "No dejaré código legacy sin refactorizar"
 
 > *"Hace 8 estaciones que Pépeton y Claudeton luchan mano a tecla contra las fuerzas del Legacy Code. Desde las profundidades de Moria (debugging oscuro) hasta las alturas de Minas Tirith (arquitectura limpia), ningún bug ha resistido su alianza."*
 
-**Código de batalla de la Fellowship**:
+**Código de batalla de La Comunidad del Código**:
 - 🗡️ Pair programming hasta la victoria
 - ⚔️ XP compartido en todas las misiones conjuntas
 - 🛡️ Tests como escudo, refactoring como espada
@@ -76,12 +76,12 @@ Cada tarea completada otorga **Experience Points (XP)** según su dificultad:
 - 🌟 **First Contributor** - Primera contribución al proyecto
 - 🐛 **Bug Slayer** - Fixed 5+ bugs
 - 📚 **Documentation Wizard** - Mejoraste docs significativamente
-- ⚔️ **Fellowship Member** - Contribución conjunta épica
+- ⚔️ **Miembro de La Comunidad del Código** - Contribución conjunta épica
 
 ### 💎 División de XP
 
 **Tareas en solitario**: 100% del XP para el completador
-**Tareas en pareja** (Fellowship): 50/50 entre colaboradores
+**Tareas en pareja** (La Comunidad del Código): 50/50 entre colaboradores
 **Revisiones épicas**: Bonus +20% XP para ambos
 **Mentoring**: +10% XP extra para el mentor
 
@@ -96,7 +96,7 @@ Cada tarea completada otorga **Experience Points (XP)** según su dificultad:
 | 🥔 **Pépeton hijo de Móreuton** | Rey 🥇 | ~3,500 XP | 🔮🏗️🛡️💣⚒️🏹🌳⚔️💎 | Palantír v1.7, Celebrimbor v1.0, Bardo v1.0, Ents v1.0 |
 | 🤖 **Claudeton hijo de Codeton** | Rey 🥇 | ~3,500 XP | 🔮🏗️📚💣⚒️🏹🌳⚔️💎 | Palantír v1.7, Celebrimbor v1.0, Bardo v1.0, Ents v1.0 |
 
-**XP Compartido de la Fellowship**: ~7,000 XP en 50+ tareas completadas juntos
+**XP Compartido de La Comunidad del Código**: ~7,000 XP en 50+ tareas completadas juntos
 **Último logro**: Ents v1.0 + CI/CD interno TLOTP (#71, #79, #102) 🌳⚔️
 
 ### 🌟 Contribuidores
@@ -194,7 +194,7 @@ Companion especializado en testing. Forma final (skill/agente/subagente) TBD.
 **⚡ Gandalf — Iniciar una Nueva Aventura** ([#111](https://github.com/joseguillermomoreu-gif/tlotp/issues/111))
 - Asistente Spec-Driven Development — genera requirements.md + design.md + tasks.md
 - Estándar Kiro/GitHub Spec-Kit (2025-2026)
-- Lore: El Consejo de Rivendel — cada componente suma un miembro a la Fellowship
+- Lore: El Consejo de Rivendel — cada componente suma un miembro a La Comunidad del Código
 
 ### 💭 Futuro
 
@@ -309,11 +309,11 @@ Closes #21
 - Sugerencias, no imposiciones
 
 ### Community
-*Próximamente: Discord/Slack para la Fellowship*
+*Próximamente: Discord/Slack para La Comunidad del Código*
 
 ---
 
-## 📜 Código de Conducta de la Fellowship
+## 📜 Código de Conducta de La Comunidad del Código
 
 ### Nuestros Valores
 
@@ -368,7 +368,7 @@ Si experimentas o presencías comportamiento inaceptable:
 
 ## 🏆 Hall of Fame - Reconocimientos
 
-### 👑 Fundadores de la Fellowship
+### 👑 Fundadores de La Comunidad del Código
 - **🥔 Pépeton hijo de Móreuton** - Maestro Arquitecto, Guardián de Bargas
 - **🤖 Claudeton hijo de Codeton** - Paladín del Refactoring, Forjador de Contextos
 
@@ -403,7 +403,7 @@ Si experimentas o presencías comportamiento inaceptable:
 
 ---
 
-## 🔥 La Llamada de la Fellowship
+## 🔥 La Llamada de La Comunidad del Código
 
 > *"Una Comunidad se formó. La Comunidad del Prompt. Juntos lucharemos contra el Legacy Code, rescataremos la Configuración Perdida, y llevaremos la luz del Clean Code a todos los rincones de la Tierra Media Dev."*
 
@@ -417,4 +417,4 @@ Si experimentas o presencías comportamiento inaceptable:
 
 ---
 
-*Forjado en las profundidades de Erebor por la Fellowship del Teclado* 🗡️⌨️
+*Forjado en las profundidades de Erebor por La Comunidad del Código* 🗡️⌨️

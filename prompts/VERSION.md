@@ -245,7 +245,7 @@ Versión: TLOTP v3.4.0
 
 ---
 
-### v2.1.0 (2026-02-16) - "The Fellowship of the Code"
+### v2.1.0 (2026-02-16) - "La Comunidad del Código"
 
 **🎉 Release Highlights**:
 - Palantír CRUD completo operativo
@@ -350,4 +350,4 @@ TLOTP sigue [Semantic Versioning 2.0.0](https://semver.org/):
 ---
 
 *Última actualización: 2026-03-10*
-*Mantenido por: La Fellowship del Teclado (Pépeton + Claudeton)*
+*Mantenido por: La Comunidad del Código (Pépeton + Claudeton)*

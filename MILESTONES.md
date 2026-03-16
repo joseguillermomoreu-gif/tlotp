@@ -105,7 +105,7 @@ configurar Agent Teams experimentales.
 ### **6. ⚡ Gandalf — Iniciar una Nueva Aventura**
 
 **Issues**: [#111](https://github.com/joseguillermomoreu-gif/tlotp/issues/111)
-**Símbolo**: El mago que guía la Fellowship — ningún gran proyecto empieza sin plan
+**Símbolo**: El mago que guía a La Comunidad del Código — ningún gran proyecto empieza sin plan
 
 **Descripción**: **Última opción del menú TLOTP.** Asistente interactivo de
 **Spec-Driven Development** que guía la creación de un SDD profesional antes de
@@ -121,7 +121,7 @@ Compatible con Claude Code Plan Mode, Amazon Kiro, Cursor, Copilot y cualquier
 herramienta de desarrollo asistido por IA.
 
 **Lore — El Consejo de Rivendel**: cada componente del proyecto suma un miembro
-a la Fellowship con su frase icónica:
+a La Comunidad del Código con su frase icónica:
 
 ```
 Gimli dijo   → "¡Cuenta con mi hacha!"          (Backend PHP/Symfony)
@@ -201,4 +201,4 @@ Palantír → Celebrimbor → Bardo → Ents → Aragorn → Gandalf → Gollum(
 *"One Prompt to Rule Them All"* 💍
 
 *Última actualización: 2026-03-15*
-*Mantenido por: La Fellowship del Teclado (Pépeton hijo de Móreuton + Claudeton hijo de Codeton)*
+*Mantenido por: La Comunidad del Código (Pépeton hijo de Móreuton + Claudeton hijo de Codeton)*
