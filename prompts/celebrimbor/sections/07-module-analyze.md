@@ -3,8 +3,9 @@
 ## Misión
 
 Inspeccionar las skills instaladas del usuario, puntuar su estado actual, comparar con
-la documentación oficial y proponer mejoras concretas. Con el Palantír activo, el análisis
-se extiende a detectar colisiones y redundancias entre configuraciones y skills.
+la documentación oficial y guiar la aplicación de mejoras una a una. Con el Palantír
+activo, el análisis se extiende a detectar colisiones y redundancias entre configuraciones
+y skills.
 
 ---
 
@@ -53,34 +54,41 @@ Preguntar con `AskUserQuestion` antes de iniciar el análisis:
 }
 ```
 
-- **Con Palantír**: ejecutar Pasos 1–5 + Paso 6 (análisis cruzado)
-- **Sin Palantír**: ejecutar solo Pasos 1–5
+- **Con Palantír**: ejecutar Pasos 1–6 + Paso 7 (análisis cruzado)
+- **Sin Palantír**: ejecutar solo Pasos 1–6
 
 ---
 
-## Paso 1 — Descubrir skills instaladas
+## Paso 1 — Descubrir skills instaladas y detectar updates
 
-Buscar en todas las rutas oficiales:
+### 1a — Buscar en todas las rutas oficiales
 
 ```bash
-# Personal — nueva estructura (directorio)
-ls ~/.claude/skills/*/SKILL.md 2>/dev/null
-
-# Personal — estructura legacy (archivo plano)
-ls ~/.claude/skills/*.md 2>/dev/null | grep -v "SKILL.md"
-
-# Proyecto — nueva estructura
-ls ./.claude/skills/*/SKILL.md 2>/dev/null
-
-# Proyecto — estructura legacy
-ls ./.claude/skills/*.md 2>/dev/null | grep -v "SKILL.md"
-
-# Legacy commands (aún válidos según doc oficial)
-ls ~/.claude/commands/*.md 2>/dev/null
-ls ./.claude/commands/*.md 2>/dev/null
+# Buscar en todas las rutas oficiales en una sola llamada
+{
+  ls ~/.claude/skills/*/SKILL.md 2>/dev/null
+  ls ~/.claude/skills/*.md 2>/dev/null | grep -v "SKILL.md"
+  ls ./.claude/skills/*/SKILL.md 2>/dev/null
+  ls ./.claude/skills/*.md 2>/dev/null | grep -v "SKILL.md"
+  ls ~/.claude/commands/*.md 2>/dev/null
+  ls ./.claude/commands/*.md 2>/dev/null
+} 2>/dev/null
 ```
 
 Para cada skill encontrada, leer su contenido para extraer el frontmatter.
+
+### 1b — Detectar updates disponibles
+
+**Reutilizar si ya está en el contexto del menú** (el menú ejecuta `npx skills check` antes de mostrar opciones).
+
+**Si no está en contexto**, ejecutar:
+
+```bash
+source ~/.nvm/nvm.sh 2>/dev/null && nvm use 20 --silent 2>/dev/null
+npx skills check 2>&1
+```
+
+Guardar la lista de skills con update disponible. Este dato se usará en el scoring del Paso 2.
 
 ---
 
@@ -96,6 +104,7 @@ Para cada skill, evaluar según los siguientes criterios. Cada skill parte de **
 | `description` demasiado corta (<15 chars) | -2 pts | ⚠️ Mejorable |
 | Formato legacy (archivo plano, no directorio) | -2 pts | ⚠️ Mejorable |
 | Campo obsoleto en frontmatter (`paths:` u otros no oficiales) | -3 pts | ❌ Crítico |
+| Update disponible en el catálogo | -2 pts | ⚠️ Mejorable |
 | Configuración de invocación inconsistente con el tipo de skill | -1 pt | ℹ️ Revisable |
 
 ### Niveles de calidad por skill
@@ -124,68 +133,38 @@ Score global = media de puntuaciones individuales (redondeado a 1 decimal)
 
 🌍 PERSONAL (~/.claude/skills/)
 ──────────────────────────────────────────────────────────────
-  ⚒️ 10/10  playwright-pom/SKILL.md    — estructura correcta, description OK
-  ⚔️  8/10  git-workflow.md            — archivo plano (legacy), migrar a directorio
-  ❌  6/10  php-pro/SKILL.md           — sin description en frontmatter
-
-📂 PROYECTO (./.claude/skills/)
-──────────────────────────────────────────────────────────────
-  🧙  4/10  typescript-utils.md        — paths: obsoleto + archivo plano
-
-📁 LEGACY COMMANDS
-──────────────────────────────────────────────────────────────
-  ℹ️  —     deploy.md                  — legacy command, funciona igual que skill
+  ⚒️ 10/10  playwright-pom/SKILL.md    — estructura ✅ · description ✅
+  ⚔️  8/10  php-pro/SKILL.md           — update disponible ⚠️
+  ⚔️  8/10  git-workflow.md            — archivo plano (legacy) ⚠️
+  ❌  6/10  typescript-utils.md        — paths: obsoleto ❌ · archivo plano ⚠️
 
 ══════════════════════════════════════════════════════════════
-📊 Score global: 7.0/10 ⚔️ — 5 skills · 1 ⚒️ · 1 ⚔️ · 1 🧙 · 1 ❌ crítica
+📊 Score global: 8.0/10 ⚔️ — 4 skills · 1 ⚒️ · 2 ⚔️ · 1 ❌
 ══════════════════════════════════════════════════════════════
 ```
 
 ---
 
-## Paso 4 — Sugerencias accionables (basadas en doc oficial)
+## Paso 4 — Lista de mejoras priorizadas
 
-Para cada issue encontrado, mostrar la sugerencia específica derivada de la documentación oficial cargada en el Paso 0.
+Construir la lista completa de mejoras, ordenadas por severidad:
+1. ❌ Críticos primero
+2. ⚠️ Mejorables después
+3. ℹ️ Informativos al final
 
-Ordenar: ❌ Críticos primero, ⚠️ Mejorables después, ℹ️ Informativos al final.
+Para cada mejora, preparar internamente:
+- Skill afectada (nombre + ruta)
+- Problema (descripción clara)
+- Solución propuesta (qué se aplicaría exactamente, con comandos si aplica)
+- Resultado esperado
 
-### ❌ Sin description
-```
-skill: php-pro/SKILL.md
-Problema: Sin campo description en el frontmatter
-Impacto: Claude no sabe cuándo activar esta skill automáticamente
-Fuente: documentación oficial skills (Paso 0)
-
-Sugerencia: Añadir al frontmatter:
-  description: "Aplica cuando trabajas con PHP 8.3+, Laravel o Symfony.
-                Usa cuando el código importe namespace Symfony o Laravel."
-```
-
-### ⚠️ Archivo plano (legacy)
-```
-skill: git-workflow.md
-Problema: Archivo plano — formato antiguo
-Impacto: Funciona, pero no puede tener archivos de soporte ni scripts
-
-Sugerencia: Migrar a directorio:
-  mkdir ~/.claude/skills/git-workflow
-  mv ~/.claude/skills/git-workflow.md ~/.claude/skills/git-workflow/SKILL.md
-```
-
-### ❌ Campo obsoleto
-```
-skill: typescript-utils.md
-Problema: Tiene paths: en el frontmatter — campo obsoleto según doc oficial
-Impacto: El campo es ignorado por Claude Code
-
-Sugerencia: Eliminar el bloque paths: del frontmatter
-```
+Mostrar el total: `X mejoras encontradas (Y ❌ críticas · Z ⚠️ mejorables)`
 
 ---
 
 ## Paso 5 — Opciones al usuario
 
-Mostrar con `AskUserQuestion`:
+Mostrar con `AskUserQuestion` (incluir opción de actualizar dinámicamente si hay updates):
 
 ```json
 {
@@ -195,12 +174,12 @@ Mostrar con `AskUserQuestion`:
     "multiSelect": false,
     "options": [
       {
-        "label": "🔧 Aplicar sugerencias una a una",
+        "label": "🔧 Revisar y aplicar mejoras una a una",
         "description": ""
       },
       {
-        "label": "📋 Ver detalles completos de una skill",
-        "description": ""
+        "label": "🔄 Actualizar las X skills desactualizadas",
+        "description": "Solo si hay updates detectados — cargar módulo 11-module-update.md"
       },
       {
         "label": "🔙 Volver al menú principal",
@@ -211,36 +190,100 @@ Mostrar con `AskUserQuestion`:
 }
 ```
 
-### Si elige "Aplicar sugerencias una a una"
-
-Para cada issue (ordenados: ❌ primero, ⚠️ después):
-
-```
-Ítem X/N — [nombre de la skill]
-Problema: [descripción del problema]
-Acción propuesta: [qué se va a hacer]
-
-¿Aplicar?
-  ✅ Aplicar
-  ⏭️ Saltar
-  🚫 Cancelar todo
-```
-
-Ejecutar la acción y confirmar resultado antes de pasar al siguiente.
-
-Al finalizar, mostrar resumen:
-```
-Análisis completado:
-  ✅ Aplicadas: X
-  ⏭️ Saltadas: Y
-  Total revisadas: Z
-```
+**Nota**: La opción de actualizar solo aparece si `npx skills check` detectó updates en el Paso 1b. Si no hay updates, el menú tiene 2 opciones (revisar mejoras + volver).
 
 ---
 
-## Paso 6 — Análisis cruzado con Palantír (solo si usuario aceptó en Paso 0.5)
+## Paso 6 — Revisor uno a uno
 
-### Paso 6.1 — Documentación de Palantír (on-the-fly)
+Iterar por cada mejora de la lista del Paso 4, **en orden de severidad** (❌ primero, ⚠️ después, ℹ️ al final).
+
+**Mostrar para cada mejora**:
+
+```
+⚒️ MEJORA [X/N] — [❌/⚠️/ℹ️] [SEVERIDAD]
+══════════════════════════════════════════════════════════════
+
+📍 Skill afectada: [nombre / ruta completa]
+
+❌ Problema:
+   [descripción clara del problema detectado]
+
+✅ Solución propuesta:
+   [qué se aplicaría exactamente — incluir comandos o fragmentos de código si aplica]
+
+🎯 Resultado esperado:
+   [qué mejorará o se corregirá tras aplicar]
+
+══════════════════════════════════════════════════════════════
+```
+
+**AskUserQuestion por cada mejora**:
+
+```json
+{
+  "questions": [{
+    "header": "Mejora [X/N]",
+    "question": "¿Qué hacemos con esta pieza de la Forja?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Aplicar",
+        "description": "Celebrimbor aplicará esta mejora ahora"
+      },
+      {
+        "label": "✏️ Modificar propuesta",
+        "description": "Ajustar la solución antes de aplicar"
+      },
+      {
+        "label": "⏭️ Saltar",
+        "description": "Dejar esta mejora sin cambios y pasar a la siguiente"
+      },
+      {
+        "label": "🚫 Cancelar todo",
+        "description": "Abortar el revisor y ver resumen parcial"
+      }
+    ]
+  }]
+}
+```
+
+**Comportamiento por opción**:
+
+- **✅ Aplicar**: Ejecutar el cambio usando las herramientas disponibles (Edit/Write/Bash). Confirmar éxito con una frase de lore de Eregion, variada según la mejora:
+  - *"⚒️ La pieza ha sido reforjada. Los Gwaith-i-Mírdain aprueban."*
+  - *"⚒️ Bien. Así debe lucir una skill en la Forja de Eregion."*
+  - *"⚒️ El metal estaba frío — ahora arde como debe."*
+  - *"⚒️ Eregion recuerda cada arma que mejora entre sus manos."*
+  - *(Variar la frase — breve, con el tono inconfundible de la Forja)*
+  - Luego pasar a la siguiente mejora.
+- **✏️ Modificar propuesta**: Preguntar qué cambiar. Mostrar propuesta actualizada y confirmar antes de aplicar.
+- **⏭️ Saltar**: Mostrar `⚒️ "Esta pieza puede esperar su momento..."` y pasar a la siguiente.
+- **🚫 Cancelar todo**: Detener el revisor y saltar al resumen final (Paso 6b).
+
+**IMPORTANTE**: Antes de aplicar cualquier cambio, indicar siempre la ruta exacta del archivo que se modificará.
+
+### Paso 6b — Resumen final del revisor
+
+```
+📋 RESUMEN DE LA FORJA
+══════════════════════════════════════════════════════════════
+  ✅ Aplicadas:   [X]
+  ✏️  Modificadas: [X]
+  ⏭️  Saltadas:    [X]
+══════════════════════════════════════════════════════════════
+⚒️  "Eregion recuerda cada arma que pasa por sus manos."
+```
+
+AskUserQuestion con opciones de continuación:
+- `🔙 Volver al menú de Celebrimbor`
+- `🔙 Volver a La Comunidad del Código`
+
+---
+
+## Paso 7 — Análisis cruzado con Palantír (solo si usuario aceptó en Paso 0.5)
+
+### Paso 7.1 — Documentación de Palantír (on-the-fly)
 
 **IMPORTANTE**: Comprobar si la documentación de memoria/configuración ya está en contexto.
 
@@ -252,7 +295,7 @@ Análisis completado:
 > **Extraer**: Jerarquía de memoria (7 niveles), tipos de archivos de configuración,
 > precedencia, cómo interactúan las rules y las skills.
 
-### Paso 6.2 — Leer configuraciones del usuario
+### Paso 7.2 — Leer configuraciones del usuario
 
 ```bash
 # Configuración global
@@ -265,7 +308,7 @@ cat ./.claude/CLAUDE.md 2>/dev/null || cat ./CLAUDE.md 2>/dev/null
 ls ./.claude/rules/*.md 2>/dev/null
 ```
 
-### Paso 6.3 — Análisis cruzado
+### Paso 7.3 — Análisis cruzado
 
 Con las configuraciones y skills cargadas, detectar:
 
@@ -301,11 +344,11 @@ Comparar las skills instaladas contra el stack y propósito del proyecto actual.
      • php-pro — directamente aplicable
      • git-workflow — universal, siempre útil
 
-  ⚠️ Skills sin uso aparente en este proyecto:
+  ⚠️ Skills globales sin uso aparente en este proyecto:
      • react-patterns — no hay archivos .tsx ni .jsx detectados
+     💡 Nota: Skills globales son normales aunque no se usen en este proyecto.
 
   💡 Skills recomendadas para este stack (no instaladas):
-     • php-pro (si no está) — mejores prácticas PHP 8.3+/Symfony
      • (basado en catálogo oficial, WebFetch ya cargado)
 ```
 
@@ -316,7 +359,7 @@ Comparar las skills instaladas contra el stack y propósito del proyecto actual.
   ⚠️ git-workflow — archivo plano, considera migrar (ya señalado en análisis base)
 ```
 
-### Paso 6.4 — Informe cruzado
+### Paso 7.4 — Informe cruzado
 
 ```
 ══════════════════════════════════════════════════════════════
@@ -331,7 +374,7 @@ Comparar las skills instaladas contra el stack y propósito del proyecto actual.
 ══════════════════════════════════════════════════════════════
 ```
 
-Ofrecer las mismas opciones del Paso 5 para aplicar correcciones.
+Las mejoras detectadas aquí se añaden al revisor del Paso 6 (se procesan después de las del análisis base).
 
 ---
 
@@ -351,11 +394,11 @@ Rutas verificadas:
    o "Crear una skill" para crear la tuya propia.
 ```
 
-### Todas las skills están correctas
+### Todas las skills están perfectas y actualizadas
 ```
 ⚒️ Los Gwaith-i-Mírdain inspeccionan el arsenal...
 
-✅ Todas las skills están correctas y bien configuradas.
+✅ Todas las skills están correctas, bien configuradas y actualizadas.
    Eregion aprueba tu colección, viajero.
 
 Score global: 10/10 ⚒️ — X skills · todas obras maestras
@@ -374,5 +417,5 @@ Ver índice completo en `@prompts/docs-sources.md`:
 
 **Módulo**: `07-module-analyze.md`
 **Invocado desde**: `02-menu-principal.md` (opción "Examinar las forjas de Eregion")
-**Requiere**: WebFetch on-demand, Read, Edit (para aplicar sugerencias)
-**Opcional**: Bash (para listar archivos), Read (configs de Palantír)
+**Requiere**: WebFetch on-demand, Read, Edit (para aplicar sugerencias), Bash (npx skills check)
+**Opcional**: Read (configs de Palantír)

@@ -76,12 +76,31 @@ La skill dejará de estar disponible en TODOS tus proyectos
 
 ═══════════════════════════════════════════════════════════════
 
-¿Estás seguro de eliminar "php-pro"? [s/N]: _
 ```
 
-**Si usuario dice "N" o vacío**: Cancelar y volver al menú
+Mostrar con `AskUserQuestion`:
 
-**Si usuario dice "s" o "S"**: Continuar con eliminación
+```json
+{
+  "questions": [{
+    "header": "Confirmar Eliminación",
+    "question": "¿Estás seguro de eliminar \"[nombre]\"? Esta acción NO se puede deshacer.",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🗑️ Sí, eliminar",
+        "description": "La skill dejará de estar disponible en Claude Code"
+      },
+      {
+        "label": "🚫 Cancelar",
+        "description": "Volver sin hacer cambios"
+      }
+    ]
+  }]
+}
+```
+
+**Si elige Cancelar**: volver al menú sin ejecutar nada.
 
 ---
 
@@ -164,16 +183,30 @@ Recarga la ventana o inicia nueva sesión para aplicar cambios.
 
 ### Paso 7: Acciones Posteriores
 
-**Preguntar**:
-```
-¿Qué deseas hacer ahora?
+Mostrar con `AskUserQuestion`:
 
-1. Eliminar otra skill
-2. Ver skills instaladas (listar)
-3. Buscar nuevas skills
-4. Volver al menú principal
-
-Elige [1-4]: _
+```json
+{
+  "questions": [{
+    "header": "Tras la eliminación",
+    "question": "¿Qué deseas hacer ahora?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🗑️ Eliminar otra skill",
+        "description": ""
+      },
+      {
+        "label": "📋 Ver skills instaladas",
+        "description": ""
+      },
+      {
+        "label": "🔙 Volver al menú principal",
+        "description": ""
+      }
+    ]
+  }]
+}
 ```
 
 ---
@@ -192,8 +225,9 @@ Skills disponibles para eliminar:
   • php-pro (global)
   • typescript-utils (global)
 
-¿Deseas elegir otra? [s/N]: _
 ```
+
+Mostrar con `AskUserQuestion`: ¿Deseas elegir otra skill? (Sí / Volver al menú)
 
 ### Error 2: Sin Permisos
 
