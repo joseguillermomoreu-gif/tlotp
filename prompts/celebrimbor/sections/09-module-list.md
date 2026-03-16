@@ -68,13 +68,10 @@ Para cada archivo `.md` encontrado:
 name: playwright-pom
 description: Page Object Model patterns for Playwright
 author: vercel-labs/skills
-installed_at: 2026-02-15
 version: 1.0.0
-paths:
-  - "tests/**/*.spec.ts"
-  - "pages/**/*.ts"
 ---
 ```
+> ⚠️ El campo `paths:` está obsoleto — si aparece, el módulo de análisis lo detectará como ❌ Crítico.
 
 ---
 
@@ -213,54 +210,6 @@ No se encontraron skills instaladas.
 
 ---
 
-## 🔧 Funcionalidad Adicional
-
-### Detectar Skills Obsoletas (Futuro)
-
-**Leer fecha de instalación** del frontmatter:
-```yaml
-installed_at: "2026-01-15"
-```
-
-**Comparar con fecha actual**:
-```python
-if days_since_install > 30:
-    mark_as_potentially_outdated()
-```
-
-**Mostrar**:
-```
-⚠️ Skills potencialmente obsoletas (>30 días):
-  • git-workflow.md (45 días)
-    💡 Ejecuta "4. Actualizar Skills" para actualizar
-```
-
----
-
-## 🔗 Integración
-
-### Con Módulo de Búsqueda (07)
-
-**Uso**: Llamar ANTES de buscar
-```python
-# Antes de buscar, mostrar qué tiene
-installed_skills = list_installed_skills()
-display_summary(installed_skills)
-
-# LUEGO buscar
-search_new_skills()
-```
-
-### Con Módulo de Instalación (08)
-
-**Uso**: Detectar duplicados
-```python
-# Antes de instalar, verificar si ya existe
-if skill_name in installed_skills:
-    warn("Skill ya instalada")
-    ask("¿Sobreescribir? [s/N]")
-```
-
 ---
 
 ## 🎯 Reglas de Ejecución
@@ -305,13 +254,28 @@ Analizando configuración...
 📊 Total: 2 skills (2 globales, 0 locales)
 ═══════════════════════════════════════════════════════════════
 
-¿Qué deseas hacer?
+```
 
-1. Ver detalles completos (metadata)
-2. Buscar nuevas skills
-3. Volver al menú principal
+Mostrar con `AskUserQuestion`:
 
-Elige [1-3]: _
+```json
+{
+  "questions": [{
+    "header": "Inventario de la Forja",
+    "question": "¿Qué deseas hacer?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🔍 Buscar e instalar nuevas skills",
+        "description": ""
+      },
+      {
+        "label": "🔙 Volver al menú principal",
+        "description": ""
+      }
+    ]
+  }]
+}
 ```
 
 ---
