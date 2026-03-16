@@ -70,8 +70,10 @@
 | URL | Qué contiene | Épicas que lo usan | Podría beneficiar |
 |-----|-------------|-------------------|--------------------|
 | https://code.claude.com/docs/en/plugins | Sistema de plugins: estructura, instalación, diferencias con skills y MCPs | Bardo | Celebrimbor |
+| https://code.claude.com/docs/en/discover-plugins | Cómo descubrir plugins: búsqueda, catálogo, criterios de selección | Bardo | Palantír |
+| https://code.claude.com/docs/en/plugin-marketplaces | Marketplaces de plugins: fuentes oficiales, instalación desde marketplace | Bardo | Celebrimbor |
 
-**Qué extraer**: Qué son los plugins, cómo instalarlos, diferencia con skills, casos de uso.
+**Qué extraer**: Qué son los plugins, cómo instalarlos, cómo descubrirlos, marketplaces disponibles, diferencia con skills y MCPs.
 
 ---
 

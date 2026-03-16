@@ -204,6 +204,8 @@ TLOTP consulta documentación en tiempo de ejecución (nunca hardcodeada). Este 
 | [skills](https://code.claude.com/docs/en/skills) | Skills nativas: SKILL.md, frontmatter, invocación | Celebrimbor | Palantír |
 | [mcp](https://code.claude.com/docs/en/mcp) | MCPs: configurar servidores, scopes, transports | Bardo | Aragorn, Palantír |
 | [plugins](https://code.claude.com/docs/en/plugins) | Plugins: estructura, instalación, diferencias con skills | Bardo | Celebrimbor |
+| [discover-plugins](https://code.claude.com/docs/en/discover-plugins) | Descubrir plugins: catálogo, búsqueda, criterios de selección | Bardo | Palantír |
+| [plugin-marketplaces](https://code.claude.com/docs/en/plugin-marketplaces) | Marketplaces de plugins: fuentes oficiales, instalación | Bardo | Celebrimbor |
 | [output-styles](https://code.claude.com/docs/en/output-styles) | Output styles: built-in y custom, frontmatter | Palantír | Celebrimbor, Gandalf |
 | [sub-agents](https://code.claude.com/docs/en/sub-agents) | Sub-agentes: built-in, custom, permisos, memory | Aragorn | Ents, Gandalf |
 | [agent-teams](https://code.claude.com/docs/en/agent-teams) | Agent Teams: lead+teammates, task list, mailbox | Aragorn | Gandalf |
