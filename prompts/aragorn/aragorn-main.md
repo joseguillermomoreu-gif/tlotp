@@ -12,8 +12,14 @@
   "No pido la vida de ningún hombre que no quiera dármela.
    Pero hay esperanza. Si el valor no nos falta."
 
-  Un ejército de agentes aguarda tu convocatoria, señor.
-  Cada agente: un guerrero forjado para una misión concreta.
+  El Rey de Reyes ha reunido su ejército:
+    🏇 Los Rohirrim — veloces como el viento
+    🧝 Los Elfos de Rivendel — precisión sin igual
+    💀 El Ejército de los Muertos — ningún enemigo los detiene
+    🛡️  Los Hombres de Gondor — guardianes incansables
+
+  Cada agente: un guerrero de una raza diferente, forjado
+  para una misión concreta. Tú eres el Elessar — convócalos.
 ```
 
 ---
@@ -85,14 +91,16 @@ Tras los permisos, mostrar la **Pantalla 1**:
 
 ```
 ══════════════════════════════════════════════════════════════
-👑 ARAGORN — El Ejército del Rey  (1/3)
+👑 ARAGORN — Convoca al Ejército  (1/3)
 ══════════════════════════════════════════════════════════════
-
+  "Los Rohirrim han llegado. Los Muertos obedecen.
+   ¿Cuál es tu primera orden, Elessar?"
+──────────────────────────────────────────────────────────────
   🔍 Inspeccionar arsenal de agentes
-     Analizar agentes instalados: scoring, health check y mejoras
+     Pasar revista: scoring, health check y mejoras
 
   🏪 Buscar e instalar desde marketplaces
-     VoltAgent + aitmpl.com — reclutar guerreros en tiempo real
+     Reclutar nuevos guerreros de VoltAgent + aitmpl.com
 
 ══════════════════════════════════════════════════════════════
 ```
@@ -129,14 +137,16 @@ Si elige **Ver más**, mostrar **Pantalla 2**:
 
 ```
 ══════════════════════════════════════════════════════════════
-👑 ARAGORN — El Ejército del Rey  (2/3)
+👑 ARAGORN — La Forja del Rey  (2/3)
 ══════════════════════════════════════════════════════════════
-
+  "Incluso los elfos más sabios nacieron aprendices.
+   Forja a tus propios guerreros, Elessar."
+──────────────────────────────────────────────────────────────
   ✨ Crear un agente asistido
-     Forjar un nuevo agente o subagente desde cero
+     Forjar un nuevo guerrero desde cero, a tu imagen
 
-  ⚔️  Agent Teams — configurar y usar equipos
-     Equipos paralelos: configurar, gestionar y activar
+  ⚔️  Agent Teams — ejércitos paralelos
+     Rohirrim + Elfos + Muertos marchando a la vez
 
 ══════════════════════════════════════════════════════════════
 ```
@@ -173,11 +183,13 @@ Si elige **Ver más**, mostrar **Pantalla 3**:
 
 ```
 ══════════════════════════════════════════════════════════════
-👑 ARAGORN — El Ejército del Rey  (3/3)
+👑 ARAGORN — Los Archivos de Minas Tirith  (3/3)
 ══════════════════════════════════════════════════════════════
-
+  "Hasta el mayor de los reyes estudió antes de gobernar.
+   Consulta los pergaminos, Elessar."
+──────────────────────────────────────────────────────────────
   📜 Los Pergaminos del Rey — Documentación oficial
-     Sub-agents y Agent Teams on-demand desde las docs oficiales
+     Sub-agents y Agent Teams on-demand desde las docs
 
 ══════════════════════════════════════════════════════════════
 ```
