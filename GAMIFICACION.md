@@ -28,7 +28,7 @@ Un día, un mago visionario creó **TLOTP** (The Lord of the Prompt) - un artefa
 
 ---
 
-## 🏰 TLOTP v1.x - The Fellowship of the Configuration
+## 🏰 TLOTP v1.x - La Comunidad del Código
 
 > *"La Comunidad del Anillo se forma para destruir el Mal..."*
 > *"En TLOTP, formamos las herramientas para CONSTRUIR el Bien..."*
@@ -373,7 +373,7 @@ Completa el ciclo completo de desarrollo usando solo TLOTP + Aragorn.
 ```
 🗺️ Tu Viaje en TLOTP
 
-[███████░░░░░░░░░░░░] 35% - The Fellowship Gathering
+[███████░░░░░░░░░░░░] 35% - La Reunión de la Comunidad
 
 Completado:
 ✅ Instalación de TLOTP
@@ -672,7 +672,7 @@ Imaginamos TLOTP como:
          🛡️ Don your armor (IDE)
          🐎 Mount your horse (git)
 
-         The Fellowship awaits!
+         ¡La Comunidad del Código aguarda!
 ```
 
 ---
@@ -696,7 +696,7 @@ Imaginamos TLOTP como:
 *"Not all those who wander are lost,
 but those without TLOTP are definitely confused."*
 
-**v1.0.0** - The Fellowship Begins
+**v1.0.0** - Nace la Comunidad del Código
 **Última actualización**: 2026-02-12
 
 ---

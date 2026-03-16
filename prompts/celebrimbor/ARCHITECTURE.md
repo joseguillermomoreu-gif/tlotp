@@ -59,5 +59,5 @@ skills      Instalar         (skills.sh)   (asistida)
 
 ---
 
-**Diseñada por**: La Fellowship del Teclado 🥔🤖
+**Diseñada por**: La Comunidad del Código 🥔🤖
 **TLOTP**: Ver VERSION.md
