@@ -6,13 +6,39 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v3.23.0**
+**TLOTP v4.0.0**
 - **Fecha release**: 2026-03-17
-- **Nombre código**: "Las Almenaras de Gondor" (CI/CD automation: release-prep + backmerge + branch protection hardening)
+- **Nombre código**: "El Mago Blanco" (Gandalf épica completa — Spec-Driven Development G0–G10)
 
 ---
 
 ## 📦 Historial de Versiones
+
+### v4.0.0 — "El Mago Blanco"
+- **Fecha release**: 2026-03-17
+- **Épica**: ⚡ Gandalf — Spec-Driven Development completo (G0–G10)
+- 5 exploradores Rohirrim paralelos (Agent tool) mapean el proyecto antes de preguntar nada
+- Editor EARS interactivo para requirements.md con clasificación MoSCoW
+- design.md con diagramas Mermaid obligatorios + ADR-lite + seguridad + riesgos
+- tasks.md con grafo de dependencias Mermaid + sizing S/M/L/XL + acceptance criteria
+- Consejo de Rivendel condicional: La Comunidad se convoca según el stack detectado
+- G10 forge-team: Aragorn crea un Agent Team basado en el SDD automáticamente
+- Documentación on-demand: Plan Mode + Kiro + EARS via WebFetch
+- Detector de SDD existente para retomar aventuras en curso
+- tlotp-main.md: Gandalf activo (ya no WIP)
+
+**Closes**: #264–#274
+
+### v3.22.0 — "El Rey que Regresa"
+- **Fecha release**: 2026-03-17
+- **Épica**: 👑 Aragorn — Gestor de agentes y Agent Teams (redesign completo)
+- aragorn-main.md: banner épico, permisos, menú paginado 3 pantallas, sistema lore de personajes
+- 5 módulos nuevos: analyze, marketplace, create, team-builder, docs
+- Sugerencias de agentes desde marketplace en tiempo real (VoltAgent + aitmpl.com)
+- Lore de personajes al instalar/listar (Gimli=PHP, Legolas=review, Sam=tests...)
+- Team Builder con propuesta automática por stack + lore épico
+
+**Closes**: #252–#263
 
 ### v3.16.0 — "Las Almenaras de Gondor"
 - **Fecha release**: 2026-03-17
@@ -318,17 +344,15 @@ TLOTP sigue [Semantic Versioning 2.0.0](https://semver.org/):
 - Palantír: Mejorar detección de duplicados (#51)
 - Palantír: Mejorar sistema de backup (#37)
 
-### v4.0.0 (Próxima major - Gollum)
-- Gollum: Playwright E2E MVP
-- Setup automático de proyectos Playwright
-- Integración con Celebrimbor para skills
+### v4.1.0 (Próxima minor)
+- Mejoras y fixes post-Gandalf
+- Posibles mejoras en el Consejo de Rivendel
 
-### v5.0.0 (Futuro - Elrond & Gandalf)
-- Elrond: Global Config System
-- Gandalf: Autonomous Workflow MVP
+### v5.0.0 (Próxima major - Gollum)
+- Gollum: Companion de testing (forma TBD)
+- Integración con Gandalf SDD para generar tests desde requirements
 
-### v6.0.0+ (Visión - Aragorn)
-- Aragorn: Multi-Agent Orchestration
+### v6.0.0+ (Visión)
 - Dashboard web interactivo
 - CLI universal
 
