@@ -127,7 +127,8 @@ Nunca actúa sin confirmación.
 ⚔️ **👑 Aragorn** — El Rey de Gondor. Convoca y gestiona tu ejército de agentes.
    *(agents/ · commands/ · teams/)*
 
-🚧 En forja: **⚡ Gandalf** — El Mago Blanco. Spec-Driven Development.
+⚔️ **⚡ Gandalf** — El Mago Blanco. Spec-Driven Development.
+   *(SDD interactivo: requirements.md · design.md · tasks.md)*
 🔒 En las sombras: **💍 Gollum** — El Companion de Testing.
 
 ---
@@ -233,7 +234,7 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (últim
 - ⚒️ Peregrinaje a Eregion, Celebrimbor nos espera → Cargar `@prompts/celebrimbor/celebrimbor-main.md`
 - 🏹 Reunir monedas para Bardo → Cargar `@prompts/bardo/bardo-main.md`
 - 👑 Usar el cuerno de Gondor para convocar a Aragorn → Cargar `@prompts/aragorn/aragorn-main.md`
-- ⚡ Consultar al Mago Blanco — Gandalf → Mostrar mensaje WIP (ver más abajo)
+- ⚡ Consultar al Mago Blanco — Gandalf → Cargar `@prompts/gandalf/gandalf-main.md`
 - 🔙 Volver al inicio → Mostrar Pantalla 1
 - 🚪 Salir → Mensaje de despedida épico y terminar
 
@@ -245,29 +246,9 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (últim
 
 ## ⚡ Contenido de "Consultar al Mago Blanco — Gandalf"
 
-**Si el usuario selecciona "⚡ Consultar al Mago Blanco — Gandalf"**, mostrar:
+**Si el usuario selecciona "⚡ Consultar al Mago Blanco — Gandalf"**:
 
-```
-⚡ ...
-
-   "Un mago nunca llega tarde...
-    pero esta épica aún está siendo forjada
-    en las profundidades de Isengard."
-
-   ⚡ Gandalf — Spec-Driven Development
-
-   Cuando esté listo, el Mago Blanco te ayudará a diseñar
-   Software Design Documents de forma interactiva:
-   contexto, requisitos, arquitectura y decisiones técnicas
-   antes de escribir una sola línea de código.
-
-   🚧 Estado: En diseño activo
-   📋 Issue: github.com/joseguillermomoreu-gif/tlotp/issues/111
-
-⚡ ...
-```
-
-Tras mostrar el mensaje, volver al menú principal (Pantalla 1).
+→ Cargar `@prompts/gandalf/gandalf-main.md`
 
 ---
 
@@ -327,7 +308,12 @@ para hacerlo lo más autónomo posible.
    Configurar Agent Teams para trabajo paralelo (experimental)
    Estado: Completado
 
-🚧 ⚡ Gandalf - Iniciar una Nueva Aventura / SDD (Diseñado)
+✅ ⚡ Gandalf - Spec-Driven Development
+   Exploradores Rohirrim · requirements.md EARS · design.md + Mermaid · tasks.md
+   Consejo de Rivendel · Forja del ejército con Aragorn
+   Estado: Completado
+
+✅ ⚡ Gandalf - Spec-Driven Development (SDD interactivo completo)
 🔒 💍 Gollum - Companion de Testing (Futuro — forma TBD)
 
 ---
@@ -343,6 +329,7 @@ Acceso Directo:
 • Celebrimbor: @prompts/celebrimbor/celebrimbor-main.md
 • Ents:        @prompts/ents/ents-main.md
 • Aragorn:     @prompts/aragorn/aragorn-main.md
+• Gandalf:     @prompts/gandalf/gandalf-main.md
 
 ---
 
@@ -451,7 +438,7 @@ Docs: Ver opción "Documentación y Ayuda"
 - ✅ Aragorn (Agentes: Listar, Buscar, Instalar, Eliminar, Actualizar, Team Builder)
 
 **En Desarrollo**:
-- 📐 **⚡ Gandalf** - Iniciar una Nueva Aventura (Spec-Driven Development)
+- ✅ **⚡ Gandalf** - Spec-Driven Development (G0–G10 implementados)
 
 **Futuras**:
 - 💭 **💍 Gollum** - Companion de testing (forma TBD)
