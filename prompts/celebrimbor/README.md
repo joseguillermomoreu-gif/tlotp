@@ -96,7 +96,6 @@ Valida:
 
 ## 📚 Documentación
 
-- **Requisitos del Sistema**: `docs/REQUISITOS.md`
 - **Épica Completa**: Issue #42
 - **Milestones**: `MILESTONES.md`
 

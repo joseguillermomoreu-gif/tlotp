@@ -93,7 +93,7 @@ Inspector y gestor completo de configuraciones de Claude Code con CRUD total:
 - **Recovery** (UPDATE) — Restaurar desde backups con merge inteligente
 - **Configurador** (CREATE) — Añadir preferencias con detección de conflictos y propuestas iterativas
 
-**[📖 Guía de Uso](docs/PALANTIR.md)** | **Issue épica**: [#1](https://github.com/joseguillermomoreu-gif/tlotp/issues/1)
+**Issue épica**: [#1](https://github.com/joseguillermomoreu-gif/tlotp/issues/1)
 
 ---
 
@@ -166,7 +166,6 @@ TLOTP es la **evolución** de claude-code-auto-skills.
 
 - **[MILESTONES.md](MILESTONES.md)** — Épicas y roadmap (temática LOTR)
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** — Cómo contribuir y sistema de gamificación
-- **[docs/PALANTIR.md](docs/PALANTIR.md)** — Guía completa de Palantír
 - **[prompts/celebrimbor/README.md](prompts/celebrimbor/README.md)** — Guía de Celebrimbor
 
 ---
