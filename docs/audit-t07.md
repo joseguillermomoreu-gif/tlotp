@@ -15,7 +15,7 @@
 **Motivo**: El archivo contiene cuatro áreas funcionales claramente delimitadas
 por separadores `---` y títulos de sección independientes. Cada área puede vivir
 en un fichero sin crear dependencias circulares porque el routing ya usa
-`@prompts/aragorn/sections/XX-module-*.md` para los submódulos operativos.
+`prompts/aragorn/sections/XX-module-*.md` para los submódulos operativos.
 Lo que permanece en `aragorn-main.md` (banner, permisos, menú paginado, routing)
 puede reducirse sustancialmente extrayendo el bloque de lore de personajes.
 
