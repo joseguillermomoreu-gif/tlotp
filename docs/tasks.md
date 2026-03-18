@@ -3,6 +3,7 @@
 **Proyecto**: The Lord of the Prompt (TLOTP) v4.0.0
 **Aventura**: Mejoras de UX, paginación, modularización y lore
 **Fecha**: 2026-03-18
+**Team de implementación**: `ux-lore-fellowship` — `.claude/teams/ux-lore-fellowship/config.json`
 
 ---
 
