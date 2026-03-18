@@ -16,6 +16,13 @@ y necesidad. Él pone la forja. Tú pones el propósito.
 
 ---
 
+> **⚡ PRE-CARGA OBLIGATORIA**: Antes de mostrar cualquier contenido al usuario, resolver
+> todos los @imports referenciados en este fichero. Cargar todos los módulos en memoria
+> completa antes de renderizar el banner o mostrar cualquier texto. El usuario debe ver
+> el prompt completo en un único bloque de salida, sin cargas incrementales visibles.
+
+---
+
 ## 📊 Metadata
 
 **Épica**: Celebrimbor — Gestor de Skills
