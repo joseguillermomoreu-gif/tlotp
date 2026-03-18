@@ -10,6 +10,13 @@
 
 ---
 
+> **⚡ PRE-CARGA OBLIGATORIA**: Antes de mostrar cualquier contenido al usuario, resolver
+> todos los @imports referenciados en este fichero. Cargar todos los módulos en memoria
+> completa antes de renderizar el banner o mostrar cualquier texto. El usuario debe ver
+> el prompt completo en un único bloque de salida, sin cargas incrementales visibles.
+
+---
+
 ## 🎭 INICIO ÉPICO
 
 **IMPORTANTE**: Antes de cualquier cosa, SIEMPRE muestra al usuario este banner completo:
@@ -129,21 +136,22 @@ Nunca actúa sin confirmación.
 
 ⚔️ **⚡ Gandalf** — El Mago Blanco. Spec-Driven Development.
    *(SDD interactivo: requirements.md · design.md · tasks.md)*
-🔒 En las sombras: **💍 Gollum** — El Companion de Testing.
+💍 **Gollum** vive dentro de **Aragorn** — el Rey lo invoca por proyecto.
+   *(opción "Llamar a Gollum" en Aragorn · .claude/agents/gollum.md · siempre project-scoped)*
 
 ---
 
 ### PASO 3: Menú de Selección (PAGINADO)
 
-**CRÍTICO**: Usar **AskUserQuestion** (límite 4 opciones). El menú se divide en 3 pantallas.
-Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (última página: "🔙 Volver al inicio" en lugar de "➕ Ver más...").
+**CRÍTICO**: Usar **AskUserQuestion** (límite 4 opciones). El menú se divide en 2 pantallas.
+Patrón fijo: 3 opciones de contenido por página. Pantalla 1: 3 épicas + "➕ Ver más...". Última pantalla: 3 épicas + "🔙 Volver a página 1".
 
-**Pantalla 1** (mostrar primero):
+**Pantalla 1** (1/2 — mostrar primero):
 
 ```json
 {
   "questions": [{
-    "header": "El Poney Pisador (1/3)",
+    "header": "El Poney Pisador (1/2)",
     "question": "¿A qué épica convocas hoy?",
     "multiSelect": false,
     "options": [
@@ -156,11 +164,11 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (últim
         "description": ""
       },
       {
-        "label": "➕ Ver más...",
+        "label": "⚒️ Peregrinaje a Eregion, Celebrimbor nos espera",
         "description": ""
       },
       {
-        "label": "🚪 Salir",
+        "label": "➕ Ver más...",
         "description": ""
       }
     ]
@@ -173,40 +181,14 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (últim
 ```json
 {
   "questions": [{
-    "header": "El Poney Pisador (2/3)",
+    "header": "El Poney Pisador (2/2)",
     "question": "¿A qué épica convocas hoy?",
     "multiSelect": false,
     "options": [
-      {
-        "label": "⚒️ Peregrinaje a Eregion, Celebrimbor nos espera",
-        "description": ""
-      },
       {
         "label": "🏹 Reunir monedas para Bardo",
         "description": ""
       },
-      {
-        "label": "➕ Ver más...",
-        "description": ""
-      },
-      {
-        "label": "🚪 Salir",
-        "description": ""
-      }
-    ]
-  }]
-}
-```
-
-**Si elige "➕ Ver más..."**, mostrar **Pantalla 3**:
-
-```json
-{
-  "questions": [{
-    "header": "El Poney Pisador (3/3)",
-    "question": "¿A qué épica convocas hoy?",
-    "multiSelect": false,
-    "options": [
       {
         "label": "👑 Usar el cuerno de Gondor para convocar a Aragorn",
         "description": ""
@@ -216,11 +198,7 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (últim
         "description": ""
       },
       {
-        "label": "🔙 Volver al inicio",
-        "description": ""
-      },
-      {
-        "label": "🚪 Salir",
+        "label": "🔙 Volver a página 1",
         "description": ""
       }
     ]
@@ -235,7 +213,7 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir" (últim
 - 🏹 Reunir monedas para Bardo → Cargar `@prompts/bardo/bardo-main.md`
 - 👑 Usar el cuerno de Gondor para convocar a Aragorn → Cargar `@prompts/aragorn/aragorn-main.md`
 - ⚡ Consultar al Mago Blanco — Gandalf → Cargar `@prompts/gandalf/gandalf-main.md`
-- 🔙 Volver al inicio → Mostrar Pantalla 1
+- 🔙 Volver a página 1 → Mostrar Pantalla 1
 - 🚪 Salir → Mensaje de despedida épico y terminar
 
 ### PASO 4: Loop Continuo
@@ -314,7 +292,7 @@ para hacerlo lo más autónomo posible.
    Estado: Completado
 
 ✅ ⚡ Gandalf - Spec-Driven Development (SDD interactivo completo)
-🔒 💍 Gollum - Companion de Testing (Futuro — forma TBD)
+🔧 💍 Gollum - Agente de Release y Testing por Proyecto (vive dentro de Aragorn · issue #281)
 
 ---
 
@@ -336,7 +314,6 @@ Acceso Directo:
 📂 Documentación Adicional
 
 • README.md - Introducción y quick start
-• docs/PALANTIR.md - Guía completa de Palantír
 • MILESTONES.md - Roadmap y épicas
 • CONTRIBUTING.md - Guía para contribuir
 

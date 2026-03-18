@@ -1,5 +1,14 @@
 # 👑 ARAGORN — El Rey que Regresa
 
+---
+
+> **⚡ PRE-CARGA OBLIGATORIA**: Antes de mostrar cualquier contenido al usuario, resolver
+> todos los @imports referenciados en este fichero. Cargar todos los módulos en memoria
+> completa antes de renderizar el banner o mostrar cualquier texto. El usuario debe ver
+> el prompt completo en un único bloque de salida, sin cargas incrementales visibles.
+
+---
+
 ## Banner de Entrada
 
 **SIEMPRE** mostrar este banner al iniciar Aragorn:
@@ -24,64 +33,7 @@
 
 ---
 
-## Permisos Requeridos
-
-**Mostrar antes del menú** con `AskUserQuestion`:
-
-```
-╔═══════════════════════════════════════════════════════════════╗
-║  👑 ARAGORN — Permisos Requeridos                             ║
-╚═══════════════════════════════════════════════════════════════╝
-
-  Para gestionar tu ejército de agentes, Aragorn necesita:
-
-  🔧 Bash
-     • Leer agentes instalados (ls ~/.claude/agents/, .claude/agents/)
-     • Comprobar variables de entorno (CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS)
-     • Detectar shell del usuario (echo $SHELL)
-     • Detectar stack del proyecto (ls package.json, composer.json...)
-
-  📖 Read
-     • Leer ficheros de agentes (.md con frontmatter YAML)
-     • Leer configuraciones (~/.claude.json, .claude/settings.json)
-
-  🔍 Glob
-     • Buscar ficheros de agentes por patrón (*.md en agents/)
-
-  ✏️  Write / Edit
-     • Instalar agentes nuevos (crear .md en agents/)
-     • Crear y modificar configuraciones de Agent Teams
-     • Guardar agentes creados de forma asistida
-
-  🌐 WebFetch
-     • Marketplaces: VoltAgent + aitmpl.com (en tiempo real)
-     • Documentación oficial: sub-agents, agent-teams (on-the-fly)
-
-  ⚠️  Claude Code puede mostrar confirmaciones propias de herramientas.
-      Responde Sí a todas — hacen parte del flujo de Aragorn.
-```
-
-```json
-{
-  "questions": [{
-    "header": "Aragorn — Permisos",
-    "question": "👑 ¿Autorizas a Aragorn a usar estas herramientas durante la sesión?",
-    "multiSelect": false,
-    "options": [
-      {
-        "label": "✅ Sí, Aragorn trabajará sin interrupciones",
-        "description": "El ejército marcha — gestión completa de agentes habilitada"
-      },
-      {
-        "label": "🔙 Volver a La Comunidad del Código",
-        "description": ""
-      }
-    ]
-  }]
-}
-```
-
-Si elige volver: cargar `@prompts/tlotp-main.md`.
+@prompts/aragorn/sections/00-module-permisos.md
 
 ---
 
@@ -91,7 +43,7 @@ Tras los permisos, mostrar la **Pantalla 1**:
 
 ```
 ══════════════════════════════════════════════════════════════
-👑 ARAGORN — Convoca al Ejército  (1/3)
+👑 ARAGORN — Convoca al Ejército  (1/2)
 ══════════════════════════════════════════════════════════════
   "Los Rohirrim han llegado. Los Muertos obedecen.
    ¿Cuál es tu primera orden, Elessar?"
@@ -102,13 +54,16 @@ Tras los permisos, mostrar la **Pantalla 1**:
   🏪 Buscar e instalar desde marketplaces
      Reclutar nuevos guerreros de VoltAgent + aitmpl.com
 
+  ✨ Crear un agente asistido
+     Forjar un nuevo guerrero desde cero, a tu imagen
+
 ══════════════════════════════════════════════════════════════
 ```
 
 ```json
 {
   "questions": [{
-    "header": "Aragorn (1/3)",
+    "header": "Aragorn (1/2)",
     "question": "👑 ¿Cuál es tu misión, señor?",
     "multiSelect": false,
     "options": [
@@ -121,11 +76,11 @@ Tras los permisos, mostrar la **Pantalla 1**:
         "description": "VoltAgent + aitmpl.com en tiempo real"
       },
       {
-        "label": "➕ Ver más opciones...",
-        "description": ""
+        "label": "✨ Crear un agente asistido",
+        "description": "Forjar un agente personalizado para tu stack"
       },
       {
-        "label": "🔙 Volver a La Comunidad del Código",
+        "label": "➕ Ver más opciones...",
         "description": ""
       }
     ]
@@ -137,57 +92,14 @@ Si elige **Ver más**, mostrar **Pantalla 2**:
 
 ```
 ══════════════════════════════════════════════════════════════
-👑 ARAGORN — La Forja del Rey  (2/3)
+👑 ARAGORN — Los Archivos de Minas Tirith  (2/2)
 ══════════════════════════════════════════════════════════════
   "Incluso los elfos más sabios nacieron aprendices.
-   Forja a tus propios guerreros, Elessar."
+   Consulta los pergaminos antes de forjar, Elessar."
 ──────────────────────────────────────────────────────────────
-  ✨ Crear un agente asistido
-     Forjar un nuevo guerrero desde cero, a tu imagen
-
   ⚔️  Agent Teams — ejércitos paralelos
      Rohirrim + Elfos + Muertos marchando a la vez
 
-══════════════════════════════════════════════════════════════
-```
-
-```json
-{
-  "questions": [{
-    "header": "Aragorn (2/3)",
-    "question": "👑 ¿Cuál es tu misión, señor?",
-    "multiSelect": false,
-    "options": [
-      {
-        "label": "✨ Crear un agente asistido",
-        "description": "Forjar un agente personalizado para tu stack"
-      },
-      {
-        "label": "⚔️  Agent Teams — configurar y usar equipos",
-        "description": "Parallelismo real: lead + teammates con contextos independientes"
-      },
-      {
-        "label": "➕ Ver más opciones...",
-        "description": ""
-      },
-      {
-        "label": "🔙 Volver a La Comunidad del Código",
-        "description": ""
-      }
-    ]
-  }]
-}
-```
-
-Si elige **Ver más**, mostrar **Pantalla 3**:
-
-```
-══════════════════════════════════════════════════════════════
-👑 ARAGORN — Los Archivos de Minas Tirith  (3/3)
-══════════════════════════════════════════════════════════════
-  "Hasta el mayor de los reyes estudió antes de gobernar.
-   Consulta los pergaminos, Elessar."
-──────────────────────────────────────────────────────────────
   📜 Los Pergaminos del Rey — Documentación oficial
      Sub-agents y Agent Teams on-demand desde las docs
 
@@ -197,17 +109,21 @@ Si elige **Ver más**, mostrar **Pantalla 3**:
 ```json
 {
   "questions": [{
-    "header": "Aragorn (3/3)",
+    "header": "Aragorn (2/2)",
     "question": "👑 ¿Cuál es tu misión, señor?",
     "multiSelect": false,
     "options": [
+      {
+        "label": "⚔️  Agent Teams — configurar y usar equipos",
+        "description": "Parallelismo real: lead + teammates con contextos independientes"
+      },
       {
         "label": "📜 Los Pergaminos del Rey — Documentación oficial",
         "description": "Sub-agents y Agent Teams desde las docs oficiales"
       },
       {
-        "label": "🔙 Volver al inicio del menú",
-        "description": "Pantalla 1"
+        "label": "🔙 Volver a página 1",
+        "description": ""
       },
       {
         "label": "🔙 Volver a La Comunidad del Código",
@@ -230,15 +146,13 @@ Cargar: `@prompts/aragorn/sections/00-module-analyze.md`
 #### 🏪 Buscar e instalar desde marketplaces
 Cargar: `@prompts/aragorn/sections/01-module-marketplace.md`
 
-### Pantalla 2
-
 #### ✨ Crear un agente asistido
 Cargar: `@prompts/aragorn/sections/02-module-create.md`
 
+### Pantalla 2
+
 #### ⚔️ Agent Teams — configurar y usar equipos
 Cargar: `@prompts/aragorn/sections/03-module-team-builder.md`
-
-### Pantalla 3
 
 #### 📜 Los Pergaminos del Rey
 Cargar: `@prompts/aragorn/sections/04-module-docs.md`
@@ -250,63 +164,7 @@ Cargar: `@prompts/tlotp-main.md`
 
 ## Lore al Instalar y Listar Agentes
 
-**TODOS los módulos** deben usar este sistema de personajes al instalar o confirmar
-la instalación de un agente.
-
-### Asignación de personaje por rol del agente
-
-Mapear el `name` o `description` del agente al personaje más afín:
-
-| Rol / palabras clave en name/description | Personaje | Frase épica |
-|------------------------------------------|-----------|-------------|
-| code-review, reviewer, quality, linter   | 🧝 **Legolas** | "Cuento los errores más rápido que tú los escribes." |
-| test, testing, playwright, e2e, qa       | 🥔 **Sam** | "¡El señor Frodo no irá solo — ni sin tests!" |
-| architect, design, patterns, hexagonal   | 🤴 **Aragorn** | "Un rey construye sobre cimientos sólidos." |
-| php, symfony, laravel, backend           | 🪓 **Gimli** | "¡Cuenta con mi hacha — y con PHPStan level 9!" |
-| typescript, javascript, react, frontend  | 🏹 **Bardo** | "Una flecha bien apuntada nunca yerra el componente." |
-| devops, deploy, docker, ci, pipeline     | 🌳 **Treebeard** | "No seáis impacientes. El pipeline corre, pero con calma." |
-| database, sql, postgres, doctrine, orm   | 🛡️ **Boromir** | "¡Gondor os apoyará con índices y queries optimizadas!" |
-| security, audit, vulnerability, owasp    | 🧝‍♀️ **Galadriel** | "Incluso en las sombras del código veo la amenaza." |
-| refactor, clean, modernize, legacy       | 🧙 **Gandalf** | "Debes pasarme a mí. Yo soy Gandalf el Blanco y declaro que este código no pasará." |
-| documentation, docs, readme              | 📜 **Bilbo** | "En un agujero en el suelo vivía... documentación bien escrita." |
-| git, commit, branch, workflow            | 🏇 **Théoden** | "¡Montad! ¡Montad a los commits! ¡Rohirrim, a la carga!" |
-| scrum, product, manager, agile           | 🧍 **Faramir** | "Los sprints no son la guerra. Pero requieren la misma disciplina." |
-| python, ai, ml, llm                      | ⚡ **Radagast** | "La naturaleza — y los modelos — tienen su propio ritmo." |
-| general / no match                       | ⚔️ **Éowyn** | "¡Soy mortal — y este agente también lo es, pero sirve bien!" |
-
-### Formato al instalar un agente
-
-Tras confirmar la instalación exitosa, mostrar:
-
-```
-══════════════════════════════════════════════════════════════
-✅ GUERRERO RECLUTADO
-══════════════════════════════════════════════════════════════
-
-  [emoji] [Personaje] se une al ejército:
-     "[frase épica del personaje]"
-
-  🤖 Agente: [nombre]
-  📍 Scope:  🌍 Global / 📁 Proyecto
-  📂 Ruta:   [ruta completa]
-
-══════════════════════════════════════════════════════════════
-```
-
-### Formato en el inventario (listado)
-
-En el informe de análisis (Paso 3 de 00-module-analyze), acompañar cada agente
-con el emoji de su personaje:
-
-```
-  🌍 Global (~/.claude/agents/):
-    👑 10/10  🪓 Gimli         php-pro       — name ✅ · description clara ✅ · tools ✅
-    ⚔️  8/10  🧝 Legolas       code-reviewer — name ✅ · sin model ℹ️
-    💀  3/10  ⚔️ Éowyn         old-agent     — sin frontmatter ❌
-```
-
-**Variedad**: usar frases diferentes si el mismo personaje aparece varias veces.
-Cada personaje tiene 2-3 frases disponibles para rotar.
+@prompts/aragorn/sections/99-lore-characters.md
 
 ---
 

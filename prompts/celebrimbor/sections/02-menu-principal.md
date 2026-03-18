@@ -88,8 +88,8 @@ Guardar resultado. Si hay updates disponibles, mostrarlo en el menú como aviso:
 
 ## 🗡️ Menú Principal (PAGINADO)
 
-**CRÍTICO**: Usar **AskUserQuestion** (límite 4 opciones). El menú se divide en 4 pantallas.
-Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir de Eregion" (última página: "🔙 Volver al inicio" en lugar de "➕ Ver más...").
+**CRÍTICO**: Usar **AskUserQuestion** (límite 4 opciones). El menú se divide en 2 pantallas.
+Patrón: 3 opciones de contenido + "➕ Ver más..." (pantalla intermedia) · última pantalla: 3 opciones de contenido + "🔙 Volver a página 1".
 
 Mostrar aviso de updates si procede:
 ```
@@ -101,7 +101,7 @@ Mostrar aviso de updates si procede:
 ```json
 {
   "questions": [{
-    "header": "La Forja de Eregion (1/4)",
+    "header": "La Forja de Eregion (1/2)",
     "question": "¿Cuál es tu trato, viajero?",
     "multiSelect": false,
     "options": [
@@ -114,11 +114,11 @@ Mostrar aviso de updates si procede:
         "description": ""
       },
       {
-        "label": "➕ Ver más...",
+        "label": "🔄 Reafilar las hojas en la fragua — Actualizar skills",
         "description": ""
       },
       {
-        "label": "🚪 Salir de Eregion",
+        "label": "➕ Ver más...",
         "description": ""
       }
     ]
@@ -131,40 +131,14 @@ Mostrar aviso de updates si procede:
 ```json
 {
   "questions": [{
-    "header": "La Forja de Eregion (2/4)",
+    "header": "La Forja de Eregion (2/2)",
     "question": "¿Cuál es tu trato, viajero?",
     "multiSelect": false,
     "options": [
-      {
-        "label": "🔄 Reafilar las hojas en la fragua — Actualizar skills",
-        "description": ""
-      },
       {
         "label": "✨ Forjar desde cero — Crear nueva skill asistida",
         "description": ""
       },
-      {
-        "label": "➕ Ver más...",
-        "description": ""
-      },
-      {
-        "label": "🚪 Salir de Eregion",
-        "description": ""
-      }
-    ]
-  }]
-}
-```
-
-**Si elige "➕ Ver más..."**, mostrar **Pantalla 3**:
-
-```json
-{
-  "questions": [{
-    "header": "La Forja de Eregion (3/4)",
-    "question": "¿Cuál es tu trato, viajero?",
-    "multiSelect": false,
-    "options": [
       {
         "label": "⚔️ Revisar el inventario de la Forja — Listar y eliminar",
         "description": ""
@@ -174,37 +148,7 @@ Mostrar aviso de updates si procede:
         "description": ""
       },
       {
-        "label": "➕ Ver más...",
-        "description": ""
-      },
-      {
-        "label": "🚪 Salir de Eregion",
-        "description": ""
-      }
-    ]
-  }]
-}
-```
-
-**Si elige "➕ Ver más..."**, mostrar **Pantalla 4**:
-
-```json
-{
-  "questions": [{
-    "header": "La Forja de Eregion (4/4)",
-    "question": "¿Cuál es tu trato, viajero?",
-    "multiSelect": false,
-    "options": [
-      {
-        "label": "🔙 Abandonar Eregion — Volver a La Comunidad del Código",
-        "description": ""
-      },
-      {
-        "label": "🔙 Volver al inicio",
-        "description": ""
-      },
-      {
-        "label": "🚪 Salir de Eregion",
+        "label": "🔙 Volver a página 1",
         "description": ""
       }
     ]
@@ -253,21 +197,8 @@ Mostrar aviso de updates si procede:
   - `🗑️ Retirar una pieza de la Forja — Eliminar skill` → `sections/10-module-remove.md`
   - `🔙 Volver al menú principal`
 
-### "🔙 Abandonar Eregion — Volver a La Comunidad del Código"
-- Finalizar el loop de Celebrimbor
-- Mostrar despedida breve:
-```
-Los Gwaith-i-Mírdain guardan el fuego hasta tu regreso, viajero.
-```
-- Cargar `@prompts/tlotp-main.md` para retomar el menú principal de TLOTP
-
-### "🚪 Salir de Eregion"
-```
-Los Gwaith-i-Mírdain guardan el fuego hasta tu regreso.
-Que tus skills sirvan bien en la Tierra Media, viajero.
-
-⚒️  Eregion cierra sus puertas. Por ahora.
-```
+### "🔙 Volver a página 1"
+- Mostrar de nuevo la Pantalla 1 del menú principal
 
 ---
 

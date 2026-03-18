@@ -1,0 +1,48 @@
+{
+  "teamName": "sdd-council",
+  "teamId": "sdd-council-tlotp-001",
+  "leadAgentId": "lead",
+  "createdAt": "2026-03-18T00:00:00Z",
+  "description": "Diseñar SDDs de TLOTP con Gandalf (requirements + design + tasks)",
+  "settings": {
+    "teamMode": "auto",
+    "maxTeammates": 4,
+    "taskListPath": "~/.claude/tasks/sdd-council/"
+  },
+  "members": [
+    {
+      "name": "multi-agent-coordinator",
+      "agentId": "multi-agent-coordinator",
+      "agentType": "Team orchestration: task dependencies, state sync, inter-agent coordination",
+      "role": "coordinator",
+      "status": "idle",
+      "createdAt": "2026-03-18T00:00:00Z"
+    },
+    {
+      "name": "architect-reviewer",
+      "agentId": "architect-reviewer",
+      "agentType": "Architectural decisions, ADR, design patterns, Hexagonal Architecture",
+      "status": "idle",
+      "createdAt": "2026-03-18T00:00:00Z"
+    },
+    {
+      "name": "product-manager",
+      "agentId": "product-manager",
+      "agentType": "Requirements, feature prioritization, roadmap, MoSCoW",
+      "status": "idle",
+      "createdAt": "2026-03-18T00:00:00Z"
+    },
+    {
+      "name": "documentation-engineer",
+      "agentId": "documentation-engineer",
+      "agentType": "requirements.md, design.md, tasks.md — structured technical documentation",
+      "status": "idle",
+      "createdAt": "2026-03-18T00:00:00Z"
+    }
+  ],
+  "taskListLocation": "~/.claude/tasks/sdd-council/",
+  "mailboxConfig": {
+    "autoDelivery": true,
+    "idleNotifications": true
+  }
+}
