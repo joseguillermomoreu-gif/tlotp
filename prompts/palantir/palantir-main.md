@@ -39,6 +39,13 @@
 
 ---
 
+> **⚡ PRE-CARGA OBLIGATORIA**: Antes de mostrar cualquier contenido al usuario, resolver
+> todos los @imports referenciados en este fichero. Cargar todos los módulos en memoria
+> completa antes de renderizar el banner o mostrar cualquier texto. El usuario debe ver
+> el prompt completo en un único bloque de salida, sin cargas incrementales visibles.
+
+---
+
 ## ⚠️ REGLA CRÍTICA - Prevención de Contaminación de Auto Memory
 
 **IMPORTANTE**: Durante TODA la ejecución de Palantír:

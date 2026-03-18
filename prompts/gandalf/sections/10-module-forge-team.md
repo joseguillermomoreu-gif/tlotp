@@ -61,6 +61,41 @@ Analizar el SDD para detectar qué tipos de agentes son más relevantes:
 | Seguridad en el SDD | security-*, audit-*, galadriel-* | Auditor de seguridad |
 | Frontend en Théoden | typescript-*, react-*, frontend-* | Experto frontend |
 
+---
+
+**REGLA OBLIGATORIA — Lead del team**:
+
+`multi-agent-coordinator` SIEMPRE debe ser el **primer miembro del team** (agente lead/coordinator).
+Esta regla no tiene excepciones. El multi-agent-coordinator orquesta la coordinación global,
+sincroniza el estado entre agentes y gestiona las dependencias entre tareas.
+
+El fichero de configuración SIEMPRE debe incluir `multi-agent-coordinator` con `role: "coordinator"`
+como primer elemento del array de members.
+
+---
+
+**FILOSOFÍA DE COMPOSICIÓN**:
+
+La propuesta del team se basa en la **COMPLEJIDAD DEL SDD**, no en minimizar el número de agentes.
+Incluir **TODOS** los agentes necesarios para cubrir cada concern del SDD.
+
+Indicadores para incluir más agentes:
+- Cada tecnología diferente en el stack → un agente especialista
+- Cada tipo de testing mencionado → un agente de testing
+- CI/CD o deploy mencionado → un agente devops
+- Seguridad mencionada → un agente de seguridad
+- Documentación extensa → un agente de documentación
+
+NO hacer esto:
+❌ "Con 3 agentes es suficiente para este SDD"
+❌ Reducir agentes para simplificar la propuesta
+
+SÍ hacer esto:
+✅ "El SDD menciona 4 concerns → proponer 4 agentes especializados + coordinator"
+✅ Incluir agentes incluso si no están instalados (el usuario puede instalarlos)
+
+---
+
 **Nombre del team**: Derivar del objetivo del SDD:
 - Basado en el nombre de la aventura descrita en G3
 - Formato: `[aventura-en-kebab-case]-team`
@@ -84,9 +119,30 @@ Mostrar la propuesta con lore:
   ⚔️  Team propuesto: [nombre-del-team]
 
   Guerreros convocados:
+  🎯 multi-agent-coordinator (lead) — "El Consejo necesita un coordinador. Yo orquesto la marcha."
   [emoji] [Personaje] ([nombre-agente]) — "[frase épica]"
   [emoji] [Personaje] ([nombre-agente]) — "[frase épica]"
   [emoji] [Personaje] ([nombre-agente]) — "[frase épica]"
+
+Ejemplo de team completo para un SDD de módulo de autenticación:
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║   ⚔️  ARAGORN — Propuesta del Ejército: auth-module-team    ║
+╚══════════════════════════════════════════════════════════════╝
+
+  📜 Misión: Implementar módulo de autenticación JWT + OAuth
+
+  ⚔️  Team propuesto: auth-module-team
+
+  Guerreros convocados (6 agentes):
+  🎯 multi-agent-coordinator (lead) — "Coordino la marcha de todos."
+  🪓 Gimli (php-pro) — "¡El backend de autenticación será sólido como la piedra!"
+  🧝 Legolas (code-reviewer) — "Cada PR pasa por mis ojos antes de llegar al rey."
+  🥔 Sam (qa-expert) — "Los tests de seguridad no los salta ni Sauron."
+  🧝‍♀️ Galadriel (security-auditor) — "Las vulnerabilidades no se ocultan a mi visión."
+  📜 Bilbo (documentation-engineer) — "El módulo quedará documentado para los que vengan."
+```
 
   📍 Fichero:  .claude/teams/[nombre-del-team].yml
   📝 Misión:   [descripción del propósito del team]
@@ -136,6 +192,8 @@ Usar el sistema de personajes de `aragorn-main.md` para asignar personaje por ro
 ## Paso 5 — Creación del fichero de team
 
 Si confirma, leer la estructura oficial de Agent Teams:
+
+**IMPORTANTE**: El primer member del fichero de configuración SIEMPRE es `multi-agent-coordinator` con `role: "coordinator"`.
 
 **IMPORTANTE**: La estructura del fichero debe extraerse de las docs oficiales.
 Si ya están en contexto del módulo 03-module-team-builder.md de Aragorn, usar directamente.
