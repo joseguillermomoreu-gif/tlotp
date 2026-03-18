@@ -337,7 +337,6 @@ Acceso Directo:
 📂 Documentación Adicional
 
 • README.md - Introducción y quick start
-• docs/PALANTIR.md - Guía completa de Palantír
 • MILESTONES.md - Roadmap y épicas
 • CONTRIBUTING.md - Guía para contribuir
 
