@@ -14,10 +14,11 @@
 **SIEMPRE** mostrar este banner al iniciar Gandalf:
 
 ```
-╔═══════════════════════════════════════════════════════════════╗
-║       ⚡ GANDALF — El Antídoto al Vibe Coding                ║
-║       Spec-Driven Development — La Comunidad del Código      ║
-╚═══════════════════════════════════════════════════════════════╝
+══════════════════════════════════════════════════════════════
+  ᚷᚨᚾᛞᚨᛚᚠ  ⚡  GANDALF — El Mago Blanco  ᚷᚨᚾᛞᚨᛚᚠ
+══════════════════════════════════════════════════════════════
+    Spec-Driven Development · TLOTP {VERSION}
+──────────────────────────────────────────────────────────────
 
   "Un mago nunca llega tarde, ni pronto.
    Llega exactamente cuando lo decide... y con el mapa ya hecho."
@@ -45,6 +46,8 @@
 
   Sin especificación no hay expedición. Sin mapa no hay victoria.
   El vibe coding es el Camino de los Muertos — nadie regresa.
+
+══════════════════════════════════════════════════════════════
 ```
 
 ---

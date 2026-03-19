@@ -68,33 +68,25 @@ de bienvenida y enrutar al módulo correspondiente.
 
 **CRÍTICO**: Antes del menú, solicitar aprobación con `AskUserQuestion`:
 
+```json
+{
+  "questions": [{
+    "header": "Bardo · Permisos",
+    "question": "🏹 Bardo necesita los siguientes permisos para preparar el arsenal:\n\n  🖥️ Bash — cat, ls (leer configs de MCPs y plugins)\n  📖 Read — ~/.claude.json · .mcp.json · .claude/settings.json\n  🔍 Glob — Buscar archivos de configuración\n  📝 Write — Instalar MCPs y plugins\n  ✏️ Edit — Modificar configuraciones existentes\n  🌐 WebFetch — Documentación oficial on-demand\n\n¿Apruebas los permisos del Arquero?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Aprobar todos",
+        "description": "Bardo trabajará sin interrupciones durante toda la sesión"
+      },
+      {
+        "label": "🚫 Cancelar",
+        "description": "Volver a Lake-town sin entrar"
+      }
+    ]
+  }]
+}
 ```
-🏹 Bardo necesita los siguientes permisos para preparar el arsenal
-
-  🖥️  Bash     — cat, ls (leer configs de MCPs y plugins)
-                  node (verificar entorno si aplica)
-
-  📖  Read     — Configuraciones MCP:
-                  ~/.claude.json · .mcp.json · .claude/settings.json
-                  Configuraciones del proyecto (stack detection)
-
-  🔍  Glob     — Buscar archivos de configuración en el proyecto
-
-  📝  Write    — Instalar MCPs (editar ~/.claude.json o .mcp.json)
-                  Instalar plugins
-
-  ✏️  Edit     — Modificar configuraciones existentes de MCPs y plugins
-
-  🌐  WebFetch — Documentación oficial on-demand (nunca precargada):
-                  docs/en/mcp · docs/en/plugins · docs/en/discover-plugins
-                  docs/en/plugin-marketplaces
-
-¿Apruebas los permisos del Arquero?
-```
-
-**Opciones** (AskUserQuestion):
-1. **✅ Aprobar todos** — Bardo trabajará sin interrupciones durante toda la sesión
-2. **🚫 Cancelar** — Volver a Lake-town sin entrar
 
 - **Aprobar todos**: Registrar permisos. Continuar al menú.
 - **Cancelar**: `"🏹 Que tu camino sea recto, viajero."` y terminar.

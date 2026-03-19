@@ -141,8 +141,7 @@ Nunca actúa sin confirmación.
 
 ⚔️ **⚡ Gandalf** — El Mago Blanco. Spec-Driven Development.
    *(SDD interactivo: requirements.md · design.md · tasks.md)*
-💍 **Gollum** vive dentro de **Aragorn** — el Rey lo invoca por proyecto.
-   *(opción "Llamar a Gollum" en Aragorn · .claude/agents/gollum.md · siempre project-scoped)*
+💍 **Gollum** — Companion de testing *(planificado · no disponible aún)*
 
 ---
 
@@ -297,7 +296,7 @@ para hacerlo lo más autónomo posible.
    Estado: Completado
 
 ✅ ⚡ Gandalf - Spec-Driven Development (SDD interactivo completo)
-🔧 💍 Gollum - Agente de Release y Testing por Proyecto (vive dentro de Aragorn · issue #281)
+💭 💍 Gollum - Companion de testing (planificado · no disponible aún)
 
 ---
 

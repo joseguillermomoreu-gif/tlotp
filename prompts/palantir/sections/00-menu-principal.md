@@ -21,7 +21,7 @@
 ═══════════════════════════════════════════════════════════════════════
 ```
 
-**IMPORTANTE**: Reemplaza `{VERSION}` con la versión actual de TLOTP cargada desde `@prompts/VERSION.md` (actualmente v2.1.0)
+**IMPORTANTE**: Reemplaza `{VERSION}` con la versión actual de TLOTP cargada desde `@prompts/VERSION.md`
 
 ---
 

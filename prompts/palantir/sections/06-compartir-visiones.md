@@ -67,27 +67,7 @@
 
 ### PASO 2: Cargar documentación oficial (condicional)
 
-Comprobar si la documentación oficial ya está en contexto de esta sesión.
-
-**Si no está en contexto**, obtener en este orden:
-
-> **WebFetch 1**: https://code.claude.com/docs/en/how-claude-code-works
-> **Extraer**: arquitectura general, cómo se cargan los ficheros de configuración
-
-> **WebFetch 2**: https://code.claude.com/docs/en/best-practices
-> **Extraer**: criterios de buenas prácticas, qué va en cada fichero, límites
-
-> **WebFetch 3**: https://code.claude.com/docs/en/memory
-> **Extraer**: tipos de memoria, jerarquía de precedencia, rules con paths, @imports
-
-> **WebFetch 4**: https://code.claude.com/docs/en/settings
-> **Extraer**: jerarquía de settings, ubicaciones, permisos disponibles
-
-> **WebFetch 5**: https://code.claude.com/docs/en/hooks
-> **Extraer**: eventos, schema de configuración, tipos de hooks, matchers
-
-> **WebFetch 6**: https://code.claude.com/docs/en/features-overview
-> **Extraer**: cuándo usar cada feature, costes de contexto, qué va dónde
+@prompts/palantir/sections/00-docs-official.md
 
 ---
 

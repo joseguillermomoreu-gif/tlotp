@@ -174,9 +174,27 @@ Si hay MCPs o plugins cuya documentación no pudo obtenerse ni está en el conoc
 
 ### Paso 6 — Volver al menú
 
-Tras mostrar toda la guía, pregunta al usuario (AskUserQuestion):
-- Volver al menú de Bardo
-- Salir
+Tras mostrar toda la guía, preguntar al usuario:
+
+```json
+{
+  "questions": [{
+    "header": "Bardo · El Trovador",
+    "question": "🏹 ¿Qué deseas hacer ahora, señor del Fuerte?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🔙 Volver al menú de Bardo",
+        "description": "Regresar a Lake-town"
+      },
+      {
+        "label": "🔙 Volver a La Comunidad del Código",
+        "description": "Regresar al menú principal de TLOTP"
+      }
+    ]
+  }]
+}
+```
 
 ---
 
