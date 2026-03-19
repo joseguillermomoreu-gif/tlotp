@@ -25,3 +25,9 @@ temp/
 linkedin-*.md
 /.claude/rules/workflow.md
 /.claude/rules/git-workflow.md
+
+# SDD documents (Spec-Driven Development — nunca trackear)
+docs/requirements.md
+docs/design.md
+docs/tasks.md
+docs/sdd_completed/
