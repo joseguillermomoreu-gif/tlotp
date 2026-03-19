@@ -66,7 +66,7 @@ Tras los permisos, mostrar la **Pantalla 1**:
   "No se puede cruzar las Montañas Nubladas sin un mapa.
    No se puede escribir código sin una especificación."
 ──────────────────────────────────────────────────────────────
-  ✨ Iniciar nueva aventura (SDD desde cero)
+  ✨ Iniciar nueva aventura, Gandalf nos guiará
      Los Rohirrim exploran → tú defines el objetivo → Gandalf
      genera requirements.md · design.md · tasks.md
 
@@ -87,7 +87,7 @@ Tras los permisos, mostrar la **Pantalla 1**:
     "multiSelect": false,
     "options": [
       {
-        "label": "✨ Iniciar nueva aventura (SDD desde cero)",
+        "label": "✨ Iniciar nueva aventura, Gandalf nos guiará",
         "description": "Rohirrim exploran → objetivo → requirements → design → tasks"
       },
       {
@@ -151,7 +151,43 @@ Si elige **Ver más**, mostrar **Pantalla 2**:
 
 ### Pantalla 1
 
-#### ✨ Iniciar nueva aventura (SDD desde cero)
+#### ✨ Iniciar nueva aventura, Gandalf nos guiará
+
+**Paso previo — Detección opcional de Agent Teams:**
+
+```bash
+echo "=== GLOBAL ===" && ls ~/.claude/agents/ 2>/dev/null || echo "(vacío)"
+echo "=== PROJECT ===" && ls .claude/agents/ 2>/dev/null || echo "(vacío)"
+```
+
+**Si se detectan teams en algún scope**, mostrar paso opcional:
+
+```json
+{
+  "questions": [{
+    "header": "Gandalf — Agent Team (opcional)",
+    "question": "⚡ Se han detectado Agent Teams disponibles. ¿Quieres usar uno para este SDD?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "⚔️  [listar teams detectados con scope entre paréntesis]",
+        "description": "El team colaborará en el diseño del SDD"
+      },
+      {
+        "label": "⏭️  Continuar sin team",
+        "description": "Flujo estándar de Gandalf"
+      }
+    ]
+  }]
+}
+```
+
+Si el usuario selecciona un team: registrar el nombre del team seleccionado como
+`GANDALF_TEAM=[nombre]` y propagarlo al contexto del SDD
+(aparecerá en el campo `agent_team` del SDD generado).
+
+Si elige continuar sin team o **no hay teams detectados**: continuar directamente.
+
 Cargar: `@prompts/gandalf/sections/01-module-rohirrim.md`
 *(los Rohirrim exploran y continúan automáticamente hasta G8)*
 

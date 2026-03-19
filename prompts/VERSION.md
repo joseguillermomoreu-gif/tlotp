@@ -6,16 +6,16 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v4.1.0**
-- **Fecha release**: 2026-03-18
-- **Nombre código**: "El Mago Blanco" (Gandalf épica completa — Spec-Driven Development G0–G10)
+**TLOTP v4.2.0**
+- **Fecha release**: 2026-03-19
+- **Nombre código**: "Las Runas del Anillo"
 
 ---
 
 ## 📦 Historial de Versiones
 
 ### v4.0.0 — "El Mago Blanco"
-- **Fecha release**: 2026-03-18
+- **Fecha release**: 2026-03-19
 - **Épica**: ⚡ Gandalf — Spec-Driven Development completo (G0–G10)
 - 5 exploradores Rohirrim paralelos (Agent tool) mapean el proyecto antes de preguntar nada
 - Editor EARS interactivo para requirements.md con clasificación MoSCoW
@@ -30,7 +30,7 @@
 **Closes**: #264–#274
 
 ### v3.22.0 — "El Rey que Regresa"
-- **Fecha release**: 2026-03-18
+- **Fecha release**: 2026-03-19
 - **Épica**: 👑 Aragorn — Gestor de agentes y Agent Teams (redesign completo)
 - aragorn-main.md: banner épico, permisos, menú paginado 3 pantallas, sistema lore de personajes
 - 5 módulos nuevos: analyze, marketplace, create, team-builder, docs
@@ -41,7 +41,7 @@
 **Closes**: #252–#263
 
 ### v3.16.0 — "Las Almenaras de Gondor"
-- **Fecha release**: 2026-03-18
+- **Fecha release**: 2026-03-19
 - Automatización del ciclo de release completo:
   - `release-prep.yml`: pre-bump workflow_dispatch — calcula versión, actualiza VERSION.md, crea PR develop → master
   - `backmerge.yml`: sincronización automática master → develop con [skip ci] y auto-merge
@@ -51,15 +51,15 @@
 **Closes**: #177, #178, #179, #180, #181
 
 ### v3.15.0 — "Guardians of the Branch"
-- **Fecha release**: 2026-03-18
+- **Fecha release**: 2026-03-19
 - Ents redesign completo + CI/CD hardening
 
 ### v3.14.0 — "The Voices in the Stone"
-- **Fecha release**: 2026-03-18
+- **Fecha release**: 2026-03-19
 - Menú principal TLOTP rediseñado (paginación 3 pantallas)
 
 ### v3.13.0 — "The Voices in the Stone"
-- **Fecha release**: 2026-03-18
+- **Fecha release**: 2026-03-19
 - Palantír redesign completo + narrativa lore TLOTP
 
 ---
