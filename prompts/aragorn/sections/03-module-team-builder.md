@@ -8,6 +8,132 @@ WebFetch on-the-fly, nunca hardcodeado.
 
 ---
 
+## Fase 0 — Inventario de Teams Existentes
+
+**Antes de cualquier menú o documentación**, detectar todos los Agent Teams existentes.
+
+### Paso F0.1 — Escanear ambos scopes
+
+```bash
+echo "=== GLOBAL (~/.claude/agents/) ==="
+ls ~/.claude/agents/ 2>/dev/null || echo "(vacío)"
+echo "=== PROJECT (.claude/agents/) ==="
+ls .claude/agents/ 2>/dev/null || echo "(vacío)"
+```
+
+Para cada fichero/directorio encontrado, leer su contenido con Read para extraer:
+- Nombre del team
+- Número de agentes miembros (campos `teammates` o equivalente según docs)
+
+### Paso F0.2 — Mostrar inventario
+
+**Si se encuentran teams en algún scope**, mostrar:
+
+```
+══════════════════════════════════════════════════════════════
+⚔️  TUS EJÉRCITOS DE GONDOR
+══════════════════════════════════════════════════════════════
+
+  🌍 GLOBAL (~/.claude/agents/):
+  [Para cada team global]:
+    ⚔️  [nombre-team]
+       🧑‍🤝‍🧑 Agentes: [N]  ·  🗡️ [lista nombres separados por coma]
+
+  📁 PROYECTO (.claude/agents/):
+  [Para cada team de proyecto]:
+    ⚔️  [nombre-team]
+       🧑‍🤝‍🧑 Agentes: [N]  ·  🗡️ [lista nombres separados por coma]
+
+  [Si algún scope está vacío, omitir esa sección]
+
+══════════════════════════════════════════════════════════════
+📊 Total: [N] teams  (global: [N] · proyecto: [N])
+══════════════════════════════════════════════════════════════
+```
+
+Luego usar AskUserQuestion:
+
+```json
+{
+  "questions": [{
+    "header": "Agent Teams — Inventario",
+    "question": "⚔️  ¿Qué quieres hacer con tus ejércitos?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🆕 Crear nuevo team",
+        "description": "Forjar un nuevo ejército desde cero"
+      },
+      {
+        "label": "👁️  Ver detalle de un team",
+        "description": "Inspeccionar configuración completa"
+      },
+      {
+        "label": "✏️  Editar un team",
+        "description": "Modificar nombre o agentes miembros"
+      },
+      {
+        "label": "🔍 Analizar coherencia",
+        "description": "Detectar duplicados y conflictos entre scopes"
+      },
+      {
+        "label": "🗑️  Eliminar un team",
+        "description": "Borrar con confirmación previa"
+      },
+      {
+        "label": "❓ ¿Cuándo usar Agent Teams vs Subagents?",
+        "description": "Guía desde docs oficiales"
+      },
+      {
+        "label": "🔙 Volver al menú de Aragorn",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+**Si NO hay teams en ningún scope**, mostrar:
+
+```
+══════════════════════════════════════════════════════════════
+⚔️  EJÉRCITOS DE GONDOR
+══════════════════════════════════════════════════════════════
+
+  No hay teams configurados todavía.
+  Los archivos del rey esperan ser formados.
+
+══════════════════════════════════════════════════════════════
+```
+
+Y usar AskUserQuestion:
+
+```json
+{
+  "questions": [{
+    "header": "Agent Teams",
+    "question": "⚔️  No hay teams aún — ¿Qué quieres hacer?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🆕 Crear mi primer team",
+        "description": "Forjar el primer ejército de Gondor"
+      },
+      {
+        "label": "❓ ¿Qué son los Agent Teams?",
+        "description": "Ver explicación desde docs oficiales"
+      },
+      {
+        "label": "🔙 Volver al menú de Aragorn",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+---
+
 ## Paso 0 — Documentación oficial (on-the-fly)
 
 **IMPORTANTE**: Comprobar primero si la documentación ya está cargada en el contexto.
@@ -429,6 +555,245 @@ Mostrar con esta estructura (contenido 100% de WebFetch):
 AskUserQuestion:
 - 🆕 Crear un team ahora
 - 🔙 Volver al menú de Aragorn
+
+---
+
+## Operación: Ver Detalle de Team
+
+### Paso VD1 — Seleccionar team
+
+Si hay más de un team, preguntar con AskUserQuestion mostrando la lista completa
+(nombre + scope) generada en la Fase 0. Si solo hay uno, seleccionarlo automáticamente.
+
+### Paso VD2 — Leer y mostrar configuración completa
+
+Leer el fichero del team con Read y mostrar:
+
+```
+══════════════════════════════════════════════════════════════
+👁️  DETALLE: [nombre-team]
+══════════════════════════════════════════════════════════════
+
+  📍 Scope:      [global / proyecto]
+  📁 Fichero:    [ruta completa]
+  🧑‍🤝‍🧑 Agentes:   [N]
+
+  Guerreros del ejército:
+    [Para cada agente]:
+    ⚔️  [nombre-agente]  ·  [descripción si disponible]
+
+  📝 Descripción del team:
+     [campo description del fichero si existe]
+
+══════════════════════════════════════════════════════════════
+```
+
+AskUserQuestion:
+- ✏️ Editar este team
+- 🗑️ Eliminar este team
+- 🔙 Volver al inventario
+
+---
+
+## Operación: Editar Team
+
+### Paso ED1 — Seleccionar team
+
+Si hay más de un team, preguntar con AskUserQuestion (lista de nombres + scope).
+
+### Paso ED2 — Seleccionar qué editar
+
+```json
+{
+  "questions": [{
+    "header": "Editar team",
+    "question": "✏️  ¿Qué deseas modificar en '[nombre-team]'?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "📛 Cambiar nombre",
+        "description": "Renombrar el fichero del team"
+      },
+      {
+        "label": "🧑‍🤝‍🧑 Añadir agentes",
+        "description": "Incorporar nuevos guerreros al ejército"
+      },
+      {
+        "label": "➖ Quitar agentes",
+        "description": "Retirar agentes del team con confirmación"
+      },
+      {
+        "label": "📝 Cambiar descripción",
+        "description": "Actualizar el propósito del team"
+      },
+      {
+        "label": "🔙 Cancelar",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+### Paso ED3 — Aplicar cambios
+
+Mostrar el cambio propuesto y pedir confirmación (AskUserQuestion: Confirmar / Cancelar):
+
+```
+══════════════════════════════════════════════════════════════
+✏️  CAMBIO PROPUESTO — [nombre-team]
+══════════════════════════════════════════════════════════════
+  [Describir el cambio concreto a aplicar]
+══════════════════════════════════════════════════════════════
+```
+
+Tras confirmar, aplicar con Edit/Write según corresponda.
+
+Mostrar confirmación:
+*"El ejército ha sido reorganizado. Que los dioses de la batalla les sean favorables."*
+
+Volver automáticamente al inventario (Fase 0).
+
+---
+
+## Operación: Eliminar Team
+
+### Paso EL1 — Seleccionar team
+
+Si hay más de un team, preguntar con AskUserQuestion (lista de nombres + scope).
+
+### Paso EL2 — Confirmación obligatoria
+
+**SIEMPRE** mostrar confirmación antes de eliminar:
+
+```json
+{
+  "questions": [{
+    "header": "⚠️  Confirmar eliminación",
+    "question": "🗑️  ¿Seguro que quieres disolver el ejército '[nombre-team]'?\n    Esta acción no se puede deshacer.",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🗑️  Sí, disolver el ejército",
+        "description": "Eliminar [nombre-team] ([scope])"
+      },
+      {
+        "label": "🔙 Cancelar — mantener el team",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+### Paso EL3 — Ejecutar eliminación
+
+Si el usuario confirma:
+
+```bash
+rm [ruta-del-fichero-team]
+```
+
+Mostrar confirmación con lore épico:
+*"El ejército ha sido disuelto. Sus guerreros regresan a sus tierras. Que Gondor los recuerde."*
+
+Volver automáticamente al inventario (Fase 0).
+
+---
+
+## Operación: Análisis de Coherencia de Teams
+
+### Paso AC1 — Cargar inventario completo
+
+Ejecutar el mismo escaneo que la Fase 0 para obtener la lista actualizada de todos los
+teams en ambos scopes. Leer cada fichero con Read para obtener nombre, agentes y scope.
+
+### Paso AC2 — Ejecutar análisis
+
+Evaluar los siguientes criterios sobre todos los teams detectados:
+
+**Criterio 1 — Duplicados exactos entre scopes**
+Detectar teams con el **mismo nombre** tanto en `~/.claude/agents/` como en `.claude/agents/`.
+Acción sugerida: fusionar o eliminar el duplicado con indicación de cuál mantener.
+
+**Criterio 2 — Nombres muy similares**
+Detectar teams cuyo nombre tenga una distancia de edición ≤ 2 con otro team
+(independientemente del scope). Por ejemplo: `code-review` vs `code-reviewer`.
+Acción sugerida: renombrar el más reciente o fusionar si tienen propósito similar.
+
+**Criterio 3 — Agentes solapados entre teams**
+Detectar teams que comparten más del 50% de sus agentes con otro team.
+Acción sugerida: especializar roles o fusionar los teams si tienen propósito similar.
+
+### Paso AC3 — Mostrar informe
+
+**Si se detectan problemas**, mostrar:
+
+```
+══════════════════════════════════════════════════════════════
+🔍 ANÁLISIS DE COHERENCIA — EJÉRCITOS DE GONDOR
+══════════════════════════════════════════════════════════════
+
+  [Para cada problema detectado]:
+
+  ⚠️  PROBLEMA [N]: [tipo — Duplicado / Nombre similar / Solapamiento]
+  ────────────────────────────────────────────────────────────
+  📋 Detectado:  [descripción concreta del problema]
+  💡 Sugerencia: [acción propuesta]
+  🎯 Motivo:     [justificación breve]
+
+══════════════════════════════════════════════════════════════
+📊 Total: [N] problemas detectados
+══════════════════════════════════════════════════════════════
+```
+
+**Si no se detectan problemas**, mostrar:
+
+```
+══════════════════════════════════════════════════════════════
+🔍 ANÁLISIS DE COHERENCIA
+══════════════════════════════════════════════════════════════
+
+  Los teams están en perfecta armonía 🧙‍♂️
+
+  No se detectaron duplicados, nombres similares ni
+  solapamientos significativos entre ejércitos.
+
+══════════════════════════════════════════════════════════════
+```
+
+### Paso AC4 — Aplicar sugerencias (si hay problemas)
+
+Para cada problema detectado, ofrecer acciones con AskUserQuestion:
+
+```json
+{
+  "questions": [{
+    "header": "Coherencia — Problema [N]/[TOTAL]",
+    "question": "⚔️  [descripción del problema]\n    Sugerencia: [acción propuesta]",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Aplicar sugerencia",
+        "description": "[qué se hará concretamente]"
+      },
+      {
+        "label": "⏭️  Saltar este problema",
+        "description": "Ignorar y pasar al siguiente"
+      },
+      {
+        "label": "🚫 Terminar análisis",
+        "description": "Salir del análisis y volver al inventario"
+      }
+    ]
+  }]
+}
+```
+
+Aplicar la acción elegida (fusionar = copiar config + eliminar original, renombrar = mv del fichero).
+Mostrar confirmación con frase épica antes de ejecutar cada acción.
+
+Tras procesar todos los problemas (o al terminar), volver automáticamente al inventario (Fase 0).
 
 ---
 

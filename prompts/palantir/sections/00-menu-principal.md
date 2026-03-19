@@ -6,19 +6,19 @@
 
 ## 📋 PASO 1: Mostrar Banner de Bienvenida
 
-**PRIMERO**: Mostrar el banner elegante de Palantír (desde 05-formato-output.md):
+**PRIMERO**: Mostrar el banner elegante de Palantír:
 
 ```markdown
-═══════════════════════════════════════════════════════════
+═══════════════════════════════════════════════════════════════════════
+       ᛈ · ᚨ · ᛚ · ᚨ · ᚾ · ᛏ · ᛁ · ᚱ  ·  ᛏ · ᚻ · ᛖ · ᛚ · ᛁ · ᛏ · ᚻ
 
-                     🔮 P A L A N T Í R
+                        🔮  P A L A N T Í R
+                The All-Seeing Configuration Stone
+                         TLOTP {VERSION}
+                Jerarquía Oficial Claude Code Memory
 
-             The All-Seeing Configuration Stone
-                  TLOTP {VERSION}
-
-             Jerarquía Oficial Claude Code Memory
-
-═══════════════════════════════════════════════════════════
+       ᛈ · ᚨ · ᛚ · ᚨ · ᚾ · ᛏ · ᛁ · ᚱ  ·  ᛏ · ᚻ · ᛖ · ᛚ · ᛁ · ᛏ · ᚻ
+═══════════════════════════════════════════════════════════════════════
 ```
 
 **IMPORTANTE**: Reemplaza `{VERSION}` con la versión actual de TLOTP cargada desde `@prompts/VERSION.md` (actualmente v2.1.0)
