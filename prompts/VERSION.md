@@ -6,7 +6,7 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v4.2.0**
+**TLOTP v4.3.0**
 - **Fecha release**: 2026-03-19
 - **Nombre código**: "Las Runas del Anillo"
 

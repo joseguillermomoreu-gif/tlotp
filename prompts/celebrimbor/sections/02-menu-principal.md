@@ -35,34 +35,25 @@ Gestionar el entry point de Celebrimbor: pedir permisos, mostrar el menú y enru
 
 **CRÍTICO**: Antes del menú, solicitar aprobación con `AskUserQuestion`:
 
+```json
+{
+  "questions": [{
+    "header": "Celebrimbor · Permisos",
+    "question": "⚒️ Celebrimbor necesita los siguientes permisos:\n\n  🖥️ Bash — npx skills (check/find/add/update/remove/list)\n  📖 Read — ~/.claude/skills/ · .claude/skills/ · CLAUDE.md · rules/\n  🔍 Glob — Buscar archivos SKILL.md en rutas globales y locales\n  📝 Write — Instalar y crear skills\n  ✏️ Edit — Mejorar y actualizar skills existentes\n  🌐 WebFetch — Documentación oficial on-demand\n\n¿Apruebas los permisos de la Forja?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Aprobar todos",
+        "description": "Celebrimbor trabajará sin interrupciones durante toda la sesión"
+      },
+      {
+        "label": "🚫 Cancelar",
+        "description": "Salir de Eregion"
+      }
+    ]
+  }]
+}
 ```
-⚒️ Celebrimbor necesita los siguientes permisos
-
-  🖥️  Bash     — npx skills (check/find/add/update/remove/list)
-                  nvm/node (verificar entorno)
-                  rm (eliminar skills sin CLI), mkdir
-
-  📖  Read     — Skills instaladas (~/.claude/skills/, .claude/skills/)
-                  Configuraciones del sistema (si usas Palantír):
-                  ~/.claude/CLAUDE.md · ~/.claude/rules/ · ~/.claude/memory/
-                  ./CLAUDE.md · ./.claude/rules/
-
-  🔍  Glob     — Buscar archivos SKILL.md en rutas globales y locales
-
-  📝  Write    — Instalar y crear skills
-                  (~/.claude/skills/, .claude/skills/)
-
-  ✏️  Edit     — Mejorar y actualizar skills existentes
-
-  🌐  WebFetch — Documentación oficial on-demand (nunca precargada):
-                  skills · skills.sh · memoria/configuración
-
-¿Apruebas los permisos de la Forja?
-```
-
-**Opciones** (AskUserQuestion):
-1. **✅ Aprobar todos** — Celebrimbor trabajará sin interrupciones durante toda la sesión
-2. **🚫 Cancelar** — Salir de Eregion
 
 - **Aprobar todos**: Registrar permisos. Continuar al menú.
 - **Cancelar**: Mostrar despedida épica y terminar.

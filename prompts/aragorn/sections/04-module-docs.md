@@ -138,7 +138,27 @@ Construir a partir del contenido de WebFetch. Solo lo imprescindible:
     Úsalo bien en la Tierra Media, señor."
 ```
 
-Al finalizar, volver al menú principal de Aragorn (sin repetir banner ni permisos).
+**Tras mostrar el contenido**, preguntar al usuario:
+
+```json
+{
+  "questions": [{
+    "header": "Aragorn · Los Pergaminos del Rey",
+    "question": "👑 ¿Qué deseas hacer ahora, señor?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🔙 Volver al menú de Aragorn",
+        "description": "Regresar a Gondor"
+      },
+      {
+        "label": "🔙 Volver a La Comunidad del Código",
+        "description": "Regresar al menú principal de TLOTP"
+      }
+    ]
+  }]
+}
+```
 
 ---
 

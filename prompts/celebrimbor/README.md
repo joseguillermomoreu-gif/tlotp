@@ -10,10 +10,7 @@
 
 ## 🎯 ¿Qué es Celebrimbor?
 
-Sistema de gestión de skills para Claude Code que ofrece **dos modos de operación**:
-
-- ⚡ **Backend CLI** (Node.js >=18) - ✅ Operativo
-- 📦 **Backend Git** (universal) - 🚧 Planificado
+Sistema de gestión de skills para Claude Code con CRUD completo vía CLI de inference.sh.
 
 ---
 
@@ -53,29 +50,30 @@ prompts/celebrimbor/
 └── sections/
     ├── 01-detector-entorno.md       # Detección Node.js ✅
     ├── 02-menu-principal.md         # Menú interactivo ✅
-    ├── 03-backend-cli.md            # Backend CLI (WIP)
-    ├── 04-backend-git.md            # Backend Git (v2.2.0)
-    └── 05-modo-automatico.md        # Modo automático (futuro)
+    ├── 04-backend-cli.md            # Backend CLI operativo ✅
+    ├── 07-module-analyze.md         # Análisis de skills ✅
+    ├── 07-module-search.md          # Búsqueda de skills ✅
+    ├── 08-module-install.md         # Instalación ✅
+    ├── 09-module-list.md            # Listado ✅
+    ├── 10-module-remove.md          # Eliminación ✅
+    ├── 11-module-update.md          # Actualización ✅
+    ├── 12-module-create-skill.md    # Creación asistida ✅
+    ├── 13-module-docs.md            # Documentación oficial ✅
+    └── 14-skills-cli-reference.md   # Referencia CLI ✅
 ```
 
 ---
 
-## 📋 Progreso del Desarrollo
+## 📋 Estado del Desarrollo
 
-### Tarea #1: Setup y Detección ✅
-- [x] Detección de Node.js
-- [x] Validación de requisitos
-- [x] Reporte de estado
-- [x] Documentación de requisitos
-
-### Tarea #2: Arquitectura Modular (WIP)
-- [ ] Interfaz común
-- [ ] Backend CLI (implementar)
-- [ ] Backend Git (hooks)
-- [ ] Sistema de selección
-
-### Tareas #3-#13: (Pendientes)
-Ver issue #42 para detalles completos
+### ✅ CRUD Completo — Backend CLI Operativo
+- [x] Detección de Node.js y requisitos
+- [x] Menú principal interactivo
+- [x] Backend CLI con inference.sh
+- [x] Buscar, instalar, listar, eliminar, actualizar skills
+- [x] Creación asistida de skills personalizadas
+- [x] Documentación oficial integrada
+- [x] Referencia CLI completa
 
 ---
 

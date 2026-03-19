@@ -25,31 +25,7 @@ Obtener input libre del usuario.
 
 ## PASO 2: Cargar documentación oficial
 
-**Comprobar primero** si la documentación oficial ya está cargada en el contexto
-de esta sesión (por haber ejecutado previamente "Contemplar el reino" u otro módulo
-que haya hecho los WebFetch).
-
-**Si ya está en contexto**: usar directamente esa información sin re-fetchear.
-
-**Si no está en contexto**, obtener documentación en este orden:
-
-> **WebFetch 1**: https://code.claude.com/docs/en/how-claude-code-works
-> **Extraer**: arquitectura general, cómo se cargan los ficheros de configuración
-
-> **WebFetch 2**: https://code.claude.com/docs/en/best-practices
-> **Extraer**: criterios de buenas prácticas, qué va en cada fichero, límites
-
-> **WebFetch 3**: https://code.claude.com/docs/en/memory
-> **Extraer**: tipos de memoria, jerarquía de precedencia, rules con paths, @imports
-
-> **WebFetch 4**: https://code.claude.com/docs/en/settings
-> **Extraer**: jerarquía de settings, ubicaciones, permisos disponibles
-
-> **WebFetch 5**: https://code.claude.com/docs/en/hooks
-> **Extraer**: eventos, schema de configuración, tipos de hooks, matchers
-
-> **WebFetch 6**: https://code.claude.com/docs/en/features-overview
-> **Extraer**: cuándo usar cada feature, costes de contexto, qué va dónde
+@prompts/palantir/sections/00-docs-official.md
 
 ---
 
@@ -99,7 +75,7 @@ Con la petición del usuario y la documentación oficial, razonar en profundidad
 ```json
 {
   "questions": [{
-    "header": "Análisis",
+    "header": "Palantír · Análisis",
     "question": "¿Cómo deseas proceder?",
     "multiSelect": false,
     "options": [
@@ -114,6 +90,10 @@ Con la petición del usuario y la documentación oficial, razonar en profundidad
       {
         "label": "✏️ Ajustar manualmente",
         "description": "Modificar la propuesta antes de continuar"
+      },
+      {
+        "label": "🔎 Buscar alternativa en docs",
+        "description": "Releer la documentación oficial y proponer una solución alternativa"
       }
     ]
   }]
