@@ -14,9 +14,11 @@
 **SIEMPRE** mostrar este banner al iniciar Aragorn:
 
 ```
-╔═══════════════════════════════════════════════════════════════╗
-║          👑 ARAGORN — El Gestor de Agentes y Subagentes       ║
-╚═══════════════════════════════════════════════════════════════╝
+══════════════════════════════════════════════════════════════
+  ᚨᚱᚨᚷᚩᚱᚾ  👑  ARAGORN — El Rey que Regresa  ᚨᚱᚨᚷᚩᚱᚾ
+══════════════════════════════════════════════════════════════
+    Gestor de Agentes y Subagentes · TLOTP {VERSION}
+──────────────────────────────────────────────────────────────
 
   "No pido la vida de ningún hombre que no quiera dármela.
    Pero hay esperanza. Si el valor no nos falta."
@@ -29,6 +31,8 @@
 
   Cada agente: un guerrero de una raza diferente, forjado
   para una misión concreta. Tú eres el Elessar — convócalos.
+
+══════════════════════════════════════════════════════════════
 ```
 
 ---
