@@ -39,6 +39,9 @@ cómo Claude piensa y actúa en tu entorno.
 
 Para todo lo anterior, Palantír necesita permisos de tu entorno.
 
+> **Nota sobre el modelo de permisos**: Esta elección configura cómo Palantír gestiona sus confirmaciones en este prompt.
+> Claude Code mantiene una capa de permisos propia en runtime — independientemente de tu elección aquí, puede seguir solicitando confirmación por herramienta según el modo de sesión activo (incluyendo `--dangerously-skip-permissions` si lo has configurado).
+
 **Usar AskUserQuestion**:
 
 ```json
@@ -50,11 +53,11 @@ Para todo lo anterior, Palantír necesita permisos de tu entorno.
     "options": [
       {
         "label": "✅ Aprobar todos",
-        "description": "Palantír actuará sin interrupciones durante la sesión"
+        "description": "Palantír indica su intención de actuar libremente. Claude Code puede seguir solicitando confirmación por herramienta según el modo de sesión activo."
       },
       {
         "label": "🔄 Saltar",
-        "description": "Palantír solicitará los permisos según los necesite"
+        "description": "Palantír solicitará tu confirmación antes de cada acción relevante"
       }
     ]
   }]
