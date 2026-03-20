@@ -2,8 +2,8 @@
 CLAUDE.md
 MEMORY.md
 
-# Test results with personal information
-tests/
+# Claude Code config (local — nunca trackear)
+.claude/
 
 # IDEs
 .idea/
@@ -20,14 +20,6 @@ Thumbs.db
 tmp/
 temp/
 *.tmp
-
-# LinkedIn drafts (nunca commitear)
-linkedin-*.md
-/.claude/rules/workflow.md
-/.claude/rules/git-workflow.md
-
-# Agent Teams (configuraciones locales — nunca trackear)
-.claude/teams/
 
 # SDD documents (Spec-Driven Development — nunca trackear)
 docs/requirements.md
