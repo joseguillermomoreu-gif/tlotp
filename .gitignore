@@ -26,6 +26,9 @@ linkedin-*.md
 /.claude/rules/workflow.md
 /.claude/rules/git-workflow.md
 
+# Agent Teams (configuraciones locales — nunca trackear)
+.claude/teams/
+
 # SDD documents (Spec-Driven Development — nunca trackear)
 docs/requirements.md
 docs/design.md
