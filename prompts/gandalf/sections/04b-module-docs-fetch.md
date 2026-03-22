@@ -37,7 +37,7 @@ Solo fetchear para los dominios detectados en `contexto_rohirrim` (Éowyn del St
 | Node.js | https://nodejs.org/en/docs |
 | Go | https://go.dev/doc/ |
 | PHPUnit | https://docs.phpunit.de/en/11.5/ |
-| Doctrine | https://www.doctrine-project.org/projects/doctrine-orm/en/3.3/index.html |
+| Doctrine | https://www.doctrine-project.org/projects/doctrine-orm/en/current/index.html |
 | Vue.js | https://vuejs.org/guide/introduction |
 | Next.js | https://nextjs.org/docs |
 | Django | https://docs.djangoproject.com/ |
