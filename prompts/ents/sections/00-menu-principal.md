@@ -9,19 +9,18 @@
 **PRIMERO**: Mostrar el banner de los Ents:
 
 ```
-═══════════════════════════════════════════════════════════════
-
-               🌳🌳🌳  E N T S  🌳🌳🌳
-
-            Guardianes de las Ramas del Repositorio
-                      TLOTP {VERSION}
-
-         "No os apresuréis... los árboles más viejos
-          son los que mejor conocen el bosque."
-
-                          — Bárbol
-
-═══════════════════════════════════════════════════════════════
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║      ᛒ ᛇ ᛉ  🌳  E N T S  🌳  ᛉ ᛇ ᛒ                        ║
+║                                                              ║
+║         Guardianes de las Ramas del Repositorio              ║
+║                      TLOTP {VERSION}                         ║
+║                                                              ║
+║      "No os apresuréis... los árboles más viejos             ║
+║       son los que mejor conocen el bosque."                  ║
+║                           — Bárbol                           ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
 ```
 
 **IMPORTANTE**: Reemplaza `{VERSION}` con la versión actual cargada desde `@prompts/VERSION.md`
@@ -59,6 +58,10 @@ Ejecuta **AskUserQuestion** con esta configuración EXACTA:
         {
           "label": "🌱 Plantar nuevos árboles",
           "description": "Crear workflows de GitHub Actions desde cero con las mejores prácticas"
+        },
+        {
+          "label": "⚔️ Thorin y su Compañía",
+          "description": "Convocar un Agent Team CI/CD para analizar y mejorar los workflows en paralelo"
         },
         {
           "label": "🚪 Retirarse al Fangorn",
@@ -125,6 +128,17 @@ Procede a ejecutar:
 
 Procede a ejecutar:
 1. **Creación** (`06-creator.md`) — Generar GitHub Actions CI/CD paso a paso
+
+---
+
+### ⚔️ Thorin y su Compañía
+
+**Acción**: Convocar Agent Team CI/CD
+
+Procede a ejecutar:
+1. **Convocatoria** (`07-thorin-company.md`) — Detectar/crear team y lanzar misión
+
+@prompts/ents/sections/07-thorin-company.md
 
 ---
 
