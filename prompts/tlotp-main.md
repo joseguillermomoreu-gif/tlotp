@@ -132,7 +132,7 @@ Nunca actúa sin confirmación.
    *(CLAUDE.md · settings.json · rules/ · hooks · MEMORY.md)*
 ⚔️ **🌳 Ents** — Los Pastores del Fangorn. Custodian las ramas y optimizan tu CI/CD.
    *(.github/workflows/ · GitHub Actions)*
-⚔️ **⚒️ Celebrimbor** — El Maestro Herrero Élfico, forjador de los Anillos de Poder. Forja skills a medida.
+⚔️ **⚒️ Celebrimbor** — El Maestro Herrero Élfico forja skills como anillos de poder.
    *(~/.claude/skills/ · .claude/skills/)*
 ⚔️ **🏹 Bardo** — El Contrabandista. Comercia con MCPs y plugins desde la Ciudad de Valle.
    *(~/.claude.json · .mcp.json · plugins/ · settings.json)*
@@ -194,7 +194,7 @@ Patrón fijo: 3 opciones de contenido por página. Pantalla 1: 3 épicas + "➕ 
         "description": ""
       },
       {
-        "label": "👑 Usar el cuerno de Gondor para convocar a Aragorn",
+        "label": "👑 Entregar Andúril a Aragorn — El Heredero de Isildur nos espera",
         "description": ""
       },
       {
@@ -215,7 +215,7 @@ Patrón fijo: 3 opciones de contenido por página. Pantalla 1: 3 épicas + "➕ 
 - 🌳 Convocar la Asamblea de los Ents → Cargar `@prompts/ents/ents-main.md`
 - ⚒️ Peregrinaje a Eregion, Celebrimbor nos espera → Cargar `@prompts/celebrimbor/celebrimbor-main.md`
 - 🏹 Reunir monedas para Bardo → Cargar `@prompts/bardo/bardo-main.md`
-- 👑 Usar el cuerno de Gondor para convocar a Aragorn → Cargar `@prompts/aragorn/aragorn-main.md`
+- 👑 Entregar Andúril a Aragorn — El Heredero de Isildur nos espera → Cargar `@prompts/aragorn/aragorn-main.md`
 - ⚡ Consultar al Mago Blanco — Gandalf → Cargar `@prompts/gandalf/gandalf-main.md`
 - 🔙 Volver a página 1 → Mostrar Pantalla 1
 - 🚪 Salir → Mensaje de despedida épico y terminar
