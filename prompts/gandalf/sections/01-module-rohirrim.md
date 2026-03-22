@@ -8,6 +8,66 @@ como los jinetes de Rohan al galope.
 
 ---
 
+## Modo de despliegue
+
+### Con Agent Team (GANDALF_EXPLORERS definido)
+
+Si `GANDALF_TEAM` está definido y `GANDALF_EXPLORERS` tiene agentes:
+
+Mostrar animación adaptada:
+
+```
+⚡ GANDALF — Convocando al Consejo de Exploradores...
+══════════════════════════════════════════════════════════════
+
+  Los jinetes del team cabalgan hacia el horizonte.
+  Sus especialidades guían la exploración.
+
+  🏇 [nombre-agente-1] ([tipo]) ....  ⚔️  en misión
+  🏇 [nombre-agente-2] ([tipo]) ....  ⚔️  en misión
+  ...
+
+══════════════════════════════════════════════════════════════
+  "¡Los Rohirrim del Consejo cabalgan! La exploración ha comenzado."
+```
+
+Los roles de exploración se adaptan según el tipo de agente:
+- `php-pro` → explora stack backend PHP
+- `qa-expert` → explora testing y calidad
+- `devops-engineer` → explora CI/CD e infraestructura
+- `frontend-developer` → explora stack frontend
+- `python-pro` → explora stack Python
+- `typescript-pro` → explora stack TypeScript
+- `database-administrator` → explora bases de datos y schemas
+- Cualquier otro → exploración genérica del proyecto
+
+Lanzar un Agent por cada explorador de `GANDALF_EXPLORERS` en paralelo, adaptando
+el prompt de exploración según el tipo de agente listado arriba.
+
+Tras recoger resultados, continuar a G2 normalmente.
+
+### Sin Agent Team (modo clásico)
+
+Si NO hay `GANDALF_TEAM` o el usuario eligió "Continuar sin team" o
+eligió "Rohirrim clásicos", mostrar lore épico antes de los 5 Rohirrim clásicos:
+
+```
+╔════════════════════════════════════════════════════════════╗
+║  ⚡ GANDALF — El Mago Blanco cabalga en solitario          ║
+╚════════════════════════════════════════════════════════════╝
+
+  "Ningún jinete de Rohan me acompaña hoy.
+   Pero el Mago Blanco no necesita escolta para
+   llegar a las bibliotecas de Minas Tirith."
+
+  🧙 Gandalf parte hacia el Archivo del Saber...
+  Los 5 Rohirrim cabalgan en su nombre.
+```
+
+Continuar con la animación y los 5 Rohirrim clásicos tal como están a continuación.
+
+---
+
 ## Animación de despliegue
 
 Mostrar antes de lanzar los agentes:

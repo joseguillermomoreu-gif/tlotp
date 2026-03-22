@@ -13,6 +13,9 @@ Sin planos, los cimientos se hunden.
 Leer del `contexto_rohirrim` (Théoden del Dominio) la arquitectura detectada.
 Si existe `requirements.md`, leerlo para alinear el diseño con los requisitos.
 
+Si `contexto_docs` está disponible: usar la documentación oficial del stack
+para alinear el diseño con los patrones y convenciones oficiales de cada tecnología.
+
 ---
 
 ## Paso 1 — Visión general
@@ -200,6 +203,16 @@ AskUserQuestion: ✅ Guardar / ✏️ Ajustar / 🔙 Volver sin guardar
 
 ══════════════════════════════════════════════════════════════
 ```
+
+---
+
+## Post-generación — CTA de revisión adicional
+
+Si `GANDALF_MODE=fast`: continuar directamente a G7 sin preguntar.
+Si `GANDALF_MODE=review` o no definido: AskUserQuestion:
+- ✅ Continuar a las tareas → G7
+- 🔍 Revisar design.md generado → abrir el fichero para ajustes adicionales
+- 🔙 Volver al menú sin continuar
 
 ---
 

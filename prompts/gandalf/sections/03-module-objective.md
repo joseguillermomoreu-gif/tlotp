@@ -118,13 +118,70 @@ AskUserQuestion:
 
 ---
 
+## Momento A — Propuesta Consolidada Pre-Generación
+
+Antes de cargar G4b, el Consejo presenta su visión del trabajo completo:
+
+```
+╔════════════════════════════════════════════════════════════╗
+║  ⚡ EL CONSEJO PRESENTA SU PROPUESTA ANTES DE LA FORJA     ║
+╚════════════════════════════════════════════════════════════╝
+
+  Basándose en el mapa Rohirrim y el objetivo definido,
+  el Consejo anticipa lo que será forjado:
+
+  📋 Requirements: [N estimado] requisitos ([MUST: X · SHOULD: Y])
+                   Inferidos de: [resumen del objetivo en 1 línea]
+
+  🏗️  Design: [patrón arquitectónico] · [N] ADRs estimados
+              Basado en: [stack principal detectado]
+
+  📝 Tasks: [N estimado] tareas ([S/M/L estimados])
+            Orden: [bloques del tipo de aventura elegido]
+```
+
+AskUserQuestion:
+```json
+{
+  "questions": [{
+    "header": "Propuesta del Consejo",
+    "question": "⚡ ¿Cómo procedemos con la forja de los pergaminos?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Aceptar todo — forjar los 3 pergaminos sin interrupciones",
+        "description": "Requirements → Design → Tasks de forma consecutiva"
+      },
+      {
+        "label": "🔍 Revisar uno a uno — flujo guiado",
+        "description": "Aprobar / modificar / saltar cada elemento en G5, G6 y G7"
+      },
+      {
+        "label": "✏️ Ajustar la propuesta antes de continuar",
+        "description": "Modificar estimaciones o prioridades"
+      },
+      {
+        "label": "🔙 Volver al menú",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+Guardar la elección como `GANDALF_MODE`:
+- "✅ Aceptar todo" → `GANDALF_MODE=fast`
+- "🔍 Revisar uno a uno" → `GANDALF_MODE=review`
+
+---
+
 ## Transición
 
 Si confirma:
-→ Cargar `@prompts/gandalf/sections/05-module-requirements.md`
+→ Cargar `@prompts/gandalf/sections/04b-module-docs-fetch.md`
 
 ---
 
 **Módulo**: `03-module-objective.md`
 **Invocado desde**: `02-module-field-report.md`
-**Propaga**: objetivo + tipo al contexto de G5, G6, G7
+**Propaga**: objetivo + tipo al contexto de G4b, G5, G6, G7
