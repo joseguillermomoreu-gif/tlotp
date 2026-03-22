@@ -39,6 +39,10 @@ entre 3 y 5 requisitos funcionales relevantes para la aventura descrita.
 - **Refactoring**: requisitos de comportamiento preservado + criterios de refactoring
 - **Spike**: hipótesis técnicas a validar + criterios de éxito del spike
 
+**Si `contexto_docs` está disponible**: usar la documentación oficial fetcheada
+en G4b para enriquecer los requisitos inferidos con las mejores prácticas del
+stack real del proyecto (naming conventions, patrones recomendados, restricciones conocidas).
+
 ---
 
 ## Paso 2 — Revisión uno a uno
@@ -182,6 +186,25 @@ Si no existe carpeta `docs/`: crear en la raíz o donde el usuario prefiera.
 
 ══════════════════════════════════════════════════════════════
 ```
+
+---
+
+## Post-generación — CTA de revisión adicional
+
+Tras escribir el fichero, mostrar:
+
+```
+╔════════════════════════════════════════════════════════════╗
+║  📜 EL PERGAMINO DE LOS DESEOS HA SIDO INSCRITO           ║
+╚════════════════════════════════════════════════════════════╝
+```
+[el lore existente al guardar va aquí — no eliminarlo]
+
+Si `GANDALF_MODE=fast`: continuar directamente a G6 sin preguntar.
+Si `GANDALF_MODE=review` o no definido: AskUserQuestion:
+- ✅ Continuar al diseño → G6
+- 🔍 Revisar requirements.md generado → abrir el fichero para ajustes adicionales
+- 🔙 Volver al menú sin continuar
 
 ---
 

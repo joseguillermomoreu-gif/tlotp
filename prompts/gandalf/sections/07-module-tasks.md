@@ -13,6 +13,10 @@ A partir de requirements.md + design.md + `contexto_rohirrim`, inferir tareas
 organizadas por bloques de implementación. El orden es sagrado — Gondor no cae
 en un día.
 
+**Si `contexto_docs` está disponible**: incorporar las tareas de setup/configuración
+recomendadas por la documentación oficial del stack (ej: estructura de carpetas
+recomendada por Symfony, convenciones de naming de React, etc.).
+
 **Bloques por tipo de aventura** (del G3):
 
 | Tipo | Orden de bloques |
@@ -151,6 +155,16 @@ AskUserQuestion: ✅ Guardar / ✏️ Ajustar / 🔙 Volver sin guardar
 
 ══════════════════════════════════════════════════════════════
 ```
+
+---
+
+## Post-generación — CTA de revisión adicional
+
+Si `GANDALF_MODE=fast`: mostrar los 3 lores de guardado (requirements + design + tasks) de forma consecutiva y continuar a G8.
+Si `GANDALF_MODE=review` o no definido: AskUserQuestion:
+- ✅ Continuar al Consejo Final → G8
+- 🔍 Revisar tasks.md generado → abrir el fichero para ajustes adicionales
+- 🔙 Volver al menú sin continuar
 
 ---
 

@@ -189,7 +189,47 @@ Si el usuario selecciona un team: registrar el nombre del team seleccionado como
 `GANDALF_TEAM=[nombre]` y propagarlo al contexto del SDD
 (aparecerá en el campo `agent_team` del SDD generado).
 
-Si elige continuar sin team o **no hay teams detectados**: continuar directamente.
+Si elige continuar sin team o **no hay teams detectados**: continuar directamente
+a cargar G1.
+
+**Paso adicional si se seleccionó un team — Selección de roles:**
+
+Mostrar al usuario los agentes del team seleccionado (leer `~/.claude/teams/{team}/config.json` para obtener los miembros).
+
+```json
+{
+  "questions": [{
+    "header": "Gandalf — Roles del Consejo",
+    "question": "⚔️ ¿Cómo asignamos los roles de La Comunidad del Código?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🏇 Elegir exploradores Rohirrim del team",
+        "description": "Los agentes del team explorarán según su especialidad"
+      },
+      {
+        "label": "🗡️ Elegir consensuadores del Consejo",
+        "description": "Revisarán el informe G2 antes de definir el objetivo"
+      },
+      {
+        "label": "⏭️ Usar Rohirrim clásicos + consenso automático",
+        "description": "Los 5 jinetes fijos, sin consenso de team"
+      }
+    ]
+  }]
+}
+```
+
+- Si elige **"Elegir exploradores"**: mostrar la lista de agentes del team como opciones
+  `multiSelect` para que el usuario marque cuáles explorarán.
+  Guardar como `GANDALF_EXPLORERS=[lista]`.
+
+- Si elige **"Elegir consensuadores"**: mostrar la lista de agentes del team como opciones
+  `multiSelect` para que el usuario marque cuáles consensuarán.
+  Guardar como `GANDALF_CONSENSORS=[lista]`.
+
+- Si elige **"Rohirrim clásicos"**: no se definen ni `GANDALF_EXPLORERS` ni `GANDALF_CONSENSORS`.
+  Se usa el flujo estándar de los 5 Rohirrim fijos.
 
 Cargar: `@prompts/gandalf/sections/01-module-rohirrim.md`
 *(los Rohirrim exploran y continúan automáticamente hasta G8)*
