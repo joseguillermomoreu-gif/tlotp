@@ -55,6 +55,58 @@ No inventar ni rellenar con ejemplos si el agente devolvió "sin datos".
 
 ---
 
+## Paso de Consenso del Consejo (condicional)
+
+**Solo si `GANDALF_CONSENSORS` tiene agentes definidos:**
+
+Mostrar banner:
+
+```
+╔════════════════════════════════════════════════════════════╗
+║  ⚡ EL CONSEJO REVISA EL INFORME DE CAMPO                  ║
+╚════════════════════════════════════════════════════════════╝
+
+  Los agentes consensuadores leen el mapa de los Rohirrim.
+  Su sabiduría enriquecerá la expedición antes de continuar.
+
+  🗡️ [nombre-agente-consensuador-1] — revisando...
+  🗡️ [nombre-agente-consensuador-2] — revisando...
+```
+
+Lanzar en paralelo un Agent por cada consensuador con este prompt:
+
+```
+Eres [nombre del agente, tipo: tipo] y formas parte del Consejo de Rivendel.
+Has recibido el siguiente informe de exploración del proyecto:
+
+[contenido del informe G2]
+
+Revisa el informe desde tu perspectiva como [tipo de agente].
+¿Hay algo que los Rohirrim hayan podido pasar por alto, subestimar o que merezca mayor atención desde tu especialidad?
+Devuelve un JSON:
+{
+  "agente": "[nombre]",
+  "observaciones": ["obs1", "obs2"],  // máx 3, concretas
+  "alerta": "[si hay algo crítico que el equipo debería saber, o null]"
+}
+```
+
+Tras recoger las respuestas, mostrar:
+
+```
+╔════════════════════════════════════════════════════════════╗
+║  ⚡ VOCES DEL CONSEJO                                      ║
+╚════════════════════════════════════════════════════════════╝
+
+  🗡️ [agente-1]: [observaciones]
+  🗡️ [agente-2]: [observaciones]
+  [si hay alertas]: ⚠️ ALERTA: [texto]
+```
+
+Luego continuar con el AskUserQuestion existente del informe.
+
+---
+
 ## AskUserQuestion tras el informe
 
 ```json
