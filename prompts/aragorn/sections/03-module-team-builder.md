@@ -73,6 +73,10 @@ Luego usar AskUserQuestion:
         "description": "Modificar nombre o agentes miembros"
       },
       {
+        "label": "🛡️  Forjar un Coordinador de Ejércitos",
+        "description": "Crear un agente orquestador para uno de tus teams"
+      },
+      {
         "label": "🔍 Analizar coherencia",
         "description": "Detectar duplicados y conflictos entre scopes"
       },
@@ -698,6 +702,175 @@ Mostrar confirmación con lore épico:
 *"El ejército ha sido disuelto. Sus guerreros regresan a sus tierras. Que Gondor los recuerde."*
 
 Volver automáticamente al inventario (Fase 0).
+
+---
+
+## Opción F — Forjar un Coordinador de Ejércitos
+
+### Paso F1 — Seleccionar team objetivo
+
+Si hay más de un team, preguntar con AskUserQuestion mostrando la lista completa
+generada en la Fase 0. Si solo hay uno, seleccionarlo automáticamente.
+
+### Paso F2 — Proponer nombre del coordinador
+
+Proponer nombre por defecto: `{team-name}-orchestrator`
+
+Mostrar con AskUserQuestion:
+
+```json
+{
+  "questions": [{
+    "header": "Forjar Coordinador — Paso 1/3",
+    "question": "🛡️  ¿Cómo se llamará el coordinador del team '{team}'?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Usar '{team-name}-orchestrator'",
+        "description": "Nombre sugerido por Aragorn"
+      },
+      {
+        "label": "✍️  Escribir otro nombre",
+        "description": "Solo letras minúsculas, números y guiones"
+      }
+    ]
+  }]
+}
+```
+
+Validar formato: solo letras minúsculas, números y guiones (`/^[a-z0-9-]+$/`).
+
+### Paso F3 — Precargar instrucciones de orquestación
+
+Leer `~/.claude/teams/{team}/config.json` para obtener los teammates y sus tipos.
+
+Generar instrucciones base precargadas:
+
+```
+Eres el coordinador del Agent Team `{team}`.
+
+## Rol: ORQUESTAR, no implementar
+
+Tu misión es dirigir al equipo, no escribir código directamente.
+Delega cada tarea al agente especializado correcto usando el Agent tool.
+NUNCA edites ficheros ni ejecutes código tú mismo.
+
+## Equipo a tu mando
+
+{Para cada teammate del team}:
+- **{nombre-agente}**: responsable de {dominio inferido del nombre}
+
+## Tabla de delegación
+
+| Tipo de tarea | Agente a invocar |
+|--------------|-----------------|
+| {dominio-1}  | {teammate-1}    |
+| {dominio-2}  | {teammate-2}    |
+| ...          | ...             |
+
+## Protocolo de coordinación
+
+1. Leer el SDD o la tarea asignada
+2. Descomponer en subtareas según especialidad
+3. Delegar cada subtarea al agente correcto
+4. Verificar resultados y coordinar dependencias
+5. Reportar el resultado consolidado
+```
+
+Mostrar preview y AskUserQuestion:
+
+```json
+{
+  "questions": [{
+    "header": "Forjar Coordinador — Paso 2/3",
+    "question": "🛡️  ¿Las instrucciones del coordinador son correctas?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Crear coordinador con estas instrucciones",
+        "description": ""
+      },
+      {
+        "label": "✏️  Modificar instrucciones antes de crear",
+        "description": "Editar el texto manualmente"
+      },
+      {
+        "label": "🚫 Cancelar",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+### Paso F4 — Crear el agente coordinador
+
+Generar el fichero `.md` del coordinador con frontmatter:
+
+```yaml
+---
+name: {nombre-coordinador}
+description: |
+  Coordinador del Agent Team '{team}'. Orquesta, no implementa.
+  Invócame para: dirigir equipos paralelos, coordinar SDDs complejos,
+  delegar tareas especializadas entre agentes del team.
+  Ejemplo: "@{nombre-coordinador} implementa el SDD de la feature X"
+tools:
+  - Agent
+model: claude-sonnet-4-6
+---
+
+{instrucciones generadas en F3}
+```
+
+Crear en `~/.claude/agents/{nombre-coordinador}.md` con Write.
+
+### Paso F5 — Ofrecer actualizar el lead del team
+
+```json
+{
+  "questions": [{
+    "header": "Forjar Coordinador — Paso 3/3",
+    "question": "🛡️  ¿Actualizar el lead del team '{team}' para usar el nuevo coordinador?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Sí, actualizar config.json del team",
+        "description": "El coordinador se convertirá en el lead del ejército"
+      },
+      {
+        "label": "⏭️  No por ahora",
+        "description": "Mantener el lead actual del team"
+      }
+    ]
+  }]
+}
+```
+
+Si acepta: leer `~/.claude/teams/{team}/config.json` con Read, actualizar el campo `lead`
+al nombre del nuevo coordinador, y escribir con Write/Edit.
+
+Mostrar confirmación épica:
+
+```
+══════════════════════════════════════════════════════════════
+🛡️  COORDINADOR FORJADO: {nombre-coordinador}
+══════════════════════════════════════════════════════════════
+
+  "El ejército de Gondor tiene ahora un general digno de Andúril."
+
+  📂 Fichero:  ~/.claude/agents/{nombre-coordinador}.md
+  ⚔️  Team:    {team}
+  👑 Lead:    {actualizado / sin cambios}
+
+  Usa "@{nombre-coordinador} [tu misión]" para activarlo.
+
+══════════════════════════════════════════════════════════════
+```
+
+AskUserQuestion:
+- 🔙 Volver al inventario de teams
+- ✨ Crear otro agente asistido
 
 ---
 
