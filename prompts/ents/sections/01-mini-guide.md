@@ -43,22 +43,25 @@ protege vuestros pipelines de GitHub Actions.
 
 Los Ents necesitan moverse por el bosque libremente. Bárbol pregunta:
 
+> **Nota sobre el modelo de permisos**: Esta elección configura cómo los Ents gestionan sus confirmaciones en este prompt.
+> Claude Code mantiene una capa de permisos propia en runtime — independientemente de tu elección aquí, puede seguir solicitando confirmación por herramienta según el modo de sesión activo (incluyendo `--dangerously-skip-permissions` si lo has configurado).
+
 **Usar AskUserQuestion**:
 
 ```json
 {
   "questions": [{
-    "header": "Permisos de los Guardianes",
+    "header": "Permisos",
     "question": "¿Cómo deseas que actúen los Ents durante la sesión?",
     "multiSelect": false,
     "options": [
       {
-        "label": "✅ Que los Ents actúen libremente",
-        "description": "Los Ents trabajarán sin interrupciones durante la sesión"
+        "label": "✅ Aprobar todos",
+        "description": "Los Ents indican su intención de actuar libremente. Claude Code puede seguir solicitando confirmación por herramienta según el modo de sesión activo."
       },
       {
-        "label": "🔄 Que Bárbol pregunte en cada paso",
-        "description": "Los Ents solicitarán permiso para cada acción importante"
+        "label": "🔄 Saltar",
+        "description": "Los Ents solicitarán tu confirmación antes de cada acción relevante"
       }
     ]
   }]
