@@ -23,20 +23,25 @@
   "Un mago nunca llega tarde, ni pronto.
    Llega exactamente cuando lo decide... y con el mapa ya hecho."
 
-        /\    /\
-       (  \  /  )
-        \  \/  /
-    ____/      \____
-   /    ⚡⚡⚡    \
-  |   GANDALF EL   |
-  |   MAGO BLANCO  |
-   \______________/
-         ||
-       _/  \_
-      /  SDD  \
-     /  ANTES  \
-    / DE CODEAR \
-   /______________\
+              _....._
+           .-'       '-.
+          /   .-"""-.   \
+         /  .'       '.  \
+        |  /   (**)   \  |
+         \  '.       .'  /
+          '-.`-------'.-'
+         ____|       |____
+        /    |       |    \
+       /     |       |     \
+      /      |  SDD  |      \
+     '-------| ANTES |-------'
+             | CODER |
+              \     /
+               \   /
+                | |
+               _| |_
+              / | | \
+             '  | |  '
 
   Antes de que La Comunidad dé un solo paso hacia Mordor,
   Gandalf envía sus jinetes más veloces a explorar el terreno.
@@ -188,6 +193,63 @@ echo "=== PROJECT ===" && ls .claude/agents/ 2>/dev/null || echo "(vacío)"
 Si el usuario selecciona un team: registrar el nombre del team seleccionado como
 `GANDALF_TEAM=[nombre]` y propagarlo al contexto del SDD
 (aparecerá en el campo `agent_team` del SDD generado).
+
+**Verificación del lead del team** (# SYNC: verificar-lead):
+
+Si se seleccionó un team, verificar que el lead tiene capacidad de coordinación:
+
+1. Leer `~/.claude/teams/{GANDALF_TEAM}/config.json` → extraer campo `lead`
+2. Leer `~/.claude/agents/{lead}.md` con Read → extraer `name` y `description` del frontmatter
+3. Buscar en nombre+descripción alguno de: `orchestrat | coordin | team lead | delegate`
+4. **Si se encuentra algún indicador** → mostrar y continuar:
+   ```
+   ✅ El lead del ejército ({lead}) tiene capacidad de coordinación.
+      La Comunidad del Código tiene un líder digno para esta aventura.
+   ```
+5. **Si no se encuentra ningún indicador** → mostrar banner épico y AskUserQuestion:
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║  ⚠️  ADVERTENCIA — EL LÍDER NO ESTÁ PREPARADO               ║
+╚══════════════════════════════════════════════════════════════╝
+
+  "No toda espada que brilla merece ser rey."
+       — Gandalf el Blanco
+
+  El agente '{lead}' (lead de '{GANDALF_TEAM}') no contiene
+  indicadores de capacidad de coordinación.
+  Un líder sin experiencia de mando puede llevar al ejército
+  al abismo de Khazad-dûm. Se recomienda un coordinador.
+```
+
+```json
+{
+  "questions": [{
+    "header": "Verificar lead — Advertencia",
+    "question": "⚠️  El lead '{lead}' no contiene indicadores de coordinación.\n    ¿Cómo quieres proceder?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🛡️  Crear un coordinador con Aragorn",
+        "description": "Ir a Aragorn → Forjar un Coordinador de Ejércitos para este team"
+      },
+      {
+        "label": "⏭️  Continuar sin team",
+        "description": "Usar los Rohirrim clásicos sin Agent Team"
+      },
+      {
+        "label": "🔄 Elegir otro team",
+        "description": "Volver a la selección de teams disponibles"
+      }
+    ]
+  }]
+}
+```
+
+Routing de advertencia:
+- **Crear coordinador** → Cargar `@prompts/aragorn/aragorn-main.md` (el usuario forjará un coordinador y volverá)
+- **Continuar sin team** → Limpiar `GANDALF_TEAM`, continuar flujo estándar sin team
+- **Elegir otro team** → Volver al paso de selección de teams
 
 Si elige continuar sin team o **no hay teams detectados**: continuar directamente
 a cargar G1.

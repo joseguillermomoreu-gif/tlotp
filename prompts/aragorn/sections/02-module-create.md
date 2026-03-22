@@ -35,7 +35,7 @@ Ofrecer AskUserQuestion: reintentar WebFetch / volver al menú.
 
 ---
 
-## Paso 1 — Nombre y scope
+## Paso 1 — Nombre
 
 Preguntar con AskUserQuestion:
 
@@ -73,27 +73,16 @@ Si existe, avisar y preguntar (AskUserQuestion):
 - ✏️ Sobreescribir — crear nueva versión
 - 🔙 Usar otro nombre
 
-Elegir scope con AskUserQuestion:
+⚡ *"Aragorn siempre forja sus agentes en la Ciudadela de Minas Tirith."*
 
-```json
-{
-  "questions": [{
-    "header": "Crear agente — Scope",
-    "question": "👑 ¿Dónde estará disponible este agente?",
-    "multiSelect": false,
-    "options": [
-      {
-        "label": "🌍 Global (~/.claude/agents/)",
-        "description": "Disponible en todos tus proyectos"
-      },
-      {
-        "label": "📁 Proyecto (.claude/agents/)",
-        "description": "Solo en este repositorio"
-      }
-    ]
-  }]
-}
-```
+Los agentes se crean en `~/.claude/agents/` (scope global).
+Motivo: los agentes de proyecto (`.claude/agents/`) no pueden usarse como miembros
+de Agent Teams — quedarían encerrados en un único repositorio.
+
+📂 **Destino**: `~/.claude/agents/{nombre}.md`
+
+> Si el usuario menciona explícitamente "scope proyecto": explicar el motivo anterior
+> y continuar con scope global sin preguntar de nuevo.
 
 ---
 
@@ -371,8 +360,6 @@ Crear el directorio si no existe:
 
 ```bash
 mkdir -p ~/.claude/agents/
-# o
-mkdir -p .claude/agents/
 ```
 
 Escribir el fichero `.md` usando Write.
@@ -387,7 +374,7 @@ Escribir el fichero `.md` usando Write.
 ══════════════════════════════════════════════════════════════
 
   Nombre:   [nombre]
-  Scope:    🌍 Global / 📁 Proyecto
+  Scope:    🌍 Global (~/.claude/agents/)
   Fichero:  [ruta completa]
 
   💡 Cómo usarlo:

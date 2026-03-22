@@ -93,6 +93,10 @@ Cada miembro se convoca **SOLO si la condición se cumple** en `contexto_rohirri
     "multiSelect": false,
     "options": [
       {
+        "label": "🚀 Crear tarea de ejecución del SDD",
+        "description": "Generar prompt listo para invocar al orquestador del team"
+      },
+      {
         "label": "⚔️  Convocar al ejército para esta misión",
         "description": "Aragorn crea un Agent Team basado en el SDD"
       },
@@ -117,6 +121,7 @@ Cada miembro se convoca **SOLO si la condición se cumple** en `contexto_rohirri
 
 ## Routing
 
+- **🚀 Crear tarea de ejecución** → Ejecutar sección "Generar prompt de ejecución" (ver abajo)
 - **⚔️ Convocar al ejército** → Cargar `@prompts/gandalf/sections/10-module-forge-team.md`
 - **📝 Ver tasks.md** → Leer el fichero y mostrarlo. AskUserQuestion para continuar.
 - **✏️ Mejorar** → Preguntar cuál fichero:
@@ -124,6 +129,115 @@ Cada miembro se convoca **SOLO si la condición se cumple** en `contexto_rohirri
   - design.md → `@prompts/gandalf/sections/06-module-design.md`
   - tasks.md → `@prompts/gandalf/sections/07-module-tasks.md`
 - **🔙 Volver** → Menú de Gandalf
+
+---
+
+## Generar prompt de ejecución del SDD
+
+### Paso GE1 — Leer rutas de los ficheros SDD
+
+Identificar las rutas reales de los 3 ficheros generados:
+- `requirements.md` → ruta real donde fue guardado
+- `design.md` → ruta real donde fue guardado
+- `tasks.md` → ruta real donde fue guardado
+
+Leer `tasks.md` para extraer la lista de tareas (título, agente sugerido, dependencias).
+
+### Paso GE2 — Generar prompt base (sin GANDALF_TEAM)
+
+Si **no hay `GANDALF_TEAM`** definido, generar prompt genérico:
+
+````
+# Prompt de Ejecución del SDD
+
+Implementa el siguiente SDD siguiendo el orden de dependencias definido en tasks.md.
+
+## SDD de referencia
+
+- **requirements.md**: {ruta-real}
+- **design.md**:       {ruta-real}
+- **tasks.md**:        {ruta-real}
+
+## Instrucciones
+
+Lee los 3 ficheros del SDD antes de empezar.
+Implementa cada tarea respetando el orden de dependencias indicado en tasks.md.
+````
+
+### Paso GE3 — Añadir sección de orquestación (con GANDALF_TEAM)
+
+Si **`GANDALF_TEAM` está definido**:
+
+1. Leer `~/.claude/teams/{GANDALF_TEAM}/config.json` → extraer `lead` y `teammates`
+2. Para cada miembro del team, inferir su dominio según su nombre/tipo de agente
+3. Para cada tarea de `tasks.md`, asignar el agente del team más adecuado según su especialidad
+4. Generar la sección de orquestación:
+
+````
+# Prompt de Ejecución del SDD
+
+Eres el orquestador del team `{GANDALF_TEAM}`.
+
+## Regla absoluta
+
+**ORQUESTAR, no implementar.**
+NO escribas código ni edites ficheros directamente.
+Delega CADA tarea al agente especializado correcto usando el Agent tool.
+
+## SDD de referencia
+
+- **requirements.md**: {ruta-real}
+- **design.md**:       {ruta-real}
+- **tasks.md**:        {ruta-real}
+
+## Equipo disponible
+
+- **{lead}**: coordinador (tú)
+- **{teammate-1}** ({tipo}): responsable de {dominio}
+- **{teammate-N}** ({tipo}): responsable de {dominio}
+
+## Asignación de tareas
+
+| Tarea | Agente asignado | Motivo |
+|-------|----------------|--------|
+| {T01 — título} | {agente} | {match de especialidad} |
+| {T02 — título} | {agente} | {match de especialidad} |
+| ... | ... | ... |
+
+## Dependencias
+
+Respetar el orden: {grafo de dependencias extraído de tasks.md}
+Las tareas sin dependencias pueden delegarse en paralelo.
+````
+
+### Paso GE4 — Mostrar y ofrecer guardar
+
+Mostrar el prompt completo en pantalla.
+
+AskUserQuestion:
+
+```json
+{
+  "questions": [{
+    "header": "Prompt de ejecución",
+    "question": "🚀 Prompt generado. ¿Qué quieres hacer?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "💾 Guardar como sdd-execution-prompt.md",
+        "description": "Guardar en el mismo directorio que el SDD"
+      },
+      {
+        "label": "✅ Listo — ya lo he copiado",
+        "description": "Volver al Consejo de Rivendel"
+      }
+    ]
+  }]
+}
+```
+
+Si elige guardar: escribir el fichero `sdd-execution-prompt.md` en el directorio del SDD con Write.
+Mostrar confirmación y volver al Consejo de Rivendel.
 
 ---
 
