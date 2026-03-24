@@ -448,6 +448,60 @@ Asignar un nombre de batalla al team basado en los agentes y su propósito:
 Usar el sistema de personajes de `aragorn-main.md` para asignar a cada agente del team.
 
 AskUserQuestion:
+
+```json
+{
+  "questions": [{
+    "header": "Ejército formado — Documentación",
+    "question": "⚔️  ¿Grabamos los pergaminos del ejército en los muros de la fortaleza?\n    Palantír puede registrar en tu proyecto cuándo y cómo usar este team.",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🔮 Sí, invocar a Palantír",
+        "description": "Documentar en .claude/CLAUDE.md cuándo usar este team"
+      },
+      {
+        "label": "⏭️  No, continuar sin documentar",
+        "description": "El team queda listo pero sin instrucciones en el proyecto"
+      }
+    ]
+  }]
+}
+```
+
+**Si elige "Sí, invocar a Palantír"** → ir al **Paso A8**.
+**Si elige "No"** → ir directamente al menú final (AskUserQuestion de abajo).
+
+### Paso A8 — Documentar el team vía Palantír
+
+Invocar Palantír con contexto preformateado del team recién creado.
+
+**No pedir input libre al usuario** — Palantír recibe directamente la petición
+pre-rellenada con los datos del team:
+
+> "Añadir al CLAUDE.md del proyecto una sección que indique cuándo y cómo usar
+> el Agent Team '[nombre-del-team]'.
+>
+> Datos del team:
+> - Nombre: [nombre-del-team]
+> - Agentes: [lista de agentes separados por coma]
+> - Misión: [descripción del team]
+>
+> La sección debe indicar: para qué tipo de tareas invocar este team,
+> cómo invocarlo (comando), y qué agentes lo componen."
+
+Ejecutar: @prompts/palantir/sections/05-susurrar-planes.md
+(Palantír arranca desde su PASO 2, saltando el PASO 1 de input libre
+porque ya tiene la petición pre-rellenada)
+
+Tras completar Palantír, mostrar:
+
+```
+🔮 Los pergaminos han sido grabados en la fortaleza.
+   Palantír ha documentado el team en tu proyecto.
+```
+
+AskUserQuestion:
 - 🆕 Crear otro team
 - 📋 Ver todos los teams
 - 💡 Cómo ver pestañas separadas por agente
