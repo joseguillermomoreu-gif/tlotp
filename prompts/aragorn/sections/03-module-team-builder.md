@@ -23,6 +23,7 @@ ls .claude/agents/ 2>/dev/null || echo "(vacío)"
 
 Para cada fichero/directorio encontrado, leer su contenido con Read para extraer:
 - Nombre del team
+- Campo `lead` del fichero de configuración del team
 - Número de agentes miembros (campos `teammates` o equivalente según docs)
 
 ### Paso F0.2 — Mostrar inventario
@@ -37,12 +38,12 @@ Para cada fichero/directorio encontrado, leer su contenido con Read para extraer
   🌍 GLOBAL (~/.claude/agents/):
   [Para cada team global]:
     ⚔️  [nombre-team]
-       🧑‍🤝‍🧑 Agentes: [N]  ·  🗡️ [lista nombres separados por coma]
+       👑 Lead: [nombre-lead]  ·  🧑‍🤝‍🧑 Workers: [N]  ·  🗡️ [lista nombres separados por coma]
 
   📁 PROYECTO (.claude/agents/):
   [Para cada team de proyecto]:
     ⚔️  [nombre-team]
-       🧑‍🤝‍🧑 Agentes: [N]  ·  🗡️ [lista nombres separados por coma]
+       👑 Lead: [nombre-lead]  ·  🧑‍🤝‍🧑 Workers: [N]  ·  🗡️ [lista nombres separados por coma]
 
   [Si algún scope está vacío, omitir esa sección]
 
@@ -327,7 +328,7 @@ Preguntar con AskUserQuestion:
 ```json
 {
   "questions": [{
-    "header": "Nuevo team — Paso 1/4",
+    "header": "Nuevo team — Paso 1/5",
     "question": "⚔️  ¿Cómo se llamará el team?\n(ej: full-stack-review, security-audit, deploy-guard)",
     "multiSelect": false,
     "options": [
@@ -357,7 +358,7 @@ ls .claude/teams/[nombre].yml 2>/dev/null
 Mostrar todos los agentes disponibles y pedir selección con multiSelect:
 
 ```
-⚔️  NUEVO TEAM — Paso 2/4
+⚔️  NUEVO TEAM — Paso 2/5
 ══════════════════════════════════════════════════════════════
 
 Agentes disponibles:
@@ -390,6 +391,60 @@ Selecciona los agentes para "[nombre-del-team]"
 
 Nota: generar opciones dinámicamente según los agentes reales detectados en el Paso A1.
 
+### Paso A4b — Asignar lead del team (obligatorio)
+
+**OBLIGATORIO**: Todo team debe tener exactamente un lead asignado. No se puede avanzar sin lead.
+
+Mostrar:
+
+```
+⚔️  NUEVO TEAM — Paso 3/5
+══════════════════════════════════════════════════════════════
+
+Un team necesita un Capitán que coordine la batalla.
+Agentes seleccionados para "[nombre-del-team]":
+  [lista de agentes seleccionados en el paso anterior, indicando si son Lead o Worker]
+
+══════════════════════════════════════════════════════════════
+```
+
+**Detectar candidatos a lead**: entre los agentes seleccionados, identificar los que tengan `type: lead` en su frontmatter. Si hay alguno, mostrarlos primero como candidatos sugeridos.
+
+Preguntar con AskUserQuestion:
+
+```json
+{
+  "questions": [{
+    "header": "Asignar lead — Paso 3/5",
+    "question": "👑 ¿Quién liderará este ejército?\n(El lead coordina y delega. Debe ser un agente de tipo Lead.)",
+    "multiSelect": false,
+    "options": [
+      { "label": "👑 [agente-lead-1] — [descripción breve]", "description": "Tipo: Lead" },
+      { "label": "⚙️ [agente-worker-1] — [descripción breve]", "description": "⚠️ Es Worker — considera crear un Lead primero" },
+      {
+        "label": "✨ Crear un nuevo agente Lead ahora",
+        "description": "Ir al módulo de creación de agentes y volver"
+      }
+    ]
+  }]
+}
+```
+
+**Nota**: Generar las opciones dinámicamente con los agentes seleccionados en el Paso A4.
+Los agentes con `type: lead` se muestran sin advertencia. Los `type: worker` o sin tipo se marcan con `⚠️ Es Worker`.
+
+Si el usuario elige un agente Worker como lead: mostrar aviso informativo pero permitir continuar:
+```
+⚠️  Este agente es de tipo Worker, no Lead.
+    Funcionará como coordinador, pero considera convertirlo a Lead
+    en "Inspeccionar arsenal" para mantener consistencia.
+```
+
+Si el usuario elige "Crear un nuevo agente Lead": ir al módulo de creación (`02-module-create.md`)
+con el tipo pre-seleccionado como Lead, y al terminar volver a este paso con el nuevo agente como lead seleccionado.
+
+Guardar el lead elegido para incluirlo en la configuración del team.
+
 ### Paso A5 — Descripción del team
 
 Preguntar al usuario para qué se usará el team (AskUserQuestion con campo libre).
@@ -415,6 +470,9 @@ mkdir -p .claude/teams/
 Escribir el fichero `.claude/teams/[nombre].yml` usando Write con la estructura
 extraída de las docs oficiales.
 
+El fichero de configuración debe incluir el campo `lead` con el nombre del agente seleccionado
+como lead en el Paso A4b, según la estructura extraída de las docs oficiales.
+
 ### Paso A7 — Confirmación con lore épico
 
 Asignar un nombre de batalla al team basado en los agentes y su propósito:
@@ -426,6 +484,7 @@ Asignar un nombre de batalla al team basado en los agentes y su propósito:
 
   🏰 "[Frase épica de batalla — variada]"
 
+  Capitán:  👑 [nombre-del-lead]
   Guerreros convocados:
     [emoji-personaje] [Personaje] ([nombre-agente]) — "[frase breve]"
     [emoji-personaje] [Personaje] ([nombre-agente]) — "[frase breve]"
