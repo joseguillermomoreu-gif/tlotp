@@ -42,7 +42,7 @@ Preguntar con AskUserQuestion:
 ```json
 {
   "questions": [{
-    "header": "Crear agente — Paso 1/5",
+    "header": "Crear agente — Paso 1/6",
     "question": "✨ ¿Cómo se llamará el nuevo agente?\n(ej: symfony-expert, playwright-agent, code-reviewer-php)",
     "multiSelect": false,
     "options": [
@@ -86,7 +86,39 @@ de Agent Teams — quedarían encerrados en un único repositorio.
 
 ---
 
-## Paso 2 — Descripción (campo más crítico)
+## Paso 2 — Tipo de agente
+
+Preguntar con AskUserQuestion:
+
+```json
+{
+  "questions": [{
+    "header": "Crear agente — Paso 2/6",
+    "question": "⚔️ ¿Qué tipo de agente es?\n\n• Lead: coordina y delega trabajo a otros agentes. No implementa directamente.\n• Worker: implementa y ejecuta las tareas él mismo.",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "👑 Lead — Coordinador y delegador",
+        "description": "Orquesta a otros agentes, no implementa directamente"
+      },
+      {
+        "label": "⚙️ Worker — Implementador",
+        "description": "Ejecuta tareas concretas: código, tests, análisis..."
+      },
+      {
+        "label": "🔙 Volver al menú de Aragorn",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+Guardar la elección como `type: lead` o `type: worker` para incluirla en el frontmatter.
+
+---
+
+## Paso 3 — Descripción (campo más crítico)
 
 **CRÍTICO**: La `description` es el campo más importante de un agente. Claude la lee
 para decidir cuándo invocarlo automáticamente. Debe incluir:
@@ -97,7 +129,7 @@ para decidir cuándo invocarlo automáticamente. Debe incluir:
 Mostrar antes de preguntar:
 
 ```
-✨ CREAR AGENTE — Paso 2/5: Descripción
+✨ CREAR AGENTE — Paso 3/6: Descripción
 ══════════════════════════════════════════════════════════════
 
 ⚠️  La descripción es el campo MÁS CRÍTICO del agente.
@@ -127,12 +159,12 @@ Si elige ver sugerencia, proponer una versión expandida basada en el nombre y s
 
 ---
 
-## Paso 3 — Tools permitidas
+## Paso 4 — Tools permitidas
 
 Mostrar lista de tools disponibles según docs oficiales:
 
 ```
-✨ CREAR AGENTE — Paso 3/5: Herramientas
+✨ CREAR AGENTE — Paso 4/6: Herramientas
 ══════════════════════════════════════════════════════════════
 
 Tools disponibles para el agente:
@@ -147,7 +179,7 @@ Preguntar con AskUserQuestion:
 ```json
 {
   "questions": [{
-    "header": "Crear agente — Paso 3/5",
+    "header": "Crear agente — Paso 4/6",
     "question": "🔧 ¿Qué herramientas necesita el agente?",
     "multiSelect": false,
     "options": [
@@ -174,14 +206,14 @@ Preguntar con AskUserQuestion:
 
 ---
 
-## Paso 4 — Modelo y permisos
+## Paso 5 — Modelo y permisos
 
 Preguntar con AskUserQuestion:
 
 ```json
 {
   "questions": [{
-    "header": "Crear agente — Paso 4/5",
+    "header": "Crear agente — Paso 5/6",
     "question": "🤖 ¿Qué modelo y modo de permisos?",
     "multiSelect": false,
     "options": [
@@ -238,14 +270,14 @@ También preguntar `maxTurns` opcionalmen:
 
 ---
 
-## Paso 5 — Instrucciones del agente (cuerpo del fichero)
+## Paso 6 — Instrucciones del agente (cuerpo del fichero)
 
 Tras el frontmatter, el fichero `.md` puede tener instrucciones adicionales en Markdown.
 
 Mostrar:
 
 ```
-✨ CREAR AGENTE — Paso 5/5: Instrucciones
+✨ CREAR AGENTE — Paso 6/6: Instrucciones
 ══════════════════════════════════════════════════════════════
 
 El cuerpo del fichero (tras el frontmatter) define el comportamiento
@@ -303,6 +335,7 @@ Destino: ~/.claude/agents/symfony-expert.md
 --- Contenido ---
 ---
 name: symfony-expert
+type: worker
 description: |
   Experto en Symfony y PHP para este proyecto.
   Invócame para: analizar services y repositorios,
@@ -363,6 +396,9 @@ mkdir -p ~/.claude/agents/
 ```
 
 Escribir el fichero `.md` usando Write.
+
+El frontmatter generado debe incluir el campo `type` (lead o worker) justo después de `name`,
+con el valor seleccionado por el usuario en el Paso 2.
 
 ---
 

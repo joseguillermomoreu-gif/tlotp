@@ -71,6 +71,7 @@ Para cada fichero `.md` detectado, leerlo con la herramienta Read y extraer:
 - `model` del frontmatter
 - `permissionMode` del frontmatter
 - `maxTurns` del frontmatter
+- `type` del frontmatter (lead/worker — si no existe, tratar como worker)
 - Cualquier otro campo relevante
 
 Si un agente no tiene frontmatter delimitado por `---`, marcarlo como sin estructura válida.
@@ -127,9 +128,9 @@ Score global = media de puntuaciones individuales (redondeado a 1 decimal)
 ⚔️  AGENTES INSTALADOS
 ──────────────────────────────────────────────────────────────
   🌍 Global (~/.claude/agents/):
-    👑 10/10  code-reviewer     — name ✅ · description clara ✅ · tools ✅
-    ⚔️  7/10  symfony-expert    — name ✅ · description corta ⚠️ · tools ✅
-    💀  3/10  old-agent         — sin frontmatter ❌ · sin description ❌
+    👑 10/10  code-reviewer [👑 Lead]   — name ✅ · description clara ✅ · tools ✅
+    ⚔️  7/10  symfony-expert [⚙️ Worker] — name ✅ · description corta ⚠️ · tools ✅
+    💀  3/10  old-agent [⚙️ Worker]     — sin frontmatter ❌ · sin description ❌
 
   📁 Proyecto (.claude/agents/):
     ⚔️  8/10  deploy-guardian   — name ✅ · sin tools ⚠️ · sin model ℹ️
