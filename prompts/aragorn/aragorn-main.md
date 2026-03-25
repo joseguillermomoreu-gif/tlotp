@@ -172,6 +172,68 @@ Cargar: `@prompts/tlotp-main.md`
 
 ---
 
+## Comportamiento compartido — Verificación de Lead
+
+# SYNC: verificar-lead
+
+Cuando cualquier flujo de Aragorn requiera que el usuario **seleccione un team existente**
+para usarlo (no solo para gestionarlo), ejecutar esta verificación automáticamente:
+
+1. Leer `~/.claude/teams/{team-seleccionado}/config.json` → extraer campo `lead`
+2. Leer `~/.claude/agents/{lead}.md` con Read → extraer `name` y `description` del frontmatter
+3. Buscar en nombre+descripción alguno de: `orchestrat | coordin | team lead | delegate`
+4. **Si se encuentra algún indicador** → mostrar y continuar:
+   ```
+   ✅ El general del ejército ({lead}) tiene capacidad de mando.
+      Gondor tiene un líder digno para esta campaña.
+   ```
+5. **Si no se encuentra ningún indicador** → mostrar banner épico y AskUserQuestion:
+
+```
+╔══════════════════════════════════════════════════════════════╗
+║  ⚠️  ADVERTENCIA — EL GENERAL NO ESTÁ PREPARADO             ║
+╚══════════════════════════════════════════════════════════════╝
+
+  "Un ejército sin general es una turba, no un ejército."
+       — Aragorn, Rey de Gondor
+
+  El agente '{lead}' (lead de '{team}') no contiene
+  indicadores de capacidad de coordinación.
+  Gondor necesita un general que sepa delegar, no combatir.
+  Se recomienda forjar un coordinador antes de partir.
+```
+
+```json
+{
+  "questions": [{
+    "header": "Verificar lead — Advertencia",
+    "question": "⚠️  El lead '{lead}' no contiene indicadores de coordinación.\n    ¿Cómo quieres proceder?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🛡️  Forjar un Coordinador de Ejércitos",
+        "description": "Crear un agente coordinador para este team ahora"
+      },
+      {
+        "label": "⏭️  Continuar sin team",
+        "description": "Proceder sin usar el Agent Team"
+      },
+      {
+        "label": "🔄 Elegir otro team",
+        "description": "Volver a la selección de teams disponibles"
+      }
+    ]
+  }]
+}
+```
+
+Routing de advertencia:
+- **Forjar Coordinador** → Ejecutar flujo "Opción F — Forjar Coordinador" en `03-module-team-builder.md`
+- **Continuar sin team** → Proceder sin team en el flujo que lo invocó
+- **Elegir otro team** → Volver a la selección de team
+
+---
+
 ## Loop Continuo
 
 Tras completar cualquier módulo, volver al **Paso del menú principal** (Pantalla 1) con AskUserQuestion hasta que el usuario elija salir.

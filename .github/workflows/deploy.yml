@@ -1,0 +1,43 @@
+name: Deploy — El Pergamino viaja a Gondor
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'prompts/**'
+      - 'VERSION.md'
+      - 'scripts/compile.sh'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile-and-deploy:
+    name: Compilar y desplegar TLOTP
+    runs-on: ubuntu-latest
+    if: "!startsWith(github.head_ref, 'backmerge/')"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compilar prompts
+        run: bash scripts/compile.sh
+
+      - name: Verificar compilacion
+        run: bash scripts/verify-compile.sh
+
+      - name: Deploy via rsync
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+          ssh -i ~/.ssh/id_deploy ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+            "mkdir -p /var/www/portfolio/public/tlotp/"
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/id_deploy" \
+            dist/ \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/var/www/portfolio/public/tlotp/

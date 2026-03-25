@@ -23,6 +23,7 @@ ls .claude/agents/ 2>/dev/null || echo "(vacío)"
 
 Para cada fichero/directorio encontrado, leer su contenido con Read para extraer:
 - Nombre del team
+- Campo `lead` del fichero de configuración del team
 - Número de agentes miembros (campos `teammates` o equivalente según docs)
 
 ### Paso F0.2 — Mostrar inventario
@@ -37,12 +38,12 @@ Para cada fichero/directorio encontrado, leer su contenido con Read para extraer
   🌍 GLOBAL (~/.claude/agents/):
   [Para cada team global]:
     ⚔️  [nombre-team]
-       🧑‍🤝‍🧑 Agentes: [N]  ·  🗡️ [lista nombres separados por coma]
+       👑 Lead: [nombre-lead]  ·  🧑‍🤝‍🧑 Workers: [N]  ·  🗡️ [lista nombres separados por coma]
 
   📁 PROYECTO (.claude/agents/):
   [Para cada team de proyecto]:
     ⚔️  [nombre-team]
-       🧑‍🤝‍🧑 Agentes: [N]  ·  🗡️ [lista nombres separados por coma]
+       👑 Lead: [nombre-lead]  ·  🧑‍🤝‍🧑 Workers: [N]  ·  🗡️ [lista nombres separados por coma]
 
   [Si algún scope está vacío, omitir esa sección]
 
@@ -71,6 +72,10 @@ Luego usar AskUserQuestion:
       {
         "label": "✏️  Editar un team",
         "description": "Modificar nombre o agentes miembros"
+      },
+      {
+        "label": "🛡️  Forjar un Coordinador de Ejércitos",
+        "description": "Crear un agente orquestador para uno de tus teams"
       },
       {
         "label": "🔍 Analizar coherencia",
@@ -323,7 +328,7 @@ Preguntar con AskUserQuestion:
 ```json
 {
   "questions": [{
-    "header": "Nuevo team — Paso 1/4",
+    "header": "Nuevo team — Paso 1/5",
     "question": "⚔️  ¿Cómo se llamará el team?\n(ej: full-stack-review, security-audit, deploy-guard)",
     "multiSelect": false,
     "options": [
@@ -353,7 +358,7 @@ ls .claude/teams/[nombre].yml 2>/dev/null
 Mostrar todos los agentes disponibles y pedir selección con multiSelect:
 
 ```
-⚔️  NUEVO TEAM — Paso 2/4
+⚔️  NUEVO TEAM — Paso 2/5
 ══════════════════════════════════════════════════════════════
 
 Agentes disponibles:
@@ -386,6 +391,60 @@ Selecciona los agentes para "[nombre-del-team]"
 
 Nota: generar opciones dinámicamente según los agentes reales detectados en el Paso A1.
 
+### Paso A4b — Asignar lead del team (obligatorio)
+
+**OBLIGATORIO**: Todo team debe tener exactamente un lead asignado. No se puede avanzar sin lead.
+
+Mostrar:
+
+```
+⚔️  NUEVO TEAM — Paso 3/5
+══════════════════════════════════════════════════════════════
+
+Un team necesita un Capitán que coordine la batalla.
+Agentes seleccionados para "[nombre-del-team]":
+  [lista de agentes seleccionados en el paso anterior, indicando si son Lead o Worker]
+
+══════════════════════════════════════════════════════════════
+```
+
+**Detectar candidatos a lead**: entre los agentes seleccionados, identificar los que tengan `type: lead` en su frontmatter. Si hay alguno, mostrarlos primero como candidatos sugeridos.
+
+Preguntar con AskUserQuestion:
+
+```json
+{
+  "questions": [{
+    "header": "Asignar lead — Paso 3/5",
+    "question": "👑 ¿Quién liderará este ejército?\n(El lead coordina y delega. Debe ser un agente de tipo Lead.)",
+    "multiSelect": false,
+    "options": [
+      { "label": "👑 [agente-lead-1] — [descripción breve]", "description": "Tipo: Lead" },
+      { "label": "⚙️ [agente-worker-1] — [descripción breve]", "description": "⚠️ Es Worker — considera crear un Lead primero" },
+      {
+        "label": "✨ Crear un nuevo agente Lead ahora",
+        "description": "Ir al módulo de creación de agentes y volver"
+      }
+    ]
+  }]
+}
+```
+
+**Nota**: Generar las opciones dinámicamente con los agentes seleccionados en el Paso A4.
+Los agentes con `type: lead` se muestran sin advertencia. Los `type: worker` o sin tipo se marcan con `⚠️ Es Worker`.
+
+Si el usuario elige un agente Worker como lead: mostrar aviso informativo pero permitir continuar:
+```
+⚠️  Este agente es de tipo Worker, no Lead.
+    Funcionará como coordinador, pero considera convertirlo a Lead
+    en "Inspeccionar arsenal" para mantener consistencia.
+```
+
+Si el usuario elige "Crear un nuevo agente Lead": ir al módulo de creación (`02-module-create.md`)
+con el tipo pre-seleccionado como Lead, y al terminar volver a este paso con el nuevo agente como lead seleccionado.
+
+Guardar el lead elegido para incluirlo en la configuración del team.
+
 ### Paso A5 — Descripción del team
 
 Preguntar al usuario para qué se usará el team (AskUserQuestion con campo libre).
@@ -411,6 +470,9 @@ mkdir -p .claude/teams/
 Escribir el fichero `.claude/teams/[nombre].yml` usando Write con la estructura
 extraída de las docs oficiales.
 
+El fichero de configuración debe incluir el campo `lead` con el nombre del agente seleccionado
+como lead en el Paso A4b, según la estructura extraída de las docs oficiales.
+
 ### Paso A7 — Confirmación con lore épico
 
 Asignar un nombre de batalla al team basado en los agentes y su propósito:
@@ -422,6 +484,7 @@ Asignar un nombre de batalla al team basado en los agentes y su propósito:
 
   🏰 "[Frase épica de batalla — variada]"
 
+  Capitán:  👑 [nombre-del-lead]
   Guerreros convocados:
     [emoji-personaje] [Personaje] ([nombre-agente]) — "[frase breve]"
     [emoji-personaje] [Personaje] ([nombre-agente]) — "[frase breve]"
@@ -442,6 +505,60 @@ Asignar un nombre de batalla al team basado en los agentes y su propósito:
 - *"¡Rohirrim, a la carga! El team no conoce la derrota."*
 
 Usar el sistema de personajes de `aragorn-main.md` para asignar a cada agente del team.
+
+AskUserQuestion:
+
+```json
+{
+  "questions": [{
+    "header": "Ejército formado — Documentación",
+    "question": "⚔️  ¿Grabamos los pergaminos del ejército en los muros de la fortaleza?\n    Palantír puede registrar en tu proyecto cuándo y cómo usar este team.",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🔮 Sí, invocar a Palantír",
+        "description": "Documentar en .claude/CLAUDE.md cuándo usar este team"
+      },
+      {
+        "label": "⏭️  No, continuar sin documentar",
+        "description": "El team queda listo pero sin instrucciones en el proyecto"
+      }
+    ]
+  }]
+}
+```
+
+**Si elige "Sí, invocar a Palantír"** → ir al **Paso A8**.
+**Si elige "No"** → ir directamente al menú final (AskUserQuestion de abajo).
+
+### Paso A8 — Documentar el team vía Palantír
+
+Invocar Palantír con contexto preformateado del team recién creado.
+
+**No pedir input libre al usuario** — Palantír recibe directamente la petición
+pre-rellenada con los datos del team:
+
+> "Añadir al CLAUDE.md del proyecto una sección que indique cuándo y cómo usar
+> el Agent Team '[nombre-del-team]'.
+>
+> Datos del team:
+> - Nombre: [nombre-del-team]
+> - Agentes: [lista de agentes separados por coma]
+> - Misión: [descripción del team]
+>
+> La sección debe indicar: para qué tipo de tareas invocar este team,
+> cómo invocarlo (comando), y qué agentes lo componen."
+
+Ejecutar: @prompts/palantir/sections/05-susurrar-planes.md
+(Palantír arranca desde su PASO 2, saltando el PASO 1 de input libre
+porque ya tiene la petición pre-rellenada)
+
+Tras completar Palantír, mostrar:
+
+```
+🔮 Los pergaminos han sido grabados en la fortaleza.
+   Palantír ha documentado el team en tu proyecto.
+```
 
 AskUserQuestion:
 - 🆕 Crear otro team
@@ -698,6 +815,175 @@ Mostrar confirmación con lore épico:
 *"El ejército ha sido disuelto. Sus guerreros regresan a sus tierras. Que Gondor los recuerde."*
 
 Volver automáticamente al inventario (Fase 0).
+
+---
+
+## Opción F — Forjar un Coordinador de Ejércitos
+
+### Paso F1 — Seleccionar team objetivo
+
+Si hay más de un team, preguntar con AskUserQuestion mostrando la lista completa
+generada en la Fase 0. Si solo hay uno, seleccionarlo automáticamente.
+
+### Paso F2 — Proponer nombre del coordinador
+
+Proponer nombre por defecto: `{team-name}-orchestrator`
+
+Mostrar con AskUserQuestion:
+
+```json
+{
+  "questions": [{
+    "header": "Forjar Coordinador — Paso 1/3",
+    "question": "🛡️  ¿Cómo se llamará el coordinador del team '{team}'?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Usar '{team-name}-orchestrator'",
+        "description": "Nombre sugerido por Aragorn"
+      },
+      {
+        "label": "✍️  Escribir otro nombre",
+        "description": "Solo letras minúsculas, números y guiones"
+      }
+    ]
+  }]
+}
+```
+
+Validar formato: solo letras minúsculas, números y guiones (`/^[a-z0-9-]+$/`).
+
+### Paso F3 — Precargar instrucciones de orquestación
+
+Leer `~/.claude/teams/{team}/config.json` para obtener los teammates y sus tipos.
+
+Generar instrucciones base precargadas:
+
+```
+Eres el coordinador del Agent Team `{team}`.
+
+## Rol: ORQUESTAR, no implementar
+
+Tu misión es dirigir al equipo, no escribir código directamente.
+Delega cada tarea al agente especializado correcto usando el Agent tool.
+NUNCA edites ficheros ni ejecutes código tú mismo.
+
+## Equipo a tu mando
+
+{Para cada teammate del team}:
+- **{nombre-agente}**: responsable de {dominio inferido del nombre}
+
+## Tabla de delegación
+
+| Tipo de tarea | Agente a invocar |
+|--------------|-----------------|
+| {dominio-1}  | {teammate-1}    |
+| {dominio-2}  | {teammate-2}    |
+| ...          | ...             |
+
+## Protocolo de coordinación
+
+1. Leer el SDD o la tarea asignada
+2. Descomponer en subtareas según especialidad
+3. Delegar cada subtarea al agente correcto
+4. Verificar resultados y coordinar dependencias
+5. Reportar el resultado consolidado
+```
+
+Mostrar preview y AskUserQuestion:
+
+```json
+{
+  "questions": [{
+    "header": "Forjar Coordinador — Paso 2/3",
+    "question": "🛡️  ¿Las instrucciones del coordinador son correctas?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Crear coordinador con estas instrucciones",
+        "description": ""
+      },
+      {
+        "label": "✏️  Modificar instrucciones antes de crear",
+        "description": "Editar el texto manualmente"
+      },
+      {
+        "label": "🚫 Cancelar",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+### Paso F4 — Crear el agente coordinador
+
+Generar el fichero `.md` del coordinador con frontmatter:
+
+```yaml
+---
+name: {nombre-coordinador}
+description: |
+  Coordinador del Agent Team '{team}'. Orquesta, no implementa.
+  Invócame para: dirigir equipos paralelos, coordinar SDDs complejos,
+  delegar tareas especializadas entre agentes del team.
+  Ejemplo: "@{nombre-coordinador} implementa el SDD de la feature X"
+tools:
+  - Agent
+model: claude-sonnet-4-6
+---
+
+{instrucciones generadas en F3}
+```
+
+Crear en `~/.claude/agents/{nombre-coordinador}.md` con Write.
+
+### Paso F5 — Ofrecer actualizar el lead del team
+
+```json
+{
+  "questions": [{
+    "header": "Forjar Coordinador — Paso 3/3",
+    "question": "🛡️  ¿Actualizar el lead del team '{team}' para usar el nuevo coordinador?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Sí, actualizar config.json del team",
+        "description": "El coordinador se convertirá en el lead del ejército"
+      },
+      {
+        "label": "⏭️  No por ahora",
+        "description": "Mantener el lead actual del team"
+      }
+    ]
+  }]
+}
+```
+
+Si acepta: leer `~/.claude/teams/{team}/config.json` con Read, actualizar el campo `lead`
+al nombre del nuevo coordinador, y escribir con Write/Edit.
+
+Mostrar confirmación épica:
+
+```
+══════════════════════════════════════════════════════════════
+🛡️  COORDINADOR FORJADO: {nombre-coordinador}
+══════════════════════════════════════════════════════════════
+
+  "El ejército de Gondor tiene ahora un general digno de Andúril."
+
+  📂 Fichero:  ~/.claude/agents/{nombre-coordinador}.md
+  ⚔️  Team:    {team}
+  👑 Lead:    {actualizado / sin cambios}
+
+  Usa "@{nombre-coordinador} [tu misión]" para activarlo.
+
+══════════════════════════════════════════════════════════════
+```
+
+AskUserQuestion:
+- 🔙 Volver al inventario de teams
+- ✨ Crear otro agente asistido
 
 ---
 

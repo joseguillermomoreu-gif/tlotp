@@ -48,6 +48,7 @@ Del frontmatter YAML (delimitado por `---`) extraer:
 - `description` — para qué sirve
 - `tools` — lista de herramientas permitidas
 - `model` — modelo asignado (opcional)
+- `type` — tipo de agente: lead o worker (opcional, si no existe: worker por defecto)
 - `permissionMode` — nivel de permisos (opcional)
 
 ---
@@ -62,24 +63,24 @@ Formatea el output así:
 
 🌍 Scope: global  (~/.claude/agents/) — 3 agentes
 ────────────────────────────────────────────────
-  1. code-reviewer
+  1. code-reviewer                               [👑 Lead]
      📝 Revisa código buscando bugs, security issues y mejoras de calidad
      🔧 Tools: Read, Grep, Glob
      🤖 Model: (por defecto)
 
-  2. test-writer
+  2. test-writer                                 [⚙️ Worker]
      📝 Genera tests unitarios y E2E para el código indicado
      🔧 Tools: Read, Write, Bash
      🤖 Model: claude-sonnet-4-6
 
-  3. symfony-expert
+  3. symfony-expert                              [⚙️ Worker]
      📝 Experto en Symfony/PHP para análisis de bundles y services
      🔧 Tools: Read, Write, Bash, Grep
      🔐 Mode: acceptEdits
 
 📁 Scope: proyecto  (.claude/agents/) — 1 agente
 ────────────────────────────────────────────────
-  1. deploy-guardian
+  1. deploy-guardian                             [⚙️ Worker]
      📝 Supervisa deploys y verifica que los checks pasen antes de mergear
      🔧 Tools: Bash, Read
 
