@@ -96,6 +96,9 @@ generate_html() {
   local content
   content="$(escape_html < "$md_file")"
 
+  # Transformar @prompts/ruta/archivo.md → enlace clickable a josemoreupeso.es/tlotp/
+  content=$(echo "$content" | sed 's|@prompts/\([^&"<>[:space:]]*\)\.md|<a href="https://josemoreupeso.es/tlotp/\1.html" style="color:var(--accent-primary)">@prompts/\1.md</a>|g')
+
   if [ "$is_main" = true ] && [ -n "$epic" ]; then
     local emoji
     emoji="$(emoji_for_epic "$epic")"
@@ -134,7 +137,7 @@ pre{font-family:var(--font-mono);white-space:pre-wrap;word-wrap:break-word;font-
 </head>
 <body>
 <header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
-  <a href="/tlotp/" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
+  <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
   <span style="color:var(--text-secondary);font-family:var(--font-sans);font-size:0.85rem;">${epic_name} — TLOTP</span>
   <button onclick="toggleTheme()" style="background:none;border:1px solid var(--border-color);color:var(--text-secondary);padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">&#x2600;&#xFE0F;/&#x1F319;</button>
 </header>
@@ -185,7 +188,7 @@ pre{font-family:var(--font-mono);white-space:pre-wrap;word-wrap:break-word;font-
 </head>
 <body>
 <header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
-  <a href="/tlotp/" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
+  <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
   <span style="color:var(--text-secondary);font-family:var(--font-sans);font-size:0.85rem;">${title} — TLOTP</span>
   <button onclick="toggleTheme()" style="background:none;border:1px solid var(--border-color);color:var(--text-secondary);padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">&#x2600;&#xFE0F;/&#x1F319;</button>
 </header>
@@ -331,10 +334,12 @@ generate_index() {
 body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);line-height:1.6}
 
 /* Hero */
-.hero{text-align:center;padding:4rem 2rem 3rem;background:linear-gradient(180deg,var(--bg-secondary) 0%,var(--bg-primary) 100%)}
-.hero h1{font-family:Georgia,'Times New Roman',serif;font-size:2.5rem;color:#e8a838;margin-bottom:.5rem;letter-spacing:.05em}
-.hero .subtitle{color:var(--text-secondary);font-size:1.1rem;font-style:italic;margin-bottom:2rem}
-.hero .ring{font-size:.95rem;color:#cd7f32;border:1px solid var(--border-color);display:inline-block;padding:.5rem 1.5rem;border-radius:6px;margin-bottom:1.5rem;font-family:Georgia,serif;letter-spacing:.03em}
+.hero{text-align:center;padding:5rem 2rem 3.5rem;background:var(--bg-primary)}
+.hero h1{font-family:Georgia,'Times New Roman',serif;font-size:3.5rem;letter-spacing:.08em;margin-bottom:.6rem;background:linear-gradient(135deg,#00D9FF 0%,#00FFB3 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .subtitle{color:#c9d1d9;font-size:1.25rem;font-weight:400;margin-bottom:1.5rem;letter-spacing:.02em}
+.hero .tagline{font-size:.95rem;color:var(--text-secondary);font-style:italic;margin-bottom:2.5rem;font-family:Georgia,serif}
+.btn-primary{display:inline-block;background:linear-gradient(135deg,#00D9FF 0%,#00FFB3 100%);color:#0D1117;padding:.75rem 2rem;border-radius:999px;text-decoration:none;font-weight:700;font-size:.95rem;font-family:var(--font-sans);transition:opacity .2s,transform .15s;border:none}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
 
 /* Main */
 .container{max-width:800px;margin:0 auto;padding:0 2rem}
@@ -362,8 +367,6 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
 
 /* CTA */
 .cta{text-align:center;margin:2.5rem 0}
-.cta a{display:inline-block;background:#e8a838;color:#0d0d0d;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:1rem;font-family:var(--font-sans);transition:background .2s}
-.cta a:hover{background:#f0b848}
 .cta-secondary{display:block;margin-top:1rem}
 .cta-secondary a{color:var(--text-secondary);font-size:.85rem;text-decoration:none}
 .cta-secondary a:hover{color:var(--text-primary);text-decoration:underline}
@@ -377,15 +380,15 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
 <body>
 
 <header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
-  <a href="/tlotp/" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
+  <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
   <span style="color:var(--text-secondary);font-family:var(--font-sans);font-size:0.85rem;">TLOTP — The Lord of the Prompt</span>
   <button onclick="toggleTheme()" style="background:none;border:1px solid var(--border-color);color:var(--text-secondary);padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">&#x2600;&#xFE0F;/&#x1F319;</button>
 </header>
 
 <div class="hero">
-  <div class="ring">One Prompt to Rule Them All</div>
   <h1>TLOTP</h1>
   <p class="subtitle">The Lord of the Prompt</p>
+  <p class="tagline">One Prompt to Rule Them All</p>
 </div>
 
 <div class="container">
@@ -468,7 +471,7 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
 
   <!-- Descarga -->
   <div class="cta">
-    <a href="tlotp-full.md" download="tlotp-full.md">Descargar prompt completo (tlotp-full.md)</a>
+    <a class="btn-primary" href="tlotp-full.md" download="tlotp-full.md">Descargar prompt completo</a>
     <div class="cta-secondary">
       <a href="https://github.com/joseguillermomoreu-gif/tlotp">Ver en GitHub</a>
     </div>
