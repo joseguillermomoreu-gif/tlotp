@@ -11,18 +11,21 @@ Gestionar el entry point de Celebrimbor: pedir permisos, mostrar el menú y enru
 ## Banner de Bienvenida (MOSTRAR SOLO UNA VEZ)
 
 ```
-══════════════════════════════════════════════════════════════
-    ⚒️  CELEBRIMBOR — La Forja de Eregion
-══════════════════════════════════════════════════════════════
-
-    "Los Gwaith-i-Mírdain no forjan por encargo.
-     Forjan por trato. ¿Qué ofreces a cambio, viajero?"
-
-    Has llegado a Ost-in-Edhil. Celebrimbor te escucha.
-
-    TLOTP {VERSION} | Backend: npx skills ⚡
-
-══════════════════════════════════════════════════════════════
+╔══════════════════════════════════════════════════════════════╗
+║  ᚲ · ᛖ · ᛚ · ᛖ · ᛒ · ᚱ · ᛁ · ᛗ · ᛒ · ᛟ · ᚱ               ║
+║                                                              ║
+║                ⚒️  C E L E B R I M B O R                    ║
+║             El Maestro Herrero de Eregion                    ║
+║                TLOTP {VERSION}                               ║
+║                                                              ║
+║  "Los Gwaith-i-Mírdain no forjan por encargo.                ║
+║   Forjan por trato. ¿Qué ofreces a cambio, viajero?"        ║
+║                                                              ║
+║  Has llegado a Ost-in-Edhil. Celebrimbor te escucha.         ║
+║  Backend: npx skills                                         ║
+║                                                              ║
+║  ᚲ · ᛖ · ᛚ · ᛖ · ᛒ · ᚱ · ᛁ · ᛗ · ᛒ · ᛟ · ᚱ               ║
+╚══════════════════════════════════════════════════════════════╝
 ```
 
 **Después del banner**: Ejecutar detector de entorno (módulo `01-detector-entorno.md`).
