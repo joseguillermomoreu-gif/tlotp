@@ -65,7 +65,24 @@ else
   echo "  [OK] index.html exists"
 fi
 
-# 5. Verify at least one HTML module per epic
+# 5. Verify no backtick-literal @prompts/ references in HTML output
+backtick_errors=0
+while IFS= read -r html_file; do
+  while IFS= read -r match; do
+    line_num="$(echo "$match" | cut -d: -f1)"
+    echo "  ERROR: backtick literal @prompts/ in $(basename "$html_file"):${line_num}"
+    backtick_errors=$((backtick_errors + 1))
+  done < <(grep -n '`@prompts/' "$html_file" 2>/dev/null || true)
+done < <(find "$DIST_DIR" -name "*.html" -type f)
+
+if [ "$backtick_errors" -gt 0 ]; then
+  echo "  ERROR: $backtick_errors backtick-literal @prompts/ reference(s) found in HTML"
+  errors=$((errors + backtick_errors))
+else
+  echo "  [OK] No backtick-literal @prompts/ references in HTML"
+fi
+
+# 6. Verify at least one HTML module per epic
 for epic in palantir ents celebrimbor bardo aragorn gandalf; do
   if [ -f "$DIST_DIR/$epic/$epic-main.html" ]; then
     echo "  [OK] $epic/$epic-main.html exists"

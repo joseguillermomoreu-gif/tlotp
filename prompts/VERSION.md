@@ -6,13 +6,27 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v5.0.0**
+**TLOTP v5.1.0**
 - **Fecha release**: 2026-03-25
-- **Nombre código**: "The Two Towers of the Web"
+- **Nombre código**: "Los Escribas de Gondor"
 
 ---
 
 ## 📦 Historial de Versiones
+
+### v5.1.0 — "Los Escribas de Gondor"
+- **Fecha release**: 2026-03-25
+- **Épicas**: ⚡ Gandalf (fix) · 👑 Aragorn (feature)
+- G4b rewrite: tabla tech-stack reemplazada por tabla SDD methodology (EARS, Plan Mode, Kiro, ADR, C4)
+- G3 Momento A: invocación condicional al lead del team si GANDALF_TEAM activo, con fallback autónomo 30s
+- Aragorn Team Builder: nuevo paso "Proponer Cronista" tras crear team — configuración guiada del agente reporter con lore TLOTP opt-in
+- Patrón de reporters reutilizable: nombre, descripción, ruta de salida, narrativa épica opcional
+
+**Closes**: #340, #342
+
+### v5.0.0 — "The Two Towers of the Web"
+- **Fecha release**: 2026-03-25
+- **Nombre código**: "Los Escribas de Gondor"
 
 ### v4.0.0 — "El Mago Blanco"
 - **Fecha release**: 2026-03-25

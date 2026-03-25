@@ -506,6 +506,285 @@ Asignar un nombre de batalla al team basado en los agentes y su propósito:
 
 Usar el sistema de personajes de `aragorn-main.md` para asignar a cada agente del team.
 
+### Paso A7b — Proponer Cronista
+
+Tras confirmar la creación del team (config escrito en A6, lore mostrado en A7),
+proponer al usuario añadir un agente cronista/documentador que registre las
+sesiones de trabajo del team recién creado.
+
+```
+══════════════════════════════════════════════════════════════
+📜 PROPUESTA DEL CONSEJO — Cronista del Ejército
+══════════════════════════════════════════════════════════════
+
+  Todo ejército necesita un escriba que registre sus gestas.
+  Un agente cronista documenta automáticamente cada sesión:
+  qué se analizó, qué decisiones se tomaron, discrepancias
+  resueltas y próximos pasos.
+
+  Ejemplos existentes:
+    📝 pateandotoledo-reporter — cronista de pateandotetoledo.es
+    📝 josemoreupeso-reporter  — cronista de josemoreupeso.es
+
+══════════════════════════════════════════════════════════════
+```
+
+AskUserQuestion:
+
+```json
+{
+  "questions": [{
+    "header": "Cronista del Ejército",
+    "question": "📜 ¿Quieres añadir un cronista al team \"[nombre-del-team]\"?\n    Documentará cada sesión de trabajo automáticamente.",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "📜 Sí, añadir cronista",
+        "description": "Configurar un agente documentador para este team"
+      },
+      {
+        "label": "⏭️  Omitir — continuar sin cronista",
+        "description": "El team queda listo sin agente documentador"
+      },
+      {
+        "label": "🚫 Cancelar workflow completo",
+        "description": "Abortar la creación del team"
+      }
+    ]
+  }]
+}
+```
+
+**Si elige "Omitir"** → saltar a Paso A7c (Documentación vía Palantír).
+**Si elige "Cancelar"** → abortar el workflow, volver al menú de Aragorn.
+**Si elige "Sí, añadir cronista"** → continuar con la configuración del reporter:
+
+#### Configuración del reporter
+
+Solicitar datos del agente cronista mediante AskUserQuestion:
+
+**Nombre del agente** (con sugerencia por defecto):
+
+```json
+{
+  "questions": [{
+    "header": "Cronista — Paso 1/3",
+    "question": "📜 ¿Cómo se llamará el cronista?\n    Sugerencia: [nombre-del-team]-reporter",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✍️  Escribir el nombre",
+        "description": "Solo letras minúsculas, números y guiones"
+      },
+      {
+        "label": "✅ Usar sugerencia: [nombre-del-team]-reporter",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+**Descripción del rol** (con sugerencia por defecto):
+
+```json
+{
+  "questions": [{
+    "header": "Cronista — Paso 2/3",
+    "question": "📜 ¿Qué rol tendrá el cronista?\n    Sugerencia: Cronista de [nombre-del-team]. Documenta sesiones de trabajo.",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✍️  Escribir descripción personalizada",
+        "description": ""
+      },
+      {
+        "label": "✅ Usar sugerencia por defecto",
+        "description": "Cronista de [nombre-del-team]. Documenta sesiones de trabajo del team: qué se analizó o implementó, discrepancias entre agentes y cómo se resolvieron, decisiones tomadas y próximos pasos."
+      }
+    ]
+  }]
+}
+```
+
+**Ruta del fichero de salida**:
+
+```json
+{
+  "questions": [{
+    "header": "Cronista — Paso 3/3",
+    "question": "📜 ¿Dónde guardará el cronista sus informes?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "📄 .claude/project-knowledge.md",
+        "description": "Ruta por defecto — acumula informes entre sesiones"
+      },
+      {
+        "label": "✍️  Especificar otra ruta",
+        "description": "Indicar ruta personalizada para los informes"
+      }
+    ]
+  }]
+}
+```
+
+#### Lore TLOTP opt-in
+
+Tras recoger los datos del reporter, ofrecer activar narrativa épica:
+
+```json
+{
+  "questions": [{
+    "header": "Cronista — Estilo narrativo",
+    "question": "📜 ¿Activar narrativa épica LOTR en el cronista?\n    Los informes tendrán estilo Tierra Media manteniendo el contenido técnico.",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "⚔️  Sí — Estilo La Comunidad del Código",
+        "description": "Sesiones como gestas, discrepancias como batallas de criterio, decisiones como decretos del Consejo"
+      },
+      {
+        "label": "📋 No — Reporter estándar",
+        "description": "Informes profesionales sin narrativa épica"
+      }
+    ]
+  }]
+}
+```
+
+#### Crear fichero del agente
+
+Crear el fichero del agente en `~/.claude/agents/[nombre-cronista].md` usando Write.
+
+**Si lore INACTIVO** — estructura estándar (patrón pateandotoledo-reporter):
+
+```markdown
+---
+name: [nombre-cronista]
+description: |
+  Cronista de [nombre-del-team]. Documenta sesiones de trabajo del team:
+  qué se analizó o implementó, discrepancias entre agentes y cómo se
+  resolvieron, decisiones tomadas y próximos pasos.
+
+  Invócame al final de cualquier sesión para generar el informe en [ruta-salida]
+
+  Ejemplo: "@[nombre-cronista] documenta la sesión de hoy"
+tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
+memory: project
+background: true
+model: claude-haiku-4-5-20251001
+---
+
+Eres el cronista de [nombre-del-team]. Tu misión es documentar
+lo que ocurrió en cada sesión de trabajo del team de forma profesional
+y estructurada, acumulando conocimiento entre sesiones.
+
+## Proyecto
+
+[nombre-del-team] — [descripción del team]
+
+## Proceso al ser invocado
+
+1. Leer `[ruta-salida]` para entender el contexto acumulado
+2. Leer tu memoria de sesiones en `.claude/agent-memory/[nombre-cronista]/MEMORY.md`
+3. Recopilar la información de la sesión actual:
+   - Qué tarea o análisis se realizó
+   - Qué agentes participaron
+   - Qué decisiones se tomaron
+   - Qué discrepancias hubo y cómo se resolvieron
+   - Qué se implementó o documentó
+   - Qué queda pendiente
+
+4. Generar el informe de sesión con este formato:
+
+### [FECHA] — [Tipo de sesión: SDD / Implementación / Análisis]
+
+**Tarea**: [descripción breve]
+**Agentes involucrados**: [lista]
+
+**Resumen**: [qué se hizo y qué se produjo]
+
+**Decisiones tomadas**:
+- [Decisión] → [Justificación]
+
+**Discrepancias resueltas** (si las hubo):
+- **Problema**: [descripción]
+  - Postura A ([agente]): [postura]
+  - Postura B ([agente]): [postura]
+  - Intervención: [scrum-master u otro]
+  - Consenso: [solución adoptada]
+
+**Entregables**:
+- [ficheros creados / modificados / documentos producidos]
+
+**Próximos pasos**:
+- [acción pendiente]
+
+5. Añadir la entrada al final de `[ruta-salida]`
+6. Actualizar tu MEMORY.md con los patrones más importantes
+
+## Criterios de calidad del informe
+
+- **Conciso pero completo**: suficiente para que alguien que no estuvo
+  entienda qué pasó y por qué
+- **Profesional**: estructura clara, lenguaje técnico preciso
+- **Accionable**: los próximos pasos deben ser concretos y ejecutables
+- **Sin ruido**: no incluir detalles internos de los agentes, solo resultados
+```
+
+**Si lore ACTIVO** — añadir al final del prompt (después de "Criterios de calidad"):
+
+```markdown
+
+## Estilo narrativo — La Comunidad del Código
+
+Eres un escriba de la Tierra Media. Tus informes son pergaminos de gesta heroica
+que documentan las aventuras de La Comunidad del Código. El contenido técnico
+se mantiene intacto, pero la forma adopta el estilo épico:
+
+- **Sesiones** → gestas o jornadas de la expedición
+- **Discrepancias entre agentes** → batallas de criterio entre forjadores
+- **Decisiones técnicas** → decretos del Consejo de Rivendel
+- **Implementaciones exitosas** → forjas completadas en los Fuegos de Orthanc
+- **Bugs o errores** → emboscadas de orcos en el camino
+- **Próximos pasos** → el camino que queda por recorrer hacia Mordor
+
+Ejemplo de apertura de informe:
+> "En la vigésima jornada de la expedición, La Comunidad se reunió en el
+> Salón del Consejo para forjar los pergaminos del módulo G4b..."
+
+**IMPORTANTE**: La narrativa épica es la forma, nunca el fondo.
+Las decisiones técnicas, datos concretos y acciones deben ser precisos.
+El lore enriquece la lectura, no la oscurece.
+```
+
+#### Confirmación de creación
+
+Mostrar tras crear el fichero:
+
+```
+══════════════════════════════════════════════════════════════
+📜 CRONISTA FORJADO: [nombre-cronista]
+══════════════════════════════════════════════════════════════
+
+  📍 Agente:    ~/.claude/agents/[nombre-cronista].md
+  📄 Informes:  [ruta-salida]
+  🎭 Estilo:    [Narrativa épica LOTR / Reporter estándar]
+
+  💡 Para invocarlo:
+     @[nombre-cronista] documenta la sesión de hoy
+
+══════════════════════════════════════════════════════════════
+```
+
+### Paso A7c — Documentación vía Palantír
+
 AskUserQuestion:
 
 ```json
