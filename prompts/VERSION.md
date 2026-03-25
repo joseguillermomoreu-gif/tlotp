@@ -26,7 +26,7 @@
 
 ### v5.0.0 — "The Two Towers of the Web"
 - **Fecha release**: 2026-03-25
-- **Nombre código**: anterior versión major
+- **Nombre código**: "Los Escribas de Gondor"
 
 ### v4.0.0 — "El Mago Blanco"
 - **Fecha release**: 2026-03-25
