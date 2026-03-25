@@ -28,57 +28,32 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Obtener último tag
-        id: last_tag
+      - name: Leer versión desde VERSION.md
+        id: version
         run: |
-          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-          echo "tag=$LAST_TAG" >> $GITHUB_OUTPUT
-          echo "Último tag: $LAST_TAG"
+          VERSION=$(grep -oP '(?<=\*\*TLOTP v)[0-9]+\.[0-9]+\.[0-9]+(?=\*\*)' prompts/VERSION.md | head -1)
+          if [ -z "$VERSION" ]; then
+            echo "::error::No se encontró la versión en prompts/VERSION.md (formato esperado: **TLOTP vX.Y.Z**)"
+            exit 1
+          fi
+          NEW_VERSION="v${VERSION}"
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "Versión leída de VERSION.md: $NEW_VERSION"
 
-      - name: Analizar commits y determinar bump
-        id: bump
+      - name: Verificar si el tag ya existe
+        id: check_tag
         run: |
-          LAST_TAG="${{ steps.last_tag.outputs.tag }}"
-          COMMITS=$(git log "${LAST_TAG}..HEAD" --pretty=format:"%s" 2>/dev/null || git log --pretty=format:"%s")
-
-          echo "Commits desde $LAST_TAG:"
-          echo "$COMMITS"
-
-          BUMP="none"
-
-          if echo "$COMMITS" | grep -qE "^feat!:|BREAKING CHANGE"; then
-            BUMP="major"
-          elif echo "$COMMITS" | grep -qE "^feat(\(.+\))?:"; then
-            BUMP="minor"
-          elif echo "$COMMITS" | grep -qE "^fix(\(.+\))?:"; then
-            BUMP="patch"
+          NEW_VERSION="${{ steps.version.outputs.version }}"
+          if git tag -l "$NEW_VERSION" | grep -q "$NEW_VERSION"; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "ℹ️  El tag $NEW_VERSION ya existe — no se creará de nuevo"
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "✅ El tag $NEW_VERSION no existe — se procederá a crearlo"
           fi
 
-          echo "bump=$BUMP" >> $GITHUB_OUTPUT
-          echo "Tipo de bump: $BUMP"
-
-      - name: Calcular nueva versión
-        id: version
-        if: steps.bump.outputs.bump != 'none'
-        run: |
-          LAST_TAG="${{ steps.last_tag.outputs.tag }}"
-          VERSION="${LAST_TAG#v}"
-          MAJOR=$(echo "$VERSION" | cut -d. -f1)
-          MINOR=$(echo "$VERSION" | cut -d. -f2)
-          PATCH=$(echo "$VERSION" | cut -d. -f3)
-
-          case "${{ steps.bump.outputs.bump }}" in
-            major) MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
-            minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
-            patch) PATCH=$((PATCH + 1)) ;;
-          esac
-
-          NEW_VERSION="v${MAJOR}.${MINOR}.${PATCH}"
-          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
-          echo "Nueva versión: $NEW_VERSION"
-
       - name: Crear tag
-        if: steps.bump.outputs.bump != 'none'
+        if: steps.check_tag.outputs.exists == 'false'
         id: tag
         run: |
           NEW_VERSION="${{ steps.version.outputs.version }}"
@@ -89,7 +64,7 @@ jobs:
           echo "✅ Tag ${NEW_VERSION} publicado"
 
       - name: Preparar changelog
-        if: steps.bump.outputs.bump != 'none'
+        if: steps.check_tag.outputs.exists == 'false'
         id: changelog
         run: |
           NEW_VERSION="${{ steps.version.outputs.version }}"
@@ -99,7 +74,7 @@ jobs:
           # Si no hay sección específica, generar un resumen de commits
           if [ ! -s /tmp/changelog.md ]; then
             echo "::warning::No se encontró la sección ### ${NEW_VERSION} en prompts/VERSION.md — usando fallback de commits"
-            LAST_TAG="${{ steps.last_tag.outputs.tag }}"
+            LAST_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "v0.0.0")
             echo "## Cambios desde ${LAST_TAG}" > /tmp/changelog.md
             echo "" >> /tmp/changelog.md
             git log "${LAST_TAG}..HEAD" --pretty=format:"- %s" >> /tmp/changelog.md
@@ -107,7 +82,7 @@ jobs:
           cat /tmp/changelog.md
 
       - name: Crear GitHub Release
-        if: steps.bump.outputs.bump != 'none'
+        if: steps.check_tag.outputs.exists == 'false'
         uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # v2
         with:
           tag_name: ${{ steps.version.outputs.version }}
@@ -116,8 +91,8 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Sin cambios que versionar
-        if: steps.bump.outputs.bump == 'none'
+      - name: Tag ya existente — sin acción
+        if: steps.check_tag.outputs.exists == 'true'
         run: |
-          echo "ℹ️  No se detectaron commits feat/fix desde ${{ steps.last_tag.outputs.tag }}"
-          echo "   Solo docs, chore, refactor u otros — no se bumpa la versión"
+          echo "ℹ️  El tag ${{ steps.version.outputs.version }} ya existe en el repositorio"
+          echo "   Si necesitas re-crear la release, borra el tag primero"

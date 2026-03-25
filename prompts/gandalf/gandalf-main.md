@@ -37,30 +37,33 @@
 **Mostrar inmediatamente despues del banner, sin interaccion:**
 
 ```
-⚡ El Mago Blanco — Gandalf
+⚡ GANDALF — Guía Rápida
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"Antes de que La Comunidad dé un solo paso hacia Mordor,
- Gandalf envía sus jinetes más veloces a explorar el terreno.
- Sin especificación no hay expedición. Sin mapa no hay victoria.
- El vibe coding es el Camino de los Muertos — nadie regresa."
+  ✨ Nueva aventura SDD
+     Gandalf detecta si tienes Agent Teams disponibles.
+     Si los tienes, puedes activar uno — sus agentes reciben
+     nombres de lore según su especialidad:
+       🪨 Git/Ramas → Thorin Escudo de Roble
+       🌳 CI/CD     → Bárbol
+       🧙 PHP/Back  → Frodo, Sam, Merry, Pippin
+       ⚔️ Frontend  → Boromir, Faramir, Éomer
+       🧝 IA/LLM    → Legolas, Elrond, Galadriel
+     Con team: los Rohirrim son tus agentes. El análisis de
+     dominio lo firma el agente asignado (no "Théoden").
+     Sin team: 5 Rohirrim clásicos exploran en paralelo.
+     Resultado: requirements.md · design.md · tasks.md
 
-Los Exploradores Rohirrim cabalgan sin que el usuario espere.
-Cuando regresan, el mapa está listo. La aventura puede comenzar.
+  🔄 Continuar aventura
+     Detecta SDD existente y retoma donde lo dejaste.
 
-✨ Nueva aventura SDD
-   Los Rohirrim exploran → tú defines el objetivo → Gandalf
-   genera requirements.md · design.md · tasks.md
+  🏇 Solo exploración Rohirrim
+     Mapea el proyecto sin crear ficheros SDD.
 
-🔄 Continuar aventura en curso
-   Detectar SDD existente y retomar donde se dejó
+  📜 Los Pergaminos del Mago
+     Documentación oficial: Plan Mode · Kiro · EARS
 
-🏇 Solo exploración Rohirrim
-   Lanzar los exploradores y ver el mapa sin crear SDD
-
-📜 Los Pergaminos del Mago
-   Documentación oficial: Plan Mode, Kiro, EARS
-
-══════════════════════════════════════════════════════
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 ---
