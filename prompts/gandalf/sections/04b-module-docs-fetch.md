@@ -1,10 +1,11 @@
-# 📜 Módulo G4b — Los Pergaminos Oficiales
+# 📜 Módulo G4b — Los Pergaminos del Saber SDD
 
 ## Misión
 
-Fetchear documentación oficial del stack detectado por los Rohirrim.
-Los pergaminos enriquecerán la forja de requirements, design y tasks.
-Un Rohirrim con mapa oficial llega más lejos que uno sin él.
+Fetchear documentación oficial sobre metodologías de Spec-Driven Development.
+Los pergaminos enriquecerán la forja de requirements, design y tasks con las
+mejores prácticas de especificación del mundo conocido.
+Las docs de tecnología son responsabilidad de los Rohirrim (G1), no de G4b.
 
 ---
 
@@ -14,47 +15,42 @@ Mostrar antes de lanzar los fetches:
 
 ```
 ╔════════════════════════════════════════════════════════════╗
-║  📜 Los Jinetes parten a buscar los Pergaminos Oficiales   ║
+║  📜 Los Jinetes parten a buscar los Pergaminos del Saber SDD ║
 ╚════════════════════════════════════════════════════════════╝
 
-  Solo los dominios presentes en el stack explorado.
-  El Mago Blanco no manda jinetes a batallas que no son suyas.
+  Cinco fuentes de sabiduría. Cinco jinetes en paralelo.
+  El Mago Blanco envía a sus mejores a los archivos del Saber.
 ```
 
 ---
 
-## Mapping stack → fuentes
+## Mapping SDD methodology → fuentes
 
-Solo fetchear para los dominios detectados en `contexto_rohirrim` (Éowyn del Stack):
+Fetchear **siempre** las mismas fuentes, independientemente del stack detectado:
 
-| Stack detectado | URL a fetchear |
+| SDD Methodology | URL a fetchear |
 |-----------------|----------------|
-| PHP/Symfony | https://symfony.com/doc/current/index.html |
-| TypeScript/React | https://react.dev/learn |
-| Playwright | https://playwright.dev/docs/intro |
-| Python/FastAPI | https://fastapi.tiangolo.com/ |
-| Laravel | https://laravel.com/docs |
-| Node.js | https://nodejs.org/en/docs |
-| Go | https://go.dev/doc/ |
-| PHPUnit | https://docs.phpunit.de/en/11.5/ |
-| Doctrine | https://www.doctrine-project.org/projects/doctrine-orm/en/current/index.html |
-| Vue.js | https://vuejs.org/guide/introduction |
-| Next.js | https://nextjs.org/docs |
-| Django | https://docs.djangoproject.com/ |
+| EARS format (Easy Approach to Requirements Syntax) | https://alistairmavin.com/ears/ |
+| Plan Mode (Claude Code) | https://docs.anthropic.com/en/docs/claude-code/cli-usage |
+| Kiro / AWS spec-driven development | https://kiro.dev/docs/specs/ |
+| ADR lite (Architecture Decision Records) | https://adr.github.io/ |
+| C4 model (diagramas de arquitectura) | https://c4model.com/ |
 
-Lanzar WebFetch **en paralelo** para todos los dominios detectados.
+Lanzar WebFetch **en paralelo** para las 5 fuentes.
 
 ---
 
 ## Animación de progreso (mostrar durante el fetch)
 
 ```
-🏇 [tecnología-1]  → buscando en [dominio]...     [✅ pergamino obtenido / ⚠️ sin respuesta]
-🏇 [tecnología-2]  → buscando en [dominio]...     [✅ pergamino obtenido / ⚠️ sin respuesta]
-...
+🏇 EARS format           → buscando en alistairmavin.com...   [✅ pergamino obtenido / ⚠️ sin respuesta]
+🏇 Plan Mode             → buscando en anthropic.com...       [✅ pergamino obtenido / ⚠️ sin respuesta]
+🏇 Kiro spec-driven      → buscando en kiro.dev...            [✅ pergamino obtenido / ⚠️ sin respuesta]
+🏇 ADR lite              → buscando en adr.github.io...       [✅ pergamino obtenido / ⚠️ sin respuesta]
+🏇 C4 model              → buscando en c4model.com...         [✅ pergamino obtenido / ⚠️ sin respuesta]
 
 ══════════════════════════════════════════════════════════════
-  📚 [N]/[Total] pergaminos obtenidos. El Consejo puede proceder.
+  📚 [N]/5 pergaminos obtenidos. El Consejo puede proceder.
 ══════════════════════════════════════════════════════════════
 ```
 
@@ -87,4 +83,4 @@ Si ningún fetch tuvo éxito: `contexto_docs = null`. Los módulos posteriores f
 
 **Módulo**: `04b-module-docs-fetch.md`
 **Invocado desde**: `03-module-objective.md`
-**Requiere**: WebFetch (paralelo), contexto_rohirrim (Éowyn del Stack)
+**Requiere**: WebFetch (paralelo)

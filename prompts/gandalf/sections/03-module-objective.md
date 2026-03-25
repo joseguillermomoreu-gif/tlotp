@@ -120,7 +120,49 @@ AskUserQuestion:
 
 ## Momento A — Propuesta Consolidada Pre-Generación
 
-Antes de cargar G4b, el Consejo presenta su visión del trabajo completo:
+Antes de cargar G4b, el Consejo presenta su visión del trabajo completo.
+
+### Verificar GANDALF_TEAM
+
+**Si `GANDALF_TEAM` está activo** (hay un team seleccionado para esta sesión SDD):
+
+Invocar al lead/orquestador del team seleccionado via Agent tool, pasándole
+el contexto completo disponible: `contexto_rohirrim` + objetivo G3 + `contexto_docs`.
+
+El lead genera la propuesta consolidada basándose en el análisis de su team.
+
+**Fallback**: Si el Agent falla o supera 30s de timeout, generar la propuesta
+de forma autónoma (comportamiento sin team) sin error bloqueante.
+
+Banner con team activo:
+
+```
+╔════════════════════════════════════════════════════════════╗
+║  ⚡ EL CONSEJO Y SU EJÉRCITO PRESENTAN LA PROPUESTA        ║
+╚════════════════════════════════════════════════════════════╝
+
+  ⚔️  Team activo: [nombre-del-team]
+  👑 Lead: [nombre-del-lead]
+
+  La propuesta ha sido forjada por el ejército completo.
+  El Consejo no camina solo — sus guerreros han hablado.
+
+  📋 Requirements: [N estimado] requisitos ([MUST: X · SHOULD: Y])
+                   Inferidos de: [resumen del objetivo en 1 línea]
+
+  🏗️  Design: [patrón arquitectónico] · [N] ADRs estimados
+              Basado en: [stack principal detectado]
+
+  📝 Tasks: [N estimado] tareas ([S/M/L estimados])
+            Orden: [bloques del tipo de aventura elegido]
+```
+
+**Si `GANDALF_TEAM` NO está activo** (sin team, comportamiento por defecto):
+
+Gandalf genera la propuesta de forma autónoma, sin cambios respecto al
+comportamiento original.
+
+Banner sin team:
 
 ```
 ╔════════════════════════════════════════════════════════════╗
