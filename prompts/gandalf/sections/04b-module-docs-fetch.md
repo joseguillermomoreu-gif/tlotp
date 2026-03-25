@@ -30,7 +30,7 @@ Fetchear **siempre** las mismas fuentes, independientemente del stack detectado:
 
 | SDD Methodology | URL a fetchear |
 |-----------------|----------------|
-| EARS format (Easy Approach to Requirements Syntax) | https://www.iaria.org/conferences2013/filesICSEA13/ICSEA_2013_Tutorial_Mavin.pdf |
+| EARS format (Easy Approach to Requirements Syntax) | https://alistairmavin.com/ears/ |
 | Plan Mode (Claude Code) | https://docs.anthropic.com/en/docs/claude-code/cli-usage |
 | Kiro / AWS spec-driven development | https://kiro.dev/docs/specs/ |
 | ADR lite (Architecture Decision Records) | https://adr.github.io/ |
@@ -43,7 +43,7 @@ Lanzar WebFetch **en paralelo** para las 5 fuentes.
 ## Animación de progreso (mostrar durante el fetch)
 
 ```
-🏇 EARS format           → buscando en iaria.org...           [✅ pergamino obtenido / ⚠️ sin respuesta]
+🏇 EARS format           → buscando en alistairmavin.com...   [✅ pergamino obtenido / ⚠️ sin respuesta]
 🏇 Plan Mode             → buscando en anthropic.com...       [✅ pergamino obtenido / ⚠️ sin respuesta]
 🏇 Kiro spec-driven      → buscando en kiro.dev...            [✅ pergamino obtenido / ⚠️ sin respuesta]
 🏇 ADR lite              → buscando en adr.github.io...       [✅ pergamino obtenido / ⚠️ sin respuesta]
