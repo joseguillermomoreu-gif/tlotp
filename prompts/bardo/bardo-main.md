@@ -19,18 +19,21 @@ de bienvenida y enrutar al módulo correspondiente.
 ## Banner de Bienvenida (MOSTRAR SOLO UNA VEZ)
 
 ```
-══════════════════════════════════════════════════════════════
-    🏹  BARDO — El Arquero de Lake-town
-══════════════════════════════════════════════════════════════
-
-    "Una flecha. Un dragón. Eso es todo lo que se necesita
-     si sabes dónde apuntar."
-
-    Has llegado a Lake-town. Bardo prepara su arsenal.
-
-    TLOTP {VERSION} | MCPs · Plugins · Marketplace 🏹
-
-══════════════════════════════════════════════════════════════
+╔══════════════════════════════════════════════════════════════╗
+║   ᛒ · ᚨ · ᚱ · ᛞ · ᛟ  ·  🏹  ·  ᛒ · ᚨ · ᚱ · ᛞ · ᛟ          ║
+║                                                              ║
+║                  🏹  B A R D O                               ║
+║            El Arquero de Lake-town                           ║
+║              TLOTP {VERSION}                                 ║
+║                                                              ║
+║   "Una flecha. Un dragón. Eso es todo lo que se necesita     ║
+║    si sabes dónde apuntar."                                  ║
+║                                                              ║
+║   Has llegado a Lake-town. Bardo prepara su arsenal.         ║
+║   MCPs · Plugins · Marketplace 🏹                            ║
+║                                                              ║
+║   ᛒ · ᚨ · ᚱ · ᛞ · ᛟ  ·  🏹  ·  ᛒ · ᚨ · ᚱ · ᛞ · ᛟ          ║
+╚══════════════════════════════════════════════════════════════╝
 ```
 
 **Después del banner**: Mostrar introducción rápida (una sola vez, antes de permisos).
