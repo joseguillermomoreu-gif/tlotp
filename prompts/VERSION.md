@@ -6,9 +6,9 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v5.0.0**
+**TLOTP v4.9.0**
 - **Fecha release**: 2026-03-25
-- **Nombre código**: "The Fellowship of the Prompt"
+- **Nombre código**: "The Fellowship Navigates"
 
 ---
 
