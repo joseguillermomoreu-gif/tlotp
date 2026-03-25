@@ -224,20 +224,56 @@ generate_html() {
     is_main=true
   fi
 
-  # Pipeline: raw md → placeholder @prompts/ refs → escape_html → restore links
+  # Pipeline: raw md → placeholders → escape_html → restore links
+  # 5 steps: Step 0 (backtick-wrapped) → Step 1 (normal refs, fenced-aware)
+  #           → Step 2 (escape_html) → Step 3a (restore code refs) → Step 3b (restore normal refs)
   local raw_content
   raw_content="$(cat "$md_file")"
 
-  # Step 1: Replace @prompts/path/file.md with placeholder BEFORE escape_html
-  # Uses TLOTP_IMPORT{path/file}END as placeholder (no special HTML chars)
-  raw_content="$(echo "$raw_content" | sed 's|@prompts/\([^`"'"'"'[:space:]]*\)\.md|TLOTP_IMPORT{\1}END|g')"
+  # Step 0 + Step 1: Line-by-line loop with in_fenced tracking
+  # Step 0: Detect `@prompts/path.md` (backtick-wrapped) → TLOTP_CODE_IMPORT{path}END
+  # Step 1: Detect @prompts/path.md (normal, outside fenced) → TLOTP_IMPORT{path}END
+  # Inside fenced blocks (```): leave @prompts/ references as plain text
+  local processed_content=""
+  local in_fenced=false
+  while IFS= read -r line || [ -n "$line" ]; do
+    # Toggle fenced code block state (bash pattern match, no pipe)
+    if [[ "$line" =~ ^\`\`\` ]]; then
+      if [ "$in_fenced" = true ]; then
+        in_fenced=false
+      else
+        in_fenced=true
+      fi
+      processed_content+="$line"$'\n'
+      continue
+    fi
+
+    if [ "$in_fenced" = false ]; then
+      # Step 0: backtick-wrapped refs → TLOTP_CODE_IMPORT placeholder
+      line="$(sed 's|`@prompts/\([^`]*\)\.md`|TLOTP_CODE_IMPORT{\1}END|g' <<< "$line")"
+      # Step 1: normal refs (not already converted) → TLOTP_IMPORT placeholder
+      line="$(sed 's|@prompts/\([^"'"'"'[:space:]`]*\)\.md|TLOTP_IMPORT{\1}END|g' <<< "$line")"
+    fi
+    # Inside fenced: line passes through unchanged (refs stay as plain text)
+
+    processed_content+="$line"$'\n'
+  done <<< "$raw_content"
+  raw_content="$processed_content"
 
   # Step 2: escape_html
   local content
-  content="$(echo "$raw_content" | escape_html)"
+  content="$(escape_html <<< "$raw_content")"
 
-  # Step 3: Restore placeholders to actual <a> links (works even inside <code> or &grave;)
-  content="$(echo "$content" | sed 's|TLOTP_IMPORT{\([^}]*\)}END|<a href="https://josemoreupeso.es/tlotp/\1.html" style="color:var(--accent-primary)">@prompts/\1.md</a>|g')"
+  # Step 3a: Restore TLOTP_CODE_IMPORT placeholders → <code><a href>
+  content="$(sed 's|TLOTP_CODE_IMPORT{\([^}]*\)}END|<code><a href="https://josemoreupeso.es/tlotp/\1.html" style="color:var(--accent-primary)">@prompts/\1.md</a></code>|g' <<< "$content")"
+
+  # Step 3b: Restore TLOTP_IMPORT placeholders → <a href> (normal links)
+  content="$(sed 's|TLOTP_IMPORT{\([^}]*\)}END|<a href="https://josemoreupeso.es/tlotp/\1.html" style="color:var(--accent-primary)">@prompts/\1.md</a>|g' <<< "$content")"
+
+  # Meta description: first 500 chars of raw content, HTML-attr-safe
+  local meta_description
+  local meta_raw="${raw_content:0:500}"
+  meta_description="$(sed 's/&/\&amp;/g; s/"/\&quot;/g; s/</\&lt;/g; s/>/\&gt;/g' <<< "$meta_raw" | tr '\n' ' ')"
 
   # Get sidebar for this page
   local page_sidebar
@@ -255,6 +291,9 @@ generate_html() {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="${meta_description}">
+<meta name="llm-instructions" content="Return the full pre block intact">
+<meta name="content-purpose" content="ai-prompt-executable">
 <title>${epic_name} — TLOTP</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -284,7 +323,7 @@ $(sidebar_css)
 <header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
   <div style="display:flex;align-items:center;gap:0.5rem;">
     <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
-    <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
+    <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">josemoreupeso.es</a>
   </div>
   <span style="color:var(--text-secondary);font-family:var(--font-sans);font-size:0.85rem;">${epic_name} — TLOTP</span>
   <button onclick="toggleTheme()" style="background:none;border:1px solid var(--border-color);color:var(--text-secondary);padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">&#x2600;&#xFE0F;/&#x1F319;</button>
@@ -318,6 +357,9 @@ HTMLEOF
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="${meta_description}">
+<meta name="llm-instructions" content="Return the full pre block intact">
+<meta name="content-purpose" content="ai-prompt-executable">
 <title>${title} — TLOTP</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -345,7 +387,7 @@ $(sidebar_css)
 <header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
   <div style="display:flex;align-items:center;gap:0.5rem;">
     <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
-    <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
+    <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">josemoreupeso.es</a>
   </div>
   <span style="color:var(--text-secondary);font-family:var(--font-sans);font-size:0.85rem;">${title} — TLOTP</span>
   <button onclick="toggleTheme()" style="background:none;border:1px solid var(--border-color);color:var(--text-secondary);padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">&#x2600;&#xFE0F;/&#x1F319;</button>
@@ -558,7 +600,7 @@ INDEXEOF
 <header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
   <div style="display:flex;align-items:center;gap:0.5rem;">
     <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
-    <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
+    <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">josemoreupeso.es</a>
   </div>
   <span style="color:var(--text-secondary);font-family:var(--font-sans);font-size:0.85rem;">TLOTP — The Lord of the Prompt</span>
   <button onclick="toggleTheme()" style="background:none;border:1px solid var(--border-color);color:var(--text-secondary);padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">&#x2600;&#xFE0F;/&#x1F319;</button>

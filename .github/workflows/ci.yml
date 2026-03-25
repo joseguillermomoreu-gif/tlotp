@@ -6,11 +6,13 @@ on:
     paths:
       - '**/*.md'
       - '.github/workflows/**'
+      - 'scripts/**'
   pull_request:
     branches: [master, develop]
     paths:
       - '**/*.md'
       - '.github/workflows/**'
+      - 'scripts/**'
 
 permissions:
   contents: read
