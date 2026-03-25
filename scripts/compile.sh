@@ -11,17 +11,20 @@ PROMPTS_DIR="$PROJECT_ROOT/prompts"
 DIST_DIR="$PROJECT_ROOT/dist"
 VERSION_FILE="$PROMPTS_DIR/VERSION.md"
 
-# ── Extraer versión ──────────────────────────────────────────
+# ── Extraer version ──────────────────────────────────────────
 VERSION="unknown"
 if [ -f "$VERSION_FILE" ]; then
   VERSION=$(grep -m1 -oP 'TLOTP v[\d.]+' "$VERSION_FILE" | head -1)
   [ -z "$VERSION" ] && VERSION="TLOTP (dev)"
 fi
 
-# ── Orden de épicas para tlotp-full.md ───────────────────────
-EPIC_ORDER="palantir ents celebrimbor bardo aragorn gandalf"
+# ── Orden de epicas para sidebar y tlotp-full.md ─────────────
+EPIC_ORDER="palantir ents celebrimbor aragorn bardo gandalf"
 
-# ── Colores de acento por épica ──────────────────────────────
+# ── Variable global para el sidebar HTML ─────────────────────
+SIDEBAR_HTML=""
+
+# ── Colores de acento por epica ──────────────────────────────
 color_for_epic() {
   case "$1" in
     palantir)    echo "#4a9eff" ;;
@@ -63,7 +66,135 @@ escape_html() {
   sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g'
 }
 
-# ── Generar HTML para un módulo ──────────────────────────────
+# ── CSS del sidebar ──────────────────────────────────────────
+sidebar_css() {
+  cat <<'SIDEBARCSS'
+.layout{display:flex;min-height:calc(100vh - 52px)}
+.sidebar{width:260px;min-width:260px;background:var(--bg-secondary);border-right:1px solid var(--border-color);overflow-y:auto;position:sticky;top:52px;height:calc(100vh - 52px);padding:1rem 0;font-family:var(--font-sans);font-size:.82rem}
+.sidebar-home{display:block;padding:.5rem 1rem;color:var(--accent-primary);font-weight:700;border-bottom:1px solid var(--border-color);margin-bottom:.5rem;text-decoration:none}
+.sidebar-home:hover{opacity:.8}
+.epic-header-nav{display:flex;align-items:center;justify-content:space-between;padding:.4rem 1rem;cursor:pointer;color:var(--text-primary);font-weight:600;user-select:none}
+.epic-header-nav:hover{background:var(--bg-tertiary)}
+.epic-items{list-style:none;padding:0;margin:0}
+.epic-items.collapsed{display:none}
+.epic-items li a{display:block;padding:.25rem 1rem .25rem 1.5rem;color:var(--text-secondary);text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.epic-items li a:hover{color:var(--text-primary);background:var(--bg-tertiary)}
+.epic-items li a.active{color:var(--accent-primary);border-left:2px solid var(--accent-primary);padding-left:calc(1.5rem - 2px);background:var(--bg-tertiary)}
+.sidebar-sep{border:none;border-top:1px solid var(--border-color);margin:.5rem 1rem}
+.sidebar-file a{display:block;padding:.25rem 1rem;color:var(--text-secondary);text-decoration:none}
+.sidebar-file a:hover{color:var(--text-primary);background:var(--bg-tertiary)}
+.sidebar-file a.active{color:var(--accent-primary);border-left:2px solid var(--accent-primary);padding-left:calc(1rem - 2px);background:var(--bg-tertiary)}
+.content-wrap{flex:1;min-width:0}
+.sidebar-toggle{display:none;background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:1.2rem;padding:0 .5rem}
+@media(max-width:768px){.sidebar-toggle{display:block}.sidebar{position:fixed;left:-270px;top:52px;z-index:200;transition:left .3s ease;height:calc(100vh - 52px)}.sidebar.open{left:0;box-shadow:4px 0 20px rgba(0,0,0,.3)}}
+SIDEBARCSS
+}
+
+# ── JS del sidebar ───────────────────────────────────────────
+sidebar_js() {
+  cat <<'SIDEBARJS'
+function toggleEpic(id){var list=document.getElementById('epic-'+id);var arrow=document.getElementById('arrow-'+id);if(list.classList.contains('collapsed')){list.classList.remove('collapsed');arrow.textContent='\u25BC';}else{list.classList.add('collapsed');arrow.textContent='\u25B6';}}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');}
+SIDEBARJS
+}
+
+# ── Construir sidebar HTML (llamar una vez) ──────────────────
+# Genera SIDEBAR_HTML con placeholder ACTIVE_PAGE para sustitucion
+build_sidebar() {
+  local sb=""
+  sb+='<nav class="sidebar" id="sidebar">'
+  sb+='<a class="sidebar-home" href="https://josemoreupeso.es/tlotp/">TLOTP</a>'
+
+  for epic in $EPIC_ORDER; do
+    local epic_dir="$PROMPTS_DIR/$epic"
+    if [ ! -d "$epic_dir" ]; then
+      continue
+    fi
+
+    local emoji
+    emoji="$(emoji_for_epic "$epic")"
+    local epic_name
+    epic_name="$(name_for_epic "$epic")"
+
+    # Epic header (expandible)
+    sb+="<div class=\"epic-header-nav\" onclick=\"toggleEpic('${epic}')\">"
+    sb+="<span>${emoji} ${epic_name}</span>"
+    sb+="<span id=\"arrow-${epic}\" style=\"font-size:.7rem\">&#x25B6;</span>"
+    sb+='</div>'
+
+    # Epic items list (collapsed by default, JS expands active)
+    sb+="<ul class=\"epic-items collapsed\" id=\"epic-${epic}\">"
+
+    # Main file
+    local main_rel="${epic}/${epic}-main"
+    sb+="<li><a href=\"https://josemoreupeso.es/tlotp/${main_rel}.html\" data-page=\"${main_rel}.md\" style=\"font-weight:600\">${epic}-main</a></li>"
+
+    # Sections (if sections/ dir exists)
+    if [ -d "$epic_dir/sections" ]; then
+      while IFS= read -r section_file; do
+        local section_basename
+        section_basename="$(basename "$section_file" .md)"
+        local section_rel="${epic}/sections/${section_basename}"
+        sb+="<li><a href=\"https://josemoreupeso.es/tlotp/${section_rel}.html\" data-page=\"${section_rel}.md\">${section_basename}</a></li>"
+      done < <(find "$epic_dir/sections" -name "*.md" -type f | sort)
+    fi
+
+    # Root-level files (not main, not in sections/)
+    while IFS= read -r root_file; do
+      local root_basename
+      root_basename="$(basename "$root_file" .md)"
+      # Skip the main file (already added)
+      if [ "$root_basename" = "${epic}-main" ]; then
+        continue
+      fi
+      local root_rel="${epic}/${root_basename}"
+      sb+="<li><a href=\"https://josemoreupeso.es/tlotp/${root_rel}.html\" data-page=\"${root_rel}.md\">${root_basename}</a></li>"
+    done < <(find "$epic_dir" -maxdepth 1 -name "*.md" -type f | sort)
+
+    sb+='</ul>'
+  done
+
+  # Separator + standalone files
+  sb+='<hr class="sidebar-sep">'
+
+  # tlotp-main
+  sb+='<div class="sidebar-file"><a href="https://josemoreupeso.es/tlotp/tlotp-main.html" data-page="tlotp-main.md">tlotp-main</a></div>'
+
+  # VERSION
+  sb+='<div class="sidebar-file"><a href="https://josemoreupeso.es/tlotp/VERSION.html" data-page="VERSION.md">VERSION</a></div>'
+
+  sb+='</nav>'
+
+  SIDEBAR_HTML="$sb"
+}
+
+# ── Inyectar sidebar con pagina activa ───────────────────────
+# Args: $1=rel_path (e.g. "palantir/sections/00-menu-principal.md")
+# Output: sidebar HTML with active class set + epic expanded
+inject_sidebar() {
+  local rel_path="$1"
+  local epic_from_path=""
+  local first_dir
+  first_dir="$(echo "$rel_path" | cut -d'/' -f1)"
+  if [ -d "$PROMPTS_DIR/$first_dir" ]; then
+    epic_from_path="$first_dir"
+  fi
+
+  # Set active class on matching link via sed
+  local sidebar_with_active
+  sidebar_with_active="$(echo "$SIDEBAR_HTML" | sed "s|data-page=\"${rel_path}\"|data-page=\"${rel_path}\" class=\"active\"|")"
+
+  # Expand the epic of the active page (remove 'collapsed' from its ul)
+  if [ -n "$epic_from_path" ]; then
+    sidebar_with_active="$(echo "$sidebar_with_active" | sed "s|collapsed\" id=\"epic-${epic_from_path}\"|\" id=\"epic-${epic_from_path}\"|")"
+    # Change arrow to down
+    sidebar_with_active="$(echo "$sidebar_with_active" | sed "s|id=\"arrow-${epic_from_path}\" style=\"font-size:.7rem\">&#x25B6;|id=\"arrow-${epic_from_path}\" style=\"font-size:.7rem\">\\&#x25BC;|")"
+  fi
+
+  echo "$sidebar_with_active"
+}
+
+# ── Generar HTML para un modulo ──────────────────────────────
 # Args: $1=md_file (ruta absoluta)
 generate_html() {
   local md_file="$1"
@@ -93,11 +224,24 @@ generate_html() {
     is_main=true
   fi
 
-  local content
-  content="$(escape_html < "$md_file")"
+  # Pipeline: raw md → placeholder @prompts/ refs → escape_html → restore links
+  local raw_content
+  raw_content="$(cat "$md_file")"
 
-  # Transformar @prompts/ruta/archivo.md → enlace clickable a josemoreupeso.es/tlotp/
-  content=$(echo "$content" | sed 's|@prompts/\([^&"<>[:space:]]*\)\.md|<a href="https://josemoreupeso.es/tlotp/\1.html" style="color:var(--accent-primary)">@prompts/\1.md</a>|g')
+  # Step 1: Replace @prompts/path/file.md with placeholder BEFORE escape_html
+  # Uses TLOTP_IMPORT{path/file}END as placeholder (no special HTML chars)
+  raw_content="$(echo "$raw_content" | sed 's|@prompts/\([^`"'"'"'[:space:]]*\)\.md|TLOTP_IMPORT{\1}END|g')"
+
+  # Step 2: escape_html
+  local content
+  content="$(echo "$raw_content" | escape_html)"
+
+  # Step 3: Restore placeholders to actual <a> links (works even inside <code> or &grave;)
+  content="$(echo "$content" | sed 's|TLOTP_IMPORT{\([^}]*\)}END|<a href="https://josemoreupeso.es/tlotp/\1.html" style="color:var(--accent-primary)">@prompts/\1.md</a>|g')"
+
+  # Get sidebar for this page
+  local page_sidebar
+  page_sidebar="$(inject_sidebar "$rel_path")"
 
   if [ "$is_main" = true ] && [ -n "$epic" ]; then
     local emoji
@@ -133,14 +277,21 @@ pre{font-family:var(--font-mono);white-space:pre-wrap;word-wrap:break-word;font-
 .footer{text-align:center;padding:2rem;color:var(--text-secondary);font-size:.85rem;border-top:1px solid var(--border-color);margin-top:2rem}
 .footer a{color:${accent};text-decoration:none}
 .footer a:hover{text-decoration:underline}
+$(sidebar_css)
 </style>
 </head>
 <body>
 <header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
-  <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
+  <div style="display:flex;align-items:center;gap:0.5rem;">
+    <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+    <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
+  </div>
   <span style="color:var(--text-secondary);font-family:var(--font-sans);font-size:0.85rem;">${epic_name} — TLOTP</span>
   <button onclick="toggleTheme()" style="background:none;border:1px solid var(--border-color);color:var(--text-secondary);padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">&#x2600;&#xFE0F;/&#x1F319;</button>
 </header>
+<div class="layout">
+${page_sidebar}
+<div class="content-wrap">
 <div class="epic-header">
 <h1>${emoji} ${epic_name}</h1>
 </div>
@@ -150,8 +301,11 @@ pre{font-family:var(--font-mono);white-space:pre-wrap;word-wrap:break-word;font-
 <div class="footer">
 ${VERSION} · <a href="https://github.com/joseguillermomoreu-gif/tlotp">GitHub</a>
 </div>
+</div>
+</div>
 <script>
 function toggleTheme(){var html=document.documentElement;var t=html.getAttribute('data-theme')==='dark'?'light':'dark';html.setAttribute('data-theme',t);localStorage.setItem('tlotp-theme',t);}
+$(sidebar_js)
 </script>
 </body>
 </html>
@@ -184,22 +338,32 @@ pre{font-family:var(--font-mono);white-space:pre-wrap;word-wrap:break-word;font-
 .footer{text-align:center;padding:2rem;color:var(--text-secondary);font-size:.85rem;border-top:1px solid var(--border-color);margin-top:2rem}
 .footer a{color:var(--accent-primary);text-decoration:none}
 .footer a:hover{text-decoration:underline}
+$(sidebar_css)
 </style>
 </head>
 <body>
 <header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
-  <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
+  <div style="display:flex;align-items:center;gap:0.5rem;">
+    <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+    <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
+  </div>
   <span style="color:var(--text-secondary);font-family:var(--font-sans);font-size:0.85rem;">${title} — TLOTP</span>
   <button onclick="toggleTheme()" style="background:none;border:1px solid var(--border-color);color:var(--text-secondary);padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">&#x2600;&#xFE0F;/&#x1F319;</button>
 </header>
+<div class="layout">
+${page_sidebar}
+<div class="content-wrap">
 <div class="content">
 <pre>${content}</pre>
 </div>
 <div class="footer">
 ${VERSION} · <a href="https://github.com/joseguillermomoreu-gif/tlotp">GitHub</a>
 </div>
+</div>
+</div>
 <script>
 function toggleTheme(){var html=document.documentElement;var t=html.getAttribute('data-theme')==='dark'?'light':'dark';html.setAttribute('data-theme',t);localStorage.setItem('tlotp-theme',t);}
+$(sidebar_js)
 </script>
 </body>
 </html>
@@ -311,6 +475,10 @@ generate_index() {
   local out_file="$DIST_DIR/index.html"
   echo "  Generating index.html..."
 
+  # Get sidebar for index (no active page in epics)
+  local index_sidebar
+  index_sidebar="$SIDEBAR_HTML"
+
   cat > "$out_file" <<'INDEXEOF'
 <!DOCTYPE html>
 <html lang="es">
@@ -375,15 +543,35 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
 .footer{text-align:center;padding:2.5rem 2rem;color:var(--text-secondary);font-size:.85rem;border-top:1px solid var(--border-color);margin-top:3rem}
 .footer a{color:#e8a838;text-decoration:none}
 .footer a:hover{text-decoration:underline}
+
+/* Sidebar */
+INDEXEOF
+
+  # Inject sidebar CSS (dynamic to avoid single-quote heredoc issues)
+  sidebar_css >> "$out_file"
+
+  cat >> "$out_file" <<'INDEXEOF2'
 </style>
 </head>
 <body>
 
 <header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
-  <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
+  <div style="display:flex;align-items:center;gap:0.5rem;">
+    <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+    <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
+  </div>
   <span style="color:var(--text-secondary);font-family:var(--font-sans);font-size:0.85rem;">TLOTP — The Lord of the Prompt</span>
   <button onclick="toggleTheme()" style="background:none;border:1px solid var(--border-color);color:var(--text-secondary);padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">&#x2600;&#xFE0F;/&#x1F319;</button>
 </header>
+
+<div class="layout">
+INDEXEOF2
+
+  # Inject sidebar HTML (no active page for index)
+  echo "$index_sidebar" >> "$out_file"
+
+  cat >> "$out_file" <<'INDEXEOF3'
+<div class="content-wrap">
 
 <div class="hero">
   <h1>TLOTP</h1>
@@ -393,30 +581,30 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
 
 <div class="container">
 
-  <!-- Qué es TLOTP -->
+  <!-- Que es TLOTP -->
   <div class="section">
-    <h2>&iquest;Qué es TLOTP?</h2>
+    <h2>&iquest;Que es TLOTP?</h2>
     <p>TLOTP es un super-prompt interactivo que configura Claude Code de forma asistida.
-       Funciona como un menú de herramientas especializadas (épicas) que cubren desde la
-       inspección de configuraciones hasta la gestión de skills, CI/CD, equipos de agentes
-       y desarrollo guiado por especificación.</p>
+       Funciona como un menu de herramientas especializadas (epicas) que cubren desde la
+       inspeccion de configuraciones hasta la gestion de skills, CI/CD, equipos de agentes
+       y desarrollo guiado por especificacion.</p>
     <ul>
-      <li>Menús interactivos con narrativa LOTR</li>
-      <li>Arquitectura modular: carga solo la épica que necesites</li>
-      <li>6 épicas, más de 80 módulos, sin dependencias externas</li>
+      <li>Menus interactivos con narrativa LOTR</li>
+      <li>Arquitectura modular: carga solo la epica que necesites</li>
+      <li>6 epicas, mas de 80 modulos, sin dependencias externas</li>
     </ul>
   </div>
 
   <!-- Modo Web -->
   <div class="section">
-    <h2>Modo Web — Usa desde cualquier sesión de Claude Code</h2>
-    <p>No necesitas instalar nada. Solo dile a Claude Code que descargue la épica que necesites:</p>
+    <h2>Modo Web — Usa desde cualquier sesion de Claude Code</h2>
+    <p>No necesitas instalar nada. Solo dile a Claude Code que descargue la epica que necesites:</p>
     <div class="webfetch-box">
       <button class="copy-btn" onclick="copyText(this)">Copiar</button>
       WebFetch https://josemoreupeso.es/tlotp/palantir/palantir-main.html
     </div>
     <p style="font-size:.85rem;color:var(--text-secondary);margin-top:.5rem">
-      Sustituye <code style="color:var(--accent-primary)">palantir</code> por cualquier nombre de épica:
+      Sustituye <code style="color:var(--accent-primary)">palantir</code> por cualquier nombre de epica:
       <code style="color:var(--accent-primary)">bardo</code>,
       <code style="color:var(--accent-primary)">celebrimbor</code>,
       <code style="color:var(--accent-primary)">ents</code>,
@@ -424,7 +612,7 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
       <code style="color:var(--accent-primary)">gandalf</code>
     </p>
     <p style="font-size:.85rem;color:var(--text-secondary)">
-      O carga el prompt completo de una vez (todas las épicas):
+      O carga el prompt completo de una vez (todas las epicas):
     </p>
     <div class="webfetch-box">
       <button class="copy-btn" onclick="copyText(this)">Copiar</button>
@@ -432,9 +620,9 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
     </div>
   </div>
 
-  <!-- Épicas -->
+  <!-- Epicas -->
   <div class="section">
-    <h2>Las Épicas</h2>
+    <h2>Las Epicas</h2>
     <div class="epics">
       <a class="epic-card" href="palantir/palantir-main.html" style="border-color:#4a9eff">
         <span class="epic-emoji">&#x1F52E;</span>
@@ -449,7 +637,7 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
       <a class="epic-card" href="celebrimbor/celebrimbor-main.html" style="border-color:#cd7f32">
         <span class="epic-emoji">&#x2692;&#xFE0F;</span>
         <span class="epic-name" style="color:#cd7f32">Celebrimbor</span>
-        <span class="epic-desc">Gestor de skills — CRUD para más de 59.000 skills</span>
+        <span class="epic-desc">Gestor de skills — CRUD para mas de 59.000 skills</span>
       </a>
       <a class="epic-card" href="bardo/bardo-main.html" style="border-color:#e8a838">
         <span class="epic-emoji">&#x1F3F9;</span>
@@ -464,7 +652,7 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
       <a class="epic-card" href="gandalf/gandalf-main.html" style="border-color:#f0f0f0">
         <span class="epic-emoji">&#x26A1;</span>
         <span class="epic-name" style="color:#f0f0f0">Gandalf</span>
-        <span class="epic-desc">Desarrollo guiado por especificación — flujo SDD</span>
+        <span class="epic-desc">Desarrollo guiado por especificacion — flujo SDD</span>
       </a>
     </div>
   </div>
@@ -480,12 +668,15 @@ body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--fo
 </div>
 
 <div class="footer">
-INDEXEOF
+INDEXEOF3
 
   # Insert version dynamically
   echo "  ${VERSION} · <a href=\"https://github.com/joseguillermomoreu-gif/tlotp\">GitHub</a>" >> "$out_file"
 
-  cat >> "$out_file" <<'INDEXEOF2'
+  cat >> "$out_file" <<'INDEXEOF4'
+</div>
+
+</div>
 </div>
 
 <script>
@@ -509,11 +700,13 @@ function copyText(btn){
     setTimeout(function(){btn.textContent='Copiar'},1500);
   }
 }
+function toggleEpic(id){var list=document.getElementById('epic-'+id);var arrow=document.getElementById('arrow-'+id);if(list.classList.contains('collapsed')){list.classList.remove('collapsed');arrow.textContent='\u25BC';}else{list.classList.add('collapsed');arrow.textContent='\u25B6';}}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');}
 </script>
 
 </body>
 </html>
-INDEXEOF2
+INDEXEOF4
 }
 
 # ── Compilar todo ────────────────────────────────────────────
@@ -527,6 +720,10 @@ compile_all() {
   # Clean dist
   rm -rf "$DIST_DIR"
   mkdir -p "$DIST_DIR"
+
+  # 0. Build sidebar structure (once, before generating pages)
+  echo "  Building sidebar..."
+  build_sidebar
 
   # 1. Convert each .md to .html
   echo "  Compiling .md -> .html..."
