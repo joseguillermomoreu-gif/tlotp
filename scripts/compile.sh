@@ -87,6 +87,7 @@ generate_html() {
   local accent
   accent="$(color_for_epic "$epic")"
   local title="$basename_file"
+  local page_title="$title"
   local is_main=false
   if echo "$basename_file" | grep -q '\-main\.md$'; then
     is_main=true
@@ -100,6 +101,7 @@ generate_html() {
     emoji="$(emoji_for_epic "$epic")"
     local epic_name
     epic_name="$(name_for_epic "$epic")"
+    page_title="${epic_name} — TLOTP"
     cat > "$out_file" <<HTMLEOF
 <!DOCTYPE html>
 <html lang="es">
@@ -107,20 +109,36 @@ generate_html() {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${epic_name} — TLOTP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<script>
+(function(){
+  var t = localStorage.getItem('tlotp-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
 <style>
+:root{--bg-primary:#0D1117;--bg-secondary:#161B22;--bg-tertiary:#1C2128;--text-primary:#E6EDF3;--text-secondary:#8B949E;--accent-primary:#00D9FF;--accent-secondary:#00FFB3;--border-color:#30363D;--font-sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'Fira Code','Monaco','Menlo',monospace}
+[data-theme="light"]{--bg-primary:#FFFFFF;--bg-secondary:#F8F9FA;--bg-tertiary:#F1F3F5;--text-primary:#212529;--text-secondary:#6C757D;--border-color:#DEE2E6}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0d0d0d;color:#c9d1d9;font-family:system-ui,sans-serif;line-height:1.6}
-.header{background:#161b22;border-bottom:2px solid ${accent};padding:1.5rem 2rem;text-align:center}
-.header h1{color:${accent};font-family:Georgia,'Times New Roman',serif;font-size:1.8rem}
+body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);line-height:1.6}
+.epic-header{background:var(--bg-secondary);border-bottom:2px solid ${accent};padding:1.5rem 2rem;text-align:center}
+.epic-header h1{color:${accent};font-family:Georgia,'Times New Roman',serif;font-size:1.8rem}
 .content{max-width:960px;margin:0 auto;padding:2rem}
-pre{white-space:pre-wrap;word-wrap:break-word;font-size:.9rem;line-height:1.7;color:#c9d1d9}
-.footer{text-align:center;padding:2rem;color:#8b949e;font-size:.85rem;border-top:1px solid #21262d;margin-top:2rem}
+pre{font-family:var(--font-mono);white-space:pre-wrap;word-wrap:break-word;font-size:.88rem;line-height:1.75;color:var(--text-primary)}
+.footer{text-align:center;padding:2rem;color:var(--text-secondary);font-size:.85rem;border-top:1px solid var(--border-color);margin-top:2rem}
 .footer a{color:${accent};text-decoration:none}
 .footer a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
-<div class="header">
+<header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
+  <a href="/tlotp/" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
+  <span style="color:var(--text-secondary);font-family:var(--font-sans);font-size:0.85rem;">${epic_name} — TLOTP</span>
+  <button onclick="toggleTheme()" style="background:none;border:1px solid var(--border-color);color:var(--text-secondary);padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">&#x2600;&#xFE0F;/&#x1F319;</button>
+</header>
+<div class="epic-header">
 <h1>${emoji} ${epic_name}</h1>
 </div>
 <div class="content">
@@ -129,10 +147,14 @@ pre{white-space:pre-wrap;word-wrap:break-word;font-size:.9rem;line-height:1.7;co
 <div class="footer">
 ${VERSION} · <a href="https://github.com/joseguillermomoreu-gif/tlotp">GitHub</a>
 </div>
+<script>
+function toggleTheme(){var html=document.documentElement;var t=html.getAttribute('data-theme')==='dark'?'light':'dark';html.setAttribute('data-theme',t);localStorage.setItem('tlotp-theme',t);}
+</script>
 </body>
 </html>
 HTMLEOF
   else
+    page_title="${title} — TLOTP"
     cat > "$out_file" <<HTMLEOF
 <!DOCTYPE html>
 <html lang="es">
@@ -140,23 +162,42 @@ HTMLEOF
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${title} — TLOTP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<script>
+(function(){
+  var t = localStorage.getItem('tlotp-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
 <style>
+:root{--bg-primary:#0D1117;--bg-secondary:#161B22;--bg-tertiary:#1C2128;--text-primary:#E6EDF3;--text-secondary:#8B949E;--accent-primary:#00D9FF;--accent-secondary:#00FFB3;--border-color:#30363D;--font-sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'Fira Code','Monaco','Menlo',monospace}
+[data-theme="light"]{--bg-primary:#FFFFFF;--bg-secondary:#F8F9FA;--bg-tertiary:#F1F3F5;--text-primary:#212529;--text-secondary:#6C757D;--border-color:#DEE2E6}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0d0d0d;color:#c9d1d9;font-family:system-ui,sans-serif;line-height:1.6}
+body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);line-height:1.6}
 .content{max-width:960px;margin:0 auto;padding:2rem}
-pre{white-space:pre-wrap;word-wrap:break-word;font-size:.9rem;line-height:1.7;color:#c9d1d9}
-.footer{text-align:center;padding:2rem;color:#8b949e;font-size:.85rem;border-top:1px solid #21262d;margin-top:2rem}
-.footer a{color:#58a6ff;text-decoration:none}
+pre{font-family:var(--font-mono);white-space:pre-wrap;word-wrap:break-word;font-size:.88rem;line-height:1.75;color:var(--text-primary)}
+.footer{text-align:center;padding:2rem;color:var(--text-secondary);font-size:.85rem;border-top:1px solid var(--border-color);margin-top:2rem}
+.footer a{color:var(--accent-primary);text-decoration:none}
 .footer a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
+  <a href="/tlotp/" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
+  <span style="color:var(--text-secondary);font-family:var(--font-sans);font-size:0.85rem;">${title} — TLOTP</span>
+  <button onclick="toggleTheme()" style="background:none;border:1px solid var(--border-color);color:var(--text-secondary);padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">&#x2600;&#xFE0F;/&#x1F319;</button>
+</header>
 <div class="content">
 <pre>${content}</pre>
 </div>
 <div class="footer">
 ${VERSION} · <a href="https://github.com/joseguillermomoreu-gif/tlotp">GitHub</a>
 </div>
+<script>
+function toggleTheme(){var html=document.documentElement;var t=html.getAttribute('data-theme')==='dark'?'light':'dark';html.setAttribute('data-theme',t);localStorage.setItem('tlotp-theme',t);}
+</script>
 </body>
 </html>
 HTMLEOF
@@ -274,55 +315,72 @@ generate_index() {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TLOTP — The Lord of the Prompt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<script>
+(function(){
+  var t = localStorage.getItem('tlotp-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
 <style>
+:root{--bg-primary:#0D1117;--bg-secondary:#161B22;--bg-tertiary:#1C2128;--text-primary:#E6EDF3;--text-secondary:#8B949E;--accent-primary:#00D9FF;--accent-secondary:#00FFB3;--border-color:#30363D;--font-sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'Fira Code','Monaco','Menlo',monospace}
+[data-theme="light"]{--bg-primary:#FFFFFF;--bg-secondary:#F8F9FA;--bg-tertiary:#F1F3F5;--text-primary:#212529;--text-secondary:#6C757D;--border-color:#DEE2E6}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0d0d0d;color:#c9d1d9;font-family:system-ui,-apple-system,sans-serif;line-height:1.6}
+body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);line-height:1.6}
 
-/* Header */
-.hero{text-align:center;padding:4rem 2rem 3rem;background:linear-gradient(180deg,#161b22 0%,#0d0d0d 100%)}
+/* Hero */
+.hero{text-align:center;padding:4rem 2rem 3rem;background:linear-gradient(180deg,var(--bg-secondary) 0%,var(--bg-primary) 100%)}
 .hero h1{font-family:Georgia,'Times New Roman',serif;font-size:2.5rem;color:#e8a838;margin-bottom:.5rem;letter-spacing:.05em}
-.hero .subtitle{color:#8b949e;font-size:1.1rem;font-style:italic;margin-bottom:2rem}
-.hero .ring{font-size:.95rem;color:#cd7f32;border:1px solid #30363d;display:inline-block;padding:.5rem 1.5rem;border-radius:6px;margin-bottom:1.5rem;font-family:Georgia,serif;letter-spacing:.03em}
+.hero .subtitle{color:var(--text-secondary);font-size:1.1rem;font-style:italic;margin-bottom:2rem}
+.hero .ring{font-size:.95rem;color:#cd7f32;border:1px solid var(--border-color);display:inline-block;padding:.5rem 1.5rem;border-radius:6px;margin-bottom:1.5rem;font-family:Georgia,serif;letter-spacing:.03em}
 
 /* Main */
 .container{max-width:800px;margin:0 auto;padding:0 2rem}
 
 /* Sections */
-.section{margin:2.5rem 0;padding:2rem;background:#161b22;border:1px solid #30363d;border-radius:8px}
-.section h2{color:#e8a838;font-family:Georgia,serif;font-size:1.4rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid #21262d}
-.section p{color:#c9d1d9;margin-bottom:.8rem;font-size:.95rem}
+.section{margin:2.5rem 0;padding:2rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:8px}
+.section h2{color:#e8a838;font-family:Georgia,serif;font-size:1.4rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border-color)}
+.section p{color:var(--text-primary);margin-bottom:.8rem;font-size:.95rem}
 .section ul{list-style:none;padding:0;margin:.5rem 0}
 .section ul li{padding:.3rem 0;font-size:.95rem}
 .section ul li::before{content:'  ';margin-right:.5rem}
 
 /* Epics grid */
 .epics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem}
-.epic-card{background:#0d0d0d;border:1px solid #30363d;border-radius:8px;padding:1.2rem;text-decoration:none;color:#c9d1d9;transition:border-color .2s,transform .15s}
+.epic-card{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:8px;padding:1.2rem;text-decoration:none;color:var(--text-primary);transition:border-color .2s,transform .15s}
 .epic-card:hover{transform:translateY(-2px)}
 .epic-card .epic-emoji{font-size:1.5rem;margin-bottom:.3rem;display:block}
 .epic-card .epic-name{font-family:Georgia,serif;font-size:1.1rem;display:block;margin-bottom:.3rem}
-.epic-card .epic-desc{font-size:.8rem;color:#8b949e;line-height:1.4}
+.epic-card .epic-desc{font-size:.8rem;color:var(--text-secondary);line-height:1.4}
 
 /* WebFetch box */
-.webfetch-box{background:#0d0d0d;border:1px solid #30363d;border-radius:6px;padding:1rem;margin:.8rem 0;font-family:'SFMono-Regular',Consolas,monospace;font-size:.85rem;color:#79c0ff;position:relative;word-break:break-all}
-.copy-btn{position:absolute;top:.5rem;right:.5rem;background:#30363d;color:#c9d1d9;border:none;padding:.3rem .6rem;border-radius:4px;cursor:pointer;font-size:.75rem}
-.copy-btn:hover{background:#484f58}
+.webfetch-box{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:6px;padding:1rem;margin:.8rem 0;font-family:var(--font-mono);font-size:.85rem;color:var(--accent-primary);position:relative;word-break:break-all}
+.copy-btn{position:absolute;top:.5rem;right:.5rem;background:var(--border-color);color:var(--text-primary);border:none;padding:.3rem .6rem;border-radius:4px;cursor:pointer;font-size:.75rem;font-family:var(--font-sans)}
+.copy-btn:hover{opacity:.8}
 
 /* CTA */
 .cta{text-align:center;margin:2.5rem 0}
-.cta a{display:inline-block;background:#e8a838;color:#0d0d0d;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:1rem;transition:background .2s}
+.cta a{display:inline-block;background:#e8a838;color:#0d0d0d;padding:.8rem 2rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:1rem;font-family:var(--font-sans);transition:background .2s}
 .cta a:hover{background:#f0b848}
 .cta-secondary{display:block;margin-top:1rem}
-.cta-secondary a{color:#8b949e;font-size:.85rem;text-decoration:none}
-.cta-secondary a:hover{color:#c9d1d9;text-decoration:underline}
+.cta-secondary a{color:var(--text-secondary);font-size:.85rem;text-decoration:none}
+.cta-secondary a:hover{color:var(--text-primary);text-decoration:underline}
 
 /* Footer */
-.footer{text-align:center;padding:2.5rem 2rem;color:#8b949e;font-size:.85rem;border-top:1px solid #21262d;margin-top:3rem}
+.footer{text-align:center;padding:2.5rem 2rem;color:var(--text-secondary);font-size:.85rem;border-top:1px solid var(--border-color);margin-top:3rem}
 .footer a{color:#e8a838;text-decoration:none}
 .footer a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+
+<header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
+  <a href="/tlotp/" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">&larr; TLOTP</a>
+  <span style="color:var(--text-secondary);font-family:var(--font-sans);font-size:0.85rem;">TLOTP — The Lord of the Prompt</span>
+  <button onclick="toggleTheme()" style="background:none;border:1px solid var(--border-color);color:var(--text-secondary);padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">&#x2600;&#xFE0F;/&#x1F319;</button>
+</header>
 
 <div class="hero">
   <div class="ring">One Prompt to Rule Them All</div>
@@ -332,86 +390,87 @@ body{background:#0d0d0d;color:#c9d1d9;font-family:system-ui,-apple-system,sans-s
 
 <div class="container">
 
-  <!-- What is TLOTP -->
+  <!-- Qué es TLOTP -->
   <div class="section">
-    <h2>What is TLOTP?</h2>
-    <p>TLOTP is an interactive super-prompt that configures Claude Code in an assisted way.
-       It works as a menu of specialized tools (epics) covering everything from configuration
-       inspection to skill management, CI/CD guardianship, agent teams, and spec-driven development.</p>
+    <h2>&iquest;Qué es TLOTP?</h2>
+    <p>TLOTP es un super-prompt interactivo que configura Claude Code de forma asistida.
+       Funciona como un menú de herramientas especializadas (épicas) que cubren desde la
+       inspección de configuraciones hasta la gestión de skills, CI/CD, equipos de agentes
+       y desarrollo guiado por especificación.</p>
     <ul>
-      <li>Interactive menus with LOTR-themed narrative</li>
-      <li>Modular architecture: load only the epic you need</li>
-      <li>6 epics, 80+ modules, zero external dependencies</li>
+      <li>Menús interactivos con narrativa LOTR</li>
+      <li>Arquitectura modular: carga solo la épica que necesites</li>
+      <li>6 épicas, más de 80 módulos, sin dependencias externas</li>
     </ul>
   </div>
 
-  <!-- Web Mode -->
+  <!-- Modo Web -->
   <div class="section">
-    <h2>Web Mode — Use from any Claude Code session</h2>
-    <p>You don't need to install anything. Just tell Claude Code to fetch the epic you need:</p>
+    <h2>Modo Web — Usa desde cualquier sesión de Claude Code</h2>
+    <p>No necesitas instalar nada. Solo dile a Claude Code que descargue la épica que necesites:</p>
     <div class="webfetch-box">
-      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <button class="copy-btn" onclick="copyText(this)">Copiar</button>
       WebFetch https://josemoreupeso.es/tlotp/palantir/palantir-main.html
     </div>
-    <p style="font-size:.85rem;color:#8b949e;margin-top:.5rem">
-      Replace <code style="color:#79c0ff">palantir</code> with any epic name:
-      <code style="color:#79c0ff">bardo</code>,
-      <code style="color:#79c0ff">celebrimbor</code>,
-      <code style="color:#79c0ff">ents</code>,
-      <code style="color:#79c0ff">aragorn</code>,
-      <code style="color:#79c0ff">gandalf</code>
+    <p style="font-size:.85rem;color:var(--text-secondary);margin-top:.5rem">
+      Sustituye <code style="color:var(--accent-primary)">palantir</code> por cualquier nombre de épica:
+      <code style="color:var(--accent-primary)">bardo</code>,
+      <code style="color:var(--accent-primary)">celebrimbor</code>,
+      <code style="color:var(--accent-primary)">ents</code>,
+      <code style="color:var(--accent-primary)">aragorn</code>,
+      <code style="color:var(--accent-primary)">gandalf</code>
     </p>
-    <p style="font-size:.85rem;color:#8b949e">
-      Or load the full prompt at once (all epics):
+    <p style="font-size:.85rem;color:var(--text-secondary)">
+      O carga el prompt completo de una vez (todas las épicas):
     </p>
     <div class="webfetch-box">
-      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <button class="copy-btn" onclick="copyText(this)">Copiar</button>
       WebFetch https://josemoreupeso.es/tlotp/tlotp-full.md
     </div>
   </div>
 
-  <!-- Epics -->
+  <!-- Épicas -->
   <div class="section">
-    <h2>The Epics</h2>
+    <h2>Las Épicas</h2>
     <div class="epics">
       <a class="epic-card" href="palantir/palantir-main.html" style="border-color:#4a9eff">
         <span class="epic-emoji">&#x1F52E;</span>
         <span class="epic-name" style="color:#4a9eff">Palantir</span>
-        <span class="epic-desc">Inspector &amp; manager of Claude Code configurations</span>
+        <span class="epic-desc">Inspector y gestor de configuraciones de Claude Code</span>
       </a>
       <a class="epic-card" href="ents/ents-main.html" style="border-color:#4a7c59">
         <span class="epic-emoji">&#x1F333;</span>
         <span class="epic-name" style="color:#4a7c59">Ents</span>
-        <span class="epic-desc">Guardians of CI/CD &amp; GitHub Actions</span>
+        <span class="epic-desc">Guardianes del CI/CD y GitHub Actions</span>
       </a>
       <a class="epic-card" href="celebrimbor/celebrimbor-main.html" style="border-color:#cd7f32">
         <span class="epic-emoji">&#x2692;&#xFE0F;</span>
         <span class="epic-name" style="color:#cd7f32">Celebrimbor</span>
-        <span class="epic-desc">Skills manager — CRUD for 59,000+ skills</span>
+        <span class="epic-desc">Gestor de skills — CRUD para más de 59.000 skills</span>
       </a>
       <a class="epic-card" href="bardo/bardo-main.html" style="border-color:#e8a838">
         <span class="epic-emoji">&#x1F3F9;</span>
         <span class="epic-name" style="color:#e8a838">Bardo</span>
-        <span class="epic-desc">MCP &amp; plugin provider with marketplace</span>
+        <span class="epic-desc">Proveedor de MCPs y plugins con marketplace</span>
       </a>
       <a class="epic-card" href="aragorn/aragorn-main.html" style="border-color:#a8b8c8">
         <span class="epic-emoji">&#x1F451;</span>
         <span class="epic-name" style="color:#a8b8c8">Aragorn</span>
-        <span class="epic-desc">Agent &amp; team manager with lore-based roles</span>
+        <span class="epic-desc">Gestor de agentes y equipos con roles basados en el lore</span>
       </a>
       <a class="epic-card" href="gandalf/gandalf-main.html" style="border-color:#f0f0f0">
         <span class="epic-emoji">&#x26A1;</span>
         <span class="epic-name" style="color:#f0f0f0">Gandalf</span>
-        <span class="epic-desc">Spec-Driven Development — SDD workflow</span>
+        <span class="epic-desc">Desarrollo guiado por especificación — flujo SDD</span>
       </a>
     </div>
   </div>
 
-  <!-- Download -->
+  <!-- Descarga -->
   <div class="cta">
-    <a href="tlotp-full.md" download="tlotp-full.md">Download full prompt (tlotp-full.md)</a>
+    <a href="tlotp-full.md" download="tlotp-full.md">Descargar prompt completo (tlotp-full.md)</a>
     <div class="cta-secondary">
-      <a href="https://github.com/joseguillermomoreu-gif/tlotp">View on GitHub</a>
+      <a href="https://github.com/joseguillermomoreu-gif/tlotp">Ver en GitHub</a>
     </div>
   </div>
 
@@ -427,13 +486,14 @@ INDEXEOF
 </div>
 
 <script>
+function toggleTheme(){var html=document.documentElement;var t=html.getAttribute('data-theme')==='dark'?'light':'dark';html.setAttribute('data-theme',t);localStorage.setItem('tlotp-theme',t);}
 function copyText(btn){
   var box=btn.parentElement;
-  var text=box.textContent.replace('Copy','').trim();
+  var text=box.textContent.replace('Copiar','').replace('Copiado!','').trim();
   if(navigator.clipboard){
     navigator.clipboard.writeText(text).then(function(){
-      btn.textContent='Copied!';
-      setTimeout(function(){btn.textContent='Copy'},1500);
+      btn.textContent='Copiado!';
+      setTimeout(function(){btn.textContent='Copiar'},1500);
     });
   }else{
     var ta=document.createElement('textarea');
@@ -442,8 +502,8 @@ function copyText(btn){
     ta.select();
     document.execCommand('copy');
     document.body.removeChild(ta);
-    btn.textContent='Copied!';
-    setTimeout(function(){btn.textContent='Copy'},1500);
+    btn.textContent='Copiado!';
+    setTimeout(function(){btn.textContent='Copiar'},1500);
   }
 }
 </script>
