@@ -6,9 +6,9 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v4.7.0**
+**TLOTP v5.0.0**
 - **Fecha release**: 2026-03-25
-- **Nombre código**: "Las Runas del Anillo"
+- **Nombre código**: "The Fellowship of the Prompt"
 
 ---
 
