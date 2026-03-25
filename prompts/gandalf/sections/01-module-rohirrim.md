@@ -23,8 +23,8 @@ Mostrar animación adaptada:
   Los jinetes del team cabalgan hacia el horizonte.
   Sus especialidades guían la exploración.
 
-  🏇 [nombre-agente-1] ([tipo]) ....  ⚔️  en misión
-  🏇 [nombre-agente-2] ([tipo]) ....  ⚔️  en misión
+  🏇 [nombre-agente] ([nombre de lore]) — [especialidad] ....  ⚔️  en misión
+  🏇 [nombre-agente] ([nombre de lore]) — [especialidad] ....  ⚔️  en misión
   ...
 
 ══════════════════════════════════════════════════════════════
@@ -40,6 +40,32 @@ Los roles de exploración se adaptan según el tipo de agente:
 - `typescript-pro` → explora stack TypeScript
 - `database-administrator` → explora bases de datos y schemas
 - Cualquier otro → exploración genérica del proyecto
+
+### Nombres de lore por especialidad
+
+Al mostrar al usuario los agentes del team y asignar roles de exploración,
+mapear cada agente con un nombre de lore según su especialidad detectada
+(por nombre o descripción del agente):
+
+| Especialidad detectada (en nombre/descripción) | Nombre de lore asignado |
+|------------------------------------------------|------------------------|
+| git, branch, ramas, versionado | **Thorin Escudo de Roble** |
+| CI/CD, pipeline, infraestructura, docker | **Bárbol** |
+| PHP, backend, symfony, laravel | **Frodo Bolsón** / **Sam Gamyi** / **Merry** / **Pippin** (hobbits, rotar si hay varios) |
+| scrum, agile, facilitación | **Gandalf** |
+| product owner, producto, estrategia, roadmap | **Aragorn** |
+| frontend, UI, react, vue, CSS | **Boromir** / **Faramir** / **Éomer** (rotar si hay varios) |
+| IA, LLM, machine learning, embeddings | **Legolas** / **Elrond** / **Galadriel** (rotar si hay varios) |
+| Sin match claro | usar nombre real del agente sin nombre de lore |
+
+Al mostrar la animación de despliegue con Agent Team, incluir tanto el nombre
+real del agente como su nombre de lore entre paréntesis. Ejemplo:
+
+```
+🏇 typescript-pro (Boromir de Gondor) — Frontend
+🏇 php-pro (Frodo Bolsón) — Backend PHP
+🏇 devops-engineer (Bárbol) — CI/CD
+```
 
 Lanzar un Agent por cada explorador de `GANDALF_EXPLORERS` en paralelo, adaptando
 el prompt de exploración según el tipo de agente listado arriba.
