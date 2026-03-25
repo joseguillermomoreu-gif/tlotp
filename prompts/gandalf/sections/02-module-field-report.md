@@ -53,6 +53,13 @@ El mapa del terreno, firmado por los cinco jinetes.
 **IMPORTANTE**: El informe usa los datos reales devueltos por los agentes.
 No inventar ni rellenar con ejemplos si el agente devolvió "sin datos".
 
+**Nombres dinámicos**: Si `GANDALF_TEAM` está activo y hay exploradores asignados,
+sustituir los nombres clásicos (Éowyn, Théoden, Merry, Pippin, Gamling) por los
+nombres reales de los agentes del team junto con su nombre de lore asignado
+(ver tabla de mapping en `01-module-rohirrim.md`). Ejemplo:
+`🏇 PHP-PRO (FRODO BOLSÓN)` en lugar de `🏇 THÉODEN DEL DOMINIO`.
+Si no hay team activo, mantener los nombres clásicos de los Rohirrim.
+
 ---
 
 ## Paso de Consenso del Consejo (condicional)
@@ -151,8 +158,8 @@ Si el usuario elige corregir, preguntar qué sección:
         "description": ""
       },
       {
-        "label": "🏇 Théoden del Dominio — arquitectura y módulos",
-        "description": ""
+        "label": "🏇 [agente de dominio] — arquitectura y módulos",
+        "description": "Si GANDALF_TEAM activo: usar el nombre del agente asignado al análisis de dominio/arquitectura (con su nombre de lore). Si no hay team: 'Théoden del Dominio'."
       },
       {
         "label": "🏇 Merry de la Forja — testing y calidad",

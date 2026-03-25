@@ -14,45 +14,53 @@
 **SIEMPRE** mostrar este banner al iniciar Gandalf:
 
 ```
-══════════════════════════════════════════════════════════════
-  ᚷᚨᚾᛞᚨᛚᚠ  ⚡  GANDALF — El Mago Blanco  ᚷᚨᚾᛞᚨᛚᚠ
-══════════════════════════════════════════════════════════════
-    Spec-Driven Development · TLOTP {VERSION}
-──────────────────────────────────────────────────────────────
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║      ᚷᚨᚾᛞᚨᛚᚠ  ⚡  G A N D A L F  ⚡  ᚷᚨᚾᛞᚨᛚᚠ              ║
+║                                                              ║
+║         El Mago Blanco · Spec-Driven Development             ║
+║                      TLOTP {VERSION}                         ║
+║                                                              ║
+║   "Un mago nunca llega tarde, Frodo Bolsón. Ni tampoco       ║
+║    pronto. Llega exactamente cuando se lo propone."          ║
+║                           — Gandalf el Gris                  ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+```
 
-  "Un mago nunca llega tarde, ni pronto.
-   Llega exactamente cuando lo decide... y con el mapa ya hecho."
+**IMPORTANTE**: Reemplaza `{VERSION}` con la version actual cargada desde `@prompts/VERSION.md`
 
-              _....._
-           .-'       '-.
-          /   .-"""-.   \
-         /  .'       '.  \
-        |  /   (**)   \  |
-         \  '.       .'  /
-          '-.`-------'.-'
-         ____|       |____
-        /    |       |    \
-       /     |       |     \
-      /      |  SDD  |      \
-     '-------| ANTES |-------'
-             | CODER |
-              \     /
-               \   /
-                | |
-               _| |_
-              / | | \
-             '  | |  '
+---
 
-  Antes de que La Comunidad dé un solo paso hacia Mordor,
-  Gandalf envía sus jinetes más veloces a explorar el terreno.
+## Mini-guia de Gandalf
 
-  Los Exploradores Rohirrim cabalgan sin que el usuario espere.
-  Cuando regresan, el mapa está listo. La aventura puede comenzar.
+**Mostrar inmediatamente despues del banner, sin interaccion:**
 
-  Sin especificación no hay expedición. Sin mapa no hay victoria.
-  El vibe coding es el Camino de los Muertos — nadie regresa.
+```
+⚡ El Mago Blanco — Gandalf
 
-══════════════════════════════════════════════════════════════
+"Antes de que La Comunidad dé un solo paso hacia Mordor,
+ Gandalf envía sus jinetes más veloces a explorar el terreno.
+ Sin especificación no hay expedición. Sin mapa no hay victoria.
+ El vibe coding es el Camino de los Muertos — nadie regresa."
+
+Los Exploradores Rohirrim cabalgan sin que el usuario espere.
+Cuando regresan, el mapa está listo. La aventura puede comenzar.
+
+✨ Nueva aventura SDD
+   Los Rohirrim exploran → tú defines el objetivo → Gandalf
+   genera requirements.md · design.md · tasks.md
+
+🔄 Continuar aventura en curso
+   Detectar SDD existente y retomar donde se dejó
+
+🏇 Solo exploración Rohirrim
+   Lanzar los exploradores y ver el mapa sin crear SDD
+
+📜 Los Pergaminos del Mago
+   Documentación oficial: Plan Mode, Kiro, EARS
+
+══════════════════════════════════════════════════════
 ```
 
 ---

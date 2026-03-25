@@ -3,14 +3,17 @@
 ## Misión
 
 Crear `design.md` con la arquitectura de la aventura, diagramas Mermaid y decisiones
-técnicas documentadas. Usa el informe de Théoden del Dominio como base.
+técnicas documentadas. Usa el informe del explorador de dominio/arquitectura como base
+(Théoden del Dominio en modo clásico, o el agente asignado del team si `GANDALF_TEAM` activo).
 Sin planos, los cimientos se hunden.
 
 ---
 
 ## Paso 0 — Pre-carga de contexto
 
-Leer del `contexto_rohirrim` (Théoden del Dominio) la arquitectura detectada.
+Leer del `contexto_rohirrim` la arquitectura detectada (explorador de dominio:
+Théoden del Dominio en modo clásico, o el agente asignado del team con su nombre de lore
+si `GANDALF_TEAM` activo — ver tabla de mapping en `01-module-rohirrim.md`).
 Si existe `requirements.md`, leerlo para alinear el diseño con los requisitos.
 
 Si `contexto_docs` está disponible: usar la documentación oficial del stack
@@ -23,13 +26,17 @@ para alinear el diseño con los patrones y convenciones oficiales de cada tecnol
 Preguntar si el usuario quiere confirmar o ajustar la arquitectura detectada:
 
 ```
-⚡ "Théoden del Dominio reportó la siguiente arquitectura:"
+⚡ "[explorador de dominio] reportó la siguiente arquitectura:"
 
-  🏰 Tipo de app:    [app_type de Théoden]
-  🏛️  Patrón:        [architecture_pattern de Théoden]
+  🏰 Tipo de app:    [app_type del explorador de dominio]
+  🏛️  Patrón:        [architecture_pattern del explorador de dominio]
   📦 Módulos:       [lista de módulos]
   🖥️  Frontend:      [sí/no — tipo]
 ```
+
+**Nombre del explorador de dominio**: Si `GANDALF_TEAM` activo, usar el nombre real
+del agente asignado + su nombre de lore (ej: `php-pro (Frodo Bolsón)`).
+Si no hay team, usar `Théoden del Dominio`.
 
 AskUserQuestion:
 ```json
@@ -40,7 +47,7 @@ AskUserQuestion:
     "multiSelect": false,
     "options": [
       {
-        "label": "✅ Confirmar — Théoden la mapeó bien",
+        "label": "✅ Confirmar — [explorador de dominio] la mapeó bien",
         "description": ""
       },
       {
@@ -118,7 +125,7 @@ Listar los componentes principales del diseño con:
 - Dependencias
 - Interfaz pública (endpoints, métodos clave o eventos)
 
-Inferir de los módulos de Théoden + los requisitos de G5.
+Inferir de los módulos del explorador de dominio (Théoden o agente del team) + los requisitos de G5.
 Revisar uno a uno con el patrón estándar (✅/✏️/⏭️/🚫).
 
 ---

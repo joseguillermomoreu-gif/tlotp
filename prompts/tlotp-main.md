@@ -198,7 +198,7 @@ Patrón fijo: 3 opciones de contenido por página. Pantalla 1: 3 épicas + "➕ 
         "description": ""
       },
       {
-        "label": "⚡ Consultar al Mago Blanco — Gandalf",
+        "label": "⚡ Iniciar una nueva aventura, Gandalf nos espera",
         "description": ""
       },
       {
@@ -216,7 +216,7 @@ Patrón fijo: 3 opciones de contenido por página. Pantalla 1: 3 épicas + "➕ 
 - ⚒️ Peregrinaje a Eregion, Celebrimbor nos espera → Cargar `@prompts/celebrimbor/celebrimbor-main.md`
 - 🏹 Reunir monedas para Bardo → Cargar `@prompts/bardo/bardo-main.md`
 - 👑 Entregar Andúril a Aragorn — El Heredero de Isildur nos espera → Cargar `@prompts/aragorn/aragorn-main.md`
-- ⚡ Consultar al Mago Blanco — Gandalf → Cargar `@prompts/gandalf/gandalf-main.md`
+- ⚡ Iniciar una nueva aventura, Gandalf nos espera → Cargar `@prompts/gandalf/gandalf-main.md`
 - 🔙 Volver a página 1 → Mostrar Pantalla 1
 - 🚪 Salir → Mensaje de despedida épico y terminar
 
@@ -226,9 +226,9 @@ Patrón fijo: 3 opciones de contenido por página. Pantalla 1: 3 épicas + "➕ 
 
 ---
 
-## ⚡ Contenido de "Consultar al Mago Blanco — Gandalf"
+## ⚡ Contenido de "Iniciar una nueva aventura, Gandalf nos espera"
 
-**Si el usuario selecciona "⚡ Consultar al Mago Blanco — Gandalf"**:
+**Si el usuario selecciona "⚡ Iniciar una nueva aventura, Gandalf nos espera"**:
 
 → Cargar `@prompts/gandalf/gandalf-main.md`
 
