@@ -141,8 +141,6 @@ Nunca actúa sin confirmación.
 
 ⚔️ **⚡ Gandalf** — El Mago Blanco. Spec-Driven Development.
    *(SDD interactivo: requirements.md · design.md · tasks.md)*
-💍 **Gollum** — Companion de testing *(planificado · no disponible aún)*
-
 ---
 
 ### PASO 3: Menú de Selección (PAGINADO)
@@ -296,7 +294,6 @@ para hacerlo lo más autónomo posible.
    Estado: Completado
 
 ✅ ⚡ Gandalf - Spec-Driven Development (SDD interactivo completo)
-💭 💍 Gollum - Companion de testing (planificado · no disponible aún)
 
 ---
 
@@ -420,9 +417,6 @@ Docs: Ver opción "Documentación y Ayuda"
 
 **En Desarrollo**:
 - ✅ **⚡ Gandalf** - Spec-Driven Development (G0–G10 implementados)
-
-**Futuras**:
-- 💭 **💍 Gollum** - Companion de testing (forma TBD)
 
 ---
 
