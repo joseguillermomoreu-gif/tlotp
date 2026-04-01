@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     if: "!startsWith(github.head_ref, 'backmerge/')"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Compilar prompts
         run: bash scripts/compile.sh
