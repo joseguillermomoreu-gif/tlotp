@@ -216,7 +216,33 @@ Patrón fijo: 3 opciones de contenido por página. Pantalla 1: 3 épicas + "➕ 
 - 👑 Entregar Andúril a Aragorn — El Heredero de Isildur nos espera → Cargar `@prompts/aragorn/aragorn-main.md`
 - ⚡ Iniciar una nueva aventura, Gandalf nos espera → Cargar `@prompts/gandalf/gandalf-main.md`
 - 🔙 Volver a página 1 → Mostrar Pantalla 1
-- 🚪 Salir → Mensaje de despedida épico y terminar
+- 🚪 Salir → Mostrar mensaje de despedida y terminar
+
+**Mensaje de despedida**:
+
+```
+═══════════════════════════════════════════════════════════════════════
+
+        ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ  ·  ᚹ ᚺ ᚾ ᛁ ᛃ ᛇ  ·  ᛈ ᛉ ᛊ ᛏ ᛒ ᛖ ᛗ ᛚ ᛜ ᛞ ᛟ
+
+              "Que el código fluya limpio y los prompts
+               encuentren siempre su camino de vuelta."
+
+                    — Pépeton hijo de Móreuton
+                      Señor de las Tierras Paletas
+
+  💍 The Lord of the Prompt es un proyecto open source
+     forjado con amor, café y Claude Code.
+
+     ★  github.com/joseguillermomoreu-gif/tlotp
+
+     Si TLOTP te ha sido útil, compártelo con otros
+     viajeros del código. La Comunidad crece contigo.
+
+        · · ·    .    ·=·═══════════·=·    .    · · ·
+
+═══════════════════════════════════════════════════════════════════════
+```
 
 ### PASO 4: Loop Continuo
 
@@ -362,7 +388,7 @@ Tras mostrar el bloque anterior, usar **AskUserQuestion**:
 - 🔮 Ir a Palantír → Cargar `@prompts/palantir/palantir-main.md`
 - ⚒️ Peregrinaje a Eregion, Celebrimbor nos espera → Cargar `@prompts/celebrimbor/celebrimbor-main.md`
 - 🔙 Volver al menú principal → Mostrar Pantalla 1 del menú principal
-- 🚪 Salir → Mensaje de despedida épico y terminar
+- 🚪 Salir → Mostrar mensaje de despedida y terminar
 
 ---
 
