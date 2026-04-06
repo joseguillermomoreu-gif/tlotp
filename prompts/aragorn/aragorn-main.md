@@ -234,6 +234,29 @@ Routing de advertencia:
 
 ---
 
+## Comportamiento compartido — Invocación del Cronista
+
+# SYNC: session-end
+
+Al finalizar cualquier sesión de trabajo con un Agent Team (cuando el usuario indica que ha terminado, cierra el flujo o elige "Salir" desde el menú), ejecutar automáticamente:
+
+1. Leer `.claude/teams/{team-activo}.yml` → extraer campo `cronista` (si existe)
+2. **Si `cronista` está configurado**:
+   - Invocar: `@{cronista} documenta la sesión de hoy`
+   - El cronista generará el informe automáticamente sin intervención del usuario
+   - Mostrar al terminar:
+     ```
+     📜 El cronista {cronista} ha registrado la sesión.
+        Informe disponible en [{ruta-salida del cronista}]
+     ```
+3. **Si no hay `cronista` en el `.yml`** → continuar sin documentar (no interrumpir el flujo ni avisar)
+
+**Cuándo aplica este SYNC**:
+- Cualquier sesión que haya usado un team de agentes (`team-activo` definido)
+- No aplica a sesiones sin team (agente principal único)
+
+---
+
 ## Loop Continuo
 
 Tras completar cualquier módulo, volver al **Paso del menú principal** (Pantalla 1) con AskUserQuestion hasta que el usuario elija salir.
