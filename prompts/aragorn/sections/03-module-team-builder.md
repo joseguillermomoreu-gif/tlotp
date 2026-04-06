@@ -557,18 +557,22 @@ sesiones de trabajo del team recién creado.
 ══════════════════════════════════════════════════════════════
 ```
 
+> 💰 **Impacto estimado en tokens: +bajo**  
+> El cronista se invoca al final de la sesión para generar el informe. Un único spawn ligero.  
+> _Referencia completa de costes: leer `prompts/shared/orquestacion.md` sección "Guía de Coste de Tokens"_
+
 AskUserQuestion:
 
 ```json
 {
   "questions": [{
     "header": "Cronista del Ejército",
-    "question": "📜 ¿Quieres añadir un cronista al team \"[nombre-del-team]\"?\n    Documentará cada sesión de trabajo automáticamente.",
+    "question": "📜 ¿Añadir un cronista al team \"[nombre-del-team]\"?\n    Se invocará automáticamente al final de cada sesión para documentarla.",
     "multiSelect": false,
     "options": [
       {
-        "label": "📜 Sí, añadir cronista",
-        "description": "Configurar un agente documentador para este team"
+        "label": "📜 Sí, añadir cronista (recomendado)",
+        "description": "El cronista documenta cada sesión automáticamente al terminar"
       },
       {
         "label": "⏭️  Omitir — continuar sin cronista",
@@ -792,6 +796,22 @@ Las decisiones técnicas, datos concretos y acciones deben ser precisos.
 El lore enriquece la lectura, no la oscurece.
 ```
 
+#### Registrar cronista en la configuración del team
+
+Tras crear el fichero del agente cronista, añadir el campo `cronista` al `.yml` del team:
+
+```bash
+# Añadir campo cronista al fichero de configuración del team
+```
+
+Usar Edit para añadir al fichero `.claude/teams/[nombre-del-team].yml`:
+
+```yaml
+cronista: [nombre-cronista]
+```
+
+Esto permite que `# SYNC: session-end` (definido en `aragorn-main.md`) lo localice automáticamente al final de cada sesión.
+
 #### Confirmación de creación
 
 Mostrar tras crear el fichero:
@@ -805,7 +825,8 @@ Mostrar tras crear el fichero:
   📄 Informes:  [ruta-salida]
   🎭 Estilo:    [Narrativa épica LOTR / Reporter estándar]
 
-  💡 Para invocarlo:
+  ⚡ Invocación: automática al final de cada sesión del team
+  💡 También puedes invocarlo manualmente:
      @[nombre-cronista] documenta la sesión de hoy
 
 ══════════════════════════════════════════════════════════════
