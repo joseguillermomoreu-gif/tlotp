@@ -207,11 +207,35 @@ Tras cargar la documentación, mostrar menú:
       {
         "label": "❓ ¿Cuándo usar Agent Teams vs Subagents?",
         "description": "Explicación desde docs oficiales"
+      },
+      {
+        "label": "⚔️  H — Patrón de debate entre pares",
+        "description": "Adversarial Collaboration: dos workers en paralelo con consenso facilitado por Scrum Master"
       }
     ]
   }]
 }
 ```
+
+---
+
+## Opción H — Patrón de debate entre pares
+
+Carga el patrón de orquestación desde el módulo compartido:
+
+1. Read `prompts/shared/orquestacion.md`
+2. Presentar al usuario la sección "Patrón: Debate entre pares con facilitación"
+3. Preguntar:
+   - ¿Para qué tarea quieres usar este patrón?
+   - ¿Cuál será la perspectiva de Worker A?
+   - ¿Cuál será la perspectiva de Worker B?
+
+> 💰 **Impacto estimado en tokens: +muy alto**  
+> Configuración máxima: agentes en paralelo + iteración entre rondas + facilitación por Scrum Master + revisión final por code-reviewer.  
+> _Referencia completa de costes: leer `prompts/shared/orquestacion.md` sección "Guía de Coste de Tokens"_
+
+4. Con las respuestas, generar el prompt de orquestación personalizado para el usuario
+5. Mostrar la tabla de costes desde `shared/orquestacion.md` (sección "Guía de Coste de Tokens")
 
 ---
 
@@ -390,6 +414,10 @@ Selecciona los agentes para "[nombre-del-team]"
 ```
 
 Nota: generar opciones dinámicamente según los agentes reales detectados en el Paso A1.
+
+> 💰 **Impacto estimado en tokens: +medio**  
+> Se han seleccionado N agentes para trabajar en paralelo con contextos independientes simultáneos.  
+> _Referencia completa de costes: leer `prompts/shared/orquestacion.md` sección "Guía de Coste de Tokens"_
 
 ### Paso A4b — Asignar lead del team (obligatorio)
 
@@ -1134,7 +1162,7 @@ Validar formato: solo letras minúsculas, números y guiones (`/^[a-z0-9-]+$/`).
 
 ### Paso F3 — Precargar instrucciones de orquestación
 
-Leer `~/.claude/teams/{team}/config.json` para obtener los teammates y sus tipos.
+Leer `.claude/teams/{team}.yml` para obtener los teammates y sus tipos.
 
 Generar instrucciones base precargadas:
 
@@ -1168,6 +1196,10 @@ NUNCA edites ficheros ni ejecutes código tú mismo.
 4. Verificar resultados y coordinar dependencias
 5. Reportar el resultado consolidado
 ```
+
+> 💰 **Impacto estimado en tokens: +alto**  
+> Se ha añadido un coordinador central: los agentes en paralelo más la coordinación añaden rondas de contexto adicionales.  
+> _Referencia completa de costes: leer `prompts/shared/orquestacion.md` sección "Guía de Coste de Tokens"_
 
 Mostrar preview y AskUserQuestion:
 
@@ -1239,7 +1271,7 @@ Crear en `~/.claude/agents/{nombre-coordinador}.md` con Write.
 }
 ```
 
-Si acepta: leer `~/.claude/teams/{team}/config.json` con Read, actualizar el campo `lead`
+Si acepta: leer `.claude/teams/{team}.yml` con Read, actualizar el campo `lead`
 al nombre del nuevo coordinador, y escribir con Write/Edit.
 
 Mostrar confirmación épica:
