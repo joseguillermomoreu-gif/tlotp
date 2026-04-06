@@ -179,7 +179,7 @@ Cargar: `@prompts/tlotp-main.md`
 Cuando cualquier flujo de Aragorn requiera que el usuario **seleccione un team existente**
 para usarlo (no solo para gestionarlo), ejecutar esta verificación automáticamente:
 
-1. Leer `~/.claude/teams/{team-seleccionado}/config.json` → extraer campo `lead`
+1. Leer `.claude/teams/{team-seleccionado}.yml` → extraer campo `lead`
 2. Leer `~/.claude/agents/{lead}.md` con Read → extraer `name` y `description` del frontmatter
 3. Buscar en nombre+descripción alguno de: `orchestrat | coordin | team lead | delegate`
 4. **Si se encuentra algún indicador** → mostrar y continuar:
