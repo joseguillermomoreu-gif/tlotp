@@ -29,3 +29,6 @@ docs/requirements.md
 docs/design.md
 docs/tasks.md
 docs/sdd_completed/
+
+# Superpowers internal docs (specs, plans — local only)
+docs/superpowers/
