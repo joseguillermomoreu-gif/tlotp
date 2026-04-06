@@ -6,7 +6,7 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v5.2.0**
+**TLOTP v5.3.0**
 - **Fecha release**: 2026-04-06
 - **Nombre código**: "Los Escribas de Gondor"
 
