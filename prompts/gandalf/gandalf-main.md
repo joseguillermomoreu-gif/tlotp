@@ -209,7 +209,7 @@ Si el usuario selecciona un team: registrar el nombre del team seleccionado como
 
 Si se seleccionó un team, verificar que el lead tiene capacidad de coordinación:
 
-1. Leer `~/.claude/teams/{GANDALF_TEAM}/config.json` → extraer campo `lead`
+1. Leer `.claude/teams/{GANDALF_TEAM}.yml` → extraer campo `lead`
 2. Leer `~/.claude/agents/{lead}.md` con Read → extraer `name` y `description` del frontmatter
 3. Buscar en nombre+descripción alguno de: `orchestrat | coordin | team lead | delegate`
 4. **Si se encuentra algún indicador** → mostrar y continuar:
@@ -267,7 +267,7 @@ a cargar G1.
 
 **Paso adicional si se seleccionó un team — Selección de roles:**
 
-Mostrar al usuario los agentes del team seleccionado (leer `~/.claude/teams/{team}/config.json` para obtener los miembros).
+Mostrar al usuario los agentes del team seleccionado (leer `.claude/teams/{team}.yml` para obtener los miembros).
 
 ```json
 {
@@ -304,7 +304,22 @@ Mostrar al usuario los agentes del team seleccionado (leer `~/.claude/teams/{tea
 - Si elige **"Rohirrim clásicos"**: no se definen ni `GANDALF_EXPLORERS` ni `GANDALF_CONSENSORS`.
   Se usa el flujo estándar de los 5 Rohirrim fijos.
 
+### ¿Cómo quieres ejecutar este SDD?
+
+```
+AskUserQuestion con opciones:
+🤖  **Agente principal** — Modo actual: un único agente ejecuta el plan
+⚔️  **Team de agentes (via Aragorn)** — Carga el Team Builder con el contexto de este SDD
+```
+
+Si el usuario elige "Agente principal":
 Cargar: `@prompts/gandalf/sections/01-module-rohirrim.md`
+
+Si el usuario elige "Team de agentes":
+1. Read `prompts/aragorn/sections/03-module-team-builder.md`
+2. Ejecutar el Team Builder con el contexto del SDD activo precargado:
+   - Objetivo del SDD: [extraído del spec activo]
+   - Propuesta inicial: usar patrón de debate entre pares (opción H)
 *(los Rohirrim exploran y continúan automáticamente hasta G8)*
 
 #### 🔄 Continuar aventura en curso
