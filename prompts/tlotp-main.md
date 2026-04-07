@@ -122,8 +122,6 @@ Cada épica es un maestro en su dominio — consulta documentación oficial
 en tiempo real, detecta tu stack, pregunta lo justo y aplica con tu permiso.
 Nunca actúa sin confirmación.
 
-*"Un mago no llega tarde ni pronto, llega exactamente cuando se lo propone."*
-
 ---
 
 🗺️ **Épicas Disponibles**

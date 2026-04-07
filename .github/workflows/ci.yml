@@ -105,3 +105,17 @@ jobs:
 
       - name: Lint import chains
         run: bash scripts/import-lint.sh
+
+  compile-check:
+    name: Verificar compilacion de prompts
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: "!startsWith(github.head_ref, 'backmerge/')"
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Compilar prompts
+        run: bash scripts/compile.sh
+
+      - name: Verificar compilacion
+        run: bash scripts/verify-compile.sh
