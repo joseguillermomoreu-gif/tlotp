@@ -48,7 +48,7 @@ jobs:
           sleep 5
           for i in 1 2 3; do
             HTTP_CODE=$(curl -s -o /tmp/health.html -w '%{http_code}' \
-              "https://josemoreupeso.es/tlotp" || true)
+              "https://josemoreupeso.es/tlotp/index.html" || true)
             if [ "$HTTP_CODE" = "200" ]; then
               break
             fi
