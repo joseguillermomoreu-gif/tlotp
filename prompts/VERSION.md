@@ -6,7 +6,7 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v5.5.0**
+**TLOTP v5.5.1**
 - **Fecha release**: 2026-04-07
 - **Nombre código**: "Los Escribas de Gondor"
 
@@ -105,11 +105,6 @@
 - Asistente de instalación guiada ítem a ítem con confirmación
 - Verificación post-instalación con semáforos ✅⚠️❌
 - 7 módulos (B1–B7)
-
-### ⏳ Gollum - E2E Testing
-**Estado**: Planificado
-- Playwright automation
-- Page Object Model
 
 ### ⏳ Elrond - Global Config
 **Estado**: Planificado
@@ -281,7 +276,6 @@ Versión: TLOTP v3.4.0
 
 **🎯 Próximos pasos**:
 - v3.1.0: Celebrimbor - Backend Git + Modo Automático
-- v4.0.0: Gollum (Playwright E2E MVP)
 
 ---
 
@@ -361,10 +355,6 @@ TLOTP sigue [Semantic Versioning 2.0.0](https://semver.org/):
 ### v4.1.0 (Próxima minor)
 - Mejoras y fixes post-Gandalf
 - Posibles mejoras en el Consejo de Rivendel
-
-### v5.0.0 (Próxima major - Gollum)
-- Gollum: Companion de testing (forma TBD)
-- Integración con Gandalf SDD para generar tests desde requirements
 
 ### v6.0.0+ (Visión)
 - Dashboard web interactivo

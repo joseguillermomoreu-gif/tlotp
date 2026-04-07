@@ -106,10 +106,6 @@ Valida:
 - Validación de configuraciones
 - Evitar duplicados
 
-### Con Gollum (Épica #3)
-- Instalación automática de skills E2E
-- Configuración de proyecto Playwright
-
 ---
 
 ## 🎮 Roadmap
