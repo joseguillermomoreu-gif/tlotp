@@ -15,7 +15,7 @@ Migrado desde branch protection clásica en v3.16.2.
 | Pull request requerida | ✅ sí |
 | Code owner review | ✅ requerida |
 | Dismiss stale reviews | ✅ sí |
-| Required status checks | Validar Markdown · links internos · links externos |
+| Required status checks | Validar Markdown · links internos · links externos · compilacion de prompts |
 | Strict status checks | ✅ sí |
 | Bypass actors | ninguno |
 
@@ -30,7 +30,7 @@ Migrado desde branch protection clásica en v3.16.2.
 | Non-fast-forward (force push) | ✅ bloqueado |
 | Pull request requerida | ✅ sí |
 | Code owner review | ❌ no requerida (permite auto-merge del bot) |
-| Required status checks | Validar Markdown · links internos · links externos |
+| Required status checks | Validar Markdown · links internos · links externos · compilacion de prompts |
 | Strict status checks | ✅ sí |
 | Bypass actors | ninguno |
 
