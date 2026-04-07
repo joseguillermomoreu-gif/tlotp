@@ -42,3 +42,25 @@ jobs:
             -e "ssh -i ~/.ssh/id_deploy" \
             dist/ \
             ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:/var/www/portfolio/public/tlotp/
+
+      - name: Health check
+        run: |
+          sleep 5
+          for i in 1 2 3; do
+            HTTP_CODE=$(curl -s -o /tmp/health.html -w '%{http_code}' \
+              "https://${{ secrets.DEPLOY_HOST }}/tlotp/" || true)
+            if [ "$HTTP_CODE" = "200" ]; then
+              break
+            fi
+            echo "Attempt $i: HTTP $HTTP_CODE — retrying in 5s..."
+            sleep 5
+          done
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "::error::Health check failed — HTTP $HTTP_CODE (expected 200)"
+            exit 1
+          fi
+          if ! grep -q "TLOTP" /tmp/health.html; then
+            echo "::error::Health check failed — response body does not contain 'TLOTP'"
+            exit 1
+          fi
+          echo "Health check passed — HTTP 200 and body contains 'TLOTP'"
