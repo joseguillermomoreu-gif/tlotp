@@ -378,4 +378,4 @@ TLOTP sigue [Semantic Versioning 2.0.0](https://semver.org/):
 ---
 
 *Última actualización: 2026-03-10*
-*Mantenido por: La Comunidad del Código (Pépeton + Claudeton)*
+*Mantenido por: La Comunidad del Código (Pépeton + Claudeton)*.
