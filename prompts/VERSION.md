@@ -6,8 +6,8 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v5.5.2**
-- **Fecha release**: 2026-04-07
+**TLOTP v5.5.3**
+- **Fecha release**: 2026-04-08
 - **Nombre código**: "Los Escribas de Gondor"
 
 ---
@@ -15,7 +15,7 @@
 ## 📦 Historial de Versiones
 
 ### v5.1.0 — "Los Escribas de Gondor"
-- **Fecha release**: 2026-04-07
+- **Fecha release**: 2026-04-08
 - **Épicas**: ⚡ Gandalf (fix) · 👑 Aragorn (feature)
 - G4b rewrite: tabla tech-stack reemplazada por tabla SDD methodology (EARS, Plan Mode, Kiro, ADR, C4)
 - G3 Momento A: invocación condicional al lead del team si GANDALF_TEAM activo, con fallback autónomo 30s
@@ -25,11 +25,11 @@
 **Closes**: #340, #342
 
 ### v5.0.0 — "The Two Towers of the Web"
-- **Fecha release**: 2026-04-07
+- **Fecha release**: 2026-04-08
 - **Nombre código**: "Los Escribas de Gondor"
 
 ### v4.0.0 — "El Mago Blanco"
-- **Fecha release**: 2026-04-07
+- **Fecha release**: 2026-04-08
 - **Épica**: ⚡ Gandalf — Spec-Driven Development completo (G0–G10)
 - 5 exploradores Rohirrim paralelos (Agent tool) mapean el proyecto antes de preguntar nada
 - Editor EARS interactivo para requirements.md con clasificación MoSCoW
@@ -44,7 +44,7 @@
 **Closes**: #264–#274
 
 ### v3.22.0 — "El Rey que Regresa"
-- **Fecha release**: 2026-04-07
+- **Fecha release**: 2026-04-08
 - **Épica**: 👑 Aragorn — Gestor de agentes y Agent Teams (redesign completo)
 - aragorn-main.md: banner épico, permisos, menú paginado 3 pantallas, sistema lore de personajes
 - 5 módulos nuevos: analyze, marketplace, create, team-builder, docs
@@ -55,7 +55,7 @@
 **Closes**: #252–#263
 
 ### v3.16.0 — "Las Almenaras de Gondor"
-- **Fecha release**: 2026-04-07
+- **Fecha release**: 2026-04-08
 - Automatización del ciclo de release completo:
   - `release-prep.yml`: pre-bump workflow_dispatch — calcula versión, actualiza VERSION.md, crea PR develop → master
   - `backmerge.yml`: sincronización automática master → develop con [skip ci] y auto-merge
@@ -65,15 +65,15 @@
 **Closes**: #177, #178, #179, #180, #181
 
 ### v3.15.0 — "Guardians of the Branch"
-- **Fecha release**: 2026-04-07
+- **Fecha release**: 2026-04-08
 - Ents redesign completo + CI/CD hardening
 
 ### v3.14.0 — "The Voices in the Stone"
-- **Fecha release**: 2026-04-07
+- **Fecha release**: 2026-04-08
 - Menú principal TLOTP rediseñado (paginación 3 pantallas)
 
 ### v3.13.0 — "The Voices in the Stone"
-- **Fecha release**: 2026-04-07
+- **Fecha release**: 2026-04-08
 - Palantír redesign completo + narrativa lore TLOTP
 
 ---
