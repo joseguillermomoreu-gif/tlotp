@@ -113,17 +113,16 @@ Celebrimbor, Ents, Aragorn, Gandalf):
   🔍 Glob (3 permisos)
      ~/.claude/**  ·  .claude/**  ·  .github/**
 
-  🌐 WebFetch (5 permisos)
-     code.claude.com/*  ·  docs.github.com/*
-     github.com/vercel-labs/*  ·  raw.githubusercontent.com/*
-     aitmpl.com/*
+  🌐 WebFetch (4 permisos)
+     domain:code.claude.com  ·  domain:docs.github.com
+     domain:raw.githubusercontent.com  ·  domain:aitmpl.com
 
   🗑️  Bash — eliminación controlada (3 permisos)
      rm ~/.claude/skills/*  ·  rm .claude/skills/*
      rm .claude/teams/*
 
   ───────────────────────────────────────────────────────────
-  Total: 53 permisos · Solo afectan a configuración de Claude Code
+  Total: 52 permisos · Solo afectan a configuración de Claude Code
   No modifican código fuente ni acceden a datos sensibles
 ══════════════════════════════════════════════════════════════
 ```
@@ -185,11 +184,14 @@ Celebrimbor, Ents, Aragorn, Gandalf):
   "Edit(~/.claude/**)", "Edit(.claude/**)", "Edit(CLAUDE.md)", "Edit(CLAUDE.local.md)",
   "Edit(~/.claude.json)", "Edit(.mcp.json)", "Edit(.github/workflows/*)",
   "Glob(~/.claude/**)", "Glob(.claude/**)", "Glob(.github/**)",
-  "WebFetch(code.claude.com/*)", "WebFetch(docs.github.com/*)",
-  "WebFetch(github.com/vercel-labs/*)", "WebFetch(raw.githubusercontent.com/*)",
-  "WebFetch(aitmpl.com/*)"
+  "WebFetch(domain:code.claude.com)", "WebFetch(domain:docs.github.com)",
+  "WebFetch(domain:raw.githubusercontent.com)", "WebFetch(domain:aitmpl.com)"
 ]
 ```
+
+> **Formato obligatorio para WebFetch**: Los permisos WebFetch deben usar el formato
+> `WebFetch(domain:hostname)` (sin paths ni wildcards). El formato antiguo
+> `WebFetch(hostname/*)` produce `Settings Error` en Claude Code y no debe usarse.
 
 **Lógica de escritura** (ejecutar con Bash + Read + Write):
 
