@@ -66,27 +66,48 @@ escape_html() {
   sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g'
 }
 
+# ── SVG decorativo elfico (separador) ────────────────────────
+elven_separator_svg() {
+  cat <<'ELVENSEP'
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 24" class="elven-sep"><path d="M0,12 C50,12 50,4 100,4 C150,4 150,20 200,20 C250,20 250,4 300,4 C350,4 350,20 400,20 C450,20 450,4 500,4 C550,4 550,12 600,12" fill="none" stroke="currentColor" stroke-width="1" opacity="0.4"/><circle cx="300" cy="12" r="3" fill="currentColor" opacity="0.5"/><circle cx="150" cy="12" r="2" fill="currentColor" opacity="0.3"/><circle cx="450" cy="12" r="2" fill="currentColor" opacity="0.3"/><path d="M280,12 L290,7 L300,12 L290,17 Z" fill="currentColor" opacity="0.3"/><path d="M300,12 L310,7 L320,12 L310,17 Z" fill="currentColor" opacity="0.3"/></svg>
+ELVENSEP
+}
+
+# ── Cita aleatoria del lore para footer ──────────────────────
+lore_quote() {
+  local quotes=(
+    "Not all those who wander are lost. &mdash; J.R.R. Tolkien"
+    "Even the smallest prompt can change the course of the future. &mdash; Galadriel"
+    "All we have to decide is what to do with the code that is given us. &mdash; Gandalf"
+    "The world is changed. I feel it in the water. I feel it in the code. &mdash; Galadriel"
+    "One Prompt to Rule Them All. &mdash; The Lord of the Prompt"
+    "There is some good in this world, and it is worth coding for. &mdash; Samwise"
+  )
+  local idx=$(( RANDOM % ${#quotes[@]} ))
+  echo "${quotes[$idx]}"
+}
+
 # ── CSS del sidebar ──────────────────────────────────────────
 sidebar_css() {
   cat <<'SIDEBARCSS'
 .layout{display:flex;min-height:calc(100vh - 52px)}
-.sidebar{width:260px;min-width:260px;background:var(--bg-secondary);border-right:1px solid var(--border-color);overflow-y:auto;position:sticky;top:52px;height:calc(100vh - 52px);padding:1rem 0;font-family:var(--font-sans);font-size:.82rem}
-.sidebar-home{display:block;padding:.5rem 1rem;color:var(--accent-primary);font-weight:700;border-bottom:1px solid var(--border-color);margin-bottom:.5rem;text-decoration:none}
-.sidebar-home:hover{opacity:.8}
-.epic-header-nav{display:flex;align-items:center;justify-content:space-between;padding:.4rem 1rem;cursor:pointer;color:var(--text-primary);font-weight:600;user-select:none}
-.epic-header-nav:hover{background:var(--bg-tertiary)}
+.sidebar{width:260px;min-width:260px;background:var(--bg-sidebar);border-right:2px solid var(--border-ornate);overflow-y:auto;position:sticky;top:52px;height:calc(100vh - 52px);padding:1rem 0;font-family:var(--font-body);font-size:.85rem}
+.sidebar-home{display:block;padding:.6rem 1rem;color:var(--accent-primary);font-weight:700;font-family:var(--font-heading);letter-spacing:.04em;border-bottom:1px solid var(--border-ornate);margin-bottom:.5rem;text-decoration:none;text-transform:uppercase;font-size:.8rem}
+.sidebar-home:hover{opacity:.8;text-shadow:0 0 8px var(--accent-primary)}
+.epic-header-nav{display:flex;align-items:center;justify-content:space-between;padding:.5rem 1rem;cursor:pointer;color:var(--text-primary);font-weight:600;font-family:var(--font-heading);font-size:.82rem;user-select:none;letter-spacing:.02em;transition:background .25s ease,color .25s ease}
+.epic-header-nav:hover{background:var(--bg-tertiary);text-shadow:0 0 6px rgba(255,255,255,.1)}
 .epic-items{list-style:none;padding:0;margin:0}
 .epic-items.collapsed{display:none}
-.epic-items li a{display:block;padding:.25rem 1rem .25rem 1.5rem;color:var(--text-secondary);text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.epic-items li a:hover{color:var(--text-primary);background:var(--bg-tertiary)}
+.epic-items li a{display:block;padding:.3rem 1rem .3rem 1.5rem;color:var(--text-secondary);text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--font-body);transition:color .2s ease,background .2s ease,border-color .2s ease}
+.epic-items li a:hover{color:var(--text-primary);background:var(--bg-tertiary);text-shadow:0 0 4px rgba(255,255,255,.05)}
 .epic-items li a.active{color:var(--accent-primary);border-left:2px solid var(--accent-primary);padding-left:calc(1.5rem - 2px);background:var(--bg-tertiary)}
-.sidebar-sep{border:none;border-top:1px solid var(--border-color);margin:.5rem 1rem}
-.sidebar-file a{display:block;padding:.25rem 1rem;color:var(--text-secondary);text-decoration:none}
+.sidebar-sep{border:none;border-top:1px solid var(--border-ornate);margin:.6rem 1rem}
+.sidebar-file a{display:block;padding:.3rem 1rem;color:var(--text-secondary);text-decoration:none;font-family:var(--font-body);transition:color .2s ease,background .2s ease}
 .sidebar-file a:hover{color:var(--text-primary);background:var(--bg-tertiary)}
 .sidebar-file a.active{color:var(--accent-primary);border-left:2px solid var(--accent-primary);padding-left:calc(1rem - 2px);background:var(--bg-tertiary)}
 .content-wrap{flex:1;min-width:0}
 .sidebar-toggle{display:none;background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:1.2rem;padding:0 .5rem}
-@media(max-width:768px){.sidebar-toggle{display:block}.sidebar{position:fixed;left:-270px;top:52px;z-index:200;transition:left .3s ease;height:calc(100vh - 52px)}.sidebar.open{left:0;box-shadow:4px 0 20px rgba(0,0,0,.3)}}
+@media(max-width:768px){.sidebar-toggle{display:block}.sidebar{position:fixed;left:-270px;top:52px;z-index:200;transition:left .3s ease;height:calc(100vh - 52px)}.sidebar.open{left:0;box-shadow:4px 0 20px rgba(0,0,0,.5)}}
 SIDEBARCSS
 }
 
@@ -285,6 +306,10 @@ generate_html() {
     local epic_name
     epic_name="$(name_for_epic "$epic")"
     page_title="${epic_name} — TLOTP"
+    local lore_qt
+    lore_qt="$(lore_quote)"
+    local elven_sep
+    elven_sep="$(elven_separator_svg)"
     cat > "$out_file" <<HTMLEOF
 <!DOCTYPE html>
 <html lang="es">
@@ -297,7 +322,7 @@ generate_html() {
 <title>${epic_name} — TLOTP</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <script>
 (function(){
   var t = localStorage.getItem('tlotp-theme') || 'dark';
@@ -305,27 +330,30 @@ generate_html() {
 })();
 </script>
 <style>
-:root{--bg-primary:#0D1117;--bg-secondary:#161B22;--bg-tertiary:#1C2128;--text-primary:#E6EDF3;--text-secondary:#8B949E;--accent-primary:#00D9FF;--accent-secondary:#00FFB3;--border-color:#30363D;--font-sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'Fira Code','Monaco','Menlo',monospace}
-[data-theme="light"]{--bg-primary:#FFFFFF;--bg-secondary:#F8F9FA;--bg-tertiary:#F1F3F5;--text-primary:#212529;--text-secondary:#6C757D;--border-color:#DEE2E6}
+:root{--bg-primary:#0D1117;--bg-secondary:#161B22;--bg-tertiary:#1C2128;--bg-sidebar:#12161C;--text-primary:#E6EDF3;--text-secondary:#8B949E;--accent-primary:#00D9FF;--accent-secondary:#00FFB3;--border-color:#30363D;--border-ornate:#2A2F38;--font-heading:'Cinzel',Georgia,'Times New Roman',serif;--font-body:'Crimson Text',Georgia,'Times New Roman',serif;--font-sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'Fira Code','Monaco','Menlo',monospace;--glow-color:${accent}}
+[data-theme="light"]{--bg-primary:#FAF6F0;--bg-secondary:#F0EBE3;--bg-tertiary:#E8E2D8;--bg-sidebar:#EDE8E0;--text-primary:#2C2416;--text-secondary:#6B5D4F;--border-color:#D4C9B8;--border-ornate:#C4B8A4}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);line-height:1.6}
-.epic-header{background:var(--bg-secondary);border-bottom:2px solid ${accent};padding:1.5rem 2rem;text-align:center}
-.epic-header h1{color:${accent};font-family:Georgia,'Times New Roman',serif;font-size:1.8rem}
+body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);line-height:1.7}
+.epic-header{background:linear-gradient(180deg,var(--bg-secondary) 0%,var(--bg-primary) 100%);border-bottom:2px solid ${accent};padding:2rem 2rem 1rem;text-align:center;position:relative}
+.epic-header h1{color:${accent};font-family:var(--font-heading);font-size:2rem;letter-spacing:.06em;text-shadow:0 0 20px ${accent}33}
+.epic-header .tengwar{font-size:.7rem;color:var(--text-secondary);letter-spacing:.3em;margin-top:.3rem;opacity:.5}
+.elven-sep{display:block;width:100%;max-width:400px;height:24px;margin:0 auto;color:${accent}}
 .content{max-width:960px;margin:0 auto;padding:2rem}
 pre{font-family:var(--font-mono);white-space:pre-wrap;word-wrap:break-word;font-size:.88rem;line-height:1.75;color:var(--text-primary)}
-.footer{text-align:center;padding:2rem;color:var(--text-secondary);font-size:.85rem;border-top:1px solid var(--border-color);margin-top:2rem}
-.footer a{color:${accent};text-decoration:none}
-.footer a:hover{text-decoration:underline}
+.footer{text-align:center;padding:2.5rem 2rem;color:var(--text-secondary);font-size:.85rem;border-top:1px solid var(--border-ornate);margin-top:2rem}
+.footer .lore-quote{font-family:var(--font-body);font-style:italic;font-size:.9rem;color:var(--text-secondary);margin-bottom:.8rem;opacity:.7}
+.footer a{color:${accent};text-decoration:none;transition:color .2s ease}
+.footer a:hover{text-decoration:underline;text-shadow:0 0 8px ${accent}44}
 $(sidebar_css)
 </style>
 </head>
 <body>
-<header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
+<header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-ornate);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
   <div style="display:flex;align-items:center;gap:0.5rem;">
     <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
-    <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">josemoreupeso.es</a>
+    <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-heading);font-weight:700;font-size:0.85rem;text-decoration:none;letter-spacing:.04em;">josemoreupeso.es</a>
   </div>
-  <span style="color:var(--text-secondary);font-family:var(--font-sans);font-size:0.85rem;">${epic_name} — TLOTP</span>
+  <span style="color:var(--text-secondary);font-family:var(--font-heading);font-size:0.8rem;letter-spacing:.03em;">${epic_name} — TLOTP</span>
   <button onclick="toggleTheme()" style="background:none;border:1px solid var(--border-color);color:var(--text-secondary);padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">&#x2600;&#xFE0F;/&#x1F319;</button>
 </header>
 <div class="layout">
@@ -333,11 +361,15 @@ ${page_sidebar}
 <div class="content-wrap">
 <div class="epic-header">
 <h1>${emoji} ${epic_name}</h1>
+<div class="tengwar">&#x2727; &#x2726; &#x2727; &#x2726; &#x2727;</div>
 </div>
+${elven_sep}
 <div class="content">
 <pre>${content}</pre>
 </div>
+${elven_sep}
 <div class="footer">
+<div class="lore-quote">&ldquo;${lore_qt}&rdquo;</div>
 ${VERSION} · <a href="https://github.com/joseguillermomoreu-gif/tlotp">GitHub</a>
 </div>
 </div>
@@ -351,6 +383,8 @@ $(sidebar_js)
 HTMLEOF
   else
     page_title="${title} — TLOTP"
+    local lore_qt2
+    lore_qt2="$(lore_quote)"
     cat > "$out_file" <<HTMLEOF
 <!DOCTYPE html>
 <html lang="es">
@@ -363,7 +397,7 @@ HTMLEOF
 <title>${title} — TLOTP</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <script>
 (function(){
   var t = localStorage.getItem('tlotp-theme') || 'dark';
@@ -371,25 +405,26 @@ HTMLEOF
 })();
 </script>
 <style>
-:root{--bg-primary:#0D1117;--bg-secondary:#161B22;--bg-tertiary:#1C2128;--text-primary:#E6EDF3;--text-secondary:#8B949E;--accent-primary:#00D9FF;--accent-secondary:#00FFB3;--border-color:#30363D;--font-sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'Fira Code','Monaco','Menlo',monospace}
-[data-theme="light"]{--bg-primary:#FFFFFF;--bg-secondary:#F8F9FA;--bg-tertiary:#F1F3F5;--text-primary:#212529;--text-secondary:#6C757D;--border-color:#DEE2E6}
+:root{--bg-primary:#0D1117;--bg-secondary:#161B22;--bg-tertiary:#1C2128;--bg-sidebar:#12161C;--text-primary:#E6EDF3;--text-secondary:#8B949E;--accent-primary:#00D9FF;--accent-secondary:#00FFB3;--border-color:#30363D;--border-ornate:#2A2F38;--font-heading:'Cinzel',Georgia,'Times New Roman',serif;--font-body:'Crimson Text',Georgia,'Times New Roman',serif;--font-sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'Fira Code','Monaco','Menlo',monospace}
+[data-theme="light"]{--bg-primary:#FAF6F0;--bg-secondary:#F0EBE3;--bg-tertiary:#E8E2D8;--bg-sidebar:#EDE8E0;--text-primary:#2C2416;--text-secondary:#6B5D4F;--border-color:#D4C9B8;--border-ornate:#C4B8A4}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);line-height:1.6}
+body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);line-height:1.7}
 .content{max-width:960px;margin:0 auto;padding:2rem}
 pre{font-family:var(--font-mono);white-space:pre-wrap;word-wrap:break-word;font-size:.88rem;line-height:1.75;color:var(--text-primary)}
-.footer{text-align:center;padding:2rem;color:var(--text-secondary);font-size:.85rem;border-top:1px solid var(--border-color);margin-top:2rem}
-.footer a{color:var(--accent-primary);text-decoration:none}
-.footer a:hover{text-decoration:underline}
+.footer{text-align:center;padding:2.5rem 2rem;color:var(--text-secondary);font-size:.85rem;border-top:1px solid var(--border-ornate);margin-top:2rem}
+.footer .lore-quote{font-family:var(--font-body);font-style:italic;font-size:.9rem;color:var(--text-secondary);margin-bottom:.8rem;opacity:.7}
+.footer a{color:var(--accent-primary);text-decoration:none;transition:color .2s ease}
+.footer a:hover{text-decoration:underline;text-shadow:0 0 8px rgba(0,217,255,.3)}
 $(sidebar_css)
 </style>
 </head>
 <body>
-<header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
+<header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-ornate);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
   <div style="display:flex;align-items:center;gap:0.5rem;">
     <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
-    <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">josemoreupeso.es</a>
+    <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-heading);font-weight:700;font-size:0.85rem;text-decoration:none;letter-spacing:.04em;">josemoreupeso.es</a>
   </div>
-  <span style="color:var(--text-secondary);font-family:var(--font-sans);font-size:0.85rem;">${title} — TLOTP</span>
+  <span style="color:var(--text-secondary);font-family:var(--font-heading);font-size:0.8rem;letter-spacing:.03em;">${title} — TLOTP</span>
   <button onclick="toggleTheme()" style="background:none;border:1px solid var(--border-color);color:var(--text-secondary);padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">&#x2600;&#xFE0F;/&#x1F319;</button>
 </header>
 <div class="layout">
@@ -399,6 +434,7 @@ ${page_sidebar}
 <pre>${content}</pre>
 </div>
 <div class="footer">
+<div class="lore-quote">&ldquo;${lore_qt2}&rdquo;</div>
 ${VERSION} · <a href="https://github.com/joseguillermomoreu-gif/tlotp">GitHub</a>
 </div>
 </div>
@@ -530,7 +566,7 @@ generate_index() {
 <title>TLOTP — The Lord of the Prompt</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <script>
 (function(){
   var t = localStorage.getItem('tlotp-theme') || 'dark';
@@ -538,53 +574,56 @@ generate_index() {
 })();
 </script>
 <style>
-:root{--bg-primary:#0D1117;--bg-secondary:#161B22;--bg-tertiary:#1C2128;--text-primary:#E6EDF3;--text-secondary:#8B949E;--accent-primary:#00D9FF;--accent-secondary:#00FFB3;--border-color:#30363D;--font-sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'Fira Code','Monaco','Menlo',monospace}
-[data-theme="light"]{--bg-primary:#FFFFFF;--bg-secondary:#F8F9FA;--bg-tertiary:#F1F3F5;--text-primary:#212529;--text-secondary:#6C757D;--border-color:#DEE2E6}
+:root{--bg-primary:#0D1117;--bg-secondary:#161B22;--bg-tertiary:#1C2128;--bg-sidebar:#12161C;--text-primary:#E6EDF3;--text-secondary:#8B949E;--accent-primary:#00D9FF;--accent-secondary:#00FFB3;--border-color:#30363D;--border-ornate:#2A2F38;--font-heading:'Cinzel',Georgia,'Times New Roman',serif;--font-body:'Crimson Text',Georgia,'Times New Roman',serif;--font-sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'Fira Code','Monaco','Menlo',monospace}
+[data-theme="light"]{--bg-primary:#FAF6F0;--bg-secondary:#F0EBE3;--bg-tertiary:#E8E2D8;--bg-sidebar:#EDE8E0;--text-primary:#2C2416;--text-secondary:#6B5D4F;--border-color:#D4C9B8;--border-ornate:#C4B8A4}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-sans);line-height:1.6}
+body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);line-height:1.7}
 
 /* Hero */
-.hero{text-align:center;padding:5rem 2rem 3.5rem;background:var(--bg-primary)}
-.hero h1{font-family:Georgia,'Times New Roman',serif;font-size:3.5rem;letter-spacing:.08em;margin-bottom:.6rem;background:linear-gradient(135deg,#00D9FF 0%,#00FFB3 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero .subtitle{color:#c9d1d9;font-size:1.25rem;font-weight:400;margin-bottom:1.5rem;letter-spacing:.02em}
-.hero .tagline{font-size:.95rem;color:var(--text-secondary);font-style:italic;margin-bottom:2.5rem;font-family:Georgia,serif}
-.btn-primary{display:inline-block;background:linear-gradient(135deg,#00D9FF 0%,#00FFB3 100%);color:#0D1117;padding:.75rem 2rem;border-radius:999px;text-decoration:none;font-weight:700;font-size:.95rem;font-family:var(--font-sans);transition:opacity .2s,transform .15s;border:none}
-.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+.hero{text-align:center;padding:5rem 2rem 2rem;background:var(--bg-primary);position:relative}
+.hero h1{font-family:var(--font-heading);font-size:3.5rem;letter-spacing:.1em;margin-bottom:.6rem;background:linear-gradient(135deg,#C9A84C 0%,#E8D48B 50%,#C9A84C 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:none}
+.hero .subtitle{color:var(--text-primary);font-size:1.25rem;font-weight:400;margin-bottom:1rem;letter-spacing:.05em;font-family:var(--font-heading)}
+.hero .tagline{font-size:1rem;color:var(--text-secondary);font-style:italic;margin-bottom:1rem;font-family:var(--font-body)}
+.hero .tengwar-ring{font-size:.75rem;color:var(--text-secondary);letter-spacing:.4em;opacity:.4;margin-bottom:2rem}
+.hero .elven-sep{display:block;width:100%;max-width:400px;height:24px;margin:0 auto 2rem;color:var(--accent-primary)}
+.btn-primary{display:inline-block;background:linear-gradient(135deg,#C9A84C 0%,#E8D48B 50%,#C9A84C 100%);color:#0D1117;padding:.75rem 2rem;border-radius:999px;text-decoration:none;font-weight:700;font-size:.95rem;font-family:var(--font-heading);letter-spacing:.04em;transition:opacity .2s,transform .15s,box-shadow .2s;border:none}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 4px 20px rgba(201,168,76,.3)}
 
 /* Main */
 .container{max-width:800px;margin:0 auto;padding:0 2rem}
 
 /* Sections */
-.section{margin:2.5rem 0;padding:2rem;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:8px}
-.section h2{color:#e8a838;font-family:Georgia,serif;font-size:1.4rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border-color)}
-.section p{color:var(--text-primary);margin-bottom:.8rem;font-size:.95rem}
+.section{margin:2.5rem 0;padding:2rem;background:var(--bg-secondary);border:1px solid var(--border-ornate);border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+.section h2{color:#C9A84C;font-family:var(--font-heading);font-size:1.3rem;letter-spacing:.04em;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border-ornate)}
+.section p{color:var(--text-primary);margin-bottom:.8rem;font-size:1rem;font-family:var(--font-body)}
 .section ul{list-style:none;padding:0;margin:.5rem 0}
-.section ul li{padding:.3rem 0;font-size:.95rem}
+.section ul li{padding:.3rem 0;font-size:1rem;font-family:var(--font-body)}
 .section ul li::before{content:'  ';margin-right:.5rem}
 
 /* Epics grid */
 .epics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem}
-.epic-card{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:8px;padding:1.2rem;text-decoration:none;color:var(--text-primary);transition:border-color .2s,transform .15s}
-.epic-card:hover{transform:translateY(-2px)}
+.epic-card{background:var(--bg-primary);border:1px solid var(--border-ornate);border-radius:8px;padding:1.2rem;text-decoration:none;color:var(--text-primary);transition:border-color .25s ease,transform .2s ease,box-shadow .25s ease}
+.epic-card:hover{transform:translateY(-3px);box-shadow:0 4px 16px rgba(0,0,0,.2)}
 .epic-card .epic-emoji{font-size:1.5rem;margin-bottom:.3rem;display:block}
-.epic-card .epic-name{font-family:Georgia,serif;font-size:1.1rem;display:block;margin-bottom:.3rem}
-.epic-card .epic-desc{font-size:.8rem;color:var(--text-secondary);line-height:1.4}
+.epic-card .epic-name{font-family:var(--font-heading);font-size:1rem;display:block;margin-bottom:.3rem;letter-spacing:.03em}
+.epic-card .epic-desc{font-size:.85rem;color:var(--text-secondary);line-height:1.5;font-family:var(--font-body)}
 
 /* WebFetch box */
-.webfetch-box{background:var(--bg-primary);border:1px solid var(--border-color);border-radius:6px;padding:1rem;margin:.8rem 0;font-family:var(--font-mono);font-size:.85rem;color:var(--accent-primary);position:relative;word-break:break-all}
-.copy-btn{position:absolute;top:.5rem;right:.5rem;background:var(--border-color);color:var(--text-primary);border:none;padding:.3rem .6rem;border-radius:4px;cursor:pointer;font-size:.75rem;font-family:var(--font-sans)}
+.webfetch-box{background:var(--bg-primary);border:1px solid var(--border-ornate);border-radius:6px;padding:1rem;margin:.8rem 0;font-family:var(--font-mono);font-size:.85rem;color:var(--accent-primary);position:relative;word-break:break-all}
+.copy-btn{position:absolute;top:.5rem;right:.5rem;background:var(--border-color);color:var(--text-primary);border:none;padding:.3rem .6rem;border-radius:4px;cursor:pointer;font-size:.75rem;font-family:var(--font-sans);transition:opacity .2s}
 .copy-btn:hover{opacity:.8}
 
 /* CTA */
 .cta{text-align:center;margin:2.5rem 0}
 .cta-secondary{display:block;margin-top:1rem}
-.cta-secondary a{color:var(--text-secondary);font-size:.85rem;text-decoration:none}
+.cta-secondary a{color:var(--text-secondary);font-size:.85rem;text-decoration:none;font-family:var(--font-body);transition:color .2s}
 .cta-secondary a:hover{color:var(--text-primary);text-decoration:underline}
 
 /* Footer */
-.footer{text-align:center;padding:2.5rem 2rem;color:var(--text-secondary);font-size:.85rem;border-top:1px solid var(--border-color);margin-top:3rem}
-.footer a{color:#e8a838;text-decoration:none}
-.footer a:hover{text-decoration:underline}
+.footer{text-align:center;padding:2.5rem 2rem;color:var(--text-secondary);font-size:.85rem;border-top:1px solid var(--border-ornate);margin-top:3rem}
+.footer .lore-quote{font-family:var(--font-body);font-style:italic;font-size:.95rem;color:var(--text-secondary);margin-bottom:.8rem;opacity:.7}
+.footer a{color:#C9A84C;text-decoration:none;transition:color .2s}
+.footer a:hover{text-decoration:underline;text-shadow:0 0 8px rgba(201,168,76,.3)}
 
 /* Sidebar */
 INDEXEOF
@@ -597,12 +636,12 @@ INDEXEOF
 </head>
 <body>
 
-<header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-color);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
+<header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-ornate);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
   <div style="display:flex;align-items:center;gap:0.5rem;">
     <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
-    <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-sans);font-weight:600;font-size:0.95rem;text-decoration:none;">josemoreupeso.es</a>
+    <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-heading);font-weight:700;font-size:0.85rem;text-decoration:none;letter-spacing:.04em;">josemoreupeso.es</a>
   </div>
-  <span style="color:var(--text-secondary);font-family:var(--font-sans);font-size:0.85rem;">TLOTP — The Lord of the Prompt</span>
+  <span style="color:var(--text-secondary);font-family:var(--font-heading);font-size:0.8rem;letter-spacing:.03em;">TLOTP — The Lord of the Prompt</span>
   <button onclick="toggleTheme()" style="background:none;border:1px solid var(--border-color);color:var(--text-secondary);padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">&#x2600;&#xFE0F;/&#x1F319;</button>
 </header>
 
@@ -619,6 +658,8 @@ INDEXEOF2
   <h1>TLOTP</h1>
   <p class="subtitle">The Lord of the Prompt</p>
   <p class="tagline">One Prompt to Rule Them All</p>
+  <div class="tengwar-ring">&#x2727; &#x2726; &#x2727; &#x2726; &#x2727; &#x2726; &#x2727;</div>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 24" class="elven-sep"><path d="M0,12 C50,12 50,4 100,4 C150,4 150,20 200,20 C250,20 250,4 300,4 C350,4 350,20 400,20 C450,20 450,4 500,4 C550,4 550,12 600,12" fill="none" stroke="currentColor" stroke-width="1" opacity="0.4"/><circle cx="300" cy="12" r="3" fill="currentColor" opacity="0.5"/><circle cx="150" cy="12" r="2" fill="currentColor" opacity="0.3"/><circle cx="450" cy="12" r="2" fill="currentColor" opacity="0.3"/><path d="M280,12 L290,7 L300,12 L290,17 Z" fill="currentColor" opacity="0.3"/><path d="M300,12 L310,7 L320,12 L310,17 Z" fill="currentColor" opacity="0.3"/></svg>
 </div>
 
 <div class="container">
@@ -645,7 +686,7 @@ INDEXEOF2
       <button class="copy-btn" onclick="copyText(this)">Copiar</button>
       WebFetch https://josemoreupeso.es/tlotp/palantir/palantir-main.html
     </div>
-    <p style="font-size:.85rem;color:var(--text-secondary);margin-top:.5rem">
+    <p style="font-size:.9rem;color:var(--text-secondary);margin-top:.5rem;font-family:var(--font-body)">
       Sustituye <code style="color:var(--accent-primary)">palantir</code> por cualquier nombre de epica:
       <code style="color:var(--accent-primary)">bardo</code>,
       <code style="color:var(--accent-primary)">celebrimbor</code>,
@@ -653,7 +694,7 @@ INDEXEOF2
       <code style="color:var(--accent-primary)">aragorn</code>,
       <code style="color:var(--accent-primary)">gandalf</code>
     </p>
-    <p style="font-size:.85rem;color:var(--text-secondary)">
+    <p style="font-size:.9rem;color:var(--text-secondary);font-family:var(--font-body)">
       O carga el prompt completo de una vez (todas las epicas):
     </p>
     <div class="webfetch-box">
@@ -710,6 +751,7 @@ INDEXEOF2
 </div>
 
 <div class="footer">
+<div class="lore-quote">&ldquo;Not all those who wander are lost.&rdquo; &mdash; J.R.R. Tolkien</div>
 INDEXEOF3
 
   # Insert version dynamically
