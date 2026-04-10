@@ -172,6 +172,17 @@ Si elige **Ver más**, mostrar **Pantalla 2**:
 
 #### ✨ Iniciar nueva aventura, Gandalf nos guiará
 
+**Paso previo — Elección de metodología (SDD vs GSD):**
+
+@prompts/gandalf/sections/11-module-gsd-workflow.md
+
+Cargar el módulo de bifurcación de metodología. Según la elección:
+- **SDD** → Continuar al flujo existente (detección de Agent Teams, Rohirrim, etc.)
+- **GSD** → El módulo 11 gestiona todo el workflow GSD de forma autónoma
+- **Ayúdame a decidir** → El módulo 11 analiza y recomienda, luego vuelve a la bifurcación
+
+Si el usuario elige SDD, continuar con el paso siguiente:
+
 **Paso previo — Detección opcional de Agent Teams:**
 
 ```bash

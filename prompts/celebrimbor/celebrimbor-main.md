@@ -41,6 +41,7 @@ Celebrimbor gestiona skills de Claude Code: busca e instala desde skills.sh, ana
 ### Infraestructura
 
 - **01-detector-entorno.md** — Detección de Node.js, npm, npx
+- **15-module-gsd-detector.md** — Detección de GSD (Get Shit Done) instalado
 
 ### Interfaz de Usuario
 
@@ -76,6 +77,16 @@ Celebrimbor gestiona skills de Claude Code: busca e instala desde skills.sh, ana
 
 1. Mostrar banner de Eregion (solo una vez)
 2. Ejecutar `sections/01-detector-entorno.md` — validar Node.js >=18
+
+### Paso 1b: Detección de GSD
+
+**Módulo**: `sections/15-module-gsd-detector.md`
+
+@prompts/celebrimbor/sections/15-module-gsd-detector.md
+
+1. Detectar si GSD está instalado (local y/o global)
+2. Si instalado: informe breve, continuar
+3. Si no instalado: ofrecer instalación (global/local/saltar)
 
 ### Paso 2: Solicitud de Permisos
 
@@ -133,8 +144,9 @@ prompts/celebrimbor/
     ├── 10-module-remove.md       # Eliminar skills
     ├── 11-module-update.md       # Actualizar skills
     ├── 12-module-create-skill.md # Crear skill asistida ✨
-    └── 13-module-docs.md         # Guía y documentación on-demand 📜
-    └── 14-skills-cli-reference.md # Referencia técnica CLI
+    ├── 13-module-docs.md         # Guía y documentación on-demand 📜
+    ├── 14-skills-cli-reference.md # Referencia técnica CLI
+    └── 15-module-gsd-detector.md # Detección de GSD (Get Shit Done)
 ```
 
 ---
