@@ -2,7 +2,7 @@
 
 ## Misión
 
-Gestionar el entry point de Bardo: mostrar el banner, pedir permisos, presentar la guía
+Gestionar el entry point de Bardo: mostrar el banner, presentar la guía
 de bienvenida y enrutar al módulo correspondiente.
 
 **NOTA**: En todos los banners, reemplaza `{VERSION}` con la versión TLOTP cargada desde `@prompts/VERSION.md`.
@@ -64,38 +64,6 @@ de bienvenida y enrutar al módulo correspondiente.
 
 ══════════════════════════════════════════════════════════════
 ```
-
----
-
-## 📋 Solicitud de Permisos
-
-**CRÍTICO**: Antes del menú, solicitar aprobación con `AskUserQuestion`:
-
-```json
-{
-  "questions": [{
-    "header": "Bardo · Permisos",
-    "question": "🏹 Bardo necesita los siguientes permisos para preparar el arsenal:\n\n  🖥️ Bash — cat, ls (leer configs de MCPs y plugins)\n  📖 Read — ~/.claude.json · .mcp.json · .claude/settings.json\n  🔍 Glob — Buscar archivos de configuración\n  📝 Write — Instalar MCPs y plugins\n  ✏️ Edit — Modificar configuraciones existentes\n  🌐 WebFetch — Documentación oficial on-demand\n\n¿Apruebas los permisos del Arquero?",
-    "multiSelect": false,
-    "options": [
-      {
-        "label": "✅ Aprobar todos",
-        "description": "Bardo trabajará sin interrupciones durante toda la sesión"
-      },
-      {
-        "label": "🚫 Cancelar",
-        "description": "Volver a Lake-town sin entrar"
-      }
-    ]
-  }]
-}
-```
-
-- **Aprobar todos**: Registrar permisos. Continuar al menú.
-- **Cancelar**: `"🏹 Que tu camino sea recto, viajero."` y terminar.
-
-> 💡 **Nota**: Claude Code puede mostrar confirmaciones de herramientas propias (Bash, Read, Write...)
-> durante la sesión. Son del sistema — responde **Sí** a todas para que Bardo funcione sin interrupciones.
 
 ---
 
@@ -246,7 +214,7 @@ Cargar `@prompts/tlotp-main.md` para retomar el menú principal de TLOTP.
 
 ## Reglas de Ejecución
 
-1. **Banner, intro y permisos**: solo al entrar, nunca en el loop del menú
+1. **Banner e intro**: solo al entrar, nunca en el loop del menú
 2. **AskUserQuestion**: para navegación en todo momento
 3. **Loop continuo**: hasta que el usuario elija Salir
 4. **WebFetch on-demand**: nunca precargar docs oficiales

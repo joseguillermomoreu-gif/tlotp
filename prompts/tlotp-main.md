@@ -91,6 +91,101 @@ rutas, comandos y análisis al entorno del usuario.
 
 ---
 
+## 🛡️ PASO 0.6: Verificación de Modo de Permisos (INFORMATIVO)
+
+**Ejecutar inmediatamente** después de la detección de SO, antes de mostrar
+el lore, la intro o el menú principal.
+
+> ⚠️ **Este paso NO bloquea la sesión**. Es puramente informativo — el flujo
+> continúa al PASO 2 independientemente de la respuesta del usuario.
+
+**Paso 1** — Mostrar este banner informativo sin interacción:
+
+```
+══════════════════════════════════════════════════════════════════
+🛡️  Forjando el Anillo — Modo de Permisos
+
+  TLOTP convoca seis épicas que usan múltiples herramientas
+  (Bash, Read, Write, Edit, WebFetch, Glob...) para configurar
+  tu entorno de Claude Code de forma asistida.
+
+  💍 Experiencia óptima:
+     Claude Code lanzado con `--dangerously-skip-permissions`
+     → TLOTP trabaja sin interrupciones a lo largo de todas
+       las épicas, como un anillo forjado en una sola llama.
+
+  ⚠️  ¿Sin el flag?
+     TLOTP funcionará igualmente, pero Claude Code pedirá
+     confirmación antes de cada herramienta. Puede ser frecuente.
+
+  🔒 Aviso de seguridad:
+     El flag omite TODAS las confirmaciones de tools en la sesión.
+     Úsalo solo con prompts de confianza como TLOTP.
+══════════════════════════════════════════════════════════════════
+```
+
+**Paso 2** — Usar **AskUserQuestion**:
+
+```json
+{
+  "questions": [{
+    "header": "TLOTP — Modo de permisos",
+    "question": "🛡️ ¿Has lanzado Claude Code con --dangerously-skip-permissions en esta sesión?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Sí, ya tengo el flag activo",
+        "description": "TLOTP continuará al menú principal sin interrupciones"
+      },
+      {
+        "label": "🔄 No / no estoy seguro",
+        "description": "TLOTP continuará igualmente y te mostrará cómo relanzar para la próxima vez"
+      }
+    ]
+  }]
+}
+```
+
+**Paso 3** — Actuar según la respuesta:
+
+### ✅ Si elige "Sí, ya tengo el flag activo"
+
+Continuar directamente al **PASO 2 (Lore e Intro)** sin mostrar ningún texto
+adicional.
+
+### 🔄 Si elige "No / no estoy seguro"
+
+Mostrar el siguiente bloque educativo (sin interacción):
+
+```
+══════════════════════════════════════════════════════════════════
+💡 La Comunidad del Código marchará contigo igualmente
+
+  TLOTP continuará funcionando con normalidad. Claude Code puede
+  pedirte confirmación antes de cada uso de Bash, Read, Write,
+  Edit o WebFetch — responde Sí para que las épicas avancen.
+
+  🧭 Para una experiencia fluida en futuras sesiones:
+
+     1. Detén esta sesión al terminar
+     2. Relanza Claude Code con el flag:
+
+        claude --dangerously-skip-permissions
+
+     3. Reinvoca TLOTP con:
+
+        WebFetch https://josemoreupeso.es/tlotp/tlotp-main.html
+
+  💍 Por ahora, pon tu confianza en Gandalf y continúa —
+     la aventura no se detiene aquí.
+══════════════════════════════════════════════════════════════════
+```
+
+Tras mostrar el bloque, continuar **igualmente** al **PASO 2 (Lore e Intro)**.
+NO terminar la sesión bajo ninguna circunstancia en el PASO 0.6.
+
+---
+
 ## 🚀 Reglas de Ejecución
 
 ### PASO 1: Mostrar Banner (OBLIGATORIO)
@@ -102,6 +197,11 @@ rutas, comandos y análisis al entorno del usuario.
 ### PASO 1.5: Detectar SO (OBLIGATORIO)
 
 Ejecutar PASO 0.5 (detección de sistema operativo).
+
+### PASO 1.75: Verificar Modo de Permisos (OBLIGATORIO, no bloqueante)
+
+Ejecutar PASO 0.6 (verificación informativa de modo de permisos). El flujo
+continúa al PASO 2 independientemente de la respuesta del usuario.
 
 ### PASO 2: Mostrar Lore e Intro (OBLIGATORIO)
 

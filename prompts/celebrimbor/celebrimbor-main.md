@@ -88,20 +88,14 @@ Celebrimbor gestiona skills de Claude Code: busca e instala desde skills.sh, ana
 2. Si instalado: informe breve, continuar
 3. Si no instalado: ofrecer instalación (global/local/saltar)
 
-### Paso 2: Solicitud de Permisos
-
-**Módulo**: `sections/02-menu-principal.md`
-
-AskUserQuestion con los permisos necesarios (Bash, Read, Write, Edit, WebFetch).
-
-### Paso 3: Verificación de Updates (silenciosa)
+### Paso 2: Verificación de Updates (silenciosa)
 
 ```bash
 npx skills check
 ```
 Si hay updates, avisarlo en el menú.
 
-### Paso 4: Menú Principal (loop paginado)
+### Paso 3: Menú Principal (loop paginado)
 
 **Módulo**: `sections/02-menu-principal.md`
 

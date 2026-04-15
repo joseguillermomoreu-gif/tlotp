@@ -61,7 +61,7 @@
 ## 🎯 Módulos Cargados
 
 1. **00-menu-principal.md** - Banner + menú principal (La Asamblea / La Marcha / Plantar / Retirarse)
-2. **01-mini-guide.md** - Mini-guía con lore de Bárbol + solicitud de permisos
+2. **01-mini-guide.md** - Mini-guía informativa con lore de Bárbol
 3. **02-analyzer.md** - Escaneo completo del CI/CD actual del proyecto
 4. **03-diagram-renderer.md** - Mapa visual del pipeline (diagrama ASCII)
 5. **04-improvement-engine.md** - Mejoras con scoring 0-100 + revisor uno a uno
@@ -124,7 +124,7 @@ Los Ents son herramientas de infraestructura, NO sesiones de desarrollo.
 Ya tienes todos los módulos cargados. Procede según las instrucciones de `00-menu-principal.md`:
 
 1. Mostrar banner de los Ents
-2. Mostrar mini-guía de Bárbol y solicitar permisos (`01-mini-guide.md`)
+2. Mostrar mini-guía de Bárbol (`01-mini-guide.md`)
 3. Mostrar menú principal con `AskUserQuestion` y ejecutar el módulo elegido:
    - **Convocar la Asamblea** → `02-analyzer.md` → `03-diagram-renderer.md` → `04-improvement-engine.md`
    - **La Marcha sobre Isengard** → `05-modifier.md`
