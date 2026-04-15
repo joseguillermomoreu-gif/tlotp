@@ -24,18 +24,20 @@
 @prompts/palantir/sections/04-exploracion-custom.md
 @prompts/palantir/sections/05-susurrar-planes.md
 @prompts/palantir/sections/06-compartir-visiones.md
+@prompts/palantir/sections/07-status-line.md
 
 ---
 
 ## 🎯 Módulos Cargados
 
-1. **00-menu-principal.md** - Menú principal (Contemplar / Susurrar / Compartir / Salir)
+1. **00-menu-principal.md** - Menú principal paginado 3+1 (Contemplar / Susurrar / Compartir / Ver más → Status Line / Salir)
 2. **01-mini-guide.md** - Mini-guía de Palantír con lore + solicitud de permisos
 3. **02-contemplar-reino.md** - Análisis completo de configuración con scoring y sugerencias
 4. **03-jerarquia-oficial.md** - Inspección de jerarquía oficial (6 WebFetch docs)
 5. **04-exploracion-custom.md** - Exploración de settings.json, skills/, hooks/
 6. **05-susurrar-planes.md** - Añadir configuración con análisis inteligente
 7. **06-compartir-visiones.md** - Importar, exportar y eliminar configuraciones
+8. **07-status-line.md** - Autoasistencia y CRUD de Status Line (detectar / crear / editar / reemplazar / eliminar)
 
 ---
 
@@ -83,10 +85,15 @@ Ya tienes todos los módulos cargados. Procede según las instrucciones de `00-m
 
 1. Mostrar banner de Palantír
 2. Mostrar mini-guía y solicitar permisos (`01-mini-guide.md`)
-3. Mostrar menú principal con `AskUserQuestion` y ejecutar el módulo elegido:
-   - **Contemplar el reino** → `02-contemplar-reino.md`
-   - **Susurrar planes en la Piedra** → `05-susurrar-planes.md`
-   - **Compartir visiones entre Palantíri** → `06-compartir-visiones.md`
-   - **Cubrir el Palantír** → volver a `tlotp-main.md`
+3. Mostrar menú principal paginado (3+1) con `AskUserQuestion` y ejecutar el módulo elegido:
+   - **Página 1**:
+     - Contemplar el reino → `02-contemplar-reino.md`
+     - Susurrar planes en la Piedra → `05-susurrar-planes.md`
+     - Compartir visiones entre Palantíri → `06-compartir-visiones.md`
+     - ➕ Ver más... → ir a Página 2
+   - **Página 2**:
+     - 📊 Gestionar Status Line → `07-status-line.md`
+     - 🔙 Volver a página 1
+     - Cubrir el Palantír → volver a `tlotp-main.md`
 
 ¡Adelante, Palantír! 🔮👁️

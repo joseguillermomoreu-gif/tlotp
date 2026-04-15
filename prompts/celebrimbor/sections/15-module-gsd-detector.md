@@ -32,7 +32,7 @@ ls ~/.claude/commands/gsd:*.md 2>/dev/null
 
 ## Caso 1: GSD Instalado
 
-Si se detectan ficheros en algun scope, mostrar informe breve y continuar:
+Si se detectan ficheros en algun scope, mostrar informe breve:
 
 ```
   ✅ GSD detectado ({scope})
@@ -41,7 +41,125 @@ Si se detectan ficheros en algun scope, mostrar informe breve y continuar:
 
 Donde `{scope}` es `local`, `global` o `local + global` segun corresponda.
 
-**No interrumpir el flujo** — continuar directamente al siguiente paso.
+### Aviso de consumo de contexto
+
+Tras el mensaje de deteccion, mostrar el siguiente aviso:
+
+```
+══════════════════════════════════════════════════════════════
+⚠️  GSD ocupa contexto en cada sesion
+══════════════════════════════════════════════════════════════
+  Ten en cuenta que tener GSD instalado carga sus comandos en
+  el contexto de cada sesion, incluso cuando no lo estas usando.
+
+  Si no tienes previsto usar GSD, es recomendable desinstalarlo
+  para liberar ese espacio de contexto.
+══════════════════════════════════════════════════════════════
+```
+
+### Opciones al usuario
+
+```json
+{
+  "questions": [{
+    "header": "Celebrimbor — GSD instalado",
+    "question": "⚒️ ¿Que quieres hacer con GSD?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Mantener GSD instalado",
+        "description": "Lo uso o tengo previsto usarlo"
+      },
+      {
+        "label": "🗑️ Desinstalar GSD",
+        "description": "Quiero liberar contexto de mis sesiones"
+      },
+      {
+        "label": "⏭️ Continuar sin cambios",
+        "description": "Decidir mas tarde"
+      }
+    ]
+  }]
+}
+```
+
+### Routing de opciones
+
+#### Mantener GSD instalado
+
+Mostrar confirmacion breve y continuar al siguiente paso:
+
+```
+  ✅ GSD se mantiene en el taller. Las forjas siguen encendidas.
+```
+
+#### Desinstalar GSD
+
+Resolver el comando segun el `{scope}` donde GSD fue detectado:
+
+| Scope detectado | Comando a ejecutar |
+|-----------------|--------------------|
+| `local` | `rm .claude/commands/gsd:*.md` |
+| `global` | `rm ~/.claude/commands/gsd:*.md` |
+| `local + global` | `rm .claude/commands/gsd:*.md ~/.claude/commands/gsd:*.md` |
+
+**Paso 1 — Previsualizacion del comando**
+
+Mostrar al usuario el comando exacto que se va a ejecutar:
+
+```
+══════════════════════════════════════════════════════════════
+🗑️  Desinstalacion de GSD ({scope})
+══════════════════════════════════════════════════════════════
+  Se ejecutara el siguiente comando:
+    {comando_resuelto}
+
+  Esto eliminara todos los ficheros `gsd:*.md` del scope
+  detectado. La accion no es reversible desde Celebrimbor.
+══════════════════════════════════════════════════════════════
+```
+
+**Paso 2 — Confirmacion explicita**
+
+```json
+{
+  "questions": [{
+    "header": "Celebrimbor — Confirmar desinstalacion",
+    "question": "🗑️ ¿Confirmas la desinstalacion de GSD?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "✅ Si, desinstalar",
+        "description": "Ejecutar el comando mostrado"
+      },
+      {
+        "label": "🚫 Cancelar",
+        "description": "No tocar nada y continuar"
+      }
+    ]
+  }]
+}
+```
+
+**Paso 3 — Ejecucion y resultado**
+
+- Si el usuario confirma → ejecutar el comando resuelto.
+  - Si exito → mostrar:
+    ```
+      ✅ GSD desinstalado ({scope}). Contexto liberado.
+         Las forjas de Eregion recuperan su silencio.
+    ```
+  - Si error → mostrar el error y continuar sin bloquear el flujo.
+- Si el usuario cancela → mostrar:
+  ```
+    ⏭️ Desinstalacion cancelada. GSD se mantiene en el taller.
+  ```
+
+Continuar al siguiente paso.
+
+#### Continuar sin cambios
+
+Continuar directamente al siguiente paso sin accion ni mensajes adicionales.
 
 ---
 
@@ -125,9 +243,10 @@ Continuar directamente al siguiente paso sin accion.
 ## Reglas de ejecucion
 
 1. **Siempre ejecutar** durante el arranque, despues de la deteccion de Node.js
-2. **Rapido y silencioso** si GSD esta presente (una linea, sin interrupcion)
+2. **Transparente sobre el coste** si GSD esta presente (aviso de contexto + opcion de desinstalar)
 3. **Informativo pero no bloqueante** si GSD no esta presente (el usuario puede saltar)
-4. **No modificar** ningun otro modulo ni flujo existente de Celebrimbor
+4. **Destructivo solo bajo doble confirmacion**: cualquier desinstalacion requiere previsualizacion del comando y confirmacion explicita
+5. **No modificar** ningun otro modulo ni flujo existente de Celebrimbor
 
 ---
 
