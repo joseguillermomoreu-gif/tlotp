@@ -2,7 +2,7 @@
 
 ## Misión
 
-Gestionar el entry point de Celebrimbor: pedir permisos, mostrar el menú y enrutar al módulo correspondiente.
+Gestionar el entry point de Celebrimbor: mostrar el menú y enrutar al módulo correspondiente.
 
 **NOTA**: En todos los banners, reemplaza `{VERSION}` con la versión TLOTP cargada desde `@prompts/VERSION.md`.
 
@@ -29,40 +29,8 @@ Gestionar el entry point de Celebrimbor: pedir permisos, mostrar el menú y enru
 ```
 
 **Después del banner**: Ejecutar detector de entorno (módulo `01-detector-entorno.md`).
-- ✅ Node.js >=18 detectado → continuar a permisos
+- ✅ Node.js >=18 detectado → continuar al menú principal
 - ❌ Node.js no disponible o versión inferior → mostrar error y opciones de instalación
-
----
-
-## 📋 Solicitud de Permisos
-
-**CRÍTICO**: Antes del menú, solicitar aprobación con `AskUserQuestion`:
-
-```json
-{
-  "questions": [{
-    "header": "Celebrimbor · Permisos",
-    "question": "⚒️ Celebrimbor necesita los siguientes permisos:\n\n  🖥️ Bash — npx skills (check/find/add/update/remove/list)\n  📖 Read — ~/.claude/skills/ · .claude/skills/ · CLAUDE.md · rules/\n  🔍 Glob — Buscar archivos SKILL.md en rutas globales y locales\n  📝 Write — Instalar y crear skills\n  ✏️ Edit — Mejorar y actualizar skills existentes\n  🌐 WebFetch — Documentación oficial on-demand\n\n¿Apruebas los permisos de la Forja?",
-    "multiSelect": false,
-    "options": [
-      {
-        "label": "✅ Aprobar todos",
-        "description": "Celebrimbor trabajará sin interrupciones durante toda la sesión"
-      },
-      {
-        "label": "🚫 Cancelar",
-        "description": "Salir de Eregion"
-      }
-    ]
-  }]
-}
-```
-
-- **Aprobar todos**: Registrar permisos. Continuar al menú.
-- **Cancelar**: Mostrar despedida épica y terminar.
-
-> 💡 **Nota**: Claude Code puede mostrar confirmaciones de herramientas propias (Bash, Read, Write...)
-> durante la sesión. Son del sistema — responde **Sí** a todas para que Celebrimbor funcione sin interrupciones.
 
 ---
 
@@ -150,7 +118,7 @@ Mostrar aviso de updates si procede:
 }
 ```
 
-**Loop continuo**: al terminar cada módulo, volver a este menú (sin repetir banner ni permisos).
+**Loop continuo**: al terminar cada módulo, volver a este menú (sin repetir banner).
 
 ---
 
@@ -198,7 +166,7 @@ Mostrar aviso de updates si procede:
 
 ## Reglas de Ejecución
 
-1. **Banner y permisos**: solo al entrar, nunca en el loop del menú
+1. **Banner**: solo al entrar, nunca en el loop del menú
 2. **AskUserQuestion**: para navegación elegante en todo momento
 3. **Loop continuo**: hasta que el usuario elija Salir
 4. **WebFetch on-demand**: nunca precargar docs oficiales

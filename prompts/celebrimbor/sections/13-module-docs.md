@@ -128,7 +128,7 @@ Solo lo imprescindible:
 ⚒️  El conocimiento ha sido forjado. Úsalo bien en la Tierra Media.
 ```
 
-Al finalizar, volver al menú principal de Celebrimbor (sin repetir banner ni permisos).
+Al finalizar, volver al menú principal de Celebrimbor (sin repetir banner).
 
 ---
 

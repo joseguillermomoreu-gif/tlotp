@@ -37,13 +37,9 @@
 
 ---
 
-@prompts/aragorn/sections/00-module-permisos.md
-
----
-
 ## Menú Principal — Paginado
 
-Tras los permisos, mostrar la **Pantalla 1**:
+Mostrar la **Pantalla 1**:
 
 ```
 ══════════════════════════════════════════════════════════════
