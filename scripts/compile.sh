@@ -245,9 +245,10 @@ generate_html() {
     is_main=true
   fi
 
-  # Pipeline: raw md → placeholders → escape_html → restore links
-  # 5 steps: Step 0 (backtick-wrapped) → Step 1 (normal refs, fenced-aware)
-  #           → Step 2 (escape_html) → Step 3a (restore code refs) → Step 3b (restore normal refs)
+  # Pipeline: raw md → placeholders → escape_html → restore links → scrub
+  # 6 steps: Step 0 (backtick-wrapped) → Step 1 (normal refs, fenced-aware)
+  #           → Step 2 (escape_html) → Step 3a (restore code refs)
+  #           → Step 3b (restore normal refs) → Step 3c (scrub residual @prompts/)
   local raw_content
   raw_content="$(cat "$md_file")"
 
@@ -286,10 +287,22 @@ generate_html() {
   content="$(escape_html <<< "$raw_content")"
 
   # Step 3a: Restore TLOTP_CODE_IMPORT placeholders → <code><a href>
-  content="$(sed 's|TLOTP_CODE_IMPORT{\([^}]*\)}END|<code><a href="https://josemoreupeso.es/tlotp/\1.html" style="color:var(--accent-primary)">@prompts/\1.md</a></code>|g' <<< "$content")"
+  # INVARIANT (issue #396): display text MUST equal the href (absolute URL).
+  # If they diverge, LLMs reading the HTML may prioritize the visible text
+  # and reconstruct a wrong URL (e.g. concatenating "@prompts/..." to the base).
+  content="$(sed 's|TLOTP_CODE_IMPORT{\([^}]*\)}END|<code><a href="https://josemoreupeso.es/tlotp/\1.html" style="color:var(--accent-primary)">https://josemoreupeso.es/tlotp/\1.html</a></code>|g' <<< "$content")"
 
   # Step 3b: Restore TLOTP_IMPORT placeholders → <a href> (normal links)
-  content="$(sed 's|TLOTP_IMPORT{\([^}]*\)}END|<a href="https://josemoreupeso.es/tlotp/\1.html" style="color:var(--accent-primary)">@prompts/\1.md</a>|g' <<< "$content")"
+  # Same invariant as 3a: display text = href (absolute URL). See issue #396.
+  content="$(sed 's|TLOTP_IMPORT{\([^}]*\)}END|<a href="https://josemoreupeso.es/tlotp/\1.html" style="color:var(--accent-primary)">https://josemoreupeso.es/tlotp/\1.html</a>|g' <<< "$content")"
+
+  # Step 3c: Scrub any residual @prompts/X/Y.md literal (from fenced code blocks
+  # where Step 0/1 intentionally skipped processing) and replace with the
+  # absolute URL. Prevents LLMs from reconstructing the wrong URL from plain-text
+  # tokens inside <pre>/<code> fenced blocks. See issue #396.
+  # Character class excludes space, backtick, double-quote and '<' to avoid
+  # crossing word boundaries, already-generated anchors or HTML tags.
+  content="$(sed 's|@prompts/\([^[:space:]`"<]*\)\.md|https://josemoreupeso.es/tlotp/\1.html|g' <<< "$content")"
 
   # Meta description: first 500 chars of raw content, HTML-attr-safe
   local meta_description
