@@ -31,7 +31,7 @@
 ## 🎯 Módulos Cargados
 
 1. **00-menu-principal.md** - Menú principal paginado 3+1 (Contemplar / Susurrar / Compartir / Ver más → Status Line / Salir)
-2. **01-mini-guide.md** - Mini-guía de Palantír con lore + solicitud de permisos
+2. **01-mini-guide.md** - Mini-guía informativa de Palantír con lore
 3. **02-contemplar-reino.md** - Análisis completo de configuración con scoring y sugerencias
 4. **03-jerarquia-oficial.md** - Inspección de jerarquía oficial (6 WebFetch docs)
 5. **04-exploracion-custom.md** - Exploración de settings.json, skills/, hooks/
@@ -84,7 +84,7 @@ Esta sesión es de inspección/mantenimiento, **NO** es una sesión de desarroll
 Ya tienes todos los módulos cargados. Procede según las instrucciones de `00-menu-principal.md`:
 
 1. Mostrar banner de Palantír
-2. Mostrar mini-guía y solicitar permisos (`01-mini-guide.md`)
+2. Mostrar mini-guía de Palantír (`01-mini-guide.md`)
 3. Mostrar menú principal paginado (3+1) con `AskUserQuestion` y ejecutar el módulo elegido:
    - **Página 1**:
      - Contemplar el reino → `02-contemplar-reino.md`
