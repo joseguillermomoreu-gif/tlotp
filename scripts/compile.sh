@@ -1,7 +1,8 @@
 #!/bin/bash
 # ═══════════════════════════════════════════════════════════════
 #   compile.sh — Compilador TLOTP: prompts/ → dist/
-#   Convierte cada .md en .html y genera tlotp-full.md
+#   Convierte cada .md en .html, genera .md limpios por epica
+#   para LLMs, indices por epica para humanos y tlotp-full.md
 # ═══════════════════════════════════════════════════════════════
 set -euo pipefail
 
@@ -58,6 +59,116 @@ name_for_epic() {
     aragorn)     echo "Aragorn" ;;
     gandalf)     echo "Gandalf" ;;
     *)           echo "$1" ;;
+  esac
+}
+
+desc_for_epic() {
+  case "$1" in
+    palantir)    echo "Inspector y gestor de configuraciones de Claude Code" ;;
+    bardo)       echo "Proveedor de MCPs y plugins con marketplace" ;;
+    celebrimbor) echo "Gestor de skills — CRUD para mas de 59.000 skills" ;;
+    ents)        echo "Guardianes del CI/CD y GitHub Actions" ;;
+    aragorn)     echo "Gestor de agentes y equipos con roles basados en el lore" ;;
+    gandalf)     echo "Desarrollo guiado por especificacion — flujo SDD" ;;
+    *)           echo "" ;;
+  esac
+}
+
+longdesc_for_epic() {
+  case "$1" in
+    palantir)    echo "La Piedra Vidente inspecciona y gestiona todas las configuraciones de Claude Code: CLAUDE.md, settings.json, rules/, hooks y MEMORY.md. Ofrece un CRUD completo con modos Inspector, Configurador, Import/Export y Status Line." ;;
+    bardo)       echo "El Arquero de Lake-town gestiona MCPs y plugins. Analiza tu stack, consulta el marketplace en tiempo real, recomienda herramientas con ejemplos de uso reales e instala con verificacion post-instalacion." ;;
+    celebrimbor) echo "La Forja de Eregion gestiona skills de Claude Code. Busca e instala desde skills.sh (mas de 59.000 skills), analiza las instaladas, sugiere mejoras y asiste en la creacion de skills personalizadas." ;;
+    ents)        echo "Los Pastores del Fangorn custodian tu CI/CD. Analizan pipelines existentes, generan diagramas visuales, sugieren mejoras con scoring y crean GitHub Actions desde cero consultando documentacion oficial en tiempo real." ;;
+    aragorn)     echo "El Rey de Gondor convoca y gestiona tu ejercito de agentes. Inspecciona el arsenal actual, busca en marketplaces (VoltAgent + aitmpl.com), crea agentes asistidos y configura Agent Teams para trabajo paralelo." ;;
+    gandalf)     echo "El Mago Blanco guia el desarrollo con Spec-Driven Development. Exploradores Rohirrim mapean el dominio, genera requirements EARS, design con Mermaid y tasks ejecutables. Integra Agent Teams y Consejo de Rivendel." ;;
+    *)           echo "" ;;
+  esac
+}
+
+subtitle_for_epic() {
+  case "$1" in
+    palantir)    echo "La Piedra Vidente" ;;
+    bardo)       echo "El Arquero de Lake-town" ;;
+    celebrimbor) echo "La Forja de Eregion" ;;
+    ents)        echo "Los Pastores del Fangorn" ;;
+    aragorn)     echo "El Rey que Regresa" ;;
+    gandalf)     echo "El Mago Blanco" ;;
+    *)           echo "" ;;
+  esac
+}
+
+modules_for_epic() {
+  case "$1" in
+    palantir) cat <<'MODS'
+00-menu-principal|Menu principal paginado 3+1
+01-mini-guide|Mini-guia informativa con lore
+02-contemplar-reino|Analisis completo de configuracion con scoring
+03-jerarquia-oficial|Inspeccion de jerarquia oficial (6 niveles)
+04-exploracion-custom|Exploracion de settings.json, skills/, hooks/
+05-susurrar-planes|Anadir configuracion con analisis inteligente
+06-compartir-visiones|Importar, exportar y eliminar configuraciones
+07-status-line|CRUD de Status Line
+MODS
+    ;;
+    bardo) cat <<'MODS'
+00-module-analyze|Inspeccionar arsenal — analizar stack, MCPs y plugins
+01-module-guide|Consultar al Contrabandista — guia de uso personalizada
+02-module-install-plugins|Buscar e instalar plugins desde marketplace
+03-module-install-mcps|Buscar e instalar MCPs con scope y transport
+04-module-docs|Los pergaminos del Arquero — guia completa
+MODS
+    ;;
+    celebrimbor) cat <<'MODS'
+01-detector-entorno|Deteccion de Node.js, npm, npx
+02-menu-principal|Menu interactivo adaptativo
+04-backend-cli|Referencia de comandos npx skills
+07-module-analyze|Analizar skills instaladas y sugerir mejoras
+07-module-search|Buscar skills en skills.sh
+08-module-install|Instalar skills
+09-module-list|Listar skills instaladas
+10-module-remove|Eliminar skills
+11-module-update|Actualizar skills
+12-module-create-skill|Crear skill asistida
+13-module-docs|Guia y documentacion on-demand
+14-skills-cli-reference|Referencia tecnica CLI
+15-module-gsd-detector|Deteccion de GSD (Get Shit Done)
+MODS
+    ;;
+    ents) cat <<'MODS'
+00-menu-principal|Banner + menu principal
+01-mini-guide|Mini-guia informativa con lore de Barbol
+02-analyzer|Escaneo completo del CI/CD actual
+03-diagram-renderer|Mapa visual del pipeline (diagrama ASCII)
+04-improvement-engine|Mejoras con scoring 0-100
+05-modifier|Modificacion asistida del CI/CD existente
+06-creator|Creacion de GitHub Actions desde cero
+MODS
+    ;;
+    aragorn) cat <<'MODS'
+00-module-analyze|Inspeccionar arsenal de agentes con scoring
+01-module-marketplace|Buscar e instalar desde VoltAgent + aitmpl.com
+02-module-create|Crear agente asistido personalizado
+03-module-team-builder|Configurar Agent Teams para trabajo paralelo
+04-module-docs|Los pergaminos del Rey — guia completa
+99-lore-characters|Referencia de personajes del lore
+MODS
+    ;;
+    gandalf) cat <<'MODS'
+01-module-rohirrim|Exploradores Rohirrim — mapeo de dominio
+02-module-field-report|Informe de campo de los exploradores
+03-module-objective|Definicion de objetivo con el usuario
+04-module-continue|Continuar aventura SDD existente
+04b-module-docs-fetch|Fetch de documentacion oficial
+05-module-requirements|Generador de requirements EARS
+06-module-design|Design con Mermaid y ADRs
+07-module-tasks|Desglose ejecutable de tareas
+08-module-council|Consejo de Rivendel
+09-module-docs|Los Pergaminos del Mago
+10-module-forge-team|Forja del ejercito con Aragorn
+11-module-gsd-workflow|Workflow GSD integrado
+MODS
+    ;;
   esac
 }
 
@@ -503,6 +614,268 @@ resolve_imports() {
   done < "$md_file"
 }
 
+# ── Compilar {epic}-main.md limpio para LLMs ────────────────
+# Genera dist/{epic}/{epic}-main.md con imports resueltos y
+# refs @prompts/ convertidas a URLs absolutas
+compile_epic_md() {
+  local epic="$1"
+  local main_file="$PROMPTS_DIR/$epic/$epic-main.md"
+  local out_file="$DIST_DIR/$epic/$epic-main.md"
+
+  if [ ! -f "$main_file" ]; then
+    echo "    [SKIP] $epic-main.md not found"
+    return
+  fi
+
+  mkdir -p "$DIST_DIR/$epic"
+
+  # Resolve all @imports recursively
+  local resolved
+  resolved="$(resolve_imports "$main_file")"
+
+  # Convert @prompts/ references to absolute URLs
+  # Handle both inline refs and standalone refs
+  # - Backtick-wrapped: `@prompts/X/Y.md` → `https://josemoreupeso.es/tlotp/X/Y.md`
+  # - Normal: @prompts/X/Y.md → https://josemoreupeso.es/tlotp/X/Y.md
+  # Process line by line to respect fenced code blocks
+  local processed=""
+  local in_fenced=false
+  while IFS= read -r line || [ -n "$line" ]; do
+    if [[ "$line" =~ ^\`\`\` ]]; then
+      if [ "$in_fenced" = true ]; then
+        in_fenced=false
+      else
+        in_fenced=true
+      fi
+      processed+="$line"$'\n'
+      continue
+    fi
+
+    # Convert @prompts/ refs everywhere (inside and outside fenced)
+    # Backtick-wrapped first
+    line="$(sed 's|`@prompts/\([^`]*\)\.md`|`https://josemoreupeso.es/tlotp/\1.md`|g' <<< "$line")"
+    # Normal refs (not inside backticks, not already converted)
+    line="$(sed 's|@prompts/\([^"'"'"'[:space:]`]*\)\.md|https://josemoreupeso.es/tlotp/\1.md|g' <<< "$line")"
+
+    processed+="$line"$'\n'
+  done <<< "$resolved"
+
+  echo "$processed" > "$out_file"
+  echo "    [OK] $epic/$epic-main.md"
+}
+
+compile_all_epic_mds() {
+  echo "  Compiling epic .md files for LLMs..."
+  for epic in $EPIC_ORDER; do
+    compile_epic_md "$epic"
+  done
+}
+
+# ── Generar index.html por epica (para humanos) ─────────────
+generate_epic_index() {
+  local epic="$1"
+  local out_file="$DIST_DIR/$epic/index.html"
+  local epic_name
+  epic_name="$(name_for_epic "$epic")"
+  local epic_subtitle
+  epic_subtitle="$(subtitle_for_epic "$epic")"
+  local epic_desc
+  epic_desc="$(desc_for_epic "$epic")"
+  local epic_longdesc
+  epic_longdesc="$(longdesc_for_epic "$epic")"
+  local accent
+  accent="$(color_for_epic "$epic")"
+  local emoji
+  emoji="$(emoji_for_epic "$epic")"
+  local lore_qt
+  lore_qt="$(lore_quote)"
+
+  mkdir -p "$DIST_DIR/$epic"
+
+  # Get sidebar
+  local page_sidebar
+  page_sidebar="$SIDEBAR_HTML"
+
+  # Build modules table rows
+  local modules_rows=""
+  while IFS='|' read -r mod_name mod_desc; do
+    [ -z "$mod_name" ] && continue
+    modules_rows+="      <tr><td><code>${mod_name}.md</code></td><td>${mod_desc}</td></tr>"$'\n'
+  done <<< "$(modules_for_epic "$epic")"
+
+  # Build other epics navigation
+  local other_epics=""
+  for other in $EPIC_ORDER; do
+    if [ "$other" != "$epic" ]; then
+      local other_name
+      other_name="$(name_for_epic "$other")"
+      local other_emoji
+      other_emoji="$(emoji_for_epic "$other")"
+      local other_color
+      other_color="$(color_for_epic "$other")"
+      local other_desc
+      other_desc="$(desc_for_epic "$other")"
+      other_epics+="      <a class=\"epic-card\" href=\"https://josemoreupeso.es/tlotp/${other}/\" style=\"border-color:${other_color}\">"
+      other_epics+="<span class=\"epic-emoji\">${other_emoji}</span>"
+      other_epics+="<span class=\"epic-name\" style=\"color:${other_color}\">${other_name}</span>"
+      other_epics+="<span class=\"epic-desc\">${other_desc}</span>"
+      other_epics+="</a>"$'\n'
+    fi
+  done
+
+  cat > "$out_file" <<EPICINDEXEOF
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${epic_name} — TLOTP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<script>
+(function(){
+  var t = localStorage.getItem('tlotp-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+})();
+</script>
+<style>
+:root{--bg-primary:#0D1117;--bg-secondary:#161B22;--bg-tertiary:#1C2128;--bg-sidebar:#12161C;--text-primary:#E6EDF3;--text-secondary:#8B949E;--accent-primary:#00D9FF;--accent-secondary:#00FFB3;--border-color:#30363D;--border-ornate:#2A2F38;--font-heading:'Cinzel',Georgia,'Times New Roman',serif;--font-body:'Crimson Text',Georgia,'Times New Roman',serif;--font-sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;--font-mono:'Fira Code','Monaco','Menlo',monospace;--glow-color:${accent}}
+[data-theme="light"]{--bg-primary:#FAF6F0;--bg-secondary:#F0EBE3;--bg-tertiary:#E8E2D8;--bg-sidebar:#EDE8E0;--text-primary:#2C2416;--text-secondary:#6B5D4F;--border-color:#D4C9B8;--border-ornate:#C4B8A4}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg-primary);color:var(--text-primary);font-family:var(--font-body);line-height:1.7}
+.epic-hero{text-align:center;padding:3rem 2rem 1.5rem;background:linear-gradient(180deg,var(--bg-secondary) 0%,var(--bg-primary) 100%);border-bottom:2px solid ${accent}}
+.epic-hero h1{color:${accent};font-family:var(--font-heading);font-size:2.5rem;letter-spacing:.08em;text-shadow:0 0 20px ${accent}33;margin-bottom:.3rem}
+.epic-hero .subtitle{color:var(--text-secondary);font-family:var(--font-heading);font-size:1.1rem;letter-spacing:.05em;margin-bottom:.5rem}
+.epic-hero .tengwar{font-size:.7rem;color:var(--text-secondary);letter-spacing:.3em;opacity:.5}
+.container{max-width:800px;margin:0 auto;padding:0 2rem}
+.section{margin:2rem 0;padding:1.5rem;background:var(--bg-secondary);border:1px solid var(--border-ornate);border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+.section h2{color:${accent};font-family:var(--font-heading);font-size:1.2rem;letter-spacing:.04em;margin-bottom:.8rem;padding-bottom:.4rem;border-bottom:1px solid var(--border-ornate)}
+.section p{color:var(--text-primary);margin-bottom:.6rem;font-size:1rem;font-family:var(--font-body)}
+.webfetch-box{background:var(--bg-primary);border:1px solid var(--border-ornate);border-radius:6px;padding:1rem;margin:.8rem 0;font-family:var(--font-mono);font-size:.85rem;color:var(--accent-primary);position:relative;word-break:break-all}
+.copy-btn{position:absolute;top:.5rem;right:.5rem;background:var(--border-color);color:var(--text-primary);border:none;padding:.3rem .6rem;border-radius:4px;cursor:pointer;font-size:.75rem;font-family:var(--font-sans);transition:opacity .2s}
+.copy-btn:hover{opacity:.8}
+table{width:100%;border-collapse:collapse;margin:.8rem 0}
+th{background:var(--bg-tertiary);color:${accent};padding:.5rem .75rem;text-align:left;font-family:var(--font-heading);font-size:.85rem;letter-spacing:.02em;border:1px solid var(--border-ornate)}
+td{padding:.4rem .75rem;border:1px solid var(--border-ornate);font-family:var(--font-body);font-size:.9rem}
+tr:nth-child(even){background:var(--bg-secondary)}
+tr:nth-child(odd){background:var(--bg-primary)}
+td code{font-family:var(--font-mono);font-size:.82rem;color:var(--accent-primary)}
+.epics{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem}
+.epic-card{background:var(--bg-primary);border:1px solid var(--border-ornate);border-radius:8px;padding:1.2rem;text-decoration:none;color:var(--text-primary);transition:border-color .25s ease,transform .2s ease,box-shadow .25s ease}
+.epic-card:hover{transform:translateY(-3px);box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.epic-card .epic-emoji{font-size:1.3rem;margin-bottom:.2rem;display:block}
+.epic-card .epic-name{font-family:var(--font-heading);font-size:.95rem;display:block;margin-bottom:.2rem;letter-spacing:.03em}
+.epic-card .epic-desc{font-size:.8rem;color:var(--text-secondary);line-height:1.4;font-family:var(--font-body)}
+.back-link{display:inline-block;margin:1.5rem 0;color:var(--accent-primary);text-decoration:none;font-family:var(--font-body);font-size:.9rem;transition:opacity .2s}
+.back-link:hover{opacity:.7;text-decoration:underline}
+.footer{text-align:center;padding:2rem;color:var(--text-secondary);font-size:.85rem;border-top:1px solid var(--border-ornate);margin-top:2rem}
+.footer .lore-quote{font-family:var(--font-body);font-style:italic;font-size:.9rem;color:var(--text-secondary);margin-bottom:.6rem;opacity:.7}
+.footer a{color:${accent};text-decoration:none;transition:color .2s}
+.footer a:hover{text-decoration:underline}
+$(sidebar_css)
+</style>
+</head>
+<body>
+<header style="background:var(--bg-secondary);border-bottom:1px solid var(--border-ornate);padding:0.75rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
+  <div style="display:flex;align-items:center;gap:0.5rem;">
+    <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+    <a href="https://josemoreupeso.es" style="color:var(--accent-primary);font-family:var(--font-heading);font-weight:700;font-size:0.85rem;text-decoration:none;letter-spacing:.04em;">josemoreupeso.es</a>
+  </div>
+  <span style="color:var(--text-secondary);font-family:var(--font-heading);font-size:0.8rem;letter-spacing:.03em;">${epic_name} — TLOTP</span>
+  <button onclick="toggleTheme()" style="background:none;border:1px solid var(--border-color);color:var(--text-secondary);padding:0.35rem 0.75rem;border-radius:6px;cursor:pointer;font-size:0.8rem;font-family:var(--font-sans);">&#x2600;&#xFE0F;/&#x1F319;</button>
+</header>
+<div class="layout">
+${page_sidebar}
+<div class="content-wrap">
+
+<div class="epic-hero">
+  <h1>${emoji} ${epic_name}</h1>
+  <p class="subtitle">${epic_subtitle}</p>
+  <div class="tengwar">&#x2727; &#x2726; &#x2727; &#x2726; &#x2727;</div>
+</div>
+
+<div class="container">
+
+  <a class="back-link" href="https://josemoreupeso.es/tlotp/">&larr; Volver al indice principal</a>
+
+  <div class="section">
+    <h2>${emoji} &iquest;Que es ${epic_name}?</h2>
+    <p>${epic_longdesc}</p>
+  </div>
+
+  <div class="section">
+    <h2>Usar ${epic_name} via WebFetch</h2>
+    <p>Copia este comando en cualquier sesion de Claude Code para cargar ${epic_name}:</p>
+    <div class="webfetch-box">
+      <button class="copy-btn" onclick="copyText(this)">Copiar</button>
+      WebFetch https://josemoreupeso.es/tlotp/${epic}/${epic}-main.md
+    </div>
+    <p style="font-size:.85rem;color:var(--text-secondary);font-family:var(--font-body)">
+      El fichero <code style="color:var(--accent-primary)">${epic}-main.md</code> contiene el prompt
+      completo con todos los modulos resueltos, listo para ejecutar.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Modulos</h2>
+    <table>
+      <tr><th>Modulo</th><th>Descripcion</th></tr>
+${modules_rows}    </table>
+  </div>
+
+  <div class="section">
+    <h2>Otras epicas</h2>
+    <div class="epics">
+${other_epics}    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="lore-quote">&ldquo;${lore_qt}&rdquo;</div>
+  ${VERSION} · <a href="https://github.com/joseguillermomoreu-gif/tlotp">GitHub</a>
+</div>
+
+</div>
+</div>
+
+<script>
+function toggleTheme(){var html=document.documentElement;var t=html.getAttribute('data-theme')==='dark'?'light':'dark';html.setAttribute('data-theme',t);localStorage.setItem('tlotp-theme',t);}
+function copyText(btn){
+  var box=btn.parentElement;
+  var text=box.textContent.replace('Copiar','').replace('Copiado!','').trim();
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){
+      btn.textContent='Copiado!';
+      setTimeout(function(){btn.textContent='Copiar'},1500);
+    });
+  }else{
+    var ta=document.createElement('textarea');
+    ta.value=text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent='Copiado!';
+    setTimeout(function(){btn.textContent='Copiar'},1500);
+  }
+}
+$(sidebar_js)
+</script>
+</body>
+</html>
+EPICINDEXEOF
+}
+
+generate_all_epic_indexes() {
+  echo "  Generating epic index.html pages..."
+  for epic in $EPIC_ORDER; do
+    generate_epic_index "$epic"
+    echo "    [OK] $epic/index.html"
+  done
+}
+
 # ── Compilar tlotp-full.md ───────────────────────────────────
 compile_full_md() {
   local out_file="$DIST_DIR/tlotp-full.md"
@@ -697,7 +1070,7 @@ INDEXEOF2
     <p>No necesitas instalar nada. Solo dile a Claude Code que descargue la epica que necesites:</p>
     <div class="webfetch-box">
       <button class="copy-btn" onclick="copyText(this)">Copiar</button>
-      WebFetch https://josemoreupeso.es/tlotp/palantir/palantir-main.html
+      WebFetch https://josemoreupeso.es/tlotp/palantir/palantir-main.md
     </div>
     <p style="font-size:.9rem;color:var(--text-secondary);margin-top:.5rem;font-family:var(--font-body)">
       Sustituye <code style="color:var(--accent-primary)">palantir</code> por cualquier nombre de epica:
@@ -720,32 +1093,32 @@ INDEXEOF2
   <div class="section">
     <h2>Las Epicas</h2>
     <div class="epics">
-      <a class="epic-card" href="palantir/palantir-main.html" style="border-color:#4a9eff">
+      <a class="epic-card" href="palantir/" style="border-color:#4a9eff">
         <span class="epic-emoji">&#x1F52E;</span>
         <span class="epic-name" style="color:#4a9eff">Palantir</span>
         <span class="epic-desc">Inspector y gestor de configuraciones de Claude Code</span>
       </a>
-      <a class="epic-card" href="ents/ents-main.html" style="border-color:#4a7c59">
+      <a class="epic-card" href="ents/" style="border-color:#4a7c59">
         <span class="epic-emoji">&#x1F333;</span>
         <span class="epic-name" style="color:#4a7c59">Ents</span>
         <span class="epic-desc">Guardianes del CI/CD y GitHub Actions</span>
       </a>
-      <a class="epic-card" href="celebrimbor/celebrimbor-main.html" style="border-color:#cd7f32">
+      <a class="epic-card" href="celebrimbor/" style="border-color:#cd7f32">
         <span class="epic-emoji">&#x2692;&#xFE0F;</span>
         <span class="epic-name" style="color:#cd7f32">Celebrimbor</span>
         <span class="epic-desc">Gestor de skills — CRUD para mas de 59.000 skills</span>
       </a>
-      <a class="epic-card" href="bardo/bardo-main.html" style="border-color:#e8a838">
+      <a class="epic-card" href="bardo/" style="border-color:#e8a838">
         <span class="epic-emoji">&#x1F3F9;</span>
         <span class="epic-name" style="color:#e8a838">Bardo</span>
         <span class="epic-desc">Proveedor de MCPs y plugins con marketplace</span>
       </a>
-      <a class="epic-card" href="aragorn/aragorn-main.html" style="border-color:#a8b8c8">
+      <a class="epic-card" href="aragorn/" style="border-color:#a8b8c8">
         <span class="epic-emoji">&#x1F451;</span>
         <span class="epic-name" style="color:#a8b8c8">Aragorn</span>
         <span class="epic-desc">Gestor de agentes y equipos con roles basados en el lore</span>
       </a>
-      <a class="epic-card" href="gandalf/gandalf-main.html" style="border-color:#f0f0f0">
+      <a class="epic-card" href="gandalf/" style="border-color:#f0f0f0">
         <span class="epic-emoji">&#x26A1;</span>
         <span class="epic-name" style="color:#f0f0f0">Gandalf</span>
         <span class="epic-desc">Desarrollo guiado por especificacion — flujo SDD</span>
@@ -834,13 +1207,21 @@ compile_all() {
   # 2. Generate tlotp-full.md
   compile_full_md
 
-  # 3. Generate index.html
+  # 3. Generate clean .md per epic (for LLMs)
+  compile_all_epic_mds
+
+  # 4. Generate index.html per epic (for humans)
+  generate_all_epic_indexes
+
+  # 5. Generate main index.html
   generate_index
 
   echo ""
   echo "=== Compilation complete ==="
   echo "  HTML modules: $count"
   echo "  Full prompt:  dist/tlotp-full.md"
+  echo "  Epic .md:     dist/{epic}/{epic}-main.md (x6)"
+  echo "  Epic index:   dist/{epic}/index.html (x6)"
   echo "  Landing page: dist/index.html"
 }
 
