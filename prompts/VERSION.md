@@ -6,9 +6,9 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v6.1.0**
-- **Fecha release**: 2026-04-15
-- **Nombre código**: "The Unbarred Gate"
+**TLOTP v6.1.1**
+- **Fecha release**: 2026-04-16
+- **Nombre código**: "The Watchers on the Wall"
 
 ---
 
@@ -26,7 +26,7 @@
 
 ### v5.0.0 — "The Two Towers of the Web"
 - **Fecha release**: 2026-04-15
-- **Nombre código**: "The Unbarred Gate"
+- **Nombre código**: "The Fellowship Assembled"
 
 ### v4.0.0 — "El Mago Blanco"
 - **Fecha release**: 2026-04-15

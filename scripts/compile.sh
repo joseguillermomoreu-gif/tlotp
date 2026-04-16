@@ -250,7 +250,7 @@ generate_html() {
   #           → Step 2 (escape_html) → Step 3a (restore code refs)
   #           → Step 3b (restore normal refs) → Step 3c (scrub residual @prompts/)
   local raw_content
-  raw_content="$(cat "$md_file")"
+  raw_content="$(resolve_imports "$md_file")"
 
   # Step 0 + Step 1: Line-by-line loop with in_fenced tracking
   # Step 0: Detect `@prompts/path.md` (backtick-wrapped) → TLOTP_CODE_IMPORT{path}END
