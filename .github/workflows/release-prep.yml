@@ -108,17 +108,12 @@ jobs:
           RELEASE_NAME="${{ inputs.release_name }}"
           TODAY=$(date +%Y-%m-%d)
 
-          # Scope sed to "Versión Actual" section only (between header and first ---)
-          # to avoid overwriting historical entries. See issue #401.
-          sed -i '/^## .*Versi.n Actual/,/^---$/ {
-            s/\*\*TLOTP v[0-9]\+\.[0-9]\+\.[0-9]\+\*\*/**TLOTP '"${NEW_VERSION}"'**/
-            s/^- \*\*Fecha release\*\*:.*$/- **Fecha release**: '"${TODAY}"'/
-          }' prompts/VERSION.md
+          # Global sed — VERSION.md is a flat file after #408 refactor (no section delimiters).
+          sed -i 's/\*\*TLOTP v[0-9]\+\.[0-9]\+\.[0-9]\+\*\*/**TLOTP '"${NEW_VERSION}"'**/' prompts/VERSION.md
+          sed -i 's/^\*\*Fecha release\*\*:.*$/**Fecha release**: '"${TODAY}"'/' prompts/VERSION.md
 
           if [ -n "$RELEASE_NAME" ]; then
-            sed -i '/^## .*Versi.n Actual/,/^---$/ {
-              s/^- \*\*Nombre código\*\*:.*$/- **Nombre código**: "'"${RELEASE_NAME}"'"/
-            }' prompts/VERSION.md
+            sed -i 's/— ".*"/— "'"${RELEASE_NAME}"'"/' prompts/VERSION.md
           fi
 
           echo "✅ VERSION.md actualizado a ${NEW_VERSION}"
