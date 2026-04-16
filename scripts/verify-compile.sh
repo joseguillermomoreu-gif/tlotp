@@ -1,8 +1,8 @@
 #!/bin/bash
 # ═══════════════════════════════════════════════════════════════
 #   verify-compile.sh — Verificar compilacion TLOTP
-#   Comprueba que dist/ contiene las 6 epicas y no hay imports
-#   sin resolver.
+#   Comprueba que dist/ contiene las 6 epicas, .md limpios por
+#   epica, index.html por epica y no hay imports sin resolver.
 # ═══════════════════════════════════════════════════════════════
 set -e
 
@@ -88,6 +88,59 @@ for epic in palantir ents celebrimbor bardo aragorn gandalf; do
     echo "  [OK] $epic/$epic-main.html exists"
   else
     echo "  ERROR: $epic/$epic-main.html not found"
+    errors=$((errors + 1))
+  fi
+done
+
+# 7. Verify epic .md files exist and are clean (no @prompts/ refs, no HTML wrapper)
+for epic in palantir ents celebrimbor bardo aragorn gandalf; do
+  epic_md="$DIST_DIR/$epic/$epic-main.md"
+  if [ -f "$epic_md" ]; then
+    echo "  [OK] $epic/$epic-main.md exists"
+
+    # Check no @prompts/ references remain (outside fenced code blocks)
+    md_unresolved=0
+    md_in_fenced=false
+    while IFS= read -r line; do
+      if echo "$line" | grep -qP '^```'; then
+        if [ "$md_in_fenced" = true ]; then
+          md_in_fenced=false
+        else
+          md_in_fenced=true
+        fi
+        continue
+      fi
+      if [ "$md_in_fenced" = false ] && echo "$line" | grep -qP '@prompts/'; then
+        echo "  ERROR: @prompts/ ref in $epic/$epic-main.md: $line"
+        md_unresolved=$((md_unresolved + 1))
+      fi
+    done < "$epic_md"
+
+    if [ "$md_unresolved" -gt 0 ]; then
+      errors=$((errors + md_unresolved))
+    else
+      echo "  [OK] $epic/$epic-main.md has no @prompts/ refs"
+    fi
+
+    # Check no HTML wrapper
+    if grep -qi '<!DOCTYPE\|<html\|<head\|<body' "$epic_md" 2>/dev/null; then
+      echo "  ERROR: $epic/$epic-main.md contains HTML wrapper"
+      errors=$((errors + 1))
+    else
+      echo "  [OK] $epic/$epic-main.md has no HTML wrapper"
+    fi
+  else
+    echo "  ERROR: $epic/$epic-main.md not found"
+    errors=$((errors + 1))
+  fi
+done
+
+# 8. Verify epic index.html files exist
+for epic in palantir ents celebrimbor bardo aragorn gandalf; do
+  if [ -f "$DIST_DIR/$epic/index.html" ]; then
+    echo "  [OK] $epic/index.html exists"
+  else
+    echo "  ERROR: $epic/index.html not found"
     errors=$((errors + 1))
   fi
 done
