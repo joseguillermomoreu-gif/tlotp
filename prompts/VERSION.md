@@ -6,9 +6,9 @@
 
 ## 📊 Versión Actual
 
-**TLOTP v6.1.0**
-- **Fecha release**: 2026-04-15
-- **Nombre código**: "The Unbarred Gate"
+**TLOTP v6.1.1**
+- **Fecha release**: 2026-04-16
+- **Nombre código**: "The Watchers on the Wall"
 
 ---
 
