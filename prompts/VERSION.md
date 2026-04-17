@@ -1,6 +1,6 @@
 # TLOTP - Version
 
-**TLOTP v7.1.0** — "The Watchers on the Wall"
+**TLOTP v7.1.1** — "The Watchers on the Wall"
 **Fecha release**: 2026-04-17
 
 ## Componentes
