@@ -133,7 +133,9 @@ Cargar: `@prompts/palantir/sections/05-susurrar-planes.md`
 
 **Acción**: Importar, exportar o eliminar configuraciones
 
-Cargar: `@prompts/palantir/sections/06-compartir-visiones.md`
+Cargar: `@prompts/palantir/sections/06a-importar-visiones.md`
+
+Si el usuario elige exportar, cargar también: `@prompts/palantir/sections/06b-exportar-visiones.md`
 
 ---
 
@@ -151,7 +153,9 @@ el routing con las opciones de la página 2.
 **Acción**: Autoasistir (si no está configurada) o ver/editar/eliminar
 la Status Line actual
 
-Cargar: `@prompts/palantir/sections/07-status-line.md`
+Cargar: `@prompts/palantir/sections/07a-status-line-create.md`
+
+Si ya existe una Status Line, cargar: `@prompts/palantir/sections/07b-status-line-manage.md`
 
 ---
 
