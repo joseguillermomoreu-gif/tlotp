@@ -98,7 +98,7 @@ Mostrar:
 Delegar a Aragorn para crear el team:
 
 ```
-@prompts/aragorn/sections/03-module-team-builder.md
+@prompts/aragorn/sections/03b-team-create.md
 ```
 
 **Contexto para Aragorn**: Sugerir un team con perfil CI/CD:
@@ -257,4 +257,4 @@ AskUserQuestion:
 
 *Módulo 07 — Thorin y su Compañía*
 *Diseñado para: tlotp-sdd-team · tarea #301*
-*Aragorn Team Builder: `@prompts/aragorn/sections/03-module-team-builder.md`*
+*Aragorn Team Builder: `@prompts/aragorn/sections/03b-team-create.md`*
