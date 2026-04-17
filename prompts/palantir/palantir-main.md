@@ -24,7 +24,8 @@
 @prompts/palantir/sections/04-exploracion-custom.md
 @prompts/palantir/sections/05-susurrar-planes.md
 @prompts/palantir/sections/06-compartir-visiones.md
-@prompts/palantir/sections/07-status-line.md
+@prompts/palantir/sections/07a-status-line-create.md
+@prompts/palantir/sections/07b-status-line-manage.md
 
 ---
 
@@ -37,7 +38,8 @@
 5. **04-exploracion-custom.md** - Exploración de settings.json, skills/, hooks/
 6. **05-susurrar-planes.md** - Añadir configuración con análisis inteligente
 7. **06-compartir-visiones.md** - Importar, exportar y eliminar configuraciones
-8. **07-status-line.md** - Autoasistencia y CRUD de Status Line (detectar / crear / editar / reemplazar / eliminar)
+8. **07a-status-line-create.md** - Detección + creación de Status Line (Caso A: no configurada)
+9. **07b-status-line-manage.md** - Gestión de Status Line existente (Caso B: editar / reemplazar / eliminar)
 
 ---
 
@@ -92,7 +94,7 @@ Ya tienes todos los módulos cargados. Procede según las instrucciones de `00-m
      - Compartir visiones entre Palantíri → `06-compartir-visiones.md`
      - ➕ Ver más... → ir a Página 2
    - **Página 2**:
-     - 📊 Gestionar Status Line → `07-status-line.md`
+     - 📊 Gestionar Status Line → `07a-status-line-create.md` (routing a `07b-status-line-manage.md` si ya existe)
      - 🔙 Volver a página 1
      - Cubrir el Palantír → volver a `tlotp-main.md`
 
