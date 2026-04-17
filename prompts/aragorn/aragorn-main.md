@@ -152,7 +152,12 @@ Cargar: `@prompts/aragorn/sections/02-module-create.md`
 ### Pantalla 2
 
 #### ⚔️ Agent Teams — configurar y usar equipos
-Cargar: `@prompts/aragorn/sections/03-module-team-builder.md`
+Cargar:
+- `@prompts/aragorn/sections/03a-team-inventory.md` — Inventario + menú
+- `@prompts/aragorn/sections/03b-team-create.md` — Crear nuevo team (A0-A8 + Cronista)
+- `@prompts/aragorn/sections/03c-team-debate-pattern.md` — Patrón de debate (Opción H)
+- `@prompts/aragorn/sections/03d-team-browse.md` — Ver teams + FAQ (B, C, E)
+- `@prompts/aragorn/sections/03e-team-crud.md` — Ver detalle, editar, eliminar, coordinador, coherencia
 
 #### 📜 Los Pergaminos del Rey
 Cargar: `@prompts/aragorn/sections/04-module-docs.md`
