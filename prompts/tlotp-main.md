@@ -174,7 +174,7 @@ Mostrar el siguiente bloque educativo (sin interacción):
 
      3. Reinvoca TLOTP con:
 
-        WebFetch https://josemoreupeso.es/tlotp/tlotp-full.md
+        WebFetch https://josemoreupeso.es/tlotp/tlotp-main.html
 
   💍 Por ahora, pon tu confianza en Gandalf y continúa —
      la aventura no se detiene aquí.
