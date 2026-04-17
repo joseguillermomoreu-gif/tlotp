@@ -715,7 +715,7 @@ generate_epic_index() {
       other_color="$(color_for_epic "$other")"
       local other_desc
       other_desc="$(desc_for_epic "$other")"
-      other_epics+="      <a class=\"epic-card\" href=\"https://josemoreupeso.es/tlotp/${other}/\" style=\"border-color:${other_color}\">"
+      other_epics+="      <a class=\"epic-card\" href=\"https://josemoreupeso.es/tlotp/${other}/index.html\" style=\"border-color:${other_color}\">"
       other_epics+="<span class=\"epic-emoji\">${other_emoji}</span>"
       other_epics+="<span class=\"epic-name\" style=\"color:${other_color}\">${other_name}</span>"
       other_epics+="<span class=\"epic-desc\">${other_desc}</span>"
@@ -1093,32 +1093,32 @@ INDEXEOF2
   <div class="section">
     <h2>Las Epicas</h2>
     <div class="epics">
-      <a class="epic-card" href="palantir/" style="border-color:#4a9eff">
+      <a class="epic-card" href="palantir/index.html" style="border-color:#4a9eff">
         <span class="epic-emoji">&#x1F52E;</span>
         <span class="epic-name" style="color:#4a9eff">Palantir</span>
         <span class="epic-desc">Inspector y gestor de configuraciones de Claude Code</span>
       </a>
-      <a class="epic-card" href="ents/" style="border-color:#4a7c59">
+      <a class="epic-card" href="ents/index.html" style="border-color:#4a7c59">
         <span class="epic-emoji">&#x1F333;</span>
         <span class="epic-name" style="color:#4a7c59">Ents</span>
         <span class="epic-desc">Guardianes del CI/CD y GitHub Actions</span>
       </a>
-      <a class="epic-card" href="celebrimbor/" style="border-color:#cd7f32">
+      <a class="epic-card" href="celebrimbor/index.html" style="border-color:#cd7f32">
         <span class="epic-emoji">&#x2692;&#xFE0F;</span>
         <span class="epic-name" style="color:#cd7f32">Celebrimbor</span>
         <span class="epic-desc">Gestor de skills — CRUD para mas de 59.000 skills</span>
       </a>
-      <a class="epic-card" href="bardo/" style="border-color:#e8a838">
+      <a class="epic-card" href="bardo/index.html" style="border-color:#e8a838">
         <span class="epic-emoji">&#x1F3F9;</span>
         <span class="epic-name" style="color:#e8a838">Bardo</span>
         <span class="epic-desc">Proveedor de MCPs y plugins con marketplace</span>
       </a>
-      <a class="epic-card" href="aragorn/" style="border-color:#a8b8c8">
+      <a class="epic-card" href="aragorn/index.html" style="border-color:#a8b8c8">
         <span class="epic-emoji">&#x1F451;</span>
         <span class="epic-name" style="color:#a8b8c8">Aragorn</span>
         <span class="epic-desc">Gestor de agentes y equipos con roles basados en el lore</span>
       </a>
-      <a class="epic-card" href="gandalf/" style="border-color:#f0f0f0">
+      <a class="epic-card" href="gandalf/index.html" style="border-color:#f0f0f0">
         <span class="epic-emoji">&#x26A1;</span>
         <span class="epic-name" style="color:#f0f0f0">Gandalf</span>
         <span class="epic-desc">Desarrollo guiado por especificacion — flujo SDD</span>
