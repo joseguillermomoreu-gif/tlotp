@@ -1,0 +1,32 @@
+# ═══════════════════════════════════════════════════════════════
+#   smoke-urls.txt — URLs críticas del sitio TLOTP
+#
+#   Lista declarativa, single-source-of-truth para:
+#     1. CI post-deploy (.github/workflows/deploy.yml → lychee)
+#     2. Dev local         (scripts/smoke-test-local.sh → curl)
+#
+#   Formato:
+#     - Una URL por línea (HTTPS).
+#     - Comentarios con '#' (lychee y smoke-test-local.sh los ignoran).
+#     - Líneas vacías permitidas.
+#
+#   Mantener sincronizado con EPIC_ORDER de scripts/compile.sh.
+# ═══════════════════════════════════════════════════════════════
+
+# Raíz y prompt agregado
+https://josemoreupeso.es/tlotp/index.html
+https://josemoreupeso.es/tlotp/tlotp-main.html
+https://josemoreupeso.es/tlotp/tlotp-full.md
+
+# Índices por épica (patrón #422: "/{epic}/" servido por el back-end)
+https://josemoreupeso.es/tlotp/palantir/index.html
+https://josemoreupeso.es/tlotp/ents/index.html
+https://josemoreupeso.es/tlotp/celebrimbor/index.html
+https://josemoreupeso.es/tlotp/aragorn/index.html
+https://josemoreupeso.es/tlotp/bardo/index.html
+https://josemoreupeso.es/tlotp/gandalf/index.html
+
+# Canarios — main prompt de una épica en ambos formatos
+# (sirven como smoke del pipeline compile.sh → dist → rsync)
+https://josemoreupeso.es/tlotp/palantir/palantir-main.html
+https://josemoreupeso.es/tlotp/palantir/palantir-main.md
