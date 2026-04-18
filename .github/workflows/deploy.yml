@@ -64,3 +64,22 @@ jobs:
             exit 1
           fi
           echo "Health check passed — HTTP 200 and body contains 'TLOTP'"
+
+      # Post-deploy smoke test — verify every URL in scripts/smoke-urls.txt
+      # responds HTTP 200. Catches deploys where the root serves fine but
+      # épica indexes or main prompts are broken (see issues #422, #424).
+      - name: Smoke test public URLs
+        uses: lycheeverse/lychee-action@8646ba30535128ac92d33dfc9133794bfdd9b411 # v2
+        with:
+          args: >
+            --verbose
+            --no-progress
+            --timeout 20
+            --max-retries 3
+            --retry-wait-time 5
+            --accept 200
+            --
+            scripts/smoke-urls.txt
+          fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
