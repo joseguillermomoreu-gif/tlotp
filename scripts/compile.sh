@@ -108,7 +108,8 @@ modules_for_epic() {
 04-exploracion-custom|Exploracion de settings.json, skills/, hooks/
 05-susurrar-planes|Anadir configuracion con analisis inteligente
 06-compartir-visiones|Importar, exportar y eliminar configuraciones
-07-status-line|CRUD de Status Line
+07-status-line|CRUD de Status Line (crear, editar, reemplazar, eliminar)
+07c-status-line-pepeton|Preset de Pepeton: 2 lineas con barras de contexto, 5h y 7d
 MODS
     ;;
     bardo) cat <<'MODS'
