@@ -1,7 +1,7 @@
 # TLOTP - Version
 
-**TLOTP v7.1.1** — "The Watchers on the Wall"
-**Fecha release**: 2026-04-17
+**TLOTP v8.0.0** — "The Mithril of Moria"
+**Fecha release**: 2026-04-18
 
 ## Componentes
 
