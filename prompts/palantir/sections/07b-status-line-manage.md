@@ -11,6 +11,37 @@
 # CASO B · Status Line ya configurada — Gestión
 # ═══════════════════════════════════════════════════
 
+## PASO 6b: Banner informativo
+
+**Mostrar sin interacción** antes de mostrar la configuración actual:
+
+```
+══════════════════════════════════════════════════════════════════
+🔮 Palantír — Status Line
+
+  El Status Line de Claude Code es un script de shell que se ejecuta
+  en cada actualización y muestra lo que tú quieras en la barra inferior.
+
+  ✅ Palantír puede ayudarte a:
+     · Crear un Status Line desde cero (asistido o desde preset)
+     · Ver, editar o reemplazar el script actual
+     · Eliminar la configuración existente
+     · Consultar la documentación oficial en tiempo real
+
+  ❌ Palantír NO puede:
+     · Garantizar que tu terminal soporte colores ANSI o Nerd Fonts
+     · Acceder a datos que Claude Code no exponga en el JSON de entrada
+     · Configurar el Status Line de forma retroactiva para sesiones pasadas
+
+  💡 Campos disponibles en el JSON: model, workspace, cost, context_window,
+     rate_limits (Pro/Max), session_id, git_worktree, vim.mode y más.
+══════════════════════════════════════════════════════════════════
+```
+
+Tras mostrarlo, continuar al PASO 7.
+
+---
+
 ## PASO 7: Mostrar configuración actual
 
 Para cada scope donde `STATUS_LINE_STATE[scope].exists == true`, mostrar:
@@ -51,14 +82,14 @@ y variables antes de editar.
 
 ---
 
-## PASO 9: Menú de gestión
+## PASO 9: Menú de gestión (paginado 3+1)
 
-**AskUserQuestion**:
+**Pantalla 1** (1/2 — mostrar primero) — `AskUserQuestion`:
 
 ```json
 {
   "questions": [{
-    "header": "Status Line · Gestión",
+    "header": "Status Line · Gestión (1/2)",
     "question": "¿Qué quieres hacer con tu Status Line?",
     "multiSelect": false,
     "options": [
@@ -75,13 +106,48 @@ y variables antes de editar.
         "description": "Quitar la configuración de Status Line (requerirá confirmación)"
       },
       {
-        "label": "🔙 Volver al menú de Palantír",
-        "description": ""
+        "label": "➕ Ver más...",
+        "description": "Presets y volver"
       }
     ]
   }]
 }
 ```
+
+**Si elige `➕ Ver más...`**, mostrar **Pantalla 2** (2/2):
+
+```json
+{
+  "questions": [{
+    "header": "Status Line · Gestión (2/2)",
+    "question": "¿Qué quieres hacer con tu Status Line?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🥔 Usar el status line de Pépeton, hijo de Móreuton",
+        "description": "Instalar el preset de 2 líneas (contexto · 5h · 7d)"
+      },
+      {
+        "label": "🔙 Volver al menú de Palantír",
+        "description": ""
+      },
+      {
+        "label": "⬅️ Volver a pantalla 1",
+        "description": "Editar · Reemplazar · Eliminar"
+      }
+    ]
+  }]
+}
+```
+
+**Routing**:
+
+- `✏️ Editar` → PASO 10 · Opción Editar
+- `🔄 Reemplazar desde cero` → PASO 10 · Opción Reemplazar
+- `🗑️ Eliminar` → PASO 10 · Opción Eliminar
+- `🥔 Usar el status line de Pépeton` → cargar `@prompts/palantir/sections/07c-status-line-pepeton.md` y ejecutar PASO P1
+- `🔙 Volver al menú de Palantír` → PASO 10 · Opción Volver
+- `⬅️ Volver a pantalla 1` → mostrar Pantalla 1 de nuevo
 
 ---
 

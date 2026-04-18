@@ -227,7 +227,7 @@ Nunca actúa sin confirmación.
 🗺️ **Épicas Disponibles**
 
 ⚔️ **🔮 Palantír** — La Piedra Vidente. Domina las configuraciones de tu reino.
-   *(CLAUDE.md · settings.json · rules/ · hooks · MEMORY.md)*
+   *(CLAUDE.md · settings.json · rules/ · hooks · MEMORY.md · Status Line)*
 ⚔️ **🌳 Ents** — Los Pastores del Fangorn. Custodian las ramas y optimizan tu CI/CD.
    *(.github/workflows/ · GitHub Actions)*
 ⚔️ **⚒️ Celebrimbor** — El Maestro Herrero Élfico forja skills como anillos de poder.

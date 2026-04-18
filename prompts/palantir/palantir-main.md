@@ -27,6 +27,7 @@
 @prompts/palantir/sections/06b-exportar-visiones.md
 @prompts/palantir/sections/07a-status-line-create.md
 @prompts/palantir/sections/07b-status-line-manage.md
+@prompts/palantir/sections/07c-status-line-pepeton.md
 
 ---
 
@@ -42,6 +43,7 @@
 7b. **06b-exportar-visiones.md** - Exportar configuraciones + eliminar características
 8. **07a-status-line-create.md** - Detección + creación de Status Line (Caso A: no configurada)
 9. **07b-status-line-manage.md** - Gestión de Status Line existente (Caso B: editar / reemplazar / eliminar)
+10. **07c-status-line-pepeton.md** - Preset de Pépeton (Caso C: 2 líneas con barras de contexto, 5h y 7d)
 
 ---
 

@@ -7,6 +7,37 @@
 
 ---
 
+## PASO 0: Banner informativo
+
+**Mostrar sin interacción** antes de cualquier otra acción del módulo:
+
+```
+══════════════════════════════════════════════════════════════════
+🔮 Palantír — Status Line
+
+  El Status Line de Claude Code es un script de shell que se ejecuta
+  en cada actualización y muestra lo que tú quieras en la barra inferior.
+
+  ✅ Palantír puede ayudarte a:
+     · Crear un Status Line desde cero (asistido o desde preset)
+     · Ver, editar o reemplazar el script actual
+     · Eliminar la configuración existente
+     · Consultar la documentación oficial en tiempo real
+
+  ❌ Palantír NO puede:
+     · Garantizar que tu terminal soporte colores ANSI o Nerd Fonts
+     · Acceder a datos que Claude Code no exponga en el JSON de entrada
+     · Configurar el Status Line de forma retroactiva para sesiones pasadas
+
+  💡 Campos disponibles en el JSON: model, workspace, cost, context_window,
+     rate_limits (Pro/Max), session_id, git_worktree, vim.mode y más.
+══════════════════════════════════════════════════════════════════
+```
+
+Tras mostrarlo, continuar al PASO 1.
+
+---
+
 ## PASO 1: Detección del estado
 
 **Leer silenciosamente** los siguientes ficheros (sin formatear ni mostrar nada todavía):
@@ -92,6 +123,10 @@ hora, o lo que tú decidas.
         "description": "Consultaré la documentación oficial y te haré unas preguntas"
       },
       {
+        "label": "🥔 Usar el status line de Pépeton, hijo de Móreuton",
+        "description": "Instalar el preset de 2 líneas (contexto · 5h · 7d)"
+      },
+      {
         "label": "📖 Ver docs primero",
         "description": "Fetchear la documentación oficial antes de decidir"
       },
@@ -105,6 +140,7 @@ hora, o lo que tú decidas.
 ```
 
 - **Sí, guíame** → PASO 4 (fetch) + PASO 5 (entrevista)
+- **🥔 Usar el status line de Pépeton** → cargar `@prompts/palantir/sections/07c-status-line-pepeton.md` y ejecutar PASO P1 (lore del preset)
 - **Ver docs primero** → PASO 4 y después preguntar de nuevo
 - **Volver** → cargar `@prompts/palantir/sections/00-menu-principal.md` PASO 2
 
