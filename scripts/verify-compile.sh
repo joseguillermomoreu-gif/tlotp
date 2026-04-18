@@ -145,6 +145,87 @@ for epic in palantir ents celebrimbor bardo aragorn gandalf; do
   fi
 done
 
+# 9. Verify internal hrefs in compiled HTML resolve to existing files in dist/
+#    (see SDD .claude/sdd/423-ci-verify-internal-links/ · issue #423)
+#
+#    For each href="..." in any dist/**/*.html:
+#      - Ignore fragments (#...), mailto:, javascript:, data:
+#      - Ignore external URLs (http(s):// to another domain)
+#      - URLs to own site (https://josemoreupeso.es/tlotp/PATH) → check dist/PATH
+#      - Relative paths → resolve against the HTML's own directory
+#      - Strip query (?...) and fragment (#...) before checking
+#      - Trailing '/' or directory → require <path>/index.html
+check_internal_hrefs() {
+  local total=0
+  local files=0
+  local href_errors=0
+  local html
+  local href
+  local target
+  local html_dir
+  local rel_from_dist
+
+  while IFS= read -r html; do
+    files=$((files + 1))
+    html_dir="$(dirname "$html")"
+    while IFS= read -r href; do
+      total=$((total + 1))
+
+      # Skip non-navigational schemes and fragments
+      case "$href" in
+        \#*|mailto:*|javascript:*|data:*|tel:*)
+          continue
+          ;;
+      esac
+
+      # Strip fragment and query
+      href="${href%%#*}"
+      href="${href%%\?*}"
+      [ -z "$href" ] && continue
+
+      # Classify
+      case "$href" in
+        https://josemoreupeso.es/tlotp/*)
+          target="$DIST_DIR/${href#https://josemoreupeso.es/tlotp/}"
+          ;;
+        http://*|https://*|//*)
+          # External → ignore
+          continue
+          ;;
+        /*)
+          # Absolute path on host (unexpected in TLOTP; treat as dist-root)
+          target="$DIST_DIR${href}"
+          ;;
+        *)
+          # Relative → resolve against html_dir
+          target="$html_dir/$href"
+          ;;
+      esac
+
+      # Directory or trailing slash → require index.html
+      if [ -d "$target" ] || [ "${target: -1}" = "/" ]; then
+        target="${target%/}/index.html"
+      fi
+
+      if [ ! -f "$target" ]; then
+        rel_from_dist="${html#$DIST_DIR/}"
+        echo "  ERROR: broken href in ${rel_from_dist} -> ${href}"
+        href_errors=$((href_errors + 1))
+      fi
+    done < <(grep -oE 'href="[^"]+"' "$html" 2>/dev/null | sed -E 's/^href="([^"]+)"$/\1/' || true)
+  done < <(find "$DIST_DIR" -name '*.html' -type f)
+
+  echo "  Checked $total href(s) across $files html file(s)"
+  if [ "$href_errors" -gt 0 ]; then
+    echo "::error::$href_errors broken internal href(s) found in dist/"
+    errors=$((errors + href_errors))
+  else
+    echo "  [OK] All internal hrefs resolve in dist/"
+  fi
+}
+
+check_internal_hrefs
+
 echo ""
 if [ "$errors" -gt 0 ]; then
   echo "FAILED: $errors error(s) detected"
