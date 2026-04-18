@@ -64,7 +64,7 @@ name_for_epic() {
 
 desc_for_epic() {
   case "$1" in
-    palantir)    echo "Inspector y gestor de configuraciones de Claude Code" ;;
+    palantir)    echo "Inspector y gestor de configuraciones de Claude Code (incluye Status Line)" ;;
     bardo)       echo "Proveedor de MCPs y plugins con marketplace" ;;
     celebrimbor) echo "Gestor de skills — CRUD para mas de 59.000 skills" ;;
     ents)        echo "Guardianes del CI/CD y GitHub Actions" ;;
@@ -76,12 +76,12 @@ desc_for_epic() {
 
 longdesc_for_epic() {
   case "$1" in
-    palantir)    echo "La Piedra Vidente inspecciona y gestiona todas las configuraciones de Claude Code: CLAUDE.md, settings.json, rules/, hooks y MEMORY.md. Ofrece un CRUD completo con modos Inspector, Configurador, Import/Export y Status Line." ;;
-    bardo)       echo "El Arquero de Lake-town gestiona MCPs y plugins. Analiza tu stack, consulta el marketplace en tiempo real, recomienda herramientas con ejemplos de uso reales e instala con verificacion post-instalacion." ;;
-    celebrimbor) echo "La Forja de Eregion gestiona skills de Claude Code. Busca e instala desde skills.sh (mas de 59.000 skills), analiza las instaladas, sugiere mejoras y asiste en la creacion de skills personalizadas." ;;
-    ents)        echo "Los Pastores del Fangorn custodian tu CI/CD. Analizan pipelines existentes, generan diagramas visuales, sugieren mejoras con scoring y crean GitHub Actions desde cero consultando documentacion oficial en tiempo real." ;;
-    aragorn)     echo "El Rey de Gondor convoca y gestiona tu ejercito de agentes. Inspecciona el arsenal actual, busca en marketplaces (VoltAgent + aitmpl.com), crea agentes asistidos y configura Agent Teams para trabajo paralelo." ;;
-    gandalf)     echo "El Mago Blanco guia el desarrollo con Spec-Driven Development. Exploradores Rohirrim mapean el dominio, genera requirements EARS, design con Mermaid y tasks ejecutables. Integra Agent Teams y Consejo de Rivendel." ;;
+    palantir)    echo "La Piedra Vidente inspecciona y gestiona todas las configuraciones de Claude Code: CLAUDE.md, settings.json, rules/, hooks, MEMORY.md y Status Line. Ofrece CRUD completo con scoring, import/export y preset 🥔 de Pépeton para el Status Line (2 lineas con barras de contexto, 5h y 7d)." ;;
+    bardo)       echo "El Arquero de Lake-town gestiona MCPs y plugins. Analiza tu stack, consulta el marketplace en tiempo real, recomienda herramientas con ejemplos reales e instala con verificacion post-instalacion." ;;
+    celebrimbor) echo "La Forja de Eregion gestiona skills de Claude Code. Busca e instala desde skills.sh (mas de 59.000 skills), analiza las instaladas, sugiere mejoras, asiste en la creacion de skills personalizadas y detecta integraciones GSD (Get Shit Done)." ;;
+    ents)        echo "Los Pastores del Fangorn custodian tu CI/CD. Analizan pipelines existentes, renderizan un mapa ASCII del flujo, puntuan mejoras con scoring 0-100 y crean GitHub Actions desde cero consultando documentacion oficial en tiempo real." ;;
+    aragorn)     echo "El Rey de Gondor convoca y gestiona tu ejercito de agentes. Inspecciona el arsenal actual, busca en marketplaces (VoltAgent + aitmpl.com), crea agentes asistidos y forja Agent Teams con patron de debate por pares para trabajo paralelo." ;;
+    gandalf)     echo "El Mago Blanco guia el desarrollo con Spec-Driven Development. Exploradores Rohirrim mapean el dominio, Field Report resume hallazgos, genera requirements EARS, design con Mermaid y tasks ejecutables. Integra Agent Teams (Aragorn), Consejo de Rivendel y workflow GSD." ;;
     *)           echo "" ;;
   esac
 }
@@ -101,75 +101,213 @@ subtitle_for_epic() {
 modules_for_epic() {
   case "$1" in
     palantir) cat <<'MODS'
-00-menu-principal|Menu principal paginado 3+1
-01-mini-guide|Mini-guia informativa con lore
-02-contemplar-reino|Analisis completo de configuracion con scoring
-03-jerarquia-oficial|Inspeccion de jerarquia oficial (6 niveles)
-04-exploracion-custom|Exploracion de settings.json, skills/, hooks/
-05-susurrar-planes|Anadir configuracion con analisis inteligente
-06-compartir-visiones|Importar, exportar y eliminar configuraciones
-07-status-line|CRUD de Status Line (crear, editar, reemplazar, eliminar)
-07c-status-line-pepeton|Preset de Pepeton: 2 lineas con barras de contexto, 5h y 7d
+00-menu-principal|Menu principal paginado 3+1|Punto de entrada, navegacion entre modulos
+01-mini-guide|Mini-guia informativa con lore|Onboarding rapido al mundo de la Piedra Vidente
+02-contemplar-reino|Analisis completo de configuracion con scoring|Auditar la configuracion de un proyecto o global
+03-jerarquia-oficial|Inspeccion de jerarquia oficial (6 niveles)|Descubrir que ficheros lee Claude y en que orden
+04-exploracion-custom|Exploracion de settings.json, skills/, hooks/|Ver configuracion al detalle, sin puntuacion
+05-susurrar-planes|Anadir configuracion con analisis inteligente|Introducir reglas o hooks sin romper lo existente
+06-compartir-visiones|Importar, exportar y eliminar configuraciones|Llevar la config entre maquinas o repos
+07-status-line|CRUD de Status Line (crear, editar, reemplazar, eliminar)|Personalizar la barra inferior de Claude Code
+07c-status-line-pepeton|Preset de Pepeton: 2 lineas con barras de contexto, 5h y 7d|Instalar un statusline listo para usar en un solo paso
 MODS
     ;;
     bardo) cat <<'MODS'
-00-module-analyze|Inspeccionar arsenal — analizar stack, MCPs y plugins
-01-module-guide|Consultar al Contrabandista — guia de uso personalizada
-02-module-install-plugins|Buscar e instalar plugins desde marketplace
-03-module-install-mcps|Buscar e instalar MCPs con scope y transport
-04-module-docs|Los pergaminos del Arquero — guia completa
+00-module-analyze|Inspeccionar arsenal — analizar stack, MCPs y plugins|Saber que MCPs/plugins tienes ya instalados
+01-module-guide|Consultar al Contrabandista — guia de uso personalizada|Recomendaciones basadas en tu stack
+02-module-install-plugins|Buscar e instalar plugins desde marketplace|Anadir un plugin nuevo con verificacion
+03-module-install-mcps|Buscar e instalar MCPs con scope y transport|Anadir un MCP (stdio, sse) al entorno correcto
+04-module-docs|Los pergaminos del Arquero — guia completa|Consultar documentacion en tiempo real
 MODS
     ;;
     celebrimbor) cat <<'MODS'
-01-detector-entorno|Deteccion de Node.js, npm, npx
-02-menu-principal|Menu interactivo adaptativo
-04-backend-cli|Referencia de comandos npx skills
-07-module-analyze|Analizar skills instaladas y sugerir mejoras
-07-module-search|Buscar skills en skills.sh
-08-module-install|Instalar skills
-09-module-list|Listar skills instaladas
-10-module-remove|Eliminar skills
-11-module-update|Actualizar skills
-12-module-create-skill|Crear skill asistida
-13-module-docs|Guia y documentacion on-demand
-14-skills-cli-reference|Referencia tecnica CLI
-15-module-gsd-detector|Deteccion de GSD (Get Shit Done)
+01-detector-entorno|Deteccion de Node.js, npm, npx|Verificar prerrequisitos antes de operar
+02-menu-principal|Menu interactivo adaptativo|Navegar entre las operaciones de skills
+04-backend-cli|Referencia de comandos npx skills|Consultar la CLI subyacente
+07-module-analyze|Analizar skills instaladas y sugerir mejoras|Auditar skills activas, detectar duplicados u obsoletas
+07-module-search|Buscar skills en skills.sh|Encontrar un skill en el marketplace (+59.000)
+08-module-install|Instalar skills|Anadir un skill al proyecto o a nivel global
+09-module-list|Listar skills instaladas|Ver skills locales en formato tabla
+10-module-remove|Eliminar skills|Desinstalar un skill especifico
+11-module-update|Actualizar skills|Traer la ultima version disponible
+12-module-create-skill|Crear skill asistida|Forjar un skill personalizado con plantilla
+13-module-docs|Guia y documentacion on-demand|Consultar docs de skills.sh y Claude Code
+14-skills-cli-reference|Referencia tecnica CLI|Comandos exactos de npx skills
+15-module-gsd-detector|Deteccion de GSD (Get Shit Done)|Detectar si el proyecto usa la integracion GSD
 MODS
     ;;
     ents) cat <<'MODS'
-00-menu-principal|Banner + menu principal
-01-mini-guide|Mini-guia informativa con lore de Barbol
-02-analyzer|Escaneo completo del CI/CD actual
-03-diagram-renderer|Mapa visual del pipeline (diagrama ASCII)
-04-improvement-engine|Mejoras con scoring 0-100
-05-modifier|Modificacion asistida del CI/CD existente
-06-creator|Creacion de GitHub Actions desde cero
+00-menu-principal|Banner + menu principal|Punto de entrada a los Pastores del Fangorn
+01-mini-guide|Mini-guia informativa con lore de Barbol|Onboarding al mundo CI/CD con lore
+02-analyzer|Escaneo completo del CI/CD actual|Obtener un mapa del pipeline existente
+03-diagram-renderer|Mapa visual del pipeline (diagrama ASCII)|Ver graficamente el flujo de jobs y steps
+04-improvement-engine|Mejoras con scoring 0-100|Identificar debilidades y priorizar fixes
+05-modifier|Modificacion asistida del CI/CD existente|Aplicar mejoras una a una con confirmacion
+06-creator|Creacion de GitHub Actions desde cero|Generar un workflow nuevo con documentacion oficial
 MODS
     ;;
     aragorn) cat <<'MODS'
-00-module-analyze|Inspeccionar arsenal de agentes con scoring
-01-module-marketplace|Buscar e instalar desde VoltAgent + aitmpl.com
-02-module-create|Crear agente asistido personalizado
-03-module-team-builder|Configurar Agent Teams para trabajo paralelo
-04-module-docs|Los pergaminos del Rey — guia completa
-99-lore-characters|Referencia de personajes del lore
+00-module-analyze|Inspeccionar arsenal de agentes con scoring|Saber que agentes tienes y como de bien estan
+01-module-marketplace|Buscar e instalar desde VoltAgent + aitmpl.com|Anadir un agente desde un marketplace externo
+02-module-create|Crear agente asistido personalizado|Forjar un agente con rol, tools y descripcion
+03-module-team-builder|Configurar Agent Teams para trabajo paralelo|Orquestar varios agentes con patron de debate
+04-module-docs|Los pergaminos del Rey — guia completa|Consultar documentacion de agentes en tiempo real
+99-lore-characters|Referencia de personajes del lore|Casting list para elegir nombres de agentes
 MODS
     ;;
     gandalf) cat <<'MODS'
-01-module-rohirrim|Exploradores Rohirrim — mapeo de dominio
-02-module-field-report|Informe de campo de los exploradores
-03-module-objective|Definicion de objetivo con el usuario
-04-module-continue|Continuar aventura SDD existente
-04b-module-docs-fetch|Fetch de documentacion oficial
-05-module-requirements|Generador de requirements EARS
-06-module-design|Design con Mermaid y ADRs
-07-module-tasks|Desglose ejecutable de tareas
-08-module-council|Consejo de Rivendel
-09-module-docs|Los Pergaminos del Mago
-10-module-forge-team|Forja del ejercito con Aragorn
-11-module-gsd-workflow|Workflow GSD integrado
+01-module-rohirrim|Exploradores Rohirrim — mapeo de dominio|Entender el codigo antes de escribir spec
+02-module-field-report|Informe de campo de los exploradores|Resumen de hallazgos del mapeo
+03-module-objective|Definicion de objetivo con el usuario|Acordar que se va a construir y por que
+04-module-continue|Continuar aventura SDD existente|Retomar un SDD a medio ejecutar
+04b-module-docs-fetch|Fetch de documentacion oficial|Consultar docs antes de disenar
+05-module-requirements|Generador de requirements EARS|Escribir requisitos formales (MUST/SHOULD/COULD)
+06-module-design|Design con Mermaid y ADRs|Documentar arquitectura, decisiones y diagramas
+07-module-tasks|Desglose ejecutable de tareas|Romper el SDD en tareas con dependencias y criteria
+08-module-council|Consejo de Rivendel|Deliberar decisiones con varios agentes en debate
+09-module-docs|Los Pergaminos del Mago|Referencia completa del flujo SDD
+10-module-forge-team|Forja del ejercito con Aragorn|Crear un Agent Team optimo para el SDD
+11-module-gsd-workflow|Workflow GSD integrado|Integrar el flujo con GSD (Get Shit Done)
 MODS
     ;;
+  esac
+}
+
+# ── Novedades por epica (version actual) ──────────────────────
+whats_new_for_epic() {
+  case "$1" in
+    palantir)    echo "CRUD completo de Status Line con preset &#x1F954; de Pepeton (2 lineas con barras de contexto, 5h y 7d) y banner informativo de limites antes de cada menu" ;;
+    bardo)       echo "Marketplace de MCPs y plugins con instalacion verificada, scope y transport" ;;
+    celebrimbor) echo "Detector GSD integrado, referencia CLI y CRUD sobre mas de 59.000 skills" ;;
+    ents)        echo "Mapa ASCII del pipeline + scoring 0-100 de mejoras con aplicacion asistida" ;;
+    aragorn)     echo "Agent Teams con patron de debate y marketplaces VoltAgent + aitmpl.com" ;;
+    gandalf)     echo "Flujo SDD completo: Rohirrim &#x2192; Field Report &#x2192; Requirements &#x2192; Design &#x2192; Tasks, con integracion GSD y Agent Teams" ;;
+    *)           echo "Mejoras generales en esta version" ;;
+  esac
+}
+
+# ── Capacidades por epica (bullets) ───────────────────────────
+# Emitir una capacidad por linea (stdout). Se consume con while read.
+capabilities_for_epic() {
+  case "$1" in
+    palantir) cat <<'CAPS'
+Inspeccionar jerarquia de configuracion en 6 niveles (global, proyecto, rules, hooks, MEMORY, settings)
+Analizar y puntuar la configuracion con scoring 0-100 y sugerencias por nivel
+Anadir configuracion nueva con deteccion inteligente de scope (global vs proyecto)
+Importar y exportar configuraciones entre proyectos como Markdown portatil
+CRUD completo del Status Line: crear, editar, reemplazar y eliminar
+Instalar el preset de Pepeton (2 lineas con barras de contexto, 5h y 7d) en un solo paso
+Detectar conflictos y redundancias entre ficheros de configuracion
+Consultar documentacion oficial de Claude Code en tiempo real (6 fuentes)
+CAPS
+    ;;
+    bardo) cat <<'CAPS'
+Analizar el stack actual: MCPs instalados, plugins activos y scopes
+Consultar marketplaces de plugins y MCPs en tiempo real
+Recomendar herramientas con ejemplos de uso reales
+Instalar plugins con verificacion post-instalacion
+Instalar MCPs configurando scope (user/project) y transport (stdio/sse)
+Consultar los pergaminos del Arquero (guia completa) en tiempo real
+CAPS
+    ;;
+    celebrimbor) cat <<'CAPS'
+Detectar entorno Node.js / npm / npx antes de cualquier operacion
+Buscar skills en skills.sh (mas de 59.000 skills disponibles)
+Instalar, listar, eliminar y actualizar skills con confirmacion
+Analizar skills instaladas, detectar obsoletas y sugerir mejoras
+Crear skills asistidas con plantilla y descripcion personalizada
+Detectar integracion GSD (Get Shit Done) y avisar de desinstalaciones
+Consultar documentacion tecnica de skills.sh y Claude Code on-demand
+CAPS
+    ;;
+    ents) cat <<'CAPS'
+Escanear el CI/CD actual y extraer pipelines, jobs y steps
+Renderizar un mapa ASCII visual del pipeline para auditoria rapida
+Puntuar la madurez del CI/CD con scoring 0-100
+Sugerir mejoras concretas, cada una con explicacion y valor
+Modificar GitHub Actions existentes paso a paso con confirmacion
+Crear GitHub Actions desde cero consultando documentacion oficial
+CAPS
+    ;;
+    aragorn) cat <<'CAPS'
+Inspeccionar el arsenal actual de agentes y puntuarlos
+Buscar en marketplaces externos (VoltAgent, aitmpl.com)
+Crear agentes asistidos con rol, tools, scope y descripcion
+Forjar Agent Teams con patron de debate por pares o trios
+Consultar los pergaminos del Rey (documentacion de agentes) on-demand
+Mapear casting de personajes del lore para nombrar agentes con caracter
+CAPS
+    ;;
+    gandalf) cat <<'CAPS'
+Mapear el dominio del problema con los exploradores Rohirrim
+Resumir hallazgos en un Field Report conciso
+Acordar un objetivo concreto y medible con el usuario
+Generar requirements formales en notacion EARS (MUST, SHOULD, COULD)
+Documentar arquitectura con diagramas Mermaid y ADRs
+Desglosar el trabajo en tareas ejecutables con dependencias y acceptance criteria
+Reunir el Consejo de Rivendel para deliberar decisiones con varios agentes
+Forjar un Agent Team especifico para el SDD colaborando con Aragorn
+Continuar una aventura SDD existente sin perder contexto
+Integrar el flujo con GSD (Get Shit Done) y Agent Teams
+CAPS
+    ;;
+  esac
+}
+
+# ── Casos de uso por epica (escenario -> solucion) ────────────
+# Formato por linea: "Escenario -> Solucion" (el template separa por ' -> ').
+usecases_for_epic() {
+  case "$1" in
+    palantir) cat <<'USECASES'
+Entras a un proyecto nuevo y no sabes que CLAUDE.md, reglas o hooks tiene -> Contemplar el reino obtiene el mapa completo con scoring en segundos
+Quieres anadir una regla de comportamiento sin romper lo que ya funciona -> Susurrar planes detecta conflictos antes de escribir nada
+Cambias de maquina y quieres llevar tu configuracion contigo -> Compartir visiones exporta todo a un Markdown portable listo para importar
+Quieres un statusline molon sin pelearte con JSON a mano -> El preset de Pepeton lo instala en un solo paso
+USECASES
+    ;;
+    bardo) cat <<'USECASES'
+Empiezas en un proyecto Python y no sabes que MCPs te ayudarian -> El Contrabandista analiza tu stack y recomienda MCPs concretos
+Quieres instalar un plugin pero no estas seguro del scope correcto -> Bardo pregunta antes y verifica la instalacion despues
+Necesitas un MCP para consulta de base de datos y no sabes cual -> El marketplace se consulta en tiempo real con ejemplos de uso
+USECASES
+    ;;
+    celebrimbor) cat <<'USECASES'
+Tienes 20 skills instalados y no recuerdas cuales usas -> Analizar skills los lista con uso estimado y sugiere eliminar los obsoletos
+Necesitas una skill especifica para trabajar con GraphQL -> Buscar skills consulta skills.sh con mas de 59.000 opciones
+Quieres forjar una skill propia para un proceso repetitivo -> Crear skill asistida te guia con plantilla y descripcion
+USECASES
+    ;;
+    ents) cat <<'USECASES'
+Heredas un proyecto con GitHub Actions y no sabes que hacen -> Analyzer escanea y renderiza un mapa ASCII completo
+Tu CI tarda demasiado y no sabes por donde mejorar -> Improvement engine puntua 0-100 y prioriza fixes
+Necesitas un workflow nuevo (deploy, release, tests) -> Creator lo genera consultando docs oficiales
+USECASES
+    ;;
+    aragorn) cat <<'USECASES'
+Tienes agentes instalados pero no sabes para que sirve cada uno -> Analyzer los inspecciona y los puntua con descripcion clara
+Necesitas un agente especializado que no esta en tu arsenal -> Marketplace busca en VoltAgent y aitmpl.com con filtros
+Quieres orquestar varios agentes en paralelo con debate -> Team builder configura un Agent Team con patron de debate
+USECASES
+    ;;
+    gandalf) cat <<'USECASES'
+Vas a construir algo y necesitas especificaciones antes de codear -> El flujo SDD genera requirements EARS + design + tasks
+No sabes el codigo base y vas a hacer cambios grandes -> Los Rohirrim mapean el dominio y Field Report resume hallazgos
+Hay una decision tecnica controvertida con varias opciones -> Consejo de Rivendel reune agentes para deliberar con criterio
+USECASES
+    ;;
+  esac
+}
+
+# ── Cita de lore especifica por epica (footer del epic index) ─
+lore_for_epic() {
+  case "$1" in
+    palantir)    echo "Quien mira en el Palantir vera la verdad, pero no toda la verdad. La piedra no miente, pero puede enganar. &mdash; Gandalf el Blanco" ;;
+    bardo)       echo "Bardo el Arquero no pregunto por el oro. Pregunto que herramienta necesitaba para hacer el trabajo. &mdash; Cronicas de Lake-town" ;;
+    celebrimbor) echo "He forjado muchos anillos, pero solo uno contiene mi voluntad entera. &mdash; Celebrimbor de Eregion" ;;
+    ents)        echo "No actuemos con precipitacion. Hay tiempo para deliberar lo que se necesita deliberar. &mdash; Barbol" ;;
+    aragorn)     echo "Los Dunedain no descansan. Vigilan para que otros puedan dormir. &mdash; Aragorn hijo de Arathorn" ;;
+    gandalf)     echo "No llegues tarde, no llegues pronto. Llega exactamente cuando lo necesitas. &mdash; Gandalf el Gris" ;;
+    *)           echo "Not all those who wander are lost. &mdash; J.R.R. Tolkien" ;;
   esac
 }
 
@@ -697,11 +835,36 @@ generate_epic_index() {
   local page_sidebar
   page_sidebar="$SIDEBAR_HTML"
 
-  # Build modules table rows
+  # Data enriquecida (issue #429): novedades, capacidades, casos de uso, lore
+  local whats_new_text
+  whats_new_text="$(whats_new_for_epic "$epic")"
+  local lore_specific
+  lore_specific="$(lore_for_epic "$epic")"
+  # Fallback: si lore_for_epic no define cita para esta epica, usar aleatoria
+  [ -z "$lore_specific" ] && lore_specific="$lore_qt"
+
+  # Build capabilities list (bullets)
+  local capabilities_html=""
+  while IFS= read -r cap_line; do
+    [ -z "$cap_line" ] && continue
+    capabilities_html+="        <li>${cap_line}</li>"$'\n'
+  done <<< "$(capabilities_for_epic "$epic")"
+
+  # Build use-case cards (format "Scenario -> Solution")
+  local usecases_html=""
+  while IFS= read -r uc_line; do
+    [ -z "$uc_line" ] && continue
+    local uc_scenario uc_solution
+    uc_scenario="${uc_line%% -> *}"
+    uc_solution="${uc_line#* -> }"
+    usecases_html+="        <div class=\"usecase-card\"><em>${uc_scenario}</em><p>${uc_solution}</p></div>"$'\n'
+  done <<< "$(usecases_for_epic "$epic")"
+
+  # Build modules table rows (3 columns: module | description | when to use)
   local modules_rows=""
-  while IFS='|' read -r mod_name mod_desc; do
+  while IFS='|' read -r mod_name mod_desc mod_when; do
     [ -z "$mod_name" ] && continue
-    modules_rows+="      <tr><td><code>${mod_name}.md</code></td><td>${mod_desc}</td></tr>"$'\n'
+    modules_rows+="      <tr><td><code>${mod_name}.md</code></td><td>${mod_desc}</td><td>${mod_when:-&mdash;}</td></tr>"$'\n'
   done <<< "$(modules_for_epic "$epic")"
 
   # Build other epics navigation
@@ -774,6 +937,16 @@ td code{font-family:var(--font-mono);font-size:.82rem;color:var(--accent-primary
 .footer .lore-quote{font-family:var(--font-body);font-style:italic;font-size:.9rem;color:var(--text-secondary);margin-bottom:.6rem;opacity:.7}
 .footer a{color:${accent};text-decoration:none;transition:color .2s}
 .footer a:hover{text-decoration:underline}
+/* Enriched sections (issue #429) */
+.whats-new{border-left:3px solid ${accent}}
+.whats-new p{font-family:var(--font-body);font-size:1rem;margin:0}
+.capabilities-list{list-style:none;padding:0;margin:.3rem 0 0}
+.capabilities-list li{padding:.35rem 0 .35rem 1.5rem;position:relative;font-family:var(--font-body);font-size:.95rem;color:var(--text-primary)}
+.capabilities-list li::before{content:"\\2694";position:absolute;left:0;top:.5rem;color:${accent};font-size:.8rem}
+.usecase-cards{display:grid;grid-template-columns:1fr;gap:.8rem;margin-top:.3rem}
+.usecase-card{background:var(--bg-primary);border:1px solid var(--border-ornate);border-left:3px solid ${accent};border-radius:6px;padding:.8rem 1rem}
+.usecase-card em{color:${accent};font-family:var(--font-body);font-style:italic;display:block;margin-bottom:.3rem;font-size:.95rem}
+.usecase-card p{margin:0;font-family:var(--font-body);font-size:.95rem;color:var(--text-primary)}
 $(sidebar_css)
 </style>
 </head>
@@ -800,9 +973,26 @@ ${page_sidebar}
 
   <a class="back-link" href="https://josemoreupeso.es/tlotp/">&larr; Volver al indice principal</a>
 
+  <div class="section whats-new">
+    <h2>&#x2728; Novedades en ${VERSION}</h2>
+    <p>${whats_new_text}</p>
+  </div>
+
   <div class="section">
     <h2>${emoji} &iquest;Que es ${epic_name}?</h2>
     <p>${epic_longdesc}</p>
+  </div>
+
+  <div class="section">
+    <h2>&#x2694;&#xFE0F; Capacidades</h2>
+    <ul class="capabilities-list">
+${capabilities_html}    </ul>
+  </div>
+
+  <div class="section">
+    <h2>&#x1F5FA;&#xFE0F; &iquest;Cuando invocar a ${epic_name}?</h2>
+    <div class="usecase-cards">
+${usecases_html}    </div>
   </div>
 
   <div class="section">
@@ -821,7 +1011,7 @@ ${page_sidebar}
   <div class="section">
     <h2>Modulos</h2>
     <table>
-      <tr><th>Modulo</th><th>Descripcion</th></tr>
+      <tr><th>Modulo</th><th>Descripcion</th><th>Cuando usarlo</th></tr>
 ${modules_rows}    </table>
   </div>
 
@@ -834,7 +1024,7 @@ ${other_epics}    </div>
 </div>
 
 <div class="footer">
-  <div class="lore-quote">&ldquo;${lore_qt}&rdquo;</div>
+  <div class="lore-quote">&ldquo;${lore_specific}&rdquo;</div>
   ${VERSION} · <a href="https://github.com/joseguillermomoreu-gif/tlotp">GitHub</a>
 </div>
 
