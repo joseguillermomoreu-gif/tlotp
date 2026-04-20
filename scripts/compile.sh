@@ -118,6 +118,7 @@ MODS
 02-module-install-plugins|Buscar e instalar plugins desde marketplace|Anadir un plugin nuevo con verificacion
 03-module-install-mcps|Buscar e instalar MCPs con scope y transport|Anadir un MCP (stdio, sse) al entorno correcto
 04-module-docs|Los pergaminos del Arquero — guia completa|Consultar documentacion en tiempo real
+05-module-suggest-plugins|Sugerir e instalar plugins oficiales por stack|Instalar plugins recomendados segun el stack detectado
 MODS
     ;;
     celebrimbor) cat <<'MODS'
