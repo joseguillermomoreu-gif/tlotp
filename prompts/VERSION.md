@@ -1,7 +1,7 @@
 # TLOTP - Version
 
-**TLOTP v8.0.0** — "The Mithril of Moria"
-**Fecha release**: 2026-04-18
+**TLOTP v8.1.0** — "La Flecha Certera"
+**Fecha release**: 2026-04-20
 
 ## Componentes
 
