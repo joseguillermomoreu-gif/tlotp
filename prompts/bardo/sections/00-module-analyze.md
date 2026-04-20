@@ -163,7 +163,20 @@ Score global = media de puntuaciones individuales (redondeado a 1 decimal)
 
 ## Paso 4 — MCPs y plugins recomendados no instalados
 
-Basado en el stack detectado y la documentación oficial, listar qué podría ser útil:
+### Catálogo de plugins oficiales (AMPLIAR AQUÍ con nuevos plugins)
+
+Cruzar el stack detectado contra este catálogo. Para cada plugin:
+- Si su stack disparador está presente en el stack detectado **Y** el plugin **no** está instalado → incluir en sugeridos.
+- Si ya está instalado → no mencionar nunca.
+
+| Stack disparador | Plugin ID | Descripción | Instalaciones |
+|-----------------|-----------|-------------|---------------|
+| React / Vue / Angular / Svelte | `frontend-design@claude-plugins-official` | Genera UI con tipografía, paletas y animaciones distintivas. Evita el "AI slop aesthetic". | 277.000+ |
+| TypeScript | `typescript@claude-plugins-official` | Mejora la inferencia y sugerencias para proyectos TypeScript. | — |
+| Python | `python@claude-plugins-official` | Optimiza asistencia en proyectos Python: patrones, idioms, tipado. | — |
+| GitHub (directorio `.github/` detectado o repo git) | `github@claude-plugins-official` | Integración con flujos de GitHub: issues, PRs, Actions. | — |
+
+Basado en el stack detectado, la documentación oficial y el catálogo anterior, listar qué podría ser útil:
 
 ```
 💡 OPORTUNIDADES DETECTADAS PARA TU STACK
@@ -175,9 +188,22 @@ Basado en el stack detectado y la documentación oficial, listar qué podría se
     • postgres-mcp    — acceso directo a tu DB desde Claude
 
   🔌 Plugins recomendados no instalados:
-    • (basado en docs/en/discover-plugins, WebFetch ya cargado)
+    • frontend-design@claude-plugins-official
+      Genera UI con tipografía, paletas y animaciones distintivas.
+      (Stack disparador: React detectado · 277.000+ instalaciones)
+    • typescript@claude-plugins-official
+      Mejora la inferencia y sugerencias para proyectos TypeScript.
+      (Stack disparador: TypeScript detectado)
 ──────────────────────────────────────────────────────────────
 ```
+
+Si no hay plugins sugeridos (todos instalados o el stack no mapea a ninguno del catálogo):
+```
+  🔌 Plugins: tu carcaj ya está bien equipado para el stack detectado.
+```
+
+**Guardar la lista de plugins sugeridos en el contexto de sesión** para pasarla a
+`sections/05-module-suggest-plugins.md` si el usuario elige instalarlos.
 
 ---
 
@@ -206,8 +232,8 @@ Mostrar total: `X mejoras encontradas (Y ❌ críticas · Z ⚠️ mejorables ·
         "description": ""
       },
       {
-        "label": "🔌 Buscar e instalar los recomendados",
-        "description": "Solo si se detectaron oportunidades"
+        "label": "🔌 Instalar plugins recomendados para mi stack",
+        "description": "Solo si se detectaron plugins sugeridos en el Paso 4"
       },
       {
         "label": "🔙 Volver al menú principal",
@@ -218,7 +244,11 @@ Mostrar total: `X mejoras encontradas (Y ❌ críticas · Z ⚠️ mejorables ·
 }
 ```
 
-> **Nota**: la opción de instalar recomendados solo aparece si se detectaron oportunidades en el Paso 4.
+> **Nota**: la opción de instalar plugins recomendados solo aparece si hay plugins sugeridos en el Paso 4
+> (es decir, plugins del catálogo cuyo stack disparador fue detectado y no están ya instalados).
+>
+> **Acción al elegir "Instalar plugins recomendados"**: cargar `sections/05-module-suggest-plugins.md`
+> pasando la lista de plugins sugeridos calculada en el Paso 4.
 
 ---
 

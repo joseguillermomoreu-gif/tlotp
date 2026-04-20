@@ -180,6 +180,11 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir de Lake-
 - Menú interactivo: el usuario elige sobre qué quiere más info
 - Bardo explica con ejemplos del stack real del proyecto
 
+### "🔌 Instalar plugins recomendados para mi stack" *(accesible desde "Inspeccionar el arsenal")*
+- Cargar módulo: `sections/05-module-suggest-plugins.md`
+- Flujo asistido: un plugin a la vez, con elección de scope antes de instalar
+- Solo disponible cuando "Inspeccionar el arsenal" detecta plugins sugeridos no instalados
+
 ### "🔌 Conseguir un plugin en el mercado — Buscar e instalar plugin"
 - Cargar módulo: `sections/02-module-install-plugins.md`
 - Búsqueda en marketplace oficial de plugins
@@ -221,5 +226,5 @@ Cargar `@prompts/tlotp-main.md` para retomar el menú principal de TLOTP.
 
 ---
 
-**Módulos nuevos**: `00-module-analyze`, `01-module-guide`, `02-module-install-plugins`, `03-module-install-mcps`, `04-module-docs`
+**Módulos nuevos**: `00-module-analyze`, `01-module-guide`, `02-module-install-plugins`, `03-module-install-mcps`, `04-module-docs`, `05-module-suggest-plugins`
 **Módulos legacy** (referencia): `01-mcp-analysis`, `02-plugins-analysis`, `03-stack-detection`, `04-marketplace`, `05-recommendations`, `06-install-wizard`, `07-verification`, `08-el-trovador`
