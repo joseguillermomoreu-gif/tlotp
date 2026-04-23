@@ -105,7 +105,7 @@ el lore, la intro o el menú principal.
 ══════════════════════════════════════════════════════════════════
 🛡️  Forjando el Anillo — Modo de Permisos
 
-  TLOTP convoca seis épicas que usan múltiples herramientas
+  TLOTP convoca siete épicas que usan múltiples herramientas
   (Bash, Read, Write, Edit, WebFetch, Glob...) para configurar
   tu entorno de Claude Code de forma asistida.
 
@@ -239,19 +239,21 @@ Nunca actúa sin confirmación.
 
 ⚔️ **⚡ Gandalf** — El Mago Blanco. Spec-Driven Development.
    *(SDD interactivo: requirements.md · design.md · tasks.md)*
+⚔️ **🌾 Tom Bombadil** — El Maestro Inmune. Escanea y purifica tu reino.
+   *(agents/ · skills/ · MCPs · CLAUDE.md · rules/ · TLOTP)*
 ---
 
 ### PASO 3: Menú de Selección (PAGINADO)
 
-**CRÍTICO**: Usar **AskUserQuestion** (límite 4 opciones). El menú se divide en 2 pantallas.
-Patrón fijo: 3 opciones de contenido por página. Pantalla 1: 3 épicas + "➕ Ver más...". Última pantalla: 3 épicas + "🔙 Volver a página 1".
+**CRÍTICO**: Usar **AskUserQuestion** (límite 4 opciones). El menú se divide en 3 pantallas.
+Patrón fijo: 3 opciones de contenido por página. Pantallas 1 y 2: 3 épicas + "➕ Ver más...". Pantalla 3 (última): 1 épica + "🔙 Volver a página 1" + "🚪 Salir".
 
-**Pantalla 1** (1/2 — mostrar primero):
+**Pantalla 1** (1/3 — mostrar primero):
 
 ```json
 {
   "questions": [{
-    "header": "El Poney Pisador (1/2)",
+    "header": "El Poney Pisador (1/3)",
     "question": "¿A qué épica convocas hoy?",
     "multiSelect": false,
     "options": [
@@ -268,7 +270,7 @@ Patrón fijo: 3 opciones de contenido por página. Pantalla 1: 3 épicas + "➕ 
         "description": ""
       },
       {
-        "label": "➕ Ver más...",
+        "label": "➕ Ver más... (2/3)",
         "description": ""
       }
     ]
@@ -276,12 +278,12 @@ Patrón fijo: 3 opciones de contenido por página. Pantalla 1: 3 épicas + "➕ 
 }
 ```
 
-**Si elige "➕ Ver más..."**, mostrar **Pantalla 2**:
+**Si elige "➕ Ver más... (2/3)"**, mostrar **Pantalla 2**:
 
 ```json
 {
   "questions": [{
-    "header": "El Poney Pisador (2/2)",
+    "header": "El Poney Pisador (2/3)",
     "question": "¿A qué épica convocas hoy?",
     "multiSelect": false,
     "options": [
@@ -298,7 +300,33 @@ Patrón fijo: 3 opciones de contenido por página. Pantalla 1: 3 épicas + "➕ 
         "description": ""
       },
       {
+        "label": "➕ Ver más... (3/3)",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+**Si elige "➕ Ver más... (3/3)"**, mostrar **Pantalla 3**:
+
+```json
+{
+  "questions": [{
+    "header": "El Poney Pisador (3/3)",
+    "question": "¿A qué épica convocas hoy?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🌾 Invocar a Tom Bombadil, el Maestro del Bosque Antiguo",
+        "description": ""
+      },
+      {
         "label": "🔙 Volver a página 1",
+        "description": ""
+      },
+      {
+        "label": "🚪 Salir",
         "description": ""
       }
     ]
@@ -313,6 +341,7 @@ Patrón fijo: 3 opciones de contenido por página. Pantalla 1: 3 épicas + "➕ 
 - 🏹 Reunir monedas para Bardo → Cargar `@prompts/bardo/bardo-main.md`
 - 👑 Entregar Andúril a Aragorn — El Heredero de Isildur nos espera → Cargar `@prompts/aragorn/aragorn-main.md`
 - ⚡ Iniciar una nueva aventura, Gandalf nos espera → Cargar `@prompts/gandalf/gandalf-main.md`
+- 🌾 Invocar a Tom Bombadil, el Maestro del Bosque Antiguo → Cargar `@prompts/tom-bombadil/tom-bombadil-main.md`
 - 🔙 Volver a página 1 → Mostrar Pantalla 1
 - 🚪 Salir → Mostrar mensaje de despedida y terminar
 

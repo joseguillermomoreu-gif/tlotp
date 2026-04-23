@@ -1,7 +1,7 @@
 #!/bin/bash
 # ═══════════════════════════════════════════════════════════════
 #   verify-compile.sh — Verificar compilacion TLOTP
-#   Comprueba que dist/ contiene las 6 epicas, .md limpios por
+#   Comprueba que dist/ contiene las 7 epicas, .md limpios por
 #   epica, index.html por epica y no hay imports sin resolver.
 # ═══════════════════════════════════════════════════════════════
 set -e
@@ -23,7 +23,7 @@ else
 fi
 
 # 2. Verify 6 epics are present
-for epic in palantir ents celebrimbor bardo aragorn gandalf; do
+for epic in palantir ents celebrimbor bardo aragorn gandalf tom-bombadil; do
   if grep -qi "$epic" "$FULL_MD" 2>/dev/null; then
     echo "  [OK] Epic '$epic' found in tlotp-full.md"
   else
@@ -83,7 +83,7 @@ else
 fi
 
 # 6. Verify at least one HTML module per epic
-for epic in palantir ents celebrimbor bardo aragorn gandalf; do
+for epic in palantir ents celebrimbor bardo aragorn gandalf tom-bombadil; do
   if [ -f "$DIST_DIR/$epic/$epic-main.html" ]; then
     echo "  [OK] $epic/$epic-main.html exists"
   else
@@ -93,7 +93,7 @@ for epic in palantir ents celebrimbor bardo aragorn gandalf; do
 done
 
 # 7. Verify epic .md files exist and are clean (no @prompts/ refs, no HTML wrapper)
-for epic in palantir ents celebrimbor bardo aragorn gandalf; do
+for epic in palantir ents celebrimbor bardo aragorn gandalf tom-bombadil; do
   epic_md="$DIST_DIR/$epic/$epic-main.md"
   if [ -f "$epic_md" ]; then
     echo "  [OK] $epic/$epic-main.md exists"
@@ -136,7 +136,7 @@ for epic in palantir ents celebrimbor bardo aragorn gandalf; do
 done
 
 # 8. Verify epic index.html files exist
-for epic in palantir ents celebrimbor bardo aragorn gandalf; do
+for epic in palantir ents celebrimbor bardo aragorn gandalf tom-bombadil; do
   if [ -f "$DIST_DIR/$epic/index.html" ]; then
     echo "  [OK] $epic/index.html exists"
   else

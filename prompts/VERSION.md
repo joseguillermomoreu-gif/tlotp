@@ -1,7 +1,7 @@
 # TLOTP - Version
 
-**TLOTP v8.1.0** — "La Flecha Certera"
-**Fecha release**: 2026-04-20
+**TLOTP v8.2.0** — "El Guardián Inmune"
+**Fecha release**: 2026-04-23
 
 ## Componentes
 
@@ -11,3 +11,4 @@
 - **Ents** — Guardianes del CI/CD (completado)
 - **Aragorn** — Gestor de agentes y Agent Teams (completado)
 - **Gandalf** — Spec-Driven Development (completado)
+- **Tom Bombadil** — Escáner de seguridad de prompts (completado)
