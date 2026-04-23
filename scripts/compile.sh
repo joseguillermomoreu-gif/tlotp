@@ -20,7 +20,7 @@ if [ -f "$VERSION_FILE" ]; then
 fi
 
 # ── Orden de epicas para sidebar y tlotp-full.md ─────────────
-EPIC_ORDER="palantir ents celebrimbor aragorn bardo gandalf"
+EPIC_ORDER="palantir ents celebrimbor aragorn bardo gandalf tom-bombadil"
 
 # ── Variable global para el sidebar HTML ─────────────────────
 SIDEBAR_HTML=""
@@ -34,6 +34,7 @@ color_for_epic() {
     ents)        echo "#4a7c59" ;;
     aragorn)     echo "#a8b8c8" ;;
     gandalf)     echo "#f0f0f0" ;;
+    tom-bombadil) echo "#7cba6a" ;;
     *)           echo "#8b949e" ;;
   esac
 }
@@ -46,6 +47,7 @@ emoji_for_epic() {
     ents)        echo "&#x1F333;" ;;  # tree
     aragorn)     echo "&#x1F451;" ;;  # crown
     gandalf)     echo "&#x26A1;" ;;   # lightning
+    tom-bombadil) echo "&#x1F33E;" ;; # ear of rice
     *)           echo "" ;;
   esac
 }
@@ -58,6 +60,7 @@ name_for_epic() {
     ents)        echo "Ents" ;;
     aragorn)     echo "Aragorn" ;;
     gandalf)     echo "Gandalf" ;;
+    tom-bombadil) echo "Tom Bombadil" ;;
     *)           echo "$1" ;;
   esac
 }
@@ -70,6 +73,7 @@ desc_for_epic() {
     ents)        echo "Guardianes del CI/CD y GitHub Actions" ;;
     aragorn)     echo "Gestor de agentes y equipos con roles basados en el lore" ;;
     gandalf)     echo "Desarrollo guiado por especificacion — flujo SDD" ;;
+    tom-bombadil) echo "Escaner de seguridad de prompts — detecta prompt injection, exfiltracion de credenciales y comportamientos maliciosos en agentes, skills y configuraciones" ;;
     *)           echo "" ;;
   esac
 }
@@ -82,6 +86,7 @@ longdesc_for_epic() {
     ents)        echo "Los Pastores del Fangorn custodian tu CI/CD. Analizan pipelines existentes, renderizan un mapa ASCII del flujo, puntuan mejoras con scoring 0-100 y crean GitHub Actions desde cero consultando documentacion oficial en tiempo real." ;;
     aragorn)     echo "El Rey de Gondor convoca y gestiona tu ejercito de agentes. Inspecciona el arsenal actual, busca en marketplaces (VoltAgent + aitmpl.com), crea agentes asistidos y forja Agent Teams con patron de debate por pares para trabajo paralelo." ;;
     gandalf)     echo "El Mago Blanco guia el desarrollo con Spec-Driven Development. Exploradores Rohirrim mapean el dominio, Field Report resume hallazgos, genera requirements EARS, design con Mermaid y tasks ejecutables. Integra Agent Teams (Aragorn), Consejo de Rivendel y workflow GSD." ;;
+    tom-bombadil) echo "El Maestro del Bosque Antiguo no puede ser corrompido por ningun Anillo. Tom Bombadil analiza todos tus agentes, skills, MCPs y configuraciones en busca de prompt injection, exfiltracion de credenciales, operaciones peligrosas y comportamientos que no coinciden con lo que declaran. Puntua tu reino de 0 a 100 y te asiste hallazgo a hallazgo para purificarlo." ;;
     *)           echo "" ;;
   esac
 }
@@ -94,6 +99,7 @@ subtitle_for_epic() {
     ents)        echo "Los Pastores del Fangorn" ;;
     aragorn)     echo "El Rey que Regresa" ;;
     gandalf)     echo "El Mago Blanco" ;;
+    tom-bombadil) echo "El Guardian Inmune" ;;
     *)           echo "" ;;
   esac
 }
@@ -171,6 +177,17 @@ MODS
 11-module-gsd-workflow|Workflow GSD integrado|Integrar el flujo con GSD (Get Shit Done)
 MODS
     ;;
+    tom-bombadil) cat <<'MODS'
+00-menu-escaneo|Menu de escaneo (estandar, completo, manual)|Elegir que territorios patrullar
+01-scanner-agentes|Escaner de agentes globales y de proyecto|Auditar ~/.claude/agents y .claude/agents
+02-scanner-skills|Escaner de skills y plugins|Auditar plugins y skills instalados
+03-scanner-mcps|Escaner de configuraciones MCP|Auditar .claude.json y .mcp.json
+04-scanner-configs|Escaner de CLAUDE.md y rules/|Auditar instrucciones y reglas activas
+05-autoanal-tlotp|Auto-analisis de TLOTP via WebFetch|Auditar los propios prompts de TLOTP
+06-score-estado|Calculo de score y estado narrativo|Puntuar el reino de 0 a 100 con 5 estados LOTR
+07-workflow-hallazgos|Flujo asistido hallazgo a hallazgo|Aplicar, saltar, modificar o salir por cada hallazgo
+MODS
+    ;;
   esac
 }
 
@@ -183,6 +200,7 @@ whats_new_for_epic() {
     ents)        echo "Mapa ASCII del pipeline + scoring 0-100 de mejoras con aplicacion asistida" ;;
     aragorn)     echo "Agent Teams con patron de debate y marketplaces VoltAgent + aitmpl.com" ;;
     gandalf)     echo "Flujo SDD completo: Rohirrim &#x2192; Field Report &#x2192; Requirements &#x2192; Design &#x2192; Tasks, con integracion GSD y Agent Teams" ;;
+    tom-bombadil) echo "Nueva epica: escaner de seguridad de prompts con 6 categorias (prompt injection, exfiltracion, operaciones peligrosas, escalado, discrepancia, ofuscacion), scoring 0-100 con 5 estados narrativos LOTR y flujo asistido hallazgo a hallazgo" ;;
     *)           echo "Mejoras generales en esta version" ;;
   esac
 }
@@ -252,6 +270,17 @@ Continuar una aventura SDD existente sin perder contexto
 Integrar el flujo con GSD (Get Shit Done) y Agent Teams
 CAPS
     ;;
+    tom-bombadil) cat <<'CAPS'
+Escanear agentes globales y de proyecto en busca de comportamientos maliciosos
+Auditar skills y plugins instalados aplicando 6 categorias de deteccion
+Revisar configuraciones MCP (.claude.json y .mcp.json) en ambos scopes
+Analizar CLAUDE.md global y de proyecto junto con todas las rules/ activas
+Auto-auditar los propios prompts de TLOTP descargando desde la URL oficial
+Calcular una puntuacion 0-100 con 5 estados narrativos LOTR
+Presentar cada hallazgo con problema, caso de uso malicioso y solucion propuesta
+Guiar al usuario hallazgo a hallazgo con opciones aplicar, saltar, modificar o salir
+CAPS
+    ;;
   esac
 }
 
@@ -296,6 +325,12 @@ No sabes el codigo base y vas a hacer cambios grandes -> Los Rohirrim mapean el 
 Hay una decision tecnica controvertida con varias opciones -> Consejo de Rivendel reune agentes para deliberar con criterio
 USECASES
     ;;
+    tom-bombadil) cat <<'USECASES'
+Acabas de instalar agentes y skills desde marketplaces y no sabes si son seguros -> Tom los escanea y puntua tu reino de 0 a 100
+Sospechas que un prompt puede estar filtrando tus API keys al exterior -> El scanner detecta exfiltracion de credenciales y te muestra el fragmento exacto
+Quieres auditar que TLOTP mismo no contenga comportamientos ocultos -> El auto-analisis descarga los prompts activos y aplica los 6 criterios de deteccion
+USECASES
+    ;;
   esac
 }
 
@@ -308,6 +343,7 @@ lore_for_epic() {
     ents)        echo "No actuemos con precipitacion. Hay tiempo para deliberar lo que se necesita deliberar. &mdash; Barbol" ;;
     aragorn)     echo "Los Dunedain no descansan. Vigilan para que otros puedan dormir. &mdash; Aragorn hijo de Arathorn" ;;
     gandalf)     echo "No llegues tarde, no llegues pronto. Llega exactamente cuando lo necesitas. &mdash; Gandalf el Gris" ;;
+    tom-bombadil) echo "Tomo el Anillo Unico. Se lo coloco en el dedo. Lo vio por lo que era. Y lo devolvio entre carcajadas. &mdash; Tom Bombadil, Senor del Bosque Antiguo" ;;
     *)           echo "Not all those who wander are lost. &mdash; J.R.R. Tolkien" ;;
   esac
 }

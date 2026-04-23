@@ -25,6 +25,7 @@ https://josemoreupeso.es/tlotp/celebrimbor/index.html
 https://josemoreupeso.es/tlotp/aragorn/index.html
 https://josemoreupeso.es/tlotp/bardo/index.html
 https://josemoreupeso.es/tlotp/gandalf/index.html
+https://josemoreupeso.es/tlotp/tom-bombadil/index.html
 
 # Canarios — main prompt de una épica en ambos formatos
 # (sirven como smoke del pipeline compile.sh → dist → rsync)
