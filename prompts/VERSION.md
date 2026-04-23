@@ -1,7 +1,7 @@
 # TLOTP - Version
 
-**TLOTP v8.2.0** — "El Guardián Inmune"
-**Fecha release**: 2026-04-23
+**TLOTP v8.1.0** — "La Flecha Certera"
+**Fecha release**: 2026-04-20
 
 ## Componentes
 
