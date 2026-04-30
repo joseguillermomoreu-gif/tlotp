@@ -253,12 +253,17 @@ Si todos fueron instalados correctamente:
 
 > **IMPORTANTE**: mantener sincronizado con el catálogo del Paso 4 de `00-module-analyze.md`.
 
-| Plugin ID | Stack disparador | Descripción | Instalaciones |
-|-----------|-----------------|-------------|---------------|
-| `frontend-design@claude-plugins-official` | React / Vue / Angular / Svelte | Genera UI con tipografía, paletas y animaciones distintivas. Evita el "AI slop aesthetic". | 277.000+ |
-| `typescript@claude-plugins-official` | TypeScript | Mejora la inferencia y sugerencias para proyectos TypeScript. | — |
-| `python@claude-plugins-official` | Python | Optimiza asistencia en proyectos Python: patrones, idioms, tipado. | — |
-| `github@claude-plugins-official` | GitHub (directorio `.github/` o repo git) | Integración con flujos de GitHub: issues, PRs, Actions. | — |
+| Plugin ID | Stack disparador | Descripción | Origen | Instalaciones |
+|-----------|-----------------|-------------|--------|---------------|
+| `frontend-design@claude-plugins-official` | React / Vue / Angular / Svelte | Genera UI con tipografía, paletas y animaciones distintivas. Evita el "AI slop aesthetic". | oficial | 277.000+ |
+| `typescript@claude-plugins-official` | TypeScript | Mejora la inferencia y sugerencias para proyectos TypeScript. | oficial | — |
+| `python@claude-plugins-official` | Python | Optimiza asistencia en proyectos Python: patrones, idioms, tipado. | oficial | — |
+| `github@claude-plugins-official` | GitHub (directorio `.github/` o repo git) | Integración con flujos de GitHub: issues, PRs, Actions. | oficial | — |
+| `caveman@caveman` (de `JuliusBrussee/caveman`) | `universal` (cualquier stack) | Reduce tokens de salida 65–75% comprimiendo respuestas a "estilo cavernícola". Niveles Lite/Full/Ultra/文言文. Flujo dedicado en `06-module-caveman.md`. | tercero | ~14.000 ⭐ |
+
+> **AMPLIAR AQUÍ**: añadir nuevas filas manteniendo sincronía con `00-module-analyze.md`.
+> Para plugins de tercero, marcar `Origen: tercero` y considerar un módulo dedicado en
+> `sections/` si requieren flujo de instalación distinto al estándar.
 
 ---
 
