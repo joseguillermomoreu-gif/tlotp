@@ -1,7 +1,7 @@
 # TLOTP - Version
 
-**TLOTP v8.3.0** — "El Cavernícola de Lake-town"
-**Fecha release**: 2026-04-29
+**TLOTP v8.2.0** — "El Guardián Inmune"
+**Fecha release**: 2026-04-23
 
 ## Componentes
 
