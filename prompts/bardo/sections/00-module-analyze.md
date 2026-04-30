@@ -167,14 +167,16 @@ Score global = media de puntuaciones individuales (redondeado a 1 decimal)
 
 Cruzar el stack detectado contra este catálogo. Para cada plugin:
 - Si su stack disparador está presente en el stack detectado **Y** el plugin **no** está instalado → incluir en sugeridos.
-- Si ya está instalado → no mencionar nunca.
+- Stack disparador `universal` → aplicable a cualquier stack (siempre se evalúa).
+- Si ya está instalado → no mencionar nunca (aplica también a Caveman: si `claude plugin list` lo detecta, se excluye de sugerencias).
 
-| Stack disparador | Plugin ID | Descripción | Instalaciones |
-|-----------------|-----------|-------------|---------------|
-| React / Vue / Angular / Svelte | `frontend-design@claude-plugins-official` | Genera UI con tipografía, paletas y animaciones distintivas. Evita el "AI slop aesthetic". | 277.000+ |
-| TypeScript | `typescript@claude-plugins-official` | Mejora la inferencia y sugerencias para proyectos TypeScript. | — |
-| Python | `python@claude-plugins-official` | Optimiza asistencia en proyectos Python: patrones, idioms, tipado. | — |
-| GitHub (directorio `.github/` detectado o repo git) | `github@claude-plugins-official` | Integración con flujos de GitHub: issues, PRs, Actions. | — |
+| Stack disparador | Plugin ID | Descripción | Origen | Instalaciones |
+|-----------------|-----------|-------------|--------|---------------|
+| React / Vue / Angular / Svelte | `frontend-design@claude-plugins-official` | Genera UI con tipografía, paletas y animaciones distintivas. Evita el "AI slop aesthetic". | oficial | 277.000+ |
+| TypeScript | `typescript@claude-plugins-official` | Mejora la inferencia y sugerencias para proyectos TypeScript. | oficial | — |
+| Python | `python@claude-plugins-official` | Optimiza asistencia en proyectos Python: patrones, idioms, tipado. | oficial | — |
+| GitHub (directorio `.github/` detectado o repo git) | `github@claude-plugins-official` | Integración con flujos de GitHub: issues, PRs, Actions. | oficial | — |
+| `universal` (cualquier stack) | `caveman@caveman` (de `JuliusBrussee/caveman`) | Reduce tokens de salida 65–75% comprimiendo respuestas a "estilo cavernícola". Niveles Lite/Full/Ultra/文言文. Flujo dedicado en `06-module-caveman.md`. | tercero | ~14.000 ⭐ |
 
 Basado en el stack detectado, la documentación oficial y el catálogo anterior, listar qué podría ser útil:
 
@@ -194,6 +196,9 @@ Basado en el stack detectado, la documentación oficial y el catálogo anterior,
     • typescript@claude-plugins-official
       Mejora la inferencia y sugerencias para proyectos TypeScript.
       (Stack disparador: TypeScript detectado)
+    • 🪨 caveman@caveman  (Origen: tercero · ~14.000 ⭐)
+      Reduce tokens de salida 65–75% (universal, cualquier stack).
+      Flujo dedicado: submenú "🛒 El mercado" → "🪨 Caveman".
 ──────────────────────────────────────────────────────────────
 ```
 
