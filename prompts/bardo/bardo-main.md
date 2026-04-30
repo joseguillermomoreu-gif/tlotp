@@ -2,8 +2,8 @@
 
 ## Misión
 
-Gestionar el entry point de Bardo: mostrar el banner, presentar la guía
-de bienvenida y enrutar al módulo correspondiente.
+Entry point de Bardo: banner, intro y enrutado mediante menú principal
+de 1 pantalla con submenús por categoría.
 
 **NOTA**: En todos los banners, reemplaza `{VERSION}` con la versión TLOTP cargada desde `@prompts/VERSION.md`.
 
@@ -67,22 +67,55 @@ de bienvenida y enrutar al módulo correspondiente.
 
 ---
 
-## 🏹 Menú Principal (PAGINADO)
+## 🏹 Menú Principal (1 pantalla, submenús por categoría)
 
-**CRÍTICO**: Usar **AskUserQuestion** (límite 4 opciones). El menú se divide en 3 pantallas.
-Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir de Lake-town" (última página: "🔙 Volver al inicio" en lugar de "➕ Ver más...").
-
-**Pantalla 1** (mostrar primero):
+**CRÍTICO**: Usar **AskUserQuestion** (límite 4 opciones). El menú principal
+agrupa por categorías; cada categoría con varias acciones abre un submenú.
 
 ```json
 {
   "questions": [{
-    "header": "El Arsenal de Lake-town (1/3)",
+    "header": "El Arsenal de Lake-town",
     "question": "🏹 ¿Qué necesitas, viajero?",
     "multiSelect": false,
     "options": [
       {
-        "label": "🎯 Inspeccionar el arsenal — Analizar stack, MCPs y plugins actuales",
+        "label": "🎯 Mi arsenal — Inspeccionar y consultar mis MCPs/plugins",
+        "description": ""
+      },
+      {
+        "label": "🛒 El mercado — Conseguir plugins, MCPs y herramientas nuevas",
+        "description": ""
+      },
+      {
+        "label": "📜 Pergaminos del Arquero — Guía completa MCPs y plugins",
+        "description": ""
+      },
+      {
+        "label": "🚪 Salir de Lake-town",
+        "description": ""
+      }
+    ]
+  }]
+}
+```
+
+**Loop continuo**: al terminar cada módulo o submenú, volver a este menú principal
+**sin re-renderizar banner, intro ni permisos**.
+
+---
+
+## 🎯 Submenú: Mi arsenal
+
+```json
+{
+  "questions": [{
+    "header": "🎯 Mi arsenal",
+    "question": "¿Qué quieres hacer con tu arsenal actual?",
+    "multiSelect": false,
+    "options": [
+      {
+        "label": "🎯 Inspeccionar el arsenal — Analizar stack, MCPs y plugins",
         "description": ""
       },
       {
@@ -90,11 +123,7 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir de Lake-
         "description": ""
       },
       {
-        "label": "➕ Ver más...",
-        "description": ""
-      },
-      {
-        "label": "🚪 Salir de Lake-town",
+        "label": "🔙 Volver al menú Bardo",
         "description": ""
       }
     ]
@@ -102,29 +131,34 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir de Lake-
 }
 ```
 
-**Si elige "➕ Ver más..."**, mostrar **Pantalla 2**:
+**Comportamiento `🔙 Volver al menú Bardo`**: volver al menú principal **sin re-renderizar
+banner ni intro**.
+
+---
+
+## 🛒 Submenú: El mercado
 
 ```json
 {
   "questions": [{
-    "header": "El Arsenal de Lake-town (2/3)",
-    "question": "🏹 ¿Qué necesitas, viajero?",
+    "header": "🛒 El mercado de Lake-town",
+    "question": "¿Qué quieres conseguir?",
     "multiSelect": false,
     "options": [
       {
-        "label": "🔌 Conseguir un plugin en el mercado — Buscar e instalar plugin",
+        "label": "🔌 Plugin marketplace — Buscar e instalar plugin oficial",
         "description": ""
       },
       {
-        "label": "🔗 Conseguir un MCP en el mercado — Buscar e instalar MCP",
+        "label": "🔗 MCP marketplace — Buscar e instalar MCP",
         "description": ""
       },
       {
-        "label": "➕ Ver más...",
+        "label": "🪨 Caveman — Reducir tokens 65-75% (plugin de tercero)",
         "description": ""
       },
       {
-        "label": "🚪 Salir de Lake-town",
+        "label": "🔙 Volver al menú Bardo",
         "description": ""
       }
     ]
@@ -132,99 +166,95 @@ Patrón fijo: 2 opciones de contenido + "➕ Ver más..." + "🚪 Salir de Lake-
 }
 ```
 
-**Si elige "➕ Ver más..."**, mostrar **Pantalla 3**:
+**Comportamiento `🔙 Volver al menú Bardo`**: volver al menú principal **sin re-renderizar
+banner ni intro**.
+
+---
+
+## 🚪 Submenú: Salir de Lake-town
 
 ```json
 {
   "questions": [{
-    "header": "El Arsenal de Lake-town (3/3)",
-    "question": "🏹 ¿Qué necesitas, viajero?",
+    "header": "🚪 Salir de Lake-town",
+    "question": "🏹 ¿Cerrar Lake-town o volver a La Comunidad?",
     "multiSelect": false,
     "options": [
       {
-        "label": "📜 Los pergaminos del Arquero — Guía completa MCPs y plugins",
-        "description": ""
+        "label": "🚪 Cerrar Lake-town definitivamente",
+        "description": "Despedida final del Arquero"
       },
       {
         "label": "🔙 Volver a La Comunidad del Código",
-        "description": ""
-      },
-      {
-        "label": "🔙 Volver al inicio",
-        "description": ""
-      },
-      {
-        "label": "🚪 Salir de Lake-town",
-        "description": ""
+        "description": "Retomar el menú principal de TLOTP"
       }
     ]
   }]
 }
 ```
-
-**Loop continuo**: al terminar cada módulo, volver a este menú (sin repetir banner, intro ni permisos).
 
 ---
 
 ## Flujo de Navegación
 
-### "🎯 Inspeccionar el arsenal — Analizar stack, MCPs y plugins actuales"
-- Cargar módulo: `sections/00-module-analyze.md`
-- Detectar stack del proyecto + leer MCPs y plugins instalados
-- Scoring por ítem + informe global
-- Revisor uno a uno de mejoras
+### `🎯 Mi arsenal` → submenú con:
 
-### "🗺️ Consultar al Contrabandista — Cómo usar mis MCPs y plugins"
-- Cargar módulo: `sections/01-module-guide.md`
-- Analizar MCPs/plugins actuales del usuario
-- Menú interactivo: el usuario elige sobre qué quiere más info
-- Bardo explica con ejemplos del stack real del proyecto
+- **Inspeccionar el arsenal** → cargar `sections/00-module-analyze.md`
+  Detectar stack, leer MCPs/plugins instalados, scoring por ítem y revisor de mejoras.
+- **Consultar al Contrabandista** → cargar `sections/01-module-guide.md`
+  Analizar MCPs/plugins actuales y explicar uso con ejemplos del stack real.
+- **🔙 Volver al menú Bardo** → menú principal (sin re-renderizar banner ni intro).
 
-### "🔌 Instalar plugins recomendados para mi stack" *(accesible desde "Inspeccionar el arsenal")*
-- Cargar módulo: `sections/05-module-suggest-plugins.md`
-- Flujo asistido: un plugin a la vez, con elección de scope antes de instalar
-- Solo disponible cuando "Inspeccionar el arsenal" detecta plugins sugeridos no instalados
+### `🛒 El mercado` → submenú con:
 
-### "🔌 Conseguir un plugin en el mercado — Buscar e instalar plugin"
-- Cargar módulo: `sections/02-module-install-plugins.md`
-- Búsqueda en marketplace oficial de plugins
-- Instalación guiada + verificación post-instalación
+- **Plugin marketplace** → cargar `sections/02-module-install-plugins.md`
+  Búsqueda en marketplace oficial + instalación guiada + verificación.
+- **MCP marketplace** → cargar `sections/03-module-install-mcps.md`
+  Búsqueda + elección de scope/transport + instalación guiada.
+- **🪨 Caveman** → cargar `sections/06-module-caveman.md`
+  Flujo dedicado de descubrimiento + instalación asistida del plugin de tercero.
+- **🔙 Volver al menú Bardo** → menú principal (sin re-renderizar banner ni intro).
 
-### "🔗 Conseguir un MCP en el mercado — Buscar e instalar MCP"
-- Cargar módulo: `sections/03-module-install-mcps.md`
-- Búsqueda + elección de scope (user/project) y transport
-- Instalación guiada + verificación post-instalación
+### `📜 Pergaminos del Arquero` (carga directa, sin submenú)
 
-### "📜 Los pergaminos del Arquero — Guía completa MCPs y plugins"
 - Cargar módulo: `sections/04-module-docs.md`
 - Preguntar nivel de detalle (completo / 5 min / 2 min)
 - WebFetch on-the-fly si las docs no están en contexto
+- Al terminar: volver al menú principal sin re-renderizar banner ni intro.
 
-### "🔙 Volver a La Comunidad del Código"
-```
-🏹 "La Flecha Negra siempre encuentra su objetivo.
-    Que tu arsenal sirva bien en la Tierra Media, viajero."
-```
-Cargar `@prompts/tlotp-main.md` para retomar el menú principal de TLOTP.
+### Acceso a `🔌 Instalar plugins recomendados para mi stack`
 
-### "🚪 Salir de Lake-town"
-```
-🏹 Lake-town cierra sus puertas al anochecer.
-   Que tus MCPs y plugins sirvan bien en la Tierra Media.
+Esta acción no aparece en el menú principal: se ofrece dentro del flujo de
+`🎯 Inspeccionar el arsenal` cuando se detectan plugins sugeridos no instalados.
+Carga `sections/05-module-suggest-plugins.md`.
 
-   Bardo guarda la Flecha Negra. Por ahora.
-```
+### `🚪 Salir de Lake-town` → submenú con:
+
+- **🚪 Cerrar Lake-town definitivamente**
+  ```
+  🏹 Lake-town cierra sus puertas al anochecer.
+     Que tus MCPs y plugins sirvan bien en la Tierra Media.
+
+     Bardo guarda la Flecha Negra. Por ahora.
+  ```
+- **🔙 Volver a La Comunidad del Código**
+  ```
+  🏹 "La Flecha Negra siempre encuentra su objetivo.
+      Que tu arsenal sirva bien en la Tierra Media, viajero."
+  ```
+  Cargar `@prompts/tlotp-main.md` para retomar el menú principal de TLOTP.
 
 ---
 
 ## Reglas de Ejecución
 
 1. **Banner e intro**: solo al entrar, nunca en el loop del menú
-2. **AskUserQuestion**: para navegación en todo momento
-3. **Loop continuo**: hasta que el usuario elija Salir
-4. **WebFetch on-demand**: nunca precargar docs oficiales
+2. **AskUserQuestion**: para navegación en todo momento (menú principal y submenús)
+3. **Submenús ≤ 4 opciones**: respetar el límite siempre, incluyendo `🔙 Volver`
+4. **Loop continuo sin re-render**: al volver de cualquier módulo o submenú, mostrar
+   solo el menú principal — banner, intro y permisos no se repiten
+5. **WebFetch on-demand**: nunca precargar docs oficiales
 
 ---
 
-**Módulos nuevos**: `00-module-analyze`, `01-module-guide`, `02-module-install-plugins`, `03-module-install-mcps`, `04-module-docs`, `05-module-suggest-plugins`
-**Módulos legacy** (referencia): `01-mcp-analysis`, `02-plugins-analysis`, `03-stack-detection`, `04-marketplace`, `05-recommendations`, `06-install-wizard`, `07-verification`, `08-el-trovador`
+**Módulos**: `00-module-analyze`, `01-module-guide`, `02-module-install-plugins`, `03-module-install-mcps`, `04-module-docs`, `05-module-suggest-plugins`, `06-module-caveman`
