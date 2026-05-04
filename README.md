@@ -71,8 +71,15 @@ O puedes usar cada épica directamente:
 Si no tienes el repo clonado, carga el menú interactivo de TLOTP directamente desde la web — es el punto de entrada recomendado para Claude Code:
 
 ```
-WebFetch https://josemoreupeso.es/tlotp/tlotp-main.html
+WebFetch https://josemoreupeso.es/tlotp/tlotp-main.md
 ```
+
+> **¿Por qué `.md` y no `.html`?** Cuando una IA carga TLOTP vía `WebFetch`, el modelo
+> de extracción interno tiende a resumir HTML decorativo. La versión `.md` es markdown
+> puro con un sentinel anti-resumen y enlaces internos también en `.md`, lo que maximiza
+> la probabilidad de que el prompt llegue íntegro a la sesión. La versión
+> [`.html`](https://josemoreupeso.es/tlotp/tlotp-main.html) existe en paralelo como
+> **vista humana navegable** desde el navegador.
 
 También puedes cargar una épica suelta (`palantir`, `bardo`, `celebrimbor`, `ents`, `aragorn`, `gandalf`):
 
