@@ -24,10 +24,15 @@
    Pero hay esperanza. Si el valor no nos falta."
 
   El Rey de Reyes ha reunido su ejército:
-    🏇 Los Rohirrim — veloces como el viento
-    🧝 Los Elfos de Rivendel — precisión sin igual
-    💀 El Ejército de los Muertos — ningún enemigo los detiene
-    🛡️  Los Hombres de Gondor — guardianes incansables
+    🏇 Los Rohirrim — subagentes veloces · workers delegados
+    🧝 Los Elfos de Rivendel — guerreros expertos · agentes especializados
+    💀 El Ejército de los Muertos — huestes convocadas · Agent Teams
+    🛡️  Los Hombres de Gondor — guardianes del reino · Pergaminos (skills)
+    🗺️  Los Montaraces del Norte — exploradores de la red · Browser Agent ✨ NUEVO
+
+  Los Montaraces — el pueblo de Aragorn — son ahora el Browser Agent:
+  el explorador que navega la red, abre rutas y trae noticias de
+  tierras remotas a tu Comunidad.
 
   Cada agente: un guerrero de una raza diferente, forjado
   para una misión concreta. Tú eres el Elessar — convócalos.
@@ -103,6 +108,9 @@ Si elige **Ver más**, mostrar **Pantalla 2**:
   📜 Los Pergaminos del Rey — Documentación oficial
      Sub-agents y Agent Teams on-demand desde las docs
 
+  🌐 Browser Agent — Playwright MCP embedded
+     Los Montaraces del Norte: navegan la red sin instalar MCP global
+
 ══════════════════════════════════════════════════════════════
 ```
 
@@ -122,8 +130,8 @@ Si elige **Ver más**, mostrar **Pantalla 2**:
         "description": "Sub-agents y Agent Teams desde las docs oficiales"
       },
       {
-        "label": "🔙 Volver a página 1",
-        "description": ""
+        "label": "🌐 Browser Agent — Playwright MCP embedded",
+        "description": "Instalar y personalizar el agente oficial que embebe Playwright MCP"
       },
       {
         "label": "🔙 Volver a La Comunidad del Código",
@@ -161,6 +169,9 @@ Cargar:
 
 #### 📜 Los Pergaminos del Rey
 Cargar: `@prompts/aragorn/sections/04-module-docs.md`
+
+#### 🌐 Browser Agent — Playwright MCP embedded
+Cargar: `@prompts/aragorn/sections/05-module-browser-agent.md`
 
 #### 🔙 Volver a La Comunidad del Código
 Cargar: `@prompts/tlotp-main.md`
