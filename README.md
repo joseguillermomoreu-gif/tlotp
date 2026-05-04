@@ -66,6 +66,26 @@ O puedes usar cada épica directamente:
 @prompts/ents/ents-main.md
 ```
 
+### 🌐 Uso vía URL (Modo Web)
+
+Si no tienes el repo clonado, carga el menú interactivo de TLOTP directamente desde la web — es el punto de entrada recomendado para Claude Code:
+
+```
+WebFetch https://josemoreupeso.es/tlotp/tlotp-main.html
+```
+
+También puedes cargar una épica suelta (`palantir`, `bardo`, `celebrimbor`, `ents`, `aragorn`, `gandalf`):
+
+```
+WebFetch https://josemoreupeso.es/tlotp/palantir/palantir-main.md
+```
+
+O el prompt completo (todas las épicas) en un solo fichero:
+
+```
+WebFetch https://josemoreupeso.es/tlotp/tlotp-full.md
+```
+
 ---
 
 ## 📊 Estado Actual
