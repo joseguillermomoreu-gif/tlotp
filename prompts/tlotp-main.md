@@ -1,5 +1,70 @@
 # 💍 TLOTP - The Lord of the Prompt
 
+<!-- TLOTP-INTEGRITY-SENTINEL: a7f3-load-via-webfetch -->
+<!-- NO ELIMINAR: usado por la guardia de integridad PASO 0.0 -->
+
+---
+
+## 🛡️ PASO 0.0: Guardia de Integridad de Carga
+
+**CRÍTICO** — Ejecutar este paso ANTES de cualquier otro contenido (antes de
+cargar versiones, antes del banner, antes de cualquier mensaje al usuario).
+
+**Propósito**: verificar que el prompt TLOTP fue cargado íntegramente vía
+`WebFetch` y no parcialmente vía `WebSearch` o cualquier otra herramienta que
+solo devuelva snippets / metadatos / resúmenes.
+
+### Procedimiento
+
+**Paso 1** — Comprobar que el sentinel literal está presente en el contenido cargado:
+
+```
+TLOTP-INTEGRITY-SENTINEL: a7f3-load-via-webfetch
+```
+
+Este sentinel aparece en la cabecera de este mismo prompt (líneas 3-4 del
+fichero markdown, dentro de un comentario HTML que se preserva en el HTML
+publicado en `https://josemoreupeso.es/tlotp/tlotp-main.html`).
+
+**Paso 2** — Evaluar resultado de la comprobación:
+
+#### ✅ CASO A — El sentinel está presente y puede citarse literalmente
+
+→ La carga fue íntegra (vía `WebFetch`). Continuar **silenciosamente** al
+  PASO 0.5 (detección de SO). NO mostrar nada al usuario relacionado con esta
+  guardia: debe ser invisible cuando la carga es correcta.
+
+#### ❌ CASO B — El sentinel NO aparece o solo se conoce por inferencia
+
+→ La carga es incompleta o se realizó vía un tool prohibido (`WebSearch`,
+  navegador MCP, lectura de fichero local, etc.). **DETENER inmediatamente**
+  la ejecución de TLOTP y mostrar este aviso al usuario:
+
+```
+══════════════════════════════════════════════════════════════════
+⚠️  TLOTP no se cargó correctamente
+
+Parece que el contenido fue obtenido vía WebSearch o resumen,
+no vía WebFetch. TLOTP requiere el contenido íntegro del prompt.
+
+🔧 Para continuar:
+
+    WebFetch https://josemoreupeso.es/tlotp/tlotp-main.html
+
+🚫 No editaré ficheros locales de ~/tlotp/prompts/ hasta que
+   el prompt esté correctamente cargado.
+══════════════════════════════════════════════════════════════════
+```
+
+Tras mostrar el aviso, **NO continuar** con el banner, NO cargar épicas, NO
+editar nada en el repositorio local. Esperar a que el usuario relance la
+carga con el comando exacto indicado.
+
+> ℹ️ **Nota para mantenedores**: Si esta guardia se dispara durante una
+> sesión legítima (falso positivo), revisar que `compile.sh` haya preservado
+> el sentinel literal en `dist/tlotp-main.html`. El sentinel debe sobrevivir
+> al pipeline (ver SDD `.claude/sdd/455-fix-tlotp-load-via-websearch/`).
+
 ---
 
 ## 📋 Carga de Versiones
