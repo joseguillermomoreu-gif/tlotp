@@ -1,6 +1,6 @@
 # TLOTP - Version
 
-**TLOTP v8.4.0** — "Los Montaraces del Norte"
+**TLOTP v8.5.0** — "Los Montaraces del Norte"
 **Fecha release**: 2026-05-04
 
 ## Componentes
