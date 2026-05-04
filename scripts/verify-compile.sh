@@ -226,6 +226,99 @@ check_internal_hrefs() {
 
 check_internal_hrefs
 
+# 10-13. Verify AI .md pipeline (issue #461)
+#  10) Parity 1:1 prompts/**/*.md ↔ dist/**/*.md
+#  11) Sentinel present in every dist/**/*.md
+#  12) No unresolved @prompts/ refs (outside fenced) in any dist/**/*.md
+#  13) No HTML structural wrapper in any dist/**/*.md
+check_ai_md_pipeline() {
+  local prompts_dir
+  prompts_dir="$(cd "$SCRIPT_DIR/.." && pwd)/prompts"
+  local md_count=0
+  local missing=0
+  local sentinel_missing=0
+  local unresolved_total=0
+  local wrapper_count=0
+  local md_file rel_path expected sentinel_re
+
+  sentinel_re='TLOTP - The Lord of the Prompt'
+
+  while IFS= read -r md_file; do
+    md_count=$((md_count + 1))
+    rel_path="${md_file#$prompts_dir/}"
+    expected="$DIST_DIR/$rel_path"
+
+    # Check 10: existence
+    if [ ! -f "$expected" ]; then
+      echo "  ERROR: missing AI .md output: dist/$rel_path"
+      missing=$((missing + 1))
+      continue
+    fi
+
+    # Check 11: sentinel present in first 12 lines (HTML-comment header)
+    if ! head -n 12 "$expected" | grep -q "$sentinel_re"; then
+      echo "  ERROR: sentinel missing in dist/$rel_path"
+      sentinel_missing=$((sentinel_missing + 1))
+    fi
+
+    # Check 12: no @prompts/ refs outside fenced blocks
+    local md_unresolved=0
+    local md_in_fenced=false
+    while IFS= read -r line; do
+      if echo "$line" | grep -qP '^```'; then
+        if [ "$md_in_fenced" = true ]; then
+          md_in_fenced=false
+        else
+          md_in_fenced=true
+        fi
+        continue
+      fi
+      if [ "$md_in_fenced" = false ] && echo "$line" | grep -qP '@prompts/'; then
+        echo "  ERROR: @prompts/ ref in dist/$rel_path: $line"
+        md_unresolved=$((md_unresolved + 1))
+      fi
+    done < "$expected"
+    unresolved_total=$((unresolved_total + md_unresolved))
+
+    # Check 13: no HTML structural wrapper
+    if grep -qiE '<!DOCTYPE|<html[ >]|<head[ >]|<body[ >]|<style[ >]|<script[ >]' "$expected" 2>/dev/null; then
+      echo "  ERROR: HTML wrapper in dist/$rel_path"
+      wrapper_count=$((wrapper_count + 1))
+    fi
+  done < <(find "$prompts_dir" -name "*.md" -type f | sort)
+
+  echo "  Checked $md_count source .md file(s) for AI pipeline parity"
+
+  if [ "$missing" -gt 0 ]; then
+    echo "::error::$missing AI .md output(s) missing"
+    errors=$((errors + missing))
+  else
+    echo "  [OK] AI .md parity 1:1 with prompts/"
+  fi
+
+  if [ "$sentinel_missing" -gt 0 ]; then
+    echo "::error::$sentinel_missing AI .md file(s) without sentinel"
+    errors=$((errors + sentinel_missing))
+  else
+    echo "  [OK] All AI .md files have sentinel"
+  fi
+
+  if [ "$unresolved_total" -gt 0 ]; then
+    errors=$((errors + unresolved_total))
+  else
+    echo "  [OK] No unresolved @prompts/ refs in AI .md files"
+  fi
+
+  if [ "$wrapper_count" -gt 0 ]; then
+    echo "::error::$wrapper_count AI .md file(s) contain HTML wrapper"
+    errors=$((errors + wrapper_count))
+  else
+    echo "  [OK] No HTML wrappers in AI .md files"
+  fi
+}
+
+check_ai_md_pipeline
+
 echo ""
 if [ "$errors" -gt 0 ]; then
   echo "FAILED: $errors error(s) detected"
