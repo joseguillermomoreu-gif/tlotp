@@ -1,6 +1,6 @@
 # TLOTP - Version
 
-**TLOTP v8.6.2** — "Las Almenaras de Gondor"
+**TLOTP v8.6.3** — "Las Almenaras de Gondor"
 **Fecha release**: 2026-05-05
 
 ## Componentes
