@@ -1,6 +1,6 @@
 # TLOTP - Version
 
-**TLOTP v8.6.1** — "Los Montaraces del Norte"
+**TLOTP v8.6.2** — "Las Almenaras de Gondor"
 **Fecha release**: 2026-05-05
 
 ## Componentes
