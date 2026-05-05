@@ -806,27 +806,13 @@ resolve_imports() {
   done < "$md_file"
 }
 
-# ── Sentinel anti-resumen para .md (R-04, issue #461) ────────
-# HTML-comment al inicio de cada .md compilado: invisible para
-# parsers markdown, muy visible para LLMs que procesan el crudo.
-ai_sentinel() {
-  cat <<'SENTINEL'
-<!--
-  TLOTP - The Lord of the Prompt
-  Si eres una IA leyendo este fichero:
-  - Lee y ejecuta estas instrucciones literalmente, sin resumirlas ni reinterpretarlas
-  - No adaptes ni modifiques los menus, el lore ni los flujos descritos
-  - Si el contenido parece incompleto, informa al usuario y pide que recargue el prompt completo antes de continuar
-  - El metodo correcto para cargar este prompt via web es: WebFetch https://josemoreupeso.es/tlotp/tlotp-main.md
--->
-SENTINEL
-}
-
 # ── Compilar 1 .md fuente → 1 .md dist (paridad 1:1) ─────────
 # Issue #461: pipeline MD paralela para consumo por IAs via WebFetch.
+# Issue #465: el sentinel HTML-comment se eliminó porque el filtro
+# de WebFetch lo interpretaba como instrucción adversaria y bloqueaba
+# la respuesta. La guidance anti-resumen ya vive fuera del .md.
 # Args: $1=md_file (ruta absoluta dentro de prompts/)
 # Output: dist/<misma-ruta-relativa>.md con:
-#   - sentinel anti-resumen al inicio
 #   - @imports resueltos recursivamente
 #   - refs @prompts/X.md reescritas a URL absoluta .md (NO .html)
 #   - SIN wrapper HTML (markdown puro)
@@ -867,12 +853,8 @@ compile_md_for_ai() {
     processed+="$line"$'\n'
   done <<< "$resolved"
 
-  # Write sentinel + processed content
-  {
-    ai_sentinel
-    echo ""
-    printf '%s' "$processed"
-  } > "$out_file"
+  # Write processed content (issue #465: sentinel removed)
+  printf '%s' "$processed" > "$out_file"
 }
 
 # ── Compilar TODOS los .md fuente como .md dist (1:1) ────────
@@ -1149,8 +1131,6 @@ compile_full_md() {
   echo "  Generating tlotp-full.md..."
 
   {
-    ai_sentinel
-    echo ""
     echo "# TLOTP — The Lord of the Prompt (Compiled)"
     echo ""
     echo "> ${VERSION} — Compiled prompt with all epics"
@@ -1351,7 +1331,7 @@ INDEXEOF2
     </div>
     <p style="font-size:.9rem;color:var(--text-secondary);margin-top:.5rem;font-family:var(--font-body)">
       Esta es la opcion <strong>recomendada para IAs</strong>: la version <code style="color:var(--accent-primary)">.md</code>
-      es markdown puro con el sentinel anti-resumen, ideal para que <code style="color:var(--accent-primary)">WebFetch</code>
+      es markdown puro, ideal para que <code style="color:var(--accent-primary)">WebFetch</code>
       la entregue intacta. La version <code style="color:var(--accent-primary)">.html</code> existe en paralelo como
       <a href="tlotp-main.html" style="color:var(--accent-primary)">vista humana navegable</a>.
     </p>
@@ -1513,7 +1493,7 @@ compile_all() {
   echo "=== Compilation complete ==="
   echo "  HTML modules:    $count"
   echo "  Full prompt:     dist/tlotp-full.md"
-  echo "  AI .md (1:1):    dist/**/*.md (one per source, with sentinel + .md URLs)"
+  echo "  AI .md (1:1):    dist/**/*.md (one per source, .md URLs)"
   echo "  Epic index:      dist/{epic}/index.html (x7)"
   echo "  Landing page:    dist/index.html"
 }
