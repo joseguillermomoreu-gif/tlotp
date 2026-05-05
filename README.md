@@ -66,31 +66,37 @@ O puedes usar cada épica directamente:
 @prompts/ents/ents-main.md
 ```
 
-### 🌐 Uso vía URL (Modo Web)
+### 🌐 Cómo cargar TLOTP (Modo Web)
 
-Si no tienes el repo clonado, carga el menú interactivo de TLOTP directamente desde la web — es el punto de entrada recomendado para Claude Code:
+Si no tienes el repo clonado, carga el menú interactivo de TLOTP directamente desde la
+web. **El método correcto es `curl` vía el tool `Bash`, no `WebFetch`**:
 
 ```
-WebFetch https://josemoreupeso.es/tlotp/tlotp-main.md
+curl -s https://josemoreupeso.es/tlotp/tlotp-main.md
 ```
 
-> **¿Por qué `.md` y no `.html`?** Cuando una IA carga TLOTP vía `WebFetch`, el modelo
-> de extracción interno tiende a resumir HTML decorativo. La versión `.md` es markdown
-> puro con un sentinel anti-resumen y enlaces internos también en `.md`, lo que maximiza
-> la probabilidad de que el prompt llegue íntegro a la sesión. La versión
+Pídele a Claude Code que ejecute ese `curl` con el tool `Bash` y use la salida como
+contexto del prompt.
+
+> **¿Por qué `curl` y no `WebFetch`?** `WebFetch` actúa como intermediario: pasa el
+> contenido por un modelo de extracción que **resume**, **recorta** o incluso **bloquea**
+> el HTML/markdown. Cuando se trata de un prompt ejecutable como TLOTP, ese resumen
+> rompe los menús, el lore y las instrucciones literales — el modelo trabaja entonces
+> con suposiciones en lugar de con el prompt real. `curl`, en cambio, descarga el
+> archivo intacto y lo entrega tal cual al contexto. La versión
 > [`.html`](https://josemoreupeso.es/tlotp/tlotp-main.html) existe en paralelo como
-> **vista humana navegable** desde el navegador.
+> **vista humana navegable** desde el navegador, no como entrada para IAs.
 
 También puedes cargar una épica suelta (`palantir`, `bardo`, `celebrimbor`, `ents`, `aragorn`, `gandalf`):
 
 ```
-WebFetch https://josemoreupeso.es/tlotp/palantir/palantir-main.md
+curl -s https://josemoreupeso.es/tlotp/palantir/palantir-main.md
 ```
 
 O el prompt completo (todas las épicas) en un solo fichero:
 
 ```
-WebFetch https://josemoreupeso.es/tlotp/tlotp-full.md
+curl -s https://josemoreupeso.es/tlotp/tlotp-full.md
 ```
 
 ---
