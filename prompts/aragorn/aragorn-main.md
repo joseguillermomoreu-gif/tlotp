@@ -24,18 +24,15 @@
    Pero hay esperanza. Si el valor no nos falta."
 
   El Rey de Reyes ha reunido su ejército:
-    🏇 Los Rohirrim — subagentes veloces · workers delegados
-    🧝 Los Elfos de Rivendel — guerreros expertos · agentes especializados
-    💀 El Ejército de los Muertos — huestes convocadas · Agent Teams
-    🛡️  Los Hombres de Gondor — guardianes del reino · Pergaminos (skills)
-    🗺️  Los Montaraces del Norte — exploradores de la red · Browser Agent ✨ NUEVO
+    🔍 Los Centinelas de Minas Tirith — inspeccionar el arsenal de agentes
+    🏪 Los Mercaderes de Bree — buscar e instalar desde marketplaces
+    ✨ Los Herreros de Rivendel — forjar un agente asistido
+    ⚔️  El Ejército de los Muertos — convocar Agent Teams
+    🌐 Los Montaraces del Norte — Browser Agent (Playwright MCP)
+    📜 Los Escribas de Gondor — los Pergaminos del Rey (documentación)
 
-  Los Montaraces — el pueblo de Aragorn — son ahora el Browser Agent:
-  el explorador que navega la red, abre rutas y trae noticias de
-  tierras remotas a tu Comunidad.
-
-  Cada agente: un guerrero de una raza diferente, forjado
-  para una misión concreta. Tú eres el Elessar — convócalos.
+  Cada facción: una opción del menú. Cada agente: un guerrero
+  forjado para una misión concreta. Tú eres el Elessar — convócalos.
 
 ══════════════════════════════════════════════════════════════
 ```
@@ -103,13 +100,13 @@ Si elige **Ver más**, mostrar **Pantalla 2**:
    Consulta los pergaminos antes de forjar, Elessar."
 ──────────────────────────────────────────────────────────────
   ⚔️  Agent Teams — ejércitos paralelos
-     Rohirrim + Elfos + Muertos marchando a la vez
-
-  📜 Los Pergaminos del Rey — Documentación oficial
-     Sub-agents y Agent Teams on-demand desde las docs
+     El Ejército de los Muertos: huestes marchando a la vez
 
   🌐 Browser Agent — Playwright MCP embedded
      Los Montaraces del Norte: navegan la red sin instalar MCP global
+
+  📜 Los Pergaminos del Rey — Documentación oficial
+     Los Escribas de Gondor: sub-agents y Teams desde las docs
 
 ══════════════════════════════════════════════════════════════
 ```
@@ -126,12 +123,12 @@ Si elige **Ver más**, mostrar **Pantalla 2**:
         "description": "Parallelismo real: lead + teammates con contextos independientes"
       },
       {
-        "label": "📜 Los Pergaminos del Rey — Documentación oficial",
-        "description": "Sub-agents y Agent Teams desde las docs oficiales"
-      },
-      {
         "label": "🌐 Browser Agent — Playwright MCP embedded",
         "description": "Instalar y personalizar el agente oficial que embebe Playwright MCP"
+      },
+      {
+        "label": "📜 Los Pergaminos del Rey — Documentación oficial",
+        "description": "Sub-agents y Agent Teams desde las docs oficiales"
       },
       {
         "label": "🔙 Volver a La Comunidad del Código",
@@ -167,11 +164,11 @@ Cargar:
 - `@prompts/aragorn/sections/03d-team-browse.md` — Ver teams + FAQ (B, C, E)
 - `@prompts/aragorn/sections/03e-team-crud.md` — Ver detalle, editar, eliminar, coordinador, coherencia
 
-#### 📜 Los Pergaminos del Rey
-Cargar: `@prompts/aragorn/sections/04-module-docs.md`
-
 #### 🌐 Browser Agent — Playwright MCP embedded
 Cargar: `@prompts/aragorn/sections/05-module-browser-agent.md`
+
+#### 📜 Los Pergaminos del Rey
+Cargar: `@prompts/aragorn/sections/04-module-docs.md`
 
 #### 🔙 Volver a La Comunidad del Código
 Cargar: `@prompts/tlotp-main.md`
