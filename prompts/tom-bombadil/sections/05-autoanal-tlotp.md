@@ -67,19 +67,19 @@ este módulo.
 URLs a descargar (hacer las 8 peticiones, una por prompt):
 
 ```
-https://josemoreupeso.es/tlotp/tlotp-main.html
-https://josemoreupeso.es/tlotp/palantir/palantir-main.html
-https://josemoreupeso.es/tlotp/bardo/bardo-main.html
-https://josemoreupeso.es/tlotp/celebrimbor/celebrimbor-main.html
-https://josemoreupeso.es/tlotp/ents/ents-main.html
-https://josemoreupeso.es/tlotp/aragorn/aragorn-main.html
-https://josemoreupeso.es/tlotp/gandalf/gandalf-main.html
-https://josemoreupeso.es/tlotp/tom-bombadil/tom-bombadil-main.html
+https://josemoreupeso.es/tlotp/tlotp-main.md
+https://josemoreupeso.es/tlotp/palantir/palantir-main.md
+https://josemoreupeso.es/tlotp/bardo/bardo-main.md
+https://josemoreupeso.es/tlotp/celebrimbor/celebrimbor-main.md
+https://josemoreupeso.es/tlotp/ents/ents-main.md
+https://josemoreupeso.es/tlotp/aragorn/aragorn-main.md
+https://josemoreupeso.es/tlotp/gandalf/gandalf-main.md
+https://josemoreupeso.es/tlotp/tom-bombadil/tom-bombadil-main.md
 ```
 
 Para cada URL, usar **WebFetch** con un prompt del tipo:
 
-> "Devuelve el contenido completo del `<pre>` del documento, sin resumir."
+> "Devuelve el contenido completo y literal del documento markdown, sin resumir."
 
 Guardar cada respuesta como `CONTENIDO_<epic>`.
 
