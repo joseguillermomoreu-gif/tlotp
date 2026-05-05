@@ -226,22 +226,18 @@ check_internal_hrefs() {
 
 check_internal_hrefs
 
-# 10-13. Verify AI .md pipeline (issue #461)
+# 10-12. Verify AI .md pipeline (issue #461, simplified by #465)
 #  10) Parity 1:1 prompts/**/*.md ↔ dist/**/*.md
-#  11) Sentinel present in every dist/**/*.md
-#  12) No unresolved @prompts/ refs (outside fenced) in any dist/**/*.md
-#  13) No HTML structural wrapper in any dist/**/*.md
+#  11) No unresolved @prompts/ refs (outside fenced) in any dist/**/*.md
+#  12) No HTML structural wrapper in any dist/**/*.md
 check_ai_md_pipeline() {
   local prompts_dir
   prompts_dir="$(cd "$SCRIPT_DIR/.." && pwd)/prompts"
   local md_count=0
   local missing=0
-  local sentinel_missing=0
   local unresolved_total=0
   local wrapper_count=0
-  local md_file rel_path expected sentinel_re
-
-  sentinel_re='TLOTP - The Lord of the Prompt'
+  local md_file rel_path expected
 
   while IFS= read -r md_file; do
     md_count=$((md_count + 1))
@@ -255,13 +251,7 @@ check_ai_md_pipeline() {
       continue
     fi
 
-    # Check 11: sentinel present in first 12 lines (HTML-comment header)
-    if ! head -n 12 "$expected" | grep -q "$sentinel_re"; then
-      echo "  ERROR: sentinel missing in dist/$rel_path"
-      sentinel_missing=$((sentinel_missing + 1))
-    fi
-
-    # Check 12: no @prompts/ refs outside fenced blocks
+    # Check 11: no @prompts/ refs outside fenced blocks
     local md_unresolved=0
     local md_in_fenced=false
     while IFS= read -r line; do
@@ -280,7 +270,7 @@ check_ai_md_pipeline() {
     done < "$expected"
     unresolved_total=$((unresolved_total + md_unresolved))
 
-    # Check 13: no HTML structural wrapper
+    # Check 12: no HTML structural wrapper
     if grep -qiE '<!DOCTYPE|<html[ >]|<head[ >]|<body[ >]|<style[ >]|<script[ >]' "$expected" 2>/dev/null; then
       echo "  ERROR: HTML wrapper in dist/$rel_path"
       wrapper_count=$((wrapper_count + 1))
@@ -294,13 +284,6 @@ check_ai_md_pipeline() {
     errors=$((errors + missing))
   else
     echo "  [OK] AI .md parity 1:1 with prompts/"
-  fi
-
-  if [ "$sentinel_missing" -gt 0 ]; then
-    echo "::error::$sentinel_missing AI .md file(s) without sentinel"
-    errors=$((errors + sentinel_missing))
-  else
-    echo "  [OK] All AI .md files have sentinel"
   fi
 
   if [ "$unresolved_total" -gt 0 ]; then
