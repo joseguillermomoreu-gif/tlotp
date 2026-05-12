@@ -1,0 +1,31 @@
+{
+  "model": {
+    "display_name": "claude-opus-4-7[1m]",
+    "id": "claude-opus-4-7"
+  },
+  "workspace": {
+    "current_dir": "/home/pepeton/tlotp"
+  },
+  "cost": {
+    "total_cost_usd": 1.2345
+  },
+  "context_window": {
+    "used_percentage": 42.7,
+    "total_input_tokens": 50000,
+    "total_output_tokens": 12000,
+    "current_usage": {
+      "cache_creation_input_tokens": 8000,
+      "cache_read_input_tokens": 30000
+    }
+  },
+  "rate_limits": {
+    "five_hour": {
+      "used_percentage": 25.0,
+      "resets_at": 9999999999
+    },
+    "seven_day": {
+      "used_percentage": 12.0,
+      "resets_at": 9999999999
+    }
+  }
+}
