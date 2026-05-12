@@ -2,9 +2,10 @@
 
 > **IMPORTADO POR**: `palantir-main.md`
 >
-> Módulo de instalación asistida de un Status Line preconfigurado: 2 líneas,
-> barras de contexto, ventana de 5h y uso semanal 7d. Forjado por Pépeton
-> hijo de Móreuton.
+> Instalación asistida de un Status Line preconfigurado: 2 líneas, barras
+> de contexto, ventana de 5h y uso semanal 7d. Forjado por Pépeton hijo de
+> Móreuton. Compatible con Linux/macOS/Git-Bash y Windows PowerShell 5.1+
+> (ambas variantes mantenidas como templates versionados en el repo).
 
 ---
 
@@ -12,9 +13,8 @@
 # CASO C · Preset de Pépeton
 # ═══════════════════════════════════════════════════
 
-> **Cuándo ejecutar**: cuando el usuario elige la opción
-> `🥔 Usar el status line de Pépeton, hijo de Móreuton` desde el menú de
-> creación (`07a`) o de gestión (`07b`).
+> **Cuándo ejecutar**: cuando el usuario elige `🥔 Usar el status line de
+> Pépeton, hijo de Móreuton` desde `07a` (creación) o `07b` (gestión).
 
 ---
 
@@ -36,296 +36,183 @@ Mostrar sin interacción:
     ████░░░░░░ 38% ctx  ·  ██░░░░░░░░ 22% 5h  ·  9% 7d
 
   · Colores adaptativos: verde (<50%) · amarillo (50-79%) · rojo (≥80%)
-  · Requiere: jq, git, bash
-  · Barras de 5h y 7d solo visibles en cuentas Pro/Max (se ocultan si no aplica)
+  · Requiere: bash + jq + git (Linux/macOS/Git-Bash) ó PowerShell 5.1+ (Windows)
+  · Barras 5h/7d solo visibles en Pro/Max (se ocultan si no aplica)
 ══════════════════════════════════════════════════════════════════
-```
-
----
-
-## PASO P2 — Verificar dependencias
-
-Ejecutar silenciosamente:
-
-```bash
-jq --version 2>/dev/null
-git --version 2>/dev/null
-```
-
-**Capturar** si cada comando existe:
-- `JQ_OK`  = true/false
-- `GIT_OK` = true/false
-
-### Si `JQ_OK == false`
-
-Mostrar advertencia y preguntar:
-
-```
-⚠️  Atención — jq no detectado
-
-  El status line de Pépeton usa `jq` para parsear el JSON que Claude Code
-  le pasa por stdin en cada actualización. Sin `jq`, el statusline
-  no funcionará aunque lo instalemos ahora.
-
-  💡 Instalación sugerida:
-     · 🐧 Linux/WSL:  sudo apt install jq
-     · 🍎 macOS:      brew install jq
-     · 🪟 Windows:    choco install jq  (o scoop install jq)
-```
-
-**AskUserQuestion**:
-
-```json
-{
-  "questions": [{
-    "header": "Dependencia · jq",
-    "question": "¿Cómo quieres proceder?",
-    "multiSelect": false,
-    "options": [
-      {
-        "label": "✅ Continuar igualmente",
-        "description": "Instalaré jq más tarde; procede con el preset"
-      },
-      {
-        "label": "🚫 Cancelar",
-        "description": "Vuelve al menú de Palantír, instalaré jq primero"
-      }
-    ]
-  }]
-}
-```
-
-Si elige cancelar → volver al menú principal de Palantír.
-
-### Si `GIT_OK == false`
-
-Avisar (no bloqueante): el statusline ocultará la rama git si no hay git
-disponible. No preguntar; sólo mostrar:
-
-```
-ℹ️  git no detectado — la línea 1 no incluirá rama (el resto funciona).
 ```
 
 ---
 
 ## PASO P3 — Detectar scope
 
-**Leer silenciosamente** ambos `settings.json`:
+**Leer silenciosamente** ambos `settings.json` y construir matriz:
 
 - `~/.claude/settings.json` → `GLOBAL_HAS_STATUSLINE`
-- `.claude/settings.json` del proyecto actual → `PROJECT_HAS_STATUSLINE`
-
-### Matriz de decisión
+- `.claude/settings.json` (proyecto) → `PROJECT_HAS_STATUSLINE`
 
 | Global | Proyecto | Opciones a ofrecer |
 |--------|----------|---------------------|
 | ❌     | ❌       | Instalar en **Global** / Instalar en **Proyecto** / Cancelar |
-| ✅     | ❌       | Reemplazar Global / Instalar Proyecto (prevalece) / Cancelar |
+| ✅     | ❌       | Reemplazar Global / Instalar Proyecto / Cancelar |
 | ❌     | ✅       | Instalar Global / Reemplazar Proyecto / Cancelar |
 | ✅     | ✅       | Reemplazar Global / Reemplazar Proyecto / Cancelar |
 
-**AskUserQuestion** con las opciones que apliquen (máximo 4 incluyendo cancelar).
+**AskUserQuestion** con las opciones que apliquen. Si elige reemplazar,
+mostrar el valor actual antes de confirmar. Guardar `INSTALL_SCOPE` en contexto.
 
-Si el usuario elige reemplazar algo existente, mostrar el valor actual antes
-de la confirmación final:
+---
 
+## PASO P3.5 — Detección de shell objetivo
+
+> 🆕 Añadido en #478 para soportar Windows PowerShell 5.1+.
+
+Leer `OS_DETECTED` propagado desde `tlotp-main.md` PASO 0.5.
+
+- **`OS_DETECTED ∈ {Linux, Darwin}`** → `SHELL_TARGET = "bash"` · continuar a P2.
+- **`OS_DETECTED == Windows`** → ejecutar silenciosamente:
+
+```bash
+powershell -NoProfile -Command "$PSVersionTable.PSVersion.Major" 2>/dev/null
 ```
-📊 Configuración actual ([scope])
-══════════════════════════════════════════════════════
-"statusLine": [valor exacto]
-══════════════════════════════════════════════════════
 
-Esta configuración será reemplazada por el preset de Pépeton.
-```
-
-**AskUserQuestion** de confirmación:
+- Si retorna entero ≥ 5 → `SHELL_TARGET = "powershell"`, `PS_VERSION = N`,
+  mostrar info: `ℹ️ Detectado PowerShell v{N} — variante .ps1`.
+- Si falla (stderr, exit ≠ 0, no entero) → AskUserQuestion:
 
 ```json
 {
   "questions": [{
-    "header": "Confirmar reemplazo",
-    "question": "¿Procedemos con el reemplazo?",
+    "header": "Status Line · Shell objetivo",
+    "question": "¿Qué shell ejecutará el status line?",
     "multiSelect": false,
     "options": [
-      { "label": "✅ Sí, instalar preset de Pépeton", "description": "Escribir script + actualizar settings.json" },
-      { "label": "🚫 Cancelar", "description": "No tocar nada" }
+      { "label": "🪟 PowerShell 5.1 (default Windows)", "description": "Variante .ps1 compatible PS 5.1+" },
+      { "label": "🪟 PowerShell 7+ (pwsh)", "description": "Misma variante .ps1 (compat hacia adelante)" },
+      { "label": "🐧 Git Bash (.sh)", "description": "Variante bash · requiere jq en PATH" },
+      { "label": "🚫 Cancelar", "description": "Volver al menú de Palantír" }
     ]
   }]
 }
 ```
 
-**Guardar en contexto**: `INSTALL_SCOPE` = `"global"` o `"project"`.
+Mapeo: PowerShell 5.1/7+ → `"powershell"` · Git Bash → `"bash"` · Cancelar → menú.
+
+> ⚠️ Si `SHELL_TARGET == "powershell"`, el script generado **SOLO** usa
+> sintaxis compatible PS 5.1. **Prohibido** improvisar con `??`, `?.`,
+> `?[]`, `` `e ``, `Get-Error`, `ForEach-Object -Parallel`, `&&`/`||`.
+> El template `prompts/palantir/templates/statusline-command.ps1` ya
+> cumple estas restricciones — **NO regenerarlo a mano**, solo leerlo.
 
 ---
 
-## PASO P4 — Escribir el script `statusline-command.sh`
+## PASO P2 — Verificar dependencias
 
-**Ruta destino** según scope:
+**`SHELL_TARGET == "bash"`** → ejecutar `jq --version` y `git --version`.
 
-- `INSTALL_SCOPE == "global"`  → `$HOME/.claude/statusline-command.sh`
-- `INSTALL_SCOPE == "project"` → `.claude/statusline-command.sh`
+- Si `jq` falta: advertir y preguntar (✅ Continuar / 🚫 Cancelar):
+  `⚠️ jq no detectado · instalación: apt install jq · brew install jq · choco install jq`.
+- Si `git` falta: avisar (no bloqueante), la rama se omitirá.
 
-**Antes de escribir**: si la carpeta `.claude/` no existe en el scope elegido,
-crearla con Bash (`mkdir -p`).
+**`SHELL_TARGET == "powershell"`** → no requiere `jq` (parseo JSON nativo
+con `ConvertFrom-Json`). Verificar `git` (opcional) via
+`powershell -NoProfile -Command "git --version"`; si falta, se omite la rama.
 
-**Escribir con Write tool** exactamente este contenido:
+---
 
-```bash
-#!/usr/bin/env bash
-# Claude Code status line — 2 líneas
-# Línea 1: dir · branch · modelo · coste
-# Línea 2: barra contexto · barra 5h · porcentaje 7d
+## PASO P4 — Escribir el script de status line
 
-input=$(cat)
+**Ruta destino** según `INSTALL_SCOPE` y `SHELL_TARGET`:
 
-model=$(echo "$input" | jq -r '.model.display_name // "Unknown"')
-cwd=$(echo "$input" | jq -r '.workspace.current_dir // ""')
-if [[ "$cwd" == "$HOME"* ]]; then
-  cwd_short="~${cwd#$HOME}"
-else
-  cwd_short="$cwd"
-fi
+| Scope    | bash                                  | powershell                              |
+|----------|---------------------------------------|------------------------------------------|
+| global   | `$HOME/.claude/statusline-command.sh` | `$HOME/.claude/statusline-command.ps1`   |
+| project  | `.claude/statusline-command.sh`       | `.claude/statusline-command.ps1`         |
 
-git_branch=""
-if git -C "${cwd}" rev-parse --git-dir >/dev/null 2>&1; then
-  git_branch=$(git -C "${cwd}" branch --show-current 2>/dev/null)
-fi
+Si la carpeta `.claude/` no existe en el scope elegido, crearla con `mkdir -p`.
 
-cost_usd=$(echo "$input" | jq -r '.cost.total_cost_usd // empty')
-if [ -z "$cost_usd" ]; then
-  total_in=$(echo "$input" | jq -r '.context_window.total_input_tokens // 0')
-  total_out=$(echo "$input" | jq -r '.context_window.total_output_tokens // 0')
-  cache_w=$(echo "$input" | jq -r '.context_window.current_usage.cache_creation_input_tokens // 0')
-  cache_r=$(echo "$input" | jq -r '.context_window.current_usage.cache_read_input_tokens // 0')
-  cost_usd=$(echo "$total_in $total_out $cache_w $cache_r" | awk '{
-    printf "%.4f", ($1*3.00 + $2*15.00 + $3*3.75 + $4*0.30) / 1000000
-  }')
-fi
-cost_fmt=$(printf '$%.4f' "$cost_usd")
+### Leer template versionado y escribir
 
-ctx_pct=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
-five_h=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
-seven_d=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
+Según `SHELL_TARGET`:
 
-GREEN='\033[32m'; YELLOW='\033[33m'; RED='\033[31m'
-CYAN='\033[36m'; BLUE='\033[34m'; DIM='\033[2m'; RESET='\033[0m'
+- **bash** → `Read prompts/palantir/templates/statusline-command.sh`
+- **powershell** → `Read prompts/palantir/templates/statusline-command.ps1`
 
-make_bar() {
-  local pct=$1 width=${2:-10} filled empty bar f e
-  filled=$(( pct * width / 100 ))
-  empty=$(( width - filled ))
-  bar=""
-  [ "$filled" -gt 0 ] && printf -v f "%${filled}s" && bar="${f// /█}"
-  [ "$empty" -gt 0 ] && printf -v e "%${empty}s" && bar="${bar}${e// /░}"
-  printf '%s' "$bar"
-}
+**Escribir** el contenido leído tal cual en la ruta destino con `Write` tool.
 
-bar_color() {
-  local pct=$1
-  if   [ "$pct" -ge 80 ]; then printf '%s' "$RED"
-  elif [ "$pct" -ge 50 ]; then printf '%s' "$YELLOW"
-  else                         printf '%s' "$GREEN"
-  fi
-}
+> 🚫 **Prohibido** duplicar el cuerpo del script en este markdown. La fuente
+> de verdad es exclusivamente el fichero versionado del repo. Si necesitas
+> modificar el script, hazlo en `prompts/palantir/templates/` vía PR.
 
-SEP="${DIM} · ${RESET}"
-
-dir_s="${GREEN}${cwd_short}${RESET}"
-model_s="${CYAN}${model}${RESET}"
-cost_s="${BLUE}${cost_fmt}${RESET}"
-
-if [ -n "$git_branch" ]; then
-  branch_s="${YELLOW}$(printf '\ue0a0') ${git_branch}${RESET}"
-  line1="${dir_s}${SEP}${branch_s}${SEP}${model_s}${SEP}${cost_s}"
-else
-  line1="${dir_s}${SEP}${model_s}${SEP}${cost_s}"
-fi
-
-ctx_bar=$(make_bar "$ctx_pct")
-ctx_color=$(bar_color "$ctx_pct")
-line2="${ctx_color}${ctx_bar}${RESET} ${ctx_pct}% ctx"
-
-if [ -n "$five_h" ]; then
-  five_h_int=$(printf '%.0f' "$five_h")
-  fh_bar=$(make_bar "$five_h_int")
-  fh_color=$(bar_color "$five_h_int")
-  line2="${line2}${SEP}${fh_color}${fh_bar}${RESET} ${five_h_int}% 5h"
-fi
-
-if [ -n "$seven_d" ]; then
-  seven_d_int=$(printf '%.0f' "$seven_d")
-  sd_color=$(bar_color "$seven_d_int")
-  line2="${line2}${SEP}${sd_color}${seven_d_int}%${RESET} 7d"
-fi
-
-printf '%b\n' "${line1}"
-printf '%b\n' "${line2}"
-```
-
-**Hacer ejecutable**:
+### Permisos ejecutables (solo bash)
 
 ```bash
-chmod +x <ruta elegida>/statusline-command.sh
+chmod +x <ruta destino>/statusline-command.sh
 ```
+
+(En Windows + PowerShell el bit ejecutable no aplica: el comando registrado
+invoca `powershell -File ...` directamente.)
 
 ---
 
 ## PASO P5 — Actualizar `settings.json`
 
-### Definir el valor a escribir
+### Valor del campo `statusLine` según `SHELL_TARGET` × `INSTALL_SCOPE`
 
-El campo `statusLine` que se añadirá/reemplazará en el JSON es:
-
-**Scope global** (`~/.claude/settings.json`):
+**bash · global**:
 
 ```json
-"statusLine": {
-  "type": "command",
-  "command": "bash ~/.claude/statusline-command.sh"
-}
+"statusLine": { "type": "command", "command": "bash ~/.claude/statusline-command.sh" }
 ```
 
-**Scope proyecto** (`.claude/settings.json`):
+**bash · proyecto**:
 
 ```json
-"statusLine": {
-  "type": "command",
-  "command": "bash .claude/statusline-command.sh"
-}
+"statusLine": { "type": "command", "command": "bash .claude/statusline-command.sh" }
 ```
+
+**powershell · global**:
+
+```json
+"statusLine": { "type": "command", "command": "powershell -ExecutionPolicy Bypass -File %USERPROFILE%\\.claude\\statusline-command.ps1" }
+```
+
+**powershell · proyecto**:
+
+```json
+"statusLine": { "type": "command", "command": "powershell -ExecutionPolicy Bypass -File .claude\\statusline-command.ps1" }
+```
+
+> ⚠️ El flag `-ExecutionPolicy Bypass` aplica **solo al proceso del comando**;
+> no modifica la policy global. Nunca usar `Set-ExecutionPolicy`.
 
 ### Proceso de escritura (seguro, preserva el resto del JSON)
 
-1. **Read tool** sobre el `settings.json` elegido.
-2. Si el fichero no existe → base = `{}`.
-3. Si existe → parsear el JSON tal cual (no perder campos ni comentarios-no-JSON).
+1. **Read** el `settings.json` elegido.
+2. Si no existe → base = `{}`.
+3. Si existe → parsear el JSON tal cual (no perder campos).
 4. **Actualizar** (o crear) la clave `statusLine` con el objeto anterior.
-5. **Serializar** preservando indentación (2 espacios, igual que el existente).
-6. **Write tool** con el contenido completo resultante.
+5. **Serializar** preservando indentación (2 espacios).
+6. **Write** el contenido completo resultante.
 
-> ⚠️ **Prohibido**: usar `sed`/`awk` sobre el JSON o reemplazos de texto.
-> Sólo Read → parse → Write.
-
-> ⚠️ **Preservar** todos los demás campos del fichero (hooks, permissions,
-> preferences, etc.). Si el JSON es inválido o tiene comentarios no
-> estándar, parar y mostrar el fichero al usuario sin modificar.
+> ⚠️ **Prohibido**: `sed`/`awk` sobre el JSON. Sólo Read → parse → Write.
 
 ---
 
 ## PASO P6 — Confirmación final con lore
 
-Mostrar sin interacción (sustituir `<ruta>` y `<config>` según scope):
+Mostrar sin interacción (sustituir `<ruta>` y `<config>` según scope/shell):
 
 ```
 ══════════════════════════════════════════════════════════════════
 🥔 ¡El Status Line de Pépeton ha sido instalado!
 
-  📜 Script:  <ruta del statusline-command.sh>
+  📜 Script:  <ruta del statusline-command.{sh|ps1}>
   ⚙️  Config:  <ruta del settings.json> → statusLine
+  🐚 Shell:   <SHELL_TARGET>
 
   Haz cualquier interacción con Claude Code para verlo en acción.
-  Si no ves las barras de 5h/7d, es normal hasta la primera
-  respuesta de la sesión (son datos Pro/Max).
+  Si no ves las barras de 5h/7d, es normal hasta la primera respuesta
+  de la sesión (son datos Pro/Max).
 
   "Que el código fluya limpio y los prompts encuentren
    siempre su camino de vuelta."
@@ -333,7 +220,7 @@ Mostrar sin interacción (sustituir `<ruta>` y `<config>` según scope):
 ══════════════════════════════════════════════════════════════════
 ```
 
-Volver al **menú principal de Palantír** (`00-menu-principal.md`, PASO 2).
+Volver al **menú principal de Palantír** (`00-menu-principal.md` PASO 2).
 
 ---
 
@@ -341,13 +228,16 @@ Volver al **menú principal de Palantír** (`00-menu-principal.md`, PASO 2).
 
 1. **Nunca escribir** sin confirmación explícita del usuario (PASO P3).
 2. **Preservar** todos los campos del `settings.json` al actualizar.
-3. **Usar solo** Read + Write tools sobre JSON, nunca `sed`/`awk`/text-replace.
-4. **No contaminar** `MEMORY.md` ni auto memory durante este flujo.
-5. **Idempotencia**: ejecutar el preset dos veces seguidas debe dejar el
-   sistema en el mismo estado final (no duplicar scripts ni campos).
-6. **Si el usuario cancela** en cualquier AskUserQuestion → no tocar nada
+3. **Usar solo** Read + Write sobre JSON, nunca `sed`/`awk`/text-replace.
+4. **Fuente de verdad del script** = ficheros en `prompts/palantir/templates/`.
+   Nunca duplicar el cuerpo del script en este markdown.
+5. **PS 5.1 floor de compat**: ningún `.ps1` puede usar `??`, `?.`, `?[]`,
+   `` `e ``, `Get-Error` ni paralelismo PS 7+.
+6. **Idempotencia**: ejecutar el preset dos veces seguidas debe dejar el
+   sistema en el mismo estado final.
+7. **Si el usuario cancela** en cualquier AskUserQuestion → no tocar nada
    y volver al menú principal.
 
 ---
 
-*Status Line — Preset de Pépeton · Palantír Módulo 07c v1.0 · 🥔*
+*Status Line — Preset de Pépeton · Palantír Módulo 07c v2.0 · 🥔*

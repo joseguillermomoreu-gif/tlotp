@@ -288,11 +288,23 @@ configuración** respetando el schema del WebFetch.
 
 Si el usuario eligió "Comando externo":
 
+> 🆕 **Windows + Comando externo** (issue #478): si `OS_DETECTED == Windows`,
+> ejecutar antes la detección de shell del módulo 07c PASO P3.5
+> (`powershell -NoProfile -Command "$PSVersionTable.PSVersion.Major"`) para
+> determinar `SHELL_TARGET = "bash"` o `"powershell"`. Generar el comando
+> según el shell elegido:
+>
+> - `SHELL_TARGET == "bash"` → `bash <path>/script.sh`
+> - `SHELL_TARGET == "powershell"` → `powershell -ExecutionPolicy Bypass -File <path>\\script.ps1`
+>
+> Si el script no usa sintaxis exclusiva PS 7+ (`??`, `?.`, `?[]`, `` `e ``,
+> `Get-Error`, paralelismo) el comando será compatible con PS 5.1.
+
 ```json
 {
   "statusLine": {
     "type": "command",
-    "command": "[comando generado o path al script]"
+    "command": "[comando generado según SHELL_TARGET]"
   }
 }
 ```

@@ -15,7 +15,7 @@ Migrado desde branch protection clásica en v3.16.2.
 | Pull request requerida | ✅ sí |
 | Code owner review | ✅ requerida |
 | Dismiss stale reviews | ✅ sí |
-| Required status checks | Validar Markdown · links internos · links externos · compilacion de prompts |
+| Required status checks | Validar Markdown · links internos · links externos · compilacion de prompts · Validar templates statusline (bash + PS 5.1)¹ |
 | Strict status checks | ✅ sí |
 | Bypass actors | ninguno |
 
@@ -30,7 +30,7 @@ Migrado desde branch protection clásica en v3.16.2.
 | Non-fast-forward (force push) | ✅ bloqueado |
 | Pull request requerida | ✅ sí |
 | Code owner review | ❌ no requerida (permite auto-merge del bot) |
-| Required status checks | Validar Markdown · links internos · links externos · compilacion de prompts |
+| Required status checks | Validar Markdown · links internos · links externos · compilacion de prompts · Validar templates statusline (bash + PS 5.1)¹ |
 | Strict status checks | ✅ sí |
 | Bypass actors | ninguno |
 
@@ -41,6 +41,10 @@ como bypass actor en Rulesets. La solución arquitectónica: `develop` es
 rama de integración (el gate real está en `master`). Sin review obligatoria
 en develop, `github-actions[bot]` puede auto-mergear backmerges y PRs de
 release-prep sin intervención manual.
+
+¹ El check **Validar templates statusline (bash + PS 5.1)** se añadió en
+issue [#478](https://github.com/joseguillermomoreu-gif/tlotp/issues/478) (PowerShell 5.1 compat + template externalizado).
+Tras mergear la PR, añadirlo manualmente a los required status checks de `master` y `develop` desde la UI de GitHub o vía `gh api`.
 
 ## Gestión de Rulesets
 
