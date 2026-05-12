@@ -7,12 +7,14 @@ on:
       - '**/*.md'
       - '.github/workflows/**'
       - 'scripts/**'
+      - 'prompts/palantir/templates/**'
   pull_request:
     branches: [master, develop]
     paths:
       - '**/*.md'
       - '.github/workflows/**'
       - 'scripts/**'
+      - 'prompts/palantir/templates/**'
 
 permissions:
   contents: read
@@ -119,3 +121,86 @@ jobs:
 
       - name: Verificar compilacion
         run: bash scripts/verify-compile.sh
+
+  validate-statusline-templates:
+    name: Validar templates statusline (bash + PS 5.1)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: "!startsWith(github.head_ref, 'backmerge/')"
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Bash syntax — statusline-command.sh
+        run: |
+          bash -n prompts/palantir/templates/statusline-command.sh
+          echo "✅ bash -n OK"
+
+      - name: PowerShell syntax — statusline-command.ps1
+        shell: pwsh
+        run: |
+          $path = 'prompts/palantir/templates/statusline-command.ps1'
+          $src = Get-Content -Raw $path
+          $tokens = $null
+          $parseErrors = $null
+          [System.Management.Automation.Language.Parser]::ParseInput(
+              $src, [ref]$tokens, [ref]$parseErrors
+          ) | Out-Null
+          if ($parseErrors.Count -gt 0) {
+              $parseErrors | ForEach-Object { Write-Error $_.Message }
+              throw "PowerShell parse errors: $($parseErrors.Count)"
+          }
+          Write-Host "✅ PowerShell parse OK"
+
+      - name: Ban PS 7+ exclusive operators in .ps1 template
+        run: |
+          PS_FILE=prompts/palantir/templates/statusline-command.ps1
+          # Eliminar líneas full-comment y comentarios inline antes del grep
+          # para evitar falsos positivos en avisos como "NO usar ?? ni ?."
+          stripped=$(sed -E 's/[[:space:]]+#.*$//; /^[[:space:]]*#/d' "$PS_FILE")
+          if echo "$stripped" | grep -nE '(\?\?|\?\.|\?\[)' ; then
+            echo "::error file=$PS_FILE::PowerShell 7+ exclusive operator detected in PS 5.1-only template"
+            exit 1
+          fi
+          echo "✅ Sin operadores exclusivos PS 7+"
+
+      - name: Verify .ps1 reads stdin via [Console]::In.ReadToEnd()
+        run: |
+          PS_FILE=prompts/palantir/templates/statusline-command.ps1
+          if ! grep -q '\[Console\]::In\.ReadToEnd' "$PS_FILE"; then
+            echo "::error file=$PS_FILE::statusline-command.ps1 must read stdin with [Console]::In.ReadToEnd()"
+            exit 1
+          fi
+          stripped=$(sed -E 's/[[:space:]]+#.*$//; /^[[:space:]]*#/d' "$PS_FILE")
+          if echo "$stripped" | grep -qE '\$input\b'; then
+            echo "::error file=$PS_FILE::Use [Console]::In.ReadToEnd(), not \$input (pipeline variable, not stdin)"
+            exit 1
+          fi
+          echo "✅ stdin handling correcto"
+
+      - name: Encoding check — UTF-8 sin BOM en .ps1
+        run: |
+          PS_FILE=prompts/palantir/templates/statusline-command.ps1
+          if head -c 3 "$PS_FILE" | od -An -tx1 | grep -q 'ef bb bf'; then
+            echo "::error file=$PS_FILE::statusline-command.ps1 has UTF-8 BOM (breaks PS 5.1 parsing in some setups)"
+            exit 1
+          fi
+          echo "✅ UTF-8 sin BOM"
+
+      - name: Smoke test — bash render con fixture
+        run: |
+          if [ ! -f prompts/palantir/templates/_fixtures/input.json ]; then
+            echo "::warning::Fixture no disponible, smoke test bash omitido"
+            exit 0
+          fi
+          if ! command -v jq >/dev/null 2>&1; then
+            sudo apt-get install -qq jq
+          fi
+          OUTPUT=$(cat prompts/palantir/templates/_fixtures/input.json \
+            | bash prompts/palantir/templates/statusline-command.sh)
+          LINES=$(echo "$OUTPUT" | wc -l)
+          if [ "$LINES" -ne 2 ]; then
+            echo "::error::Esperaba 2 líneas de output, recibí $LINES"
+            echo "$OUTPUT"
+            exit 1
+          fi
+          echo "✅ bash smoke test OK (2 líneas)"

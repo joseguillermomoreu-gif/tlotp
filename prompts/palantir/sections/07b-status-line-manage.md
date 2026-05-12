@@ -53,6 +53,7 @@ Para cada scope donde `STATUS_LINE_STATE[scope].exists == true`, mostrar:
 🌍 Global (~/.claude/settings.json)
    ──────────────────────────────────
    Formato: [objeto command / string]
+   Shell:   [🐧 bash · 🪟 powershell · 🧵 (string)]
    Valor:
      [contenido exacto del campo `statusLine`]
 
@@ -62,6 +63,14 @@ Para cada scope donde `STATUS_LINE_STATE[scope].exists == true`, mostrar:
 
 ══════════════════════════════════════════════════════
 ```
+
+> 🆕 **Detección de shell** (issue #478): para el campo `Shell:` analizar
+> el `statusLine.command` actual del scope:
+>
+> - si empieza por `powershell` o `pwsh` → 🪟 powershell
+> - si empieza por `bash`, `sh`, `zsh` o un path absoluto a `.sh` → 🐧 bash
+> - si `statusLine` es un string plano (no objeto) → 🧵 (string)
+> - en cualquier otro caso → `Shell: ⚙️ <interpretar manualmente>`
 
 **Si solo existe uno** de los dos scopes, omitir la sección vacía.
 
