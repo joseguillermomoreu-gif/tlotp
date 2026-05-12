@@ -43,9 +43,8 @@ en develop, `github-actions[bot]` puede auto-mergear backmerges y PRs de
 release-prep sin intervención manual.
 
 ¹ El check **Validar templates statusline (bash + PS 5.1)** se añadió en
-issue #478 (PowerShell 5.1 compat + template externalizado). Tras mergear
-#478, añadirlo manualmente a los required status checks de `master` y
-`develop` desde la UI de GitHub o vía `gh api`.
+issue [#478](https://github.com/joseguillermomoreu-gif/tlotp/issues/478) (PowerShell 5.1 compat + template externalizado).
+Tras mergear la PR, añadirlo manualmente a los required status checks de `master` y `develop` desde la UI de GitHub o vía `gh api`.
 
 ## Gestión de Rulesets
 
