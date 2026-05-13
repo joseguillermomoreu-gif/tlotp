@@ -302,6 +302,20 @@ check_ai_md_pipeline() {
 
 check_ai_md_pipeline
 
+# 13. Verify non-.md assets are copied (templates) — issue #482
+#     compile.sh debe copiar prompts/**/*.{ps1,sh,...} a dist/ con la misma
+#     ruta relativa. Sin este paso, 07c-status-line-pepeton no puede hacer
+#     curl desde una máquina sin el repo clonado.
+for asset in palantir/templates/statusline-command.ps1 \
+             palantir/templates/statusline-command.sh; do
+  if [ -f "$DIST_DIR/$asset" ]; then
+    echo "  [OK] dist/$asset exists"
+  else
+    echo "  ERROR: dist/$asset not found (compile.sh debe copiarlo)"
+    errors=$((errors + 1))
+  fi
+done
+
 echo ""
 if [ "$errors" -gt 0 ]; then
   echo "FAILED: $errors error(s) detected"

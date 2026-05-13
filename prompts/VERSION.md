@@ -1,7 +1,7 @@
 # TLOTP - Version
 
-**TLOTP v8.6.4** — "Las Almenaras de Gondor"
-**Fecha release**: 2026-05-12
+**TLOTP v8.6.5** — "The Palantír Speaks"
+**Fecha release**: 2026-05-13
 
 ## Componentes
 
