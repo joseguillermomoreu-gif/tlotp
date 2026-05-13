@@ -31,3 +31,8 @@ https://josemoreupeso.es/tlotp/tom-bombadil/index.html
 # (sirven como smoke del pipeline compile.sh → dist → rsync)
 https://josemoreupeso.es/tlotp/palantir/palantir-main.html
 https://josemoreupeso.es/tlotp/palantir/palantir-main.md
+
+# Templates de Status Line (publicados por compile.sh → dist/ → rsync) — issue #482
+# 07c-status-line-pepeton.md hace curl a estas URLs como fuente primaria.
+https://josemoreupeso.es/tlotp/palantir/templates/statusline-command.ps1
+https://josemoreupeso.es/tlotp/palantir/templates/statusline-command.sh

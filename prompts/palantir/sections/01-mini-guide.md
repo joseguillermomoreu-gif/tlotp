@@ -27,6 +27,9 @@ cómo Claude piensa y actúa en tu entorno.
 
 🧠 MEMORY.md       — La memoria persistente entre batallas
 
+📊 Status Line     — La barra de estado dinámica de Claude Code
+                     (crear, editar, reemplazar; disponible en "Ver más →")
+
 ⚔️ ¿Qué puede hacer Palantír?
   🔍 Inspeccionar — leer el estado actual de toda tu configuración
   ➕ Añadir       — crear nuevos registros con asistencia inteligente
