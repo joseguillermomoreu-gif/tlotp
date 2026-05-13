@@ -1489,6 +1489,22 @@ function toggleSidebar(){document.getElementById('sidebar').classList.toggle('op
 INDEXEOF4
 }
 
+# ── Copiar assets non-.md de prompts/ a dist/ ────────────────
+# Issue #482: scripts/templates (.ps1, .sh) y cualquier futuro asset non-md
+# deben publicarse al sitio para que 07c pueda hacer curl desde una máquina
+# sin el repo clonado. Mantiene la ruta relativa origen → destino.
+copy_non_md_assets() {
+  local count=0
+  while IFS= read -r asset; do
+    local rel="${asset#$PROMPTS_DIR/}"
+    local dest="$DIST_DIR/$rel"
+    mkdir -p "$(dirname "$dest")"
+    cp "$asset" "$dest"
+    count=$((count + 1))
+  done < <(find "$PROMPTS_DIR" -type f ! -name "*.md" | sort)
+  echo "  Copied $count non-.md asset(s) to dist/"
+}
+
 # ── Compilar todo ────────────────────────────────────────────
 compile_all() {
   echo "=== TLOTP Compiler ==="
@@ -1526,6 +1542,9 @@ compile_all() {
   # 5. Generate main index.html
   generate_index
 
+  # 6. Copy non-.md assets (templates, scripts, etc.) — issue #482
+  copy_non_md_assets
+
   echo ""
   echo "=== Compilation complete ==="
   echo "  HTML modules:    $count"
@@ -1533,6 +1552,7 @@ compile_all() {
   echo "  AI .md (1:1):    dist/**/*.md (one per source, .md URLs)"
   echo "  Epic index:      dist/{epic}/index.html (x7)"
   echo "  Landing page:    dist/index.html"
+  echo "  Non-md assets:   dist/**/* (copied 1:1 from prompts/)"
 }
 
 # ── Main ─────────────────────────────────────────────────────

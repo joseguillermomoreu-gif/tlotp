@@ -132,15 +132,33 @@ Si la carpeta `.claude/` no existe en el scope elegido, crearla con `mkdir -p`.
 
 ### Leer template versionado y escribir
 
-Según `SHELL_TARGET`:
+Según `SHELL_TARGET`, descargar el template desde la URL pública vía `Bash`:
 
-- **bash** → `Read prompts/palantir/templates/statusline-command.sh`
-- **powershell** → `Read prompts/palantir/templates/statusline-command.ps1`
+- **bash**:
 
-**Escribir** el contenido leído tal cual en la ruta destino con `Write` tool.
+  ```bash
+  curl -fsSL https://josemoreupeso.es/tlotp/palantir/templates/statusline-command.sh
+  ```
+
+- **powershell**:
+
+  ```bash
+  curl -fsSL https://josemoreupeso.es/tlotp/palantir/templates/statusline-command.ps1
+  ```
+
+Capturar el output completo en una variable. Verificar que no está vacío antes
+de continuar (un 200 con body vacío sería un deploy roto).
+
+> ⚠️ **Fallback** (sin red, HTTP ≠ 200, output vacío): usar
+> `Read prompts/palantir/templates/statusline-command.{sh|ps1}` como fuente
+> secundaria. Si tampoco existe el fichero local, abortar con un mensaje de
+> error claro al usuario (no improvisar el contenido del script).
+
+**Escribir** el contenido obtenido tal cual en la ruta destino con `Write` tool.
 
 > 🚫 **Prohibido** duplicar el cuerpo del script en este markdown. La fuente
-> de verdad es exclusivamente el fichero versionado del repo. Si necesitas
+> de verdad es exclusivamente el fichero versionado del repo (servido también
+> en `https://josemoreupeso.es/tlotp/palantir/templates/`). Si necesitas
 > modificar el script, hazlo en `prompts/palantir/templates/` vía PR.
 
 ### Permisos ejecutables (solo bash)
